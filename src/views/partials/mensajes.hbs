@@ -1,0 +1,28 @@
+{{#if success}}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{success}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <i class="fas fa-window-close"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{{/if}}
+{{#if fail}}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{fail}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <i class="fas fa-window-close"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{{/if}}
