@@ -1,20 +1,162 @@
-<!--Main Navigation-->
-<header>
-  <!-- Sidebar -->
-  <div class="sidebar-fixed position-fixed scroll-bar scrollbar-ripe-malinka">
-    
-  </di
-  v>
-  <!-- Sidebar -->
-</header>
-<!--Main Navigation-->
+<script>
+  window.onload = function launch_scroll() {
+    createchkboxes(document.getElementById("scroll-bar-countries"), countries);
+  }
+</script>
+<div class="container">
+  <div class="sidebar  scrollbar-ripe-malinka">
+    <div class="d-flex justify-content-between align-bottom mt-2 ml-2 mr-2 p-2 white">
+      <span class="custom-control-inline align-bottom">Comprar</span>
+      <span class="custom-control-inline">Arrendar</span>
+    </div>
+    <div class="d-flex justify-content-center white ml-2 mr-2">
+      <label class="switch-long ">
+        <input type="checkbox" checked>
+        <span class="slider-long round"></span>
+      </label>
+    </div>
+    <div class="scroll-bar scrollbar-ripe-malinka m-2 pl-2 grey lighten-5" id="scroll-bar-countries">
+      <label>
+        Provincia
+      </label>
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="defaultUnchecked" checked>
+        <label class="custom-control-label" for="defaultUnchecked">Default unchecked</label>
+      </div>
+    </div>
+    <div class="scroll-bar scrollbar-ripe-malinka m-2 pl-2 grey lighten-5" id="scroll-bar-countries">
+      <label>
+        Parroquia
+      </label>
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
+        <label class="custom-control-label" for="defaultUnchecked">Default unchecked</label>
+      </div>
+    </div>
+    <div class="scroll-bar scrollbar-ripe-malinka m-2 pl-2 grey lighten-5" id="">
+      <label>
+        Tipo de Inmueble
+      </label>
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="defaultInline1">
 
-<!--Main layout-->
-<main class="pt-5 mx-lg-4">
-  <div class="container-fluid mt-5">
-
-
-      
+        <label class="custom-control-label" for="defaultInline1"><i class="fas fa-home"></i>
+          Casa</label>
+      </div>
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="defaultInline2">
+        <label class="custom-control-label" for="defaultInline2"><i class="fas fa-building"></i>
+          Departamento</label>
+      </div>
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="defaultInline2">
+        <label class="custom-control-label" for="defaultInline2"><i class="fas fa-map-marked-alt"></i>
+          Terreno</label>
+      </div>
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="defaultInline3">
+        <label class="custom-control-label" for="defaultInline3"> <i class="fas fa-hammer"></i>
+          Proyecto</label>
+      </div>
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="defaultInline4">
+        <label class="custom-control-label" for="defaultInline4"> <i class="fas fa-briefcase"></i>
+          Oficina</label>
+      </div>
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="defaultInline4">
+        <label class="custom-control-label" for="defaultInline4"> <i class="fas fa-store"></i>
+          Local</label>
+      </div>
+      <div class="custom-control custom-checkbox ">
+        <input type="checkbox" class="custom-control-input" id="defaultInline5">
+        <label class="custom-control-label" for="defaultInline5"><i class="fas fa-ellipsis-h"></i>
+          Otros</label>
+      </div>
+    </div>
+    <div class="white m-2 p-2">
+      <span>
+        Precio
+      </span>
+      <div class="d-flex justify-content-between ">
+        <!-- Material input -->
+        <div class="md-form input-with-pre-icon">
+          <i class="fas fa-dollar-sign input-prefix"></i>
+          <input type="number" id="numberExample" class="form-control" min="0">
+          <label for="numberExample">Min</label>
+        </div>
+        <div class="md-form input-with-pre-icon">
+          <i class="fas fa-dollar-sign input-prefix"></i>
+          <input type="number" id="numberExample" class="form-control" min="0">
+          <label for="numberExample">Max</label>
+        </div>
+      </div>
+    </div>
+    <div class="white m-2 p-2">
+      <span>
+        Área (m2)
+      </span>
+      <div class="d-flex justify-content-between ">
+        <!-- Material input -->
+        <div class="md-form input-with-pre-icon">
+          <i class="fas fa-dollar-sign input-prefix"></i>
+          <input type="number" id="numberExample" class="form-control" min="0">
+          <label for="numberExample">Min</label>
+        </div>
+        <div class="md-form input-with-pre-icon">
+          <i class="fas fa-dollar-sign input-prefix"></i>
+          <input type="number" id="numberExample" class="form-control" min="0">
+          <label for="numberExample">Max</label>
+        </div>
+      </div>
+    </div>
+    <div class="white m-2 p-2">
+      <span>
+        Habitaciones
+      </span>
+      <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+          <button type="button" class="btn btn-default btn-sm">1</button>
+          <button type="button" class="btn btn-default btn-sm">2</button>
+          <button type="button" class="btn btn-default btn-sm">3</button>
+          <button type="button" class="btn btn-default btn-sm">4+</button>
+        </div>
+      </div>
+    </div>
+    <div class="white m-2 p-2">
+      <span>
+        Baños
+      </span>
+      <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+          <button type="button" class="btn btn-default btn-sm">1</button>
+          <button type="button" class="btn btn-default btn-sm">2</button>
+          <button type="button" class="btn btn-default btn-sm">3</button>
+          <button type="button" class="btn btn-default btn-sm">4+</button>
+        </div>
+      </div>
+    </div>
+<div class="white m-2 p-2">
+      <span>
+        Garajes
+      </span>
+      <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+          <button type="button" class="btn btn-default btn-sm">1</button>
+          <button type="button" class="btn btn-default btn-sm">2</button>
+          <button type="button" class="btn btn-default btn-sm">3+</button>
+        </div>
+      </div>
+    </div>
   </div>
-</main>
-<!--Main layout-->
+
+
+  <div class="content">
+    <h2>Responsive Sidebar Example</h2>
+    <p>This example use media queries to transform the sidebar to a top navigation bar when the screen size is 700px or
+      less.</p>
+    <p>We have also added a media query for screens that are 400px or less, which will vertically stack and center the
+      navigation links.</p>
+    <h3>Resize the browser window to see the effect.</h3>
+  </div>
+</div>
