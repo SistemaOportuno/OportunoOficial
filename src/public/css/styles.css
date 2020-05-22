@@ -1,18 +1,28 @@
-
+/*Justu¿ify p*/
+.description{
+  text-overflow: clip;
+  overflow: hidden;
+  white-space: normal; 
+  height: 60px;
+  font-size: small;
+}
+p {
+  text-align: justify;
+  text-justify: inter-word;
+}
   /*sidebar*/
   
   .sidebar {
     width: 300px;
-    background-color: #e0e0e0;
+    background-color: #fafafa  ;
     position: absolute;
-    height: 100vh;
     overflow: auto;
   }
   
   div.content {
     margin-left: 310px;
     margin-top: 80px;
-    height: 1000px;
+    height: 2000px;
   }
   
   @media screen and (max-width: 700px) {
@@ -35,11 +45,11 @@
   /*Scrolll*/
   .scrollbar-ripe-malinka::-webkit-scrollbar {
   width: 10px;
-  background-color: #F5F5F5; }
+  background-color: #fafafa ; }
   
   .scrollbar-ripe-malinka::-webkit-scrollbar-thumb {
   border-radius: 15px;
-  background-color: #1C2331;
+  background-color: rgba(255, 166, 0, 0.459);
   }
   .scroll-bar {
   position: relative;
@@ -158,11 +168,12 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
 /*switch-long*/
 .switch-long {
   position: relative;
   display: inline-block;
-  width: 120px;
+  width: 100px;
   height: 30px;
 }
 
@@ -179,29 +190,32 @@ input:checked + .slider:before {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #FE9A2E;
+  background-color: #6a1b9a 
+  ;
   -webkit-transition: .4s;
   transition: .4s;
+  border-radius: 8px;
 }
 
 .slider-long:before {
   position: absolute;
   content: "";
   height: 22px;
-  width: 60px;
+  width: 40px;
   left: 4px;
   bottom: 4px;
   background-color: white;
   -webkit-transition: .4s;
   transition: .4s;
+  border-radius: 8px;
 }
 
 input:checked + .slider-long {
-  background-color: #FE9A2E;
+  background-color:  #6a1b9a
 }
 
 input:focus + .slider-long {
-  box-shadow: 0 0 1px #FE9A2E;
+  box-shadow: 0 0 1px  #6a1b9a
 }
 
 input:checked + .slider-long:before {
@@ -210,14 +224,6 @@ input:checked + .slider-long:before {
   transform: translateX(50px);
 }
 
-/* Rounded sliders */
-.slider-long.round {
-  border-radius: 34px;
-}
-
-.slider-long.round:before {
-  border-radius: 50%;
-}
 
 
 
