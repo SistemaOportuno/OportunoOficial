@@ -6,8 +6,12 @@ router.get('/',(req,res)=>{
     res.render('layouts/inicio');
 });
 
-router.get('/anuncios',(req,res)=>{
-    res.render('links/anuncios');
+router.get('/lista',(req,res)=>{
+    res.render('links/lista');
+});
+
+router.get('/anuncio',(req,res)=>{
+    res.render('links/anuncio');
 });
 
 
