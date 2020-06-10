@@ -1,6 +1,28 @@
+/*MAPS */
+var map;
+      function initialize() {
+        var mapOptions = {
+          zoom: 10,
+          center: {lat: -0.317176, lng: -78.445544}
+        };
+        map = new google.maps.Map(document.getElementById('map'),
+            mapOptions);
+
+        var marker = new google.maps.Marker({
+          position: {lat:-0.317176, lng: -78.445544},
+          map: map
+        });
+        var infowindow = new google.maps.InfoWindow({
+          content: '<p>Marker Location:' + marker.getPosition() + '</p>'
+        });
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.open(map, marker);
+        });
+      }
+
+      google.maps.event.addDomListener(window, 'load', initialize);
+
 /* dunamyc checkboxes*/
-
-
 function createchkboxes(scroll,arr) {
   for (var i = 0; i < arr.length ; i++) {
     var div = document.createElement('div');

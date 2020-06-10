@@ -1,3 +1,19 @@
+
+ #map {
+  height: 500px;
+}
+ul {
+  -webkit-columns: 4;
+  -moz-columns: 4;
+  columns: 4;
+}
+
+.large-description{
+  white-space: pre-wrap;
+}
+.rnd{
+  border-radius: 20px;
+}
 /*Justu¿ify p*/
 .description{
   text-overflow: clip;
@@ -34,6 +50,11 @@ p {
     }
     .sidebar a {float: left;}
     div.content {margin-left: 0;}
+    ul {
+      -webkit-columns: 1;
+      -moz-columns: 1;
+      columns: 1;
+    }
   }
   
   @media screen and (max-width: 400px) {
@@ -49,7 +70,7 @@ p {
   
   .scrollbar-ripe-malinka::-webkit-scrollbar-thumb {
   border-radius: 15px;
-  background-color: rgba(255, 166, 0, 0.459);
+  background-color: rgba(62, 69, 81, 0.7);
   }
   .scroll-bar {
   position: relative;
@@ -61,15 +82,16 @@ p {
   .navbar:not(.top-nav-collapse) {
       background: rgb(130, 134, 143)!important;
   }
+  
 }
 .view,body,html{
   height:100%
 }
 .navbar{
-  background-color:rgba(0,0,0,.2)
+  background-color:rgba(62, 69, 81, 0.7)
 }       
 .page-footer,.top-nav-collapse{
-  background-color:#1C2331
+  background-color:#2E2E2E
 }
 @media only screen and (max-width:768px){.navbar{background-color:#1C2331}}
  
@@ -129,7 +151,7 @@ p {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #FE9A2E;
+  background-color: #2E2E2E;
   -webkit-transition: .4s;
   transition: .4s;
 }
@@ -147,11 +169,11 @@ p {
 }
 
 input:checked + .slider {
-  background-color: #FE9A2E;
+  background-color: #2E2E2E;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #FE9A2E;
+  box-shadow: 0 0 1px #2E2E2E;
 }
 
 input:checked + .slider:before {
@@ -190,7 +212,7 @@ input:checked + .slider:before {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #6a1b9a 
+  background-color: #2E2E2E 
   ;
   -webkit-transition: .4s;
   transition: .4s;
@@ -211,11 +233,11 @@ input:checked + .slider:before {
 }
 
 input:checked + .slider-long {
-  background-color:  #6a1b9a
+  background-color:  #2E2E2E
 }
 
 input:focus + .slider-long {
-  box-shadow: 0 0 1px  #6a1b9a
+  box-shadow: 0 0 1px  #2E2E2E
 }
 
 input:checked + .slider-long:before {
