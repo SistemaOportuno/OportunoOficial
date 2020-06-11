@@ -26,6 +26,10 @@ p {
   text-align: justify;
   text-justify: inter-word;
 }
+.justify{
+  text-align: justify;
+  text-justify: inter-word;
+}
   /*sidebar*/
   
   .sidebar {
