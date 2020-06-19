@@ -1,58 +1,73 @@
-
-$(document).ready(function() {
-  $('#example').DataTable();
-} );
-
+$(document).ready(function () {
+  $('#example').DataTable({
+    responsive: true,
+    lengthMenu: [[5, 10, 25, -1], [5, 10, 25, "All"]],
+    language: {
+      "lengthMenu": "Mostrando   _MENU_   elementos",
+      "zeroRecords": "Ningun registro",
+      "info": "Página _PAGE_ de _PAGES_",
+      "infoEmpty": "No existen registros",
+      "infoFiltered": "(filtered from _MAX_ total records)",
+      "sSearch": "Buscar:",
+      "oPaginate": {
+        "sFirst": "Primero",
+        "sLast": "Último",
+        "sNext": "Siguiente",
+        "sPrevious": "Anterior"
+      },
+    }
+  });
+});
 /*MAPS */
 var map;
-      function initialize() {
-        var mapOptions = {
-          zoom: 10,
-          center: {lat: -0.317176, lng: -78.445544}
-        };
-        map = new google.maps.Map(document.getElementById('map'),
-            mapOptions);
+function initialize() {
+  var mapOptions = {
+    zoom: 10,
+    center: { lat: -0.317176, lng: -78.445544 }
+  };
+  map = new google.maps.Map(document.getElementById('map'),
+    mapOptions);
 
-        var marker = new google.maps.Marker({
-          position: {lat:-0.317176, lng: -78.445544},
-          map: map
-        });
-        var infowindow = new google.maps.InfoWindow({
-          content: '<p>Marker Location:' + marker.getPosition() + '</p>'
-        });
-        google.maps.event.addListener(marker, 'click', function() {
-          infowindow.open(map, marker);
-        });
-      }
+  var marker = new google.maps.Marker({
+    position: { lat: -0.317176, lng: -78.445544 },
+    map: map
+  });
+  var infowindow = new google.maps.InfoWindow({
+    content: '<p>Marker Location:' + marker.getPosition() + '</p>'
+  });
+  google.maps.event.addListener(marker, 'click', function () {
+    infowindow.open(map, marker);
+  });
+}
 
-      google.maps.event.addDomListener(window, 'load', initialize);
+google.maps.event.addDomListener(window, 'load', initialize);
 //select
 
 
 /* dunamyc checkboxes*/
-function createchkboxes(scroll,arr) {
-  for (var i = 0; i < arr.length ; i++) {
+function createchkboxes(scroll, arr) {
+  for (var i = 0; i < arr.length; i++) {
     var div = document.createElement('div');
     var label = document.createElement('label');
-  
-    div.setAttribute('class','custom-control custom-checkbox');
 
-    label.setAttribute('class','custom-control-label');
-    label.setAttribute('for','chk'+i);
+    div.setAttribute('class', 'custom-control custom-checkbox');
+
+    label.setAttribute('class', 'custom-control-label');
+    label.setAttribute('for', 'chk' + i);
     label.appendChild(document.createTextNode(arr[i]));
 
-    div.appendChild(Createcheckbox('chk'+i,arr[i]));
+    div.appendChild(Createcheckbox('chk' + i, arr[i]));
     div.appendChild(label);
 
     scroll.appendChild(div);
   }
 }
-function Createcheckbox(chkboxid,val) {
+function Createcheckbox(chkboxid, val) {
   var checkbox = document.createElement('input');
-  checkbox.setAttribute('class','custom-control-input');
-  checkbox.setAttribute('type','checkbox');
-  checkbox.setAttribute('id',chkboxid);
-  checkbox.setAttribute('value',val);
+  checkbox.setAttribute('class', 'custom-control-input');
+  checkbox.setAttribute('type', 'checkbox');
+  checkbox.setAttribute('id', chkboxid);
+  checkbox.setAttribute('value', val);
 
   /*checkbox.onclick = function () {
     this.onclick = null;

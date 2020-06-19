@@ -32,6 +32,15 @@ router.get('/addAnuncio',(req,res)=>{
 router.get('/listAnuncios',(req,res)=>{
     res.render('links/listAnuncios');
 });
+router.get('/editAnuncio',(req,res)=>{
+    res.render('links/editAnuncio');
+});
+router.get('/verAnuncio',(req,res)=>{
+    res.render('links/verAnuncio');
+});
+router.get('/listMensajes',(req,res)=>{
+    res.render('links/listMensajes');
+});
 
 
 

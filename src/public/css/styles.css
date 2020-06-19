@@ -1,4 +1,7 @@
 
+ .mdc-button--raised {
+  background-color:#2E2E2E !important;
+}
  #map {
   height: 500px;
 }
