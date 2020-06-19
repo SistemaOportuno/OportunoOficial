@@ -7,6 +7,11 @@ ul {
   -moz-columns: 4;
   columns: 4;
 }
+.col-ch{
+  -webkit-columns: 3;
+  -moz-columns: 3;
+  columns: 3;
+}
 
 .large-description{
   white-space: pre-wrap;
@@ -42,10 +47,14 @@ p {
   div.content {
     margin-left: 310px;
     margin-top: 80px;
-    height: 2000px;
+    height: 1300px;
+  }
+  div.content-panel {
+    margin-left: 310px;
+    margin-top: 80px;
   }
   
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 900px) {
     .sidebar {
       width: 100%;
       height: auto;
@@ -54,11 +63,18 @@ p {
     }
     .sidebar a {float: left;}
     div.content {margin-left: 0;}
+    div.content-panel {margin-left: 0;}
     ul {
       -webkit-columns: 1;
       -moz-columns: 1;
       columns: 1;
     }
+    .col-ch{
+      -webkit-columns: 1;
+      -moz-columns: 1;
+      columns: 1;
+    }
+    
   }
   
   @media screen and (max-width: 400px) {

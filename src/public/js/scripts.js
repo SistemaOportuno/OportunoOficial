@@ -1,3 +1,8 @@
+
+$(document).ready(function() {
+  $('#example').DataTable();
+} );
+
 /*MAPS */
 var map;
       function initialize() {
@@ -21,6 +26,8 @@ var map;
       }
 
       google.maps.event.addDomListener(window, 'load', initialize);
+//select
+
 
 /* dunamyc checkboxes*/
 function createchkboxes(scroll,arr) {
