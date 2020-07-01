@@ -1,6 +1,7 @@
+
+
 $(document).ready(function () {
   $('#example').DataTable({
-    responsive: true,
     lengthMenu: [[5, 10, 25, -1], [5, 10, 25, "All"]],
     language: {
       "lengthMenu": "Mostrando   _MENU_   elementos",
@@ -15,7 +16,7 @@ $(document).ready(function () {
         "sNext": "Siguiente",
         "sPrevious": "Anterior"
       },
-    }
+    },
   });
 });
 /*MAPS */

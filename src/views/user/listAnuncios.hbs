@@ -15,15 +15,15 @@
             </a>
             <a href="listMensajes" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-envelope-open mr-3"></i>Mensajes</a>
-            <a href="#" class="list-group-item list-group-item-action waves-effect">
+            <a href="contactar" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-headset mr-3"></i>Contáctese con Nosotros</a>
-            <a href="#" class="list-group-item list-group-item-action waves-effect">
+            <a href="cuenta" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-user mr-3"></i>Mi Cuenta</a>
             <a href="#" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión</a>
         </div>
     </div>
-    <div class="content-panel white rounded-lg mb-5  ">
+    <div class="content white rounded-lg mb-5  pl-2 pr-2">
         <div class="row d-flex justify-content-center">
             <div class="header pt-5">
                 <h2 class="font-weight-normal font-italic">Administrar Anuncios</h2>
@@ -34,12 +34,13 @@
         <table id="example">
             <thead>
                 <tr>
-                    <th>Mis Anuncios</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>
+
                         <div class="card">
                             <div class="row">
                                 <div class="col-sm-5">
@@ -108,11 +109,10 @@
                                             3
                                         </span>
                                     </div>
-                                    <p class="font-weight-light ml-3"><i class="blue-grey-text far fa-calendar-alt"></i>
-                                        17/05/2020</p>
+
                                 </div>
                                 <div class="col-sm-7">
-                                    <div class="container-flex m-2">
+                                    <div class="container m-2">
                                         <a href="#" class="font-weight-bolder">Titulo del anuncio</a>
                                         <h3 class="font-weight-normal">USD 1000</h3>
                                         <p class="font-weight-light"><i
@@ -126,68 +126,83 @@
                                             Y 1 Bodega7 Años
                                             De
                                             ConstrucciónAgua Caliente Por Tubería Gas Centralizado </p>
-                                        <div class="d-flex ">
-
-                                            <a type="button" class="btn btn-info btn-sm" href="verAnuncio">Ver</a>
-                                            <a type="button" class="btn btn-light btn-sm" href="editAnuncio">Editar</a>
-                                            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#bloquearModal">Bloquear</button>
-                                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#eliminarModal">Eliminar</button>
-                                        </div>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="row text-center m-1">
+                                <div class="col-sm-4">
+                                    <p class="font-weight-light ml-3"><i class="blue-grey-text far fa-calendar-alt"></i>
+                                        17/05/2020</p>
+                                </div>
+                                <div class="col-sm-2 ">
+                                    <a type="button" class="btn btn-info btn-sm" href="verAnuncio">Ver</a>
+                                </div>
+                                <div class="col-sm-2 ">
+                                    <a type="button" class="btn btn-light btn-sm " href="editAnuncio">Editar</a>
+                                </div>
+                                <div class="col-sm-2 ">
+                                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
+                                        data-target="#bloquearModal">Bloquear</button>
+                                </div>
+                                <div class="col-sm-2">
+                                    <button type="button" class="btn btn-danger btn-sm " data-toggle="modal"
+                                        data-target="#eliminarModal">Eliminar</button>
                                 </div>
                             </div>
                         </div>
                     </td>
                 </tr>
+
             </tbody>
         </table>
     </div>
 </div>
 <!-- Central Modal Small -->
 <div class="modal fade" id="eliminarModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <!-- Change class.modal-sm to change the size of the modal -->
-  <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header danger-color">
-        <h4 class="modal-title text-white ">Eliminar Anuncio</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Esta seguro de eliminar el anuncio...?</p>
-         <p>Si elimina el anuncio se borraran todos los datos e imagenes registradas</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-light btn-sm" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-danger btn-sm">Borrar</button>
-      </div>
+    aria-hidden="true">
+    <!-- Change class.modal-sm to change the size of the modal -->
+    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header danger-color">
+                <h4 class="modal-title text-white ">Eliminar Anuncio</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Esta seguro de eliminar el anuncio...?</p>
+                <p>Si elimina el anuncio se borraran todos los datos e imagenes registradas</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light btn-sm" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger btn-sm">Borrar</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 <!-- Central Modal Small -->
 <!-- Central Modal Small -->
 <div class="modal fade" id="bloquearModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <!-- Change class.modal-sm to change the size of the modal -->
-  <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header warning-color">
-        <h4 class="modal-title text-white ">Bloquear Anuncio</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Esta seguro de BLoquear el anuncio...?</p>
-         <p>Si bloquea el anuncio no podra ser visible en la lista de anuncios y los interesados no se podran poner en contacto</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-light btn-sm" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-warning btn-sm">Bloquear</button>
-      </div>
+    aria-hidden="true">
+    <!-- Change class.modal-sm to change the size of the modal -->
+    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header warning-color">
+                <h4 class="modal-title text-white ">Bloquear Anuncio</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Esta seguro de BLoquear el anuncio...?</p>
+                <p>Si bloquea el anuncio no podra ser visible en la lista de anuncios y los interesados no se podran
+                    poner en contacto</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light btn-sm" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-warning btn-sm">Bloquear</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 <!-- Central Modal Small -->

@@ -1,11 +1,9 @@
 
- .mdc-button--raised {
-  background-color:#2E2E2E !important;
-}
+
  #map {
   height: 500px;
 }
-ul {
+.ul-multiple {
   -webkit-columns: 4;
   -moz-columns: 4;
   columns: 4;
@@ -56,6 +54,12 @@ p {
     margin-left: 310px;
     margin-top: 80px;
   }
+  div.content-short {
+    margin-left: 310px;
+    margin-top: 80px;
+    height: 70vh;
+  }
+  
   
   @media screen and (max-width: 900px) {
     .sidebar {
@@ -67,7 +71,7 @@ p {
     .sidebar a {float: left;}
     div.content {margin-left: 0;}
     div.content-panel {margin-left: 0;}
-    ul {
+    .ul-multiple {
       -webkit-columns: 1;
       -moz-columns: 1;
       columns: 1;
@@ -107,9 +111,7 @@ p {
   }
   
 }
-.view,body,html{
-  height:100%
-}
+
 .navbar{
   background-color:rgba(62, 69, 81, 0.7)
 }       
