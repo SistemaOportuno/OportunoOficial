@@ -1,0 +1,87 @@
+<div class="container">
+    <div class="sidebar rounded-lg">
+        <div class="header  elegant-color p-1">
+            <h5 class="h5 text-white text-center">Panel Administracion</h5>
+        </div>
+        <div class="list-group list-group-flush pl-2 pr-2 pt-5 pb-5">
+            <a href="adminPanel" class="list-group-item list-group-item-action waves-effect ">
+                <i class="fas fa-home mr-3"></i>Inicio
+            </a>
+            <a href="componentes" class="list-group-item list-group-item-action waves-effect ">
+                <i class="fas fa-plus-circle mr-3"></i>Administar Componentes
+            </a>
+            <a href="adminAnuncios" class="list-group-item list-group-item-action waves-effect">
+                <i class="fas fa-briefcase mr-3"></i>Administrar Anuncios
+            </a>
+            <a href="adminUsuarios" class="list-group-item list-group-item-action waves-effect active">
+                <i class="fas fa-envelope-open mr-3"></i>Administrar Usuarios</a>
+            <a href="adminMensajes" class="list-group-item list-group-item-action waves-effect">
+                <i class="fas fa-headset mr-3"></i>Mensajes</a>
+            <a href="" class="list-group-item list-group-item-action waves-effect">
+                <i class="fas fa-user mr-3"></i>Mi Cuenta</a>
+            <a href="" class="list-group-item list-group-item-action waves-effect">
+                <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión</a>
+        </div>
+    </div>
+    <div class="content-short white rounded-lg p-3 mb-5">
+        <div class="header pt-5">
+            <h2 class="font-weight-normal font-italic text-center">Usuarios del Sistema</h2>
+        </div>
+        <table class="table table-bordered mt-5" id="example">
+            <thead>
+                <tr>
+                    <th>
+                        <center>Usuario</center>
+                    </th>
+                    <th>
+                        <center>Tipo</center>
+                    </th>
+                    <th>
+                        <center>N° Anuncios</center>
+                    </th>
+                    <th>
+                        <center>Acción</center>
+                    </th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Luis Cuascota</td>
+                    <td>Propietario</td>
+                    <td>1</td>
+                    <td>
+                        <center>
+                            <a href="usuarioAnuncios" type="button" class="btn btn-secondary btn-sm ">Anuncios</a>
+                            <button type="button" class="btn btn-info btn-sm " data-toggle="modal"
+                                data-target="#modal_edit_provincia">Bloquear</button>
+                            <button type="button" class="btn btn-warning btn-sm ">Eliminar</button>
+                        </center>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Hugo Yepez</td>
+                    <td>Agente</td>
+                    <td>10</td>
+                    <td>
+                        <center>
+                            <a href="usuarioAnuncios" type="button" class="btn btn-secondary btn-sm ">Anuncios</a>
+                            <button type="button" class="btn btn-info btn-sm ">Bloquear</button>
+                            <button type="button" class="btn btn-warning btn-sm ">Eliminar</button>
+                        </center>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Creativos</td>
+                    <td>Inmobiliaria</td>
+                    <td>100</td>
+                    <td>
+                        <center>
+                            <a href="usuarioAnuncios" type="button" class="btn btn-secondary btn-sm ">Anuncios</a>
+                            <button type="button" class="btn btn-info btn-sm ">Bloquear</button>
+                            <button type="button" class="btn btn-warning btn-sm ">Eliminar</button>
+                        </center>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

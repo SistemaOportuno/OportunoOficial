@@ -80,6 +80,22 @@ router.get('/zonas',(req,res)=>{
 router.get('/preguntas',(req,res)=>{
     res.render('admin/Preguntas');
 });
+router.get('/adminAnuncios',(req,res)=>{
+    res.render('admin/adminAnuncios');
+});
+router.get('/adminUsuarios',(req,res)=>{
+    res.render('admin/adminUsuarios');
+});
+router.get('/usuarioAnuncios',(req,res)=>{
+    res.render('admin/usuarioAnuncios');
+});
+router.get('/adminMensajes',(req,res)=>{
+    res.render('admin/adminMensajes');
+});
+
+
+
+
 
 
 
