@@ -4,18 +4,18 @@
             <h5 class="h5 text-white text-center">Panel Administracion</h5>
         </div>
         <div class="list-group list-group-flush pl-2 pr-2 pt-5 pb-5">
-            <a href="adminPanel" class="list-group-item list-group-item-action waves-effect ">
+            <a href="/adminPanel" class="list-group-item list-group-item-action waves-effect ">
                 <i class="fas fa-home mr-3"></i>Inicio
             </a>
-            <a href="componentes" class="list-group-item list-group-item-action waves-effect active">
+            <a href="/componentes" class="list-group-item list-group-item-action waves-effect active">
                 <i class="fas fa-plus-circle mr-3"></i>Administar Componentes
             </a>
-            <a href="adminAnuncios" class="list-group-item list-group-item-action waves-effect">
+            <a href="/adminAnuncios" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-briefcase mr-3"></i>Administrar Anuncios
             </a>
-            <a href="adminUsuarios" class="list-group-item list-group-item-action waves-effect">
+            <a href="/adminUsuarios" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-envelope-open mr-3"></i>Administrar Usuarios</a>
-            <a href="adminMensajes" class="list-group-item list-group-item-action waves-effect">
+            <a href="/adminMensajes" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-headset mr-3"></i>Mensajes</a>
             <a href="" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-user mr-3"></i>Mi Cuenta</a>
@@ -23,8 +23,8 @@
                 <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión</a>
         </div>
     </div>
-    <div class="content-short white rounded-lg p-3 mb-5">
-        <a type="button" class="btn btn-elegant rnd mt-3" href="componentes">Regresar</a>
+    <div class="{{#if success}} content-ntop{{else}}content-top{{/if}} white rounded-lg p-3 mb-5">
+        <a type="button" class="btn btn-elegant rnd mt-3" href="/componentes">Regresar</a>
 
         <div class="header pt-5">
             <h2 class="font-weight-normal font-italic text-center">Provincias</h2>
@@ -45,86 +45,104 @@
                     </th>
             </thead>
             <tbody>
+                {{#each provincias}}
                 <tr>
-                    <td>Pichincha</td>
+                    <td>{{PROV_NOMBRE}}</td>
                     <td>
                         <center>
-                            <a href="cantones" type="button" class="btn btn-secondary btn-sm ">Gestionar</a>
+                            <a href="/cantones/{{PROV_ID}}" type="button" class="btn btn-secondary btn-sm ">Gestionar</a>
                             <button type="button" class="btn btn-info btn-sm " data-toggle="modal"
-                                data-target="#modal_edit_provincia">Editar</button>
-                            <button type="button" class="btn btn-warning btn-sm ">Eliminar</button>
+                                data-target="#modal_edit_provincia{{PROV_ID}}">Editar</button>
+                            <button type="button" class="btn btn-warning btn-sm " data-toggle="modal"
+                                data-target="#modal_delete_provincia{{PROV_ID}}">Eliminar</button>
                         </center>
                     </td>
                 </tr>
-                <tr>
-                    <td>Guayas</td>
-                    <td>
-                        <center>
-                             <a href="" type="button" class="btn btn-secondary btn-sm ">Gestionar</a>
-                            <button type="button" class="btn btn-info btn-sm ">Editar</button>
-                            <button type="button" class="btn btn-warning btn-sm ">Eliminar</button>
-                        </center>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Esmeraldas</td>
-                    <td>
-                        <center>
-                             <a href="" type="button" class="btn btn-secondary btn-sm ">Gestionar</a>
-                            <button type="button" class="btn btn-info btn-sm ">Editar</button>
-                            <button type="button" class="btn btn-warning btn-sm ">Eliminar</button>
-                        </center>
-                    </td>
-                </tr>
+                <!-- Modal -->
+                <div class="modal fade" id="modal_edit_provincia{{PROV_ID}}" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <form action="/edit_provincia" method="POST">
+                            <div class="modal-content">
+                                <div class="modal-header elegant-color  justify-content-center">
+                                    <h5 class="modal-title text-white">Editar Provincia</h5>
+                                    <button type="button" class="close text-white" data-dismiss="modal"
+                                        aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="md-form">
+                                        <input type="text" id="PROV_NOMBRE" name="PROV_NOMBRE" class="form-control"
+                                            value="{{PROV_NOMBRE}}">
+                                        <label for="PROV_NOMBRE">Nombre</label>
+                                    </div>
+                                    <input type="hidden" class="form-control" name="PROV_ID" value="{{PROV_ID}}">
+                                </div>
+                                <div class="modal-footer justify-content-center">
+                                    <button type="button submit" class="btn btn-elegant rnd">Editar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- Central Modal Small -->
+                <div class="modal fade" id="modal_delete_provincia{{PROV_ID}}" tabindex="-1" role="dialog"
+                    aria-labelledby="myModalLabel" aria-hidden="true">
+                    <!-- Change class.modal-sm to change the size of the modal -->
+                    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                        <form method="POST" action="/delete_provincia">
+                            <div class="modal-content">
+                                <div class="modal-header danger-color">
+                                    <h4 class="modal-title text-white ">Eliminar</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Esta seguro de eliminar este elemento?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-light btn-sm"
+                                        data-dismiss="modal">Cancelar</button>
+                                    <input type="hidden" class="form-control" name="PROV_ID" value="{{PROV_ID}}">
+                                    <button type="button submit" class="btn btn-danger btn-sm">Borrar</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+                <!-- Central Modal Small -->
+                {{/each}}
             </tbody>
         </table>
     </div>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="modal_add_provincia" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="modal_add_provincia" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
     <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header elegant-color  justify-content-center">
-                <h5 class="modal-title text-white">Agregar Provincia</h5>
-                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="md-form">
-                    <input type="text" id="form104" class="form-control">
-                    <label for="form104">Nombre</label>
+        <form action="/add_provincia" method="POST">
+            <div class="modal-content">
+                <div class="modal-header elegant-color  justify-content-center">
+                    <h5 class="modal-title text-white">Agregar Provincia</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="md-form">
+                        <input type="text" id="PROV_NOMBRE" name="PROV_NOMBRE" class="form-control">
+                        <label for="PROV_NOMBRE">Nombre</label>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button submit" class="btn btn-elegant rnd">Agregar</button>
                 </div>
             </div>
-            <div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-elegant rnd">Agregar</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Modal -->
-<div class="modal fade" id="modal_edit_provincia" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header elegant-color  justify-content-center">
-                <h5 class="modal-title text-white">Editar Provincia</h5>
-                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="md-form">
-                    <input type="text" id="form104" class="form-control">
-                    <label for="form104">Nombre</label>
-                </div>
-            </div>
-            <div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-elegant rnd">Editar</button>
-            </div>
-        </div>
+        </form>
     </div>
 </div>

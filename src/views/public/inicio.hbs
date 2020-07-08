@@ -1,241 +1,228 @@
 <script>
-  window.onload = function launch_autocomplete() {
-    autocomplete(document.getElementById("myInput"), countries);
-  }
+    /*window.onload = function launch_autocomplete() {
+        autocomplete(document.getElementById("myInput"), countries);
+    }
+*/
 </script>
+
 <div class=" container-felx ">
-  <!-- Full Page Intro -->
-  <div class="view" style="height: 65vh; position: sticky;">
+    <!-- Full Page Intro -->
+    <div class="view" style="height: 65vh; position: sticky;">
 
-    <!--Video source-->
-    <video class="video-intro" autoplay loop muted>
-      <source src="/videos/presentacion.mp4" type="video/mp4">
-    </video>
-    <!--Video source-->
-  </div>
-  <!-- Card Narrower -->
-
-  <div class="card card-cascade narrower ml-5 mr-5 mt-5 ">
-    <!-- Card content -->
-    <div class="card-body card-body-cascade ">
-      <h4 class="card-title text-center ">Bienvenido a <b>Inmuebles YA!</b></h4>
-      <p class="text-center">El mejor lugar para comprar, vender o arrendar inmuebles en Ecuador</p>
-      <hr class="hr">
-      <div class="row">
-        <div class="col-md-10">
-          <div class="row">
-            <div class="col-md-2 mt-4">
-              <p class="custom-control-inline">Comprar</p>
-              <label class="switch">
-                <input type="checkbox">
-                <span class="slider round"></span>
-              </label>
-              <p class="custom-control-inline">Arrendar</p>
-            </div>
-            <div class="col-md-4">
-              <div class="md-form input-with-pre-icon">
-                <i class="fas fa-map-marker-alt input-prefix"></i>
-                <input type="search" id="myInput" class="form-control">
-                <label for="myInput">Lugar</label>
-              </div>
-            </div>
-            <div class="col-md-2">
-              <!-- Material input -->
-              <div class="md-form input-with-pre-icon">
-                <i class="fas fa-users input-prefix"></i>
-                <input type="number" id="numberExample" class="form-control" max="7" min="1">
-                <label for="numberExample"> No. Habitantes</label>
-              </div>
-            </div>
-            <div class="col-md-2">
-              <!-- Material input -->
-              <div class="md-form input-with-pre-icon">
-                <i class="fas fa-dollar-sign input-prefix"></i>
-                <input type="number" id="numberExample" class="form-control" min="0">
-                <label for="numberExample">Min</label>
-              </div>
-            </div>
-            <div class="col-md-2">
-              <!-- Material input -->
-              <div class="md-form input-with-pre-icon">
-                <i class="fas fa-dollar-sign input-prefix"></i>
-                <input type="number" id="numberExample" class="form-control" min="0">
-                <label for="numberExample">Max</label>
-              </div>
-            </div>
-            <div class="col-md-12 text-center">
-              <!-- Default inline 1-->
-              <div class="custom-control custom-checkbox custom-control-inline">
-                <input type="checkbox" class="custom-control-input" id="defaultInline1">
-
-                <label class="custom-control-label" for="defaultInline1"><i class="fas fa-home"></i>
-                  Casa</label>
-              </div>
-
-              <!-- Default inline 2-->
-              <div class="custom-control custom-checkbox custom-control-inline">
-                <input type="checkbox" class="custom-control-input" id="defaultInline2">
-                <label class="custom-control-label" for="defaultInline2"><i class="fas fa-building"></i>
-                  Departamento</label>
-              </div>
-              <!-- Default inline 2-->
-              <div class="custom-control custom-checkbox custom-control-inline">
-                <input type="checkbox" class="custom-control-input" id="defaultInline2">
-                <label class="custom-control-label" for="defaultInline2"><i class="fas fa-map-marked-alt"></i>
-                  Terreno</label>
-              </div>
-
-              <!-- Default inline 3-->
-              <div class="custom-control custom-checkbox custom-control-inline">
-                <input type="checkbox" class="custom-control-input" id="defaultInline3">
-                <label class="custom-control-label" for="defaultInline3"> <i class="fas fa-hammer"></i>
-                  Proyecto</label>
-              </div>
-              <!-- Default inline 3-->
-              <div class="custom-control custom-checkbox custom-control-inline">
-                <input type="checkbox" class="custom-control-input" id="defaultInline4">
-                <label class="custom-control-label" for="defaultInline4"> <i class="fas fa-briefcase"></i>
-                  Oficina</label>
-              </div>
-              <!-- Default inline 3-->
-              <div class="custom-control custom-checkbox custom-control-inline">
-                <input type="checkbox" class="custom-control-input" id="defaultInline4">
-                <label class="custom-control-label" for="defaultInline4"> <i class="fas fa-store"></i>
-                  Local</label>
-              </div>
-              <!-- Default inline 3-->
-              <div class="custom-control custom-checkbox custom-control-inline">
-                <input type="checkbox" class="custom-control-input" id="defaultInline5">
-                <label class="custom-control-label" for="defaultInline5"><i class="fas fa-ellipsis-h"></i>
-                  Otros</label>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-2 mt-4 text-center">
-          <button type="button" class="btn btn-elegant rnd "><i class="fas fa-search"></i>
-            Buscar</button>
-        </div>
-      </div>
-
+        <!--Video source-->
+        <video class="video-intro" autoplay loop muted>
+            <source src="/videos/presentacion.mp4" type="video/mp4">
+        </video>
+        <!--Video source-->
     </div>
-  </div>
-  <!--Main layout-->
-  <main>
-    <div class="container">
-      <h3 class="m-5 h3 text-center">Empiece a publicar sus Imuebles facilmente</h3>
-      <h6 class="m-5 text-center">Cree su perfil acorde a sus necesidades y publique sus imuebles de forma facil y
-        rápida</h6>
-      <!--Grid row-->
-      <div class="row  wow fadeIn">
-        <!--Grid column-->
-        <div class="col-md-4 mb-4">
-          <!--Card-->
-          <div class="card">
-            <!--Card content-->
-            <div class="card-body">
-              <div class="text-center">
-                <i class="grey text-white rounded-circle p-3 mb-1 fas fa-home fa-4x"></i>
-                <h4 class="card-title pricing-card-title mb-4">Propietario</h4>
-              </div>
-              <ol class="list-unstyled m-4">
-                <li class="justify"> <i class="fas fa-check green-text mr-2"></i>Publique 1 anuncio gratis con todos los
-                  beneficios
-                </li>
-                <hr>
-                <li class="justify"><i class="fas fa-check green-text mr-2"></i>Reciba toda la informacion de los
-                  interesados en su anuncio
-                </li>
-                <hr>
-                <li class="justify"><i class="fas fa-check green-text mr-2"></i>Gestione su anuncio en su panel privado
-                </li>
-                <hr>
-                <li class="justify"><i class="fas fa-check green-text mr-2"></i>Contáctese con nosotros para promocionar
-                  su anuncio
-                </li>
-              </ol>
-              <hr>
-              <a type="button" href="addPropietario" class="btn rnd btn-block btn-elegant">Crear perfil de Propietario</a>
-            </div>
-          </div>
-          <!--/.Card-->
-        </div>
-        <!--Grid column-->
-        <!--Grid column-->
-        <div class="col-md-4 mb-4">
-          <!--Card-->
-          <div class="card">
-            <!--Card content-->
-            <div class="card-body">
-              <div class="text-center">
-                <i class="grey text-white rounded-circle p-3 mb-1 fas fa-briefcase fa-4x"></i>
-                <h4 class="card-title pricing-card-title mb-4">Agente</h4>
-              </div>
-              <ol class="list-unstyled m-4">
-                <li class="justify"> <i class="fas fa-check green-text mr-2"></i>Publique todos los anuncios que
-                  promociona
-                </li>
-                <hr>
-                <li class="justify"><i class="fas fa-check green-text mr-2"></i>Reciba toda la informacion de los
-                  interesados en sus anuncios
-                </li>
-                <hr>
-                <li class="justify"><i class="fas fa-check green-text mr-2"></i>Gestione su anuncios en su panel privado
-                </li>
-                <hr>
-                <li class="justify"><i class="fas fa-check green-text mr-2"></i>Contáctese con nosotros para promocionar
-                  sus anuncios
-                </li>
-              </ol>
-              <hr>
-              <a type="button" href="addAgente" class="btn rnd btn-block btn-elegant">Crear perfil de Agente</a>
-            </div>
-          </div>
-          <!--/.Card-->
-        </div>
-        <!--Grid column-->
-        <!--Grid column-->
-        <div class="col-md-4 mb-4">
-          <!--Card-->
-          <div class="card">
-            <!--Card content-->
-            <div class="card-body">
-              <div class="text-center">
-                <i class="grey text-white rounded-circle p-3 mb-1 fas fa-city fa-4x"></i>
-                <h4 class="card-title pricing-card-title mb-4">Inmobiliaria/Constructora</h4>
-              </div>
-              <ol class="list-unstyled m-4">
-                <li class="justify"> <i class="fas fa-check green-text mr-2"></i>Publique anuncios de sus proyectos con
-                  su propio logo
-                </li>
-                <hr>
-                <li class="justify"><i class="fas fa-check green-text mr-2"></i>Reciba toda la informacion de los
-                  interesados en sus anuncios
-                </li>
-                <hr>
-                <li class="justify"><i class="fas fa-check green-text mr-2"></i>Gestione sus anuncios en su panel
-                  privado
-                </li>
-                <hr>
-                <li class="justify"><i class="fas fa-check green-text mr-2"></i>Contáctese con nosotros para promocionar
-                  sus anuncios
-                </li>
-              </ol>
+    <!-- Card Narrower -->
 
-              <a type="button" href="addInmo" class="btn rnd btn-block btn-elegant">Crear perfil de
-                Inmobiliaria/Constructora</a>
-            </div>
-          </div>
-          <!--/.Card-->
+    <div class="card card-cascade narrower ml-5 mr-5 mt-5 ">
+        <!-- Card content -->
+        <div class="card-body card-body-cascade ">
+            <h4 class="card-title text-center ">Bienvenido a <b>Inmuebles YA!</b></h4>
+            <p class="text-center">El mejor lugar para comprar, vender o arrendar inmuebles en Ecuador</p>
+            <hr class="hr">
+            <form method="POST" action="/busqueda">
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-md-2 mt-4">
+                                <p class="custom-control-inline">Comprar</p>
+                                <label class="switch">
+                                    <input type="checkbox" class="form-control" id="transaccion" name="transaccion">
+                                    <span class="slider round"></span>
+                                </label>
+                                <p class="custom-control-inline">Arrendar</p>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="md-form input-with-pre-icon">
+                                    <i class="fas fa-map-marker-alt input-prefix"></i>
+                                    <input type="search" class="form-control" id="search_input" name="search_input" placeholder="Lugar..." required/>
+                                    <label for="search_input">Lugar</label>
+                                </div>
+                            </div>
+                           
+                            <div class="col-md-2">
+                                <!-- Material input -->
+                                <div class="md-form input-with-pre-icon">
+                                    <i class="fas fa-dollar-sign input-prefix"></i>
+                                    <input type="number" id="costo_min" name="costo_min" class="form-control" min="0" required>
+                                    <label for="costo_min">Min</label>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <!-- Material input -->
+                                <div class="md-form input-with-pre-icon">
+                                    <i class="fas fa-dollar-sign input-prefix"></i>
+                                    <input type="number" id="costo_max" name="costo_max" class="form-control" min="0" required>
+                                    <label for="costo_max">Max</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12 text-center">
+                                {{#each tipos_inmuebles}}
+                                <!--Default inline-->
+                                <div class="custom-control custom-checkbox custom-control-inline">
+                                    <input type="checkbox" class="custom-control-input form-control"
+                                        id="checks{{TIPINM_ID}}" name="checks" value="{{TIPINM_ID}}">
+                                    <label class="custom-control-label"
+                                        for="checks{{TIPINM_ID}}">{{TIPINM_DESCRIPCION}}</label>
+                                </div>
+                                {{/each}}
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" class="form-control" name="street_number" id="street_number" >
+                    <input type="hidden" class="form-control" name="route" id="route" >
+                    <input type="hidden" class="form-control" name="locality" id="locality" >
+                    <input type="hidden" class="form-control" name="administrative_area_level_1" id="administrative_area_level_1" >
+                    <input type="hidden" class="form-control" name="country" id="country" >
+                    <input type="hidden" class="form-control" name="postal_code" id="postal_code" >
+                    <input type="hidden" class="form-control" name="latitude" id="latitude" >
+                    <input type="hidden" class="form-control" name="longitude" id="longitude" >
+                    <input type="hidden" class="form-control" name="administrative_area_level_2" id="administrative_area_level_2" >
+                    <input type="hidden" class="form-control" name="sublocality_level_1" id="sublocality_level_1" >
+                    <input type="hidden" class="form-control" name="sublocality" id="sublocality" >
+
+                    <div class="col-md-2 mt-4 text-center">
+                        <button type="button submit" class="btn btn-elegant rnd "><i class="fas fa-search"></i>
+                            Buscar</button>
+                    </div>
+                </div>
+            </form>
         </div>
-        <!--Grid column-->
-
-      </div>
-      <!--Grid row-->
-
     </div>
-  </main>
-  <!--Main layout-->
+    <!--Main layout-->
+    <main>
+        <div class="container">
+            <h3 class="m-5 h3 text-center">Empiece a publicar sus Imuebles facilmente</h3>
+            <h6 class="m-5 text-center">Cree su perfil acorde a sus necesidades y publique sus imuebles de forma facil y
+                rápida</h6>
+            <!--Grid row-->
+            <div class="row  wow fadeIn">
+                <!--Grid column-->
+                <div class="col-md-4 mb-4">
+                    <!--Card-->
+                    <div class="card">
+                        <!--Card content-->
+                        <div class="card-body">
+                            <div class="text-center">
+                                <i class="grey text-white rounded-circle p-3 mb-1 fas fa-home fa-4x"></i>
+                                <h4 class="card-title pricing-card-title mb-4">Propietario</h4>
+                            </div>
+                            <ol class="list-unstyled m-4">
+                                <li class="justify"> <i class="fas fa-check green-text mr-2"></i>Publique 1 anuncio
+                                    gratis con todos los
+                                    beneficios
+                                </li>
+                                <hr>
+                                <li class="justify"><i class="fas fa-check green-text mr-2"></i>Reciba toda la
+                                    informacion de los
+                                    interesados en su anuncio
+                                </li>
+                                <hr>
+                                <li class="justify"><i class="fas fa-check green-text mr-2"></i>Gestione su anuncio en
+                                    su panel privado
+                                </li>
+                                <hr>
+                                <li class="justify"><i class="fas fa-check green-text mr-2"></i>Contáctese con nosotros
+                                    para promocionar
+                                    su anuncio
+                                </li>
+                            </ol>
+                            <hr>
+                            <a type="button" href="addPropietario" class="btn rnd btn-block btn-elegant">Crear perfil de
+                                Propietario</a>
+                        </div>
+                    </div>
+                    <!--/.Card-->
+                </div>
+                <!--Grid column-->
+                <!--Grid column-->
+                <div class="col-md-4 mb-4">
+                    <!--Card-->
+                    <div class="card">
+                        <!--Card content-->
+                        <div class="card-body">
+                            <div class="text-center">
+                                <i class="grey text-white rounded-circle p-3 mb-1 fas fa-briefcase fa-4x"></i>
+                                <h4 class="card-title pricing-card-title mb-4">Agente</h4>
+                            </div>
+                            <ol class="list-unstyled m-4">
+                                <li class="justify"> <i class="fas fa-check green-text mr-2"></i>Publique todos los
+                                    anuncios que
+                                    promociona
+                                </li>
+                                <hr>
+                                <li class="justify"><i class="fas fa-check green-text mr-2"></i>Reciba toda la
+                                    informacion de los
+                                    interesados en sus anuncios
+                                </li>
+                                <hr>
+                                <li class="justify"><i class="fas fa-check green-text mr-2"></i>Gestione su anuncios en
+                                    su panel privado
+                                </li>
+                                <hr>
+                                <li class="justify"><i class="fas fa-check green-text mr-2"></i>Contáctese con nosotros
+                                    para promocionar
+                                    sus anuncios
+                                </li>
+                            </ol>
+                            <hr>
+                            <a type="button" href="addAgente" class="btn rnd btn-block btn-elegant">Crear perfil de
+                                Agente</a>
+                        </div>
+                    </div>
+                    <!--/.Card-->
+                </div>
+                <!--Grid column-->
+                <!--Grid column-->
+                <div class="col-md-4 mb-4">
+                    <!--Card-->
+                    <div class="card">
+                        <!--Card content-->
+                        <div class="card-body">
+                            <div class="text-center">
+                                <i class="grey text-white rounded-circle p-3 mb-1 fas fa-city fa-4x"></i>
+                                <h4 class="card-title pricing-card-title mb-4">Inmobiliaria/Constructora</h4>
+                            </div>
+                            <ol class="list-unstyled m-4">
+                                <li class="justify"> <i class="fas fa-check green-text mr-2"></i>Publique anuncios de
+                                    sus proyectos con
+                                    su propio logo
+                                </li>
+                                <hr>
+                                <li class="justify"><i class="fas fa-check green-text mr-2"></i>Reciba toda la
+                                    informacion de los
+                                    interesados en sus anuncios
+                                </li>
+                                <hr>
+                                <li class="justify"><i class="fas fa-check green-text mr-2"></i>Gestione sus anuncios en
+                                    su panel
+                                    privado
+                                </li>
+                                <hr>
+                                <li class="justify"><i class="fas fa-check green-text mr-2"></i>Contáctese con nosotros
+                                    para promocionar
+                                    sus anuncios
+                                </li>
+                            </ol>
+
+                            <a type="button" href="addInmo" class="btn rnd btn-block btn-elegant">Crear perfil de
+                                Inmobiliaria/Constructora</a>
+                        </div>
+                    </div>
+                    <!--/.Card-->
+                </div>
+                <!--Grid column-->
+
+            </div>
+            <!--Grid row-->
+
+        </div>
+    </main>
+    <!--Main layout-->
 
 
 

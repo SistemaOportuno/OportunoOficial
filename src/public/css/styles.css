@@ -1,6 +1,6 @@
 
 
- #map {
+ #map-anuncio {
   height: 500px;
 }
 .ul-multiple {
@@ -48,13 +48,20 @@ p {
   div.content {
     margin-left: 310px;
     margin-top: 80px;
-    height: 1300px;
+    height: 150vh;
   }
   div.content-panel {
     margin-left: 310px;
     margin-top: 80px;
   }
-  div.content-short {
+  div.content-panel-ntop {
+    margin-left: 310px;
+  }
+  div.content-ntop {
+    margin-left: 310px;
+    height: 70vh;
+  }
+  div.content-top {
     margin-left: 310px;
     margin-top: 80px;
     height: 70vh;
@@ -71,6 +78,9 @@ p {
     .sidebar a {float: left;}
     div.content {margin-left: 0;}
     div.content-panel {margin-left: 0;}
+    div.content-ntop {margin-left: 0;}
+    div.content-top {margin-left: 0;}
+
     .ul-multiple {
       -webkit-columns: 1;
       -moz-columns: 1;
