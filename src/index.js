@@ -51,6 +51,8 @@ app.use(require('./routes/'));
 app.use(require('./routes/autentication'));
 app.use(require('./routes/admin_links'));
 app.use(require('./routes/public_links'));
+app.use(require('./routes/user_links'));
+
 
 //Public
 app.use(express.static(path.join(__dirname,'public')));
