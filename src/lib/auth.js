@@ -1,14 +1,20 @@
-module.exports={
-    isLoggedIn(req,res,next){
-        if(req.isAuthenticated()){
+module.exports = {
+    isUserLog(req, res, next) {
+        if (req.isAuthenticated() && (req.user.USU_TIPO == 'PROPIETARIO' || req.user.USU_TIPO == 'AGENTE' || req.user.USU_TIPO == 'INMOBILIARIA')) {
             return next();
         }
-        return res.redirect('/login'); 
+        return res.redirect('/');
     },
-    isNotLoggedIn(req,res,next){
-        if(!req.isAuthenticated()){
+    isLoggedIn(req, res, next) {
+        if (req.isAuthenticated()) {
             return next();
         }
-        return res.redirect('/inicio'); 
+        return res.redirect('/');
+    },
+    isNotLoggedIn(req, res, next) {
+        if (!req.isAuthenticated()) {
+            return next();
+        }
+        return res.redirect('/inicio');
     }
 };

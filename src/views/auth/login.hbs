@@ -1,26 +1,33 @@
-  <div class="container p-4">
-      <div class="row">
-          <div class="col-md4 mx-auto">
-              <div class="card text-center">
-                  <div class="card-header">
-                      <h3>LOGIN</h3>
-                  </div>
-                  <div class="card-body">
-                        <form action="/login" method="post">
-                            <div class="form-group">
-                                <input type="text" name="USUARIO" id="USUARIO" placeholder="Usuario" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="password" name="CONTRASENA" id="CONTRASENA" placeholder="Contraseña" required>
-                            </div>
-                            <div class="form-group">
-                                <button class="btn btn-success btn-block">
-                                    Ingresar
-                                </button>
-                            </div>
-                        </form>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
+<div class="container mt-5 pt-5 mb-5 pb-5 pl-5 pr-5 align-middle">
+    <div class="card mt-5 mb-5">
+        <!-- Default form login -->
+        <form class="text-center border border-light p-5" action="/login" method="POST">
+            <img src="https://mdbootstrap.com/img/logo/mdb-transparent.png" class="rounded mx-auto d-block">
+
+            <p class="h4 mb-4">Iniciar Sesión</p>
+
+            <!-- Email -->
+            <input type="email" id="usuario_correo" name="usuario_correo" class="form-control mb-4" placeholder="Correo" required>
+
+            <!-- Password -->
+            <input type="password" id="usuario_contrasena" name="usuario_contrasena" class="form-control mb-4" placeholder="Contraseña" required>
+
+            <div class="d-flex justify-content-around">
+               
+                <div>
+                    <!-- Forgot password -->
+                    <a href="">Olvido su contraseña?</a>
+                </div>
+            </div>
+
+            <!-- Sign in button -->
+            <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
+
+          
+
+        </form>
+        <!-- Default form login -->
+    </div>
+    <div class="container m-5 p-4"></div>
+
+</div>

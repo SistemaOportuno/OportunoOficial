@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const passport = require('passport');
 const db = require('../database');
 //-----------------------------------FUNCIONES------------------------------
 function slugify(str) {
@@ -277,17 +278,13 @@ router.post('/modifylist', async (req, res) => {
     console.log(query);
     res.render('public/lista', { transaccion, provincias, cantones, zonas, costo_min, costo_max, area_min, area_max, tipos_inmuebles, btn, filtro });
 });
-router.get('/lista', (req, res) => {
-    res.render('public/lista');
-});
 
 router.get('/anuncio', (req, res) => {
     res.render('public/anuncio');
 });
 
-router.get('/addPropietario', (req, res) => {
-    res.render('public/addPropietario');
-});
+
+
 router.get('/addAgente', (req, res) => {
     res.render('public/addAgente');
 });

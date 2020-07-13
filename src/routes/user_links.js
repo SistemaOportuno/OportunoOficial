@@ -2,9 +2,10 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../database');
+const { isUserLog } = require('../lib/auth');
 
 
-router.get('/panel',(req,res)=>{
+router.get('/panel',isUserLog,(req,res)=>{
     res.render('user/panel');
 });
 router.get('/addAnuncio',(req,res)=>{

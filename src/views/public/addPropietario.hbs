@@ -1,4 +1,4 @@
-<div class="container mt-5 pt-3">
+<div class="container mt-5 mb-5 pb-5 pt-3">
     <br>
     <div class="row pt-3 pl-5 pr-5 mb-5 white rounded-sm">
         <div class="col-sm-4">
@@ -11,7 +11,8 @@
                 Crear perfil de Agente</a>
         </div>
         <div class="col-sm-4">
-            <a type="button" href="addInmo" class="btn btn-elegant btn-block mb-2"><i class="fas fa-city pr-2"></i>Crear perfil de
+            <a type="button" href="addInmo" class="btn btn-elegant btn-block mb-2"><i class="fas fa-city pr-2"></i>Crear
+                perfil de
                 Inmobiliaria/Constructora</a>
         </div>
         <hr>
@@ -41,66 +42,69 @@
         <div class="col-sm-12">
             <h5 class="mt-2 ml-5">Formulario de datos</h5>
         </div>
-        <div class="row">
-            <div class="col-sm-3">
-                <div class="md-form">
-                    <i class="fas fa-signature prefix grey-text"></i>
-                    <input type="text" id="form104" class="form-control">
-                    <label for="form104">Nombre</label>
+        <form method="POST" action="/addPropietario">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="md-form">
+                        <i class="fas fa-signature prefix grey-text"></i>
+                        <input type="text" id="propietario_nombre" name="propietario_nombre" class="form-control" required>
+                        <label for="propietario_nombre">Nombre</label>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="md-form">
+                        <i class="fas fa-signature prefix grey-text"></i>
+                        <input type="text" id="propietario_apellido" name="propietario_apellido" class="form-control" required>
+                        <label for="propietario_apellido">Apellido</label>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="md-form">
+                        <i class="fas fa-envelope prefix grey-text"></i>
+                        <input type="email" id="propietario_correo" name="propietario_correo" class="form-control" required>
+                        <label for="propietario_correo">Correo</label>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="md-form">
+                        <i class="fas fa-key prefix grey-text"></i>
+                        <input type="password" id="propietario_contrasena" name="propietario_contrasena"
+                            class="form-control" required>
+                        <label for="propietario_contrasena">Contraseña</label>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="md-form">
+                        <i class="fas fa-key prefix grey-text"></i>
+                        <input type="password" id="propietario_contrasena_n" name="propietario_contrasena_n"
+                            class="form-control" required>
+                        <label for="propietario_contrasena_n">Repetir Contraseña</label>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="md-form">
+                        <i class="fas fa-phone prefix grey-text"></i>
+                        <input type="tel" id="propietario_telefono" name="propietario_telefono" class="form-control" required>
+                        <label for="propietario_telefono">Teléfono</label>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="md-form">
+                        <i class="fas fa-city prefix grey-text"></i>
+                        <select class="selectpicker form-control ml-5 pr-5" name="propietario_cobertura" required>
+                            <option value="" selected>Ubicación</option>
+                            {{#each provincias}}
+                            <option value="{{PROV_ID}}">{{PROV_NOMBRE}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6 text-center pt-3">
+                    <button type="button submit" class=" btn btn-elegant rnd"> <i class="fas fa-home pr-2"></i>
+                        Crear</button>
                 </div>
             </div>
-            <div class="col-sm-3">
-                <div class="md-form">
-                    <i class="fas fa-signature prefix grey-text"></i>
-                    <input type="text" id="form104" class="form-control">
-                    <label for="form104">Apellido</label>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="md-form">
-                    <i class="fas fa-envelope prefix grey-text"></i>
-                    <input type="email" id="form104" class="form-control">
-                    <label for="form104">Correo</label>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="md-form">
-                    <i class="fas fa-key prefix grey-text"></i>
-                    <input type="password" id="form104" class="form-control">
-                    <label for="form104">Contraseña</label>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="md-form">
-                    <i class="fas fa-key prefix grey-text"></i>
-                    <input type="password" id="form104" class="form-control">
-                    <label for="form104">Repetir Contraseña</label>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="md-form">
-                    <i class="fas fa-phone prefix grey-text"></i>
-                    <input type="tel" id="form104" class="form-control">
-                    <label for="form104">Teléfono</label>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="md-form">
-                    <i class="fas fa-city prefix grey-text"></i>
-                    <select class="selectpicker form-control ml-5 pr-5">
-                        <option>sdfsd</option>
-                        <option>sdfsd</option>
-                        <option>sdfsd</option>
-                        <option>sdfsd</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-sm-6 text-center pt-3">
-                <button type="button" class=" btn btn-elegant rnd"> <i class="fas fa-home pr-2"></i>
-                    Crear</button>
-            </div>
-        </div>
-
+        </form>
 
     </div>
 

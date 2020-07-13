@@ -12,15 +12,19 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item ">
-          <a class="nav-link" href="#">
-            <i class="fas fa-file-invoice"></i> Resgistrarse
-          </a>
-        </li>
+        {{#if usuario.USU_TIPO}}
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="/panel">
+            <i class="fas fa-sign-in-alt"></i> Panel</a>
+        </li>
+        {{else}}
+
+        <li class="nav-item">
+          <a class="nav-link" href="/login">
             <i class="fas fa-sign-in-alt"></i> Iniciar Sesión</a>
         </li>
+        {{/if}}
+
 
       </ul>
     </div>

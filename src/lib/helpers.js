@@ -11,9 +11,6 @@ helpers.comparar=(contrasena, contrasenag)=>{
         return false;
     }
 };
-helpers.encriptar=(contrasena)=>{
-    return md5(contrasena);
-};
 helpers.parseDate=(date)=>{
     if(date!="0000-00-00"){
         var dd = date.getDate();
@@ -32,6 +29,22 @@ helpers.parseDate=(date)=>{
         return null;
     }
 };
+helpers.fecha_actual=()=> {
+    var hoy = new Date();
+    var dd = hoy.getDate();
+    var mm = hoy.getMonth() + 1; //hoy es 0!
+    var yyyy = hoy.getFullYear();
+
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+    hoy = yyyy + '/' + mm + '/' + dd;
+    return hoy;
+}
 
 
 module.exports=helpers;
