@@ -1,8 +1,9 @@
-<div class="container mt-5 pt-3">
+<div class="container  mt-5 mb-5 pb-5 pt-3">
     <br>
     <div class="row pt-3 pl-5 pr-5 mb-5 white rounded-sm">
         <div class="col-sm-4">
-            <a type="button" href="addPropietario" class=" btn btn-elegant btn-block mb-2"> <i class="fas fa-home pr-2"></i>
+            <a type="button" href="addPropietario" class=" btn btn-elegant btn-block mb-2"> <i
+                    class="fas fa-home pr-2"></i>
                 Crear perfil de Propietario</a>
         </div>
         <div class="col-sm-4">
@@ -10,7 +11,8 @@
                 Crear perfil de Agente</button>
         </div>
         <div class="col-sm-4">
-            <a type="button" href="addInmo" class="btn btn-elegant btn-block mb-2"><i class="fas fa-city pr-2"></i>Crear perfil de Inmobiliaria/Constructora</a>
+            <a type="button" href="addInmo" class="btn btn-elegant btn-block mb-2"><i class="fas fa-city pr-2"></i>Crear
+                perfil de Inmobiliaria/Constructora</a>
         </div>
         <hr>
         <div class="col-sm-12">
@@ -39,69 +41,69 @@
         <div class="col-sm-12">
             <h5 class="mt-2 ml-5">Formulario de datos</h5>
         </div>
-        <div class="row">
-            <div class="col-sm-3">
-                <div class="md-form">
-                    <i class="fas fa-signature prefix grey-text"></i>
-                    <input type="text" id="form104" class="form-control">
-                    <label for="form104">Nombre</label>
+        <form method="POST" action="/addAgente">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="md-form">
+                        <i class="fas fa-signature prefix grey-text"></i>
+                        <input type="text" id="agente_nombre" name="agente_nombre" class="form-control" required>
+                        <label for="agente_nombre">Nombre</label>
+                    </div>
                 </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="md-form">
-                    <i class="fas fa-signature prefix grey-text"></i>
-                    <input type="text" id="form104" class="form-control">
-                    <label for="form104">Apellido</label>
+                <div class="col-sm-3">
+                    <div class="md-form">
+                        <i class="fas fa-signature prefix grey-text"></i>
+                        <input type="text" id="agente_apellido" name="agente_apellido" class="form-control" required>
+                        <label for="agente_apellido">Apellido</label>
+                    </div>
                 </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="md-form">
-                    <i class="fas fa-envelope prefix grey-text"></i>
-                    <input type="email" id="form104" class="form-control">
-                    <label for="form104">Correo</label>
+                <div class="col-sm-6">
+                    <div class="md-form">
+                        <i class="fas fa-envelope prefix grey-text"></i>
+                        <input type="email" id="agente_correo" name="agente_correo" class="form-control" required>
+                        <label for="agente_correo">Correo</label>
+                    </div>
                 </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="md-form">
-                    <i class="fas fa-key prefix grey-text"></i>
-                    <input type="password" id="form104" class="form-control">
-                    <label for="form104">Contraseña</label>
+                <div class="col-sm-6">
+                    <div class="md-form">
+                        <i class="fas fa-key prefix grey-text"></i>
+                        <input type="password" id="agente_contrasena" name="agente_contrasena" class="form-control" required>
+                        <label for="agente_contrasena">Contraseña</label>
+                    </div>
                 </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="md-form">
-                    <i class="fas fa-key prefix grey-text"></i>
-                    <input type="password" id="form104" class="form-control">
-                    <label for="form104">Repetir Contraseña</label>
+                <div class="col-sm-6">
+                    <div class="md-form">
+                        <i class="fas fa-key prefix grey-text"></i>
+                        <input type="password" id="agente_contrasena_n" name="agente_contrasena_n" class="form-control" required>
+                        <label for="agente_contrasena_n">Repetir Contraseña</label>
+                    </div>
                 </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="md-form">
-                    <i class="fas fa-phone prefix grey-text"></i>
-                    <input type="tel" id="form104" class="form-control">
-                    <label for="form104">Teléfono</label>
+                <div class="col-sm-3">
+                    <div class="md-form">
+                        <i class="fas fa-phone prefix grey-text"></i>
+                        <input type="tel" id="agente_telefono" name="agente_telefono" class="form-control" required>
+                        <label for="agente_telefono">Teléfono</label>
+                    </div>
                 </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="md-form">
-                    <i class="fas fa-city prefix grey-text"></i>
-                    <select multiple class="selectpicker form-control ml-5 pr-5" id="number-multiple" data-container="body"
-                        data-live-search="true" title="Ciudades" data-actions-box="true">
-                        <option>sdfsd</option>
-                        <option>sdfsd</option>
-                        <option>sdfsd</option>
-                        <option>sdfsd</option>
-                    </select>
+                <div class="col-sm-3">
+                    <div class="md-form">
+                        <i class="fas fa-city prefix grey-text"></i>
+                        <select multiple class="selectpicker form-control ml-5 pr-5" id="agente_cobertura" name="agente_cobertura"
+                            data-container="body" data-live-search="true" title="Ciudades" data-actions-box="true" required>
+                            {{#each provincias}}
+                            <option value="{{PROV_ID}}">{{PROV_NOMBRE}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 text-center pt-3">
+                    <button type="button submit" class=" btn btn-elegant rnd"> <i class="fas fa-briefcase pr-2"></i>
+                        Crear</button>
                 </div>
             </div>
 
-            <div class="col-sm-6 text-center pt-3">
-                <button type="button" class=" btn btn-elegant rnd"> <i class="fas fa-briefcase pr-2"></i>
-                    Crear</button>
-            </div>
-        </div>
-
-
+        </form>
     </div>
 
 

@@ -15,6 +15,6 @@ module.exports = {
         if (!req.isAuthenticated()) {
             return next();
         }
-        return res.redirect('/inicio');
+        return res.redirect('/panel');
     }
 };

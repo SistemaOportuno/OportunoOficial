@@ -283,14 +283,4 @@ router.get('/anuncio', (req, res) => {
     res.render('public/anuncio');
 });
 
-
-
-router.get('/addAgente', (req, res) => {
-    res.render('public/addAgente');
-});
-router.get('/addInmo', (req, res) => {
-    res.render('public/addInmo');
-});
-
-
 module.exports = router;
