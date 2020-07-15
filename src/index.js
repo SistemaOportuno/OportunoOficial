@@ -55,7 +55,7 @@ app.use(require('./routes/user_links'));
 
 
 //Public
-app.use(express.static(path.join(__dirname,'media')));
+app.use(express.static(path.join(__dirname,'public')));
 
 
 //Iniciar Server

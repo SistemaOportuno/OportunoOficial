@@ -3,6 +3,10 @@
  #map-anuncio {
   height: 500px;
 }
+
+#map-registro {
+  height: 500px;
+}
 .ul-multiple {
   -webkit-columns: 4;
   -moz-columns: 4;
