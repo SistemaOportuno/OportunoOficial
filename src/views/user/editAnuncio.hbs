@@ -1,30 +1,36 @@
+<script>
+    window.onload = function init_components() {
+        init_map_edit();
+    }
+
+</script>
 <div class="container">
     <div class="sidebar rounded-lg">
         <div class="header  elegant-color p-1">
             <h5 class="h5 text-white text-center">Mi Panel</h5>
         </div>
         <div class="list-group list-group-flush pl-2 pr-2 pt-5 pb-5">
-            <a href="panel" class="list-group-item list-group-item-action waves-effect">
+            <a href="/panel" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-home mr-3"></i>Inicio
             </a>
-            <a href="addAnuncio" class="list-group-item list-group-item-action waves-effect ">
+            <a href="/addAnuncio" class="list-group-item list-group-item-action waves-effect ">
                 <i class="fas fa-plus-circle mr-3"></i>Nuevo Anuncio
             </a>
-            <a href="listAnuncios" class="list-group-item list-group-item-action waves-effect active">
+            <a href="/listAnuncios" class="list-group-item list-group-item-action waves-effect active">
                 <i class="fas fa-briefcase mr-3"></i>Administrar Anuncios
             </a>
-            <a href="listMensajes" class="list-group-item list-group-item-action waves-effect">
+            <a href="/listMensajes" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-envelope-open mr-3"></i>Mensajes</a>
-            <a href="contactar" class="list-group-item list-group-item-action waves-effect">
+            <a href="/contactar" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-headset mr-3"></i>Contáctese con Nosotros</a>
-            <a href="cuenta" class="list-group-item list-group-item-action waves-effect">
+            <a href="/cuenta" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-user mr-3"></i>Mi Cuenta</a>
-            <a href="#" class="list-group-item list-group-item-action waves-effect">
+            <a href="/logout" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión</a>
         </div>
     </div>
     <div class="content-panel white rounded-lg mb-5 pb-3 pl-3 pr-3">
-        <a type="button" class="btn btn-elegant rnd mt-3" href="listAnuncios">Regresar</a>
+        <a type="button" class="btn btn-elegant rnd mt-3" href="/listAnuncios">Regresar</a>
 
         <div class="row d-flex justify-content-center">
             <div class="header pt-2">
@@ -34,212 +40,287 @@
                 para
                 que sea actualizada en nuestra página web</h5>
         </div>
-        <h5 class="font-weight-bolder text-white elegant-color rounded p-2">Informacion general</h5>
-        <div class="row border rounded-lg p-2 m-1">
-            <div class="md-form input-group">
-                <div class="input-group-prepend">
-                    <p class=" md-addon">Título del Anuncio</p>
-                </div>
-                <input type="text" class="form-control" placeholder="" aria-label="Username"
-                    aria-describedby="material-addon1">
-            </div>
-            <div class="md-form input-group">
-                <div class="input-group-prepend">
-                    <p class=" md-addon">Descripción</p>
-                </div>
-                <textarea class="md-textarea form-control" aria-label="With textarea" rows="5"></textarea>
-            </div>
-        </div>
-        <h5 class="font-weight-bolder text-white elegant-color rounded p-2">Datos del Inmueble</h5>
-        <div class="row border rounded-lg p-2 m-1">
-            <div class="col-md-4 pl-5 pr-5 pt-2">
-                <p class="text-center">Transacción</p>
-                <!-- Default unchecked -->
-                <div class="custom-control custom-radio">
-                    <input type="radio" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios">
-                    <label class="custom-control-label" for="defaultUnchecked">Venta</label>
-                </div>
-                <!-- Default checked -->
-                <div class="custom-control custom-radio">
-                    <input type="radio" class="custom-control-input" id="defaultChecked" name="defaultExampleRadios"
-                        checked>
-                    <label class="custom-control-label" for="defaultChecked">Arriendo</label>
-                </div>
-            </div>
-            <div class="col-md-4 pt-2">
-                <p class="text-center">Tipo de nmueble</p>
-                <select class="browser-default custom-select">
-                    <option selected>Seleccione el tipo de Inmueble</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
-            </div>
-            <div class="col-md-4 pl-3 pr-3 pt-2">
-                <p class="text-center">Tamaño</p>
-                <div class="md-form input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text md-addon"> <i class=" fas fa-expand-arrows-alt"></i></span>
-                    </div>
-                    <input type="number" class="form-control" placeholder="Total">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text md-addon">m&sup2</span>
-                    </div>
-                </div>
-                <div class="md-form input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text md-addon"> <i class=" fas fa-expand-arrows-alt"></i></span>
-                    </div>
-                    <input type="number" class="form-control" placeholder="Construcción">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text md-addon">m&sup2</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <h5 class="font-weight-bolder text-white elegant-color rounded p-2">Costos</h5>
-        <div class="row border rounded-lg p-2 m-1">
-            <div class="col-md-6 pl-5 pr-5">
-                <p class=" text-center">Precio</p>
+        <form method="POST" action="/editAnuncio" enctype="multipart/form-data">
+            <h5 class="font-weight-bolder text-white elegant-color rounded p-2">Informacion general</h5>
+            <div class="row border rounded-lg p-2 m-1">
                 <div class="md-form input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text md-addon"> <i class=" fas fa-money-bill-alt"></i></span>
+                        <p class=" md-addon">Título del Anuncio</p>
                     </div>
-                    <input type="number" class="form-control">
+                    <input type="text" class="form-control" name="ANUN_TITULO" required value="{{anuncio.ANUN_TITULO}}">
                 </div>
-            </div>
-            <div class="col-md-6 pl-5 pr-5">
-                <p class="text-center">Alicuota/Condominio</p>
                 <div class="md-form input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text md-addon"> <i class=" fas fa-money-bill-alt"></i></span>
+                        <p class=" md-addon">Descripción</p>
                     </div>
-                    <input type="number" class="form-control">
+                    <textarea class="md-textarea form-control" rows="5" name="ANUN_DESCRIPCION"
+                        required>{{anuncio.ANUN_DESCRIPCION}}</textarea>
                 </div>
             </div>
-        </div>
-        <h5 class="font-weight-bolder text-white elegant-color rounded p-2">Características</h5>
-        <div class="row  border rounded-lg p-2 m-1 text-center">
-            <div class="col-sm-4">
-                <i class="grey text-white rounded-circle p-3 mb-1 fas fa-bed fa-2x"></i>
-                <input type="number" class="form-control w-50 mx-auto">
-                <b>Habitaciones</b>
-            </div>
-            <div class="col-sm-4">
-                <i class="grey text-white rounded-circle p-3 mb-1 fas fa-bath fa-2x"></i>
-                <input type="number" class="form-control w-50 mx-auto">
-                <b>Baños</b>
-            </div>
-            <div class="col-sm-4">
-                <i class="grey text-white rounded-circle p-3 mb-1 fas fa-toilet fa-2x"></i>
-                <input type="number" class="form-control w-50 mx-auto">
-                <b>1/2 Baños</b>
-            </div>
-            <div class="col-sm-6 pt-3 pl-5 pr-5">
-                <i class="grey text-white rounded-circle p-3 mb-1 fas fa-car fa-2x"></i>
-                <input type="number" class="form-control w-50 mx-auto">
-                <b>Estacionamientos</b>
-            </div>
-            <div class="col-sm-6 pt-3 pl-5 pr-5">
-                <i class="grey text-white rounded-circle p-3 mb-1 fas fa-history fa-2x"></i>
-                <input type="number" class="form-control w-50 mx-auto">
-                <b>Antiguedad (Años)</b>
-            </div>
-        </div>
-        <div class="row border rounded-lg p-2 m-1">
-            <div class="col-sm-12">
-                <h5>Otros</h5>
-                <ul class="col-ch">
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
-                        <label class="custom-control-label" for="defaultUnchecked">Default unchecked</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
-                        <label class="custom-control-label" for="defaultUnchecked">Default unchecked</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
-                        <label class="custom-control-label" for="defaultUnchecked">Default unchecked</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
-                        <label class="custom-control-label" for="defaultUnchecked">Default unchecked</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
-                        <label class="custom-control-label" for="defaultUnchecked">Default unchecked</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
-                        <label class="custom-control-label" for="defaultUnchecked">Default unchecked</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
-                        <label class="custom-control-label" for="defaultUnchecked">Default unchecked</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
-                        <label class="custom-control-label" for="defaultUnchecked">Default unchecked</label>
-                    </div>
-                </ul>
+            <h5 class="font-weight-bolder text-white elegant-color rounded p-2">Datos del Inmueble</h5>
+            <div class="row border rounded-lg p-2 m-1">
+                <div class="col-sm-8">
+                    <div class="row">
+                        <div class="col-md-6 pl-5 pr-5 pt-2">
+                            <p class="text-center">Transacción</p>
+                            <!-- Default unchecked -->
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input form-control" id="ch_venta"
+                                    name="ANUN_TRANSACCION" value="VENTA" required
+                                    {{#ifEquals anuncio.ANUN_TRANSACCION 'VENTA'}} checked {{/ifEquals}}>
+                                <label class="custom-control-label" for="ch_venta">Venta</label>
+                            </div>
+                            <!-- Default checked -->
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input form-control" id="ch_arriendo"
+                                    name="ANUN_TRANSACCION" value="ARRIENDO" required
+                                    {{#ifEquals anuncio.ANUN_TRANSACCION 'ARRIENDO'}} checked {{/ifEquals}}>
+                                <label class="custom-control-label" for="ch_arriendo">Arriendo</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 pt-2">
+                            <p class="text-center">Tipo de nmueble</p>
+                            <select class="browser-default custom-select form-control" id="TIPINM_ID " name="TIPINM_ID"
+                                required>
+                                {{#each tipos_inmuebles}}
+                                <option value="{{TIPINM_ID}}" {{#ifEquals ../anuncio.TIPINM_ID TIPINM_ID}} selected
+                                    {{/ifEquals}}>{{TIPINM_DESCRIPCION}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <div class="col-sm-12">
+                            <p class="text-center">Estado del Inmueble</p>
+                            <select class="browser-default custom-select form-control" id="ANUN_ESTADO_CONSTR"
+                                name="ANUN_ESTADO_CONSTR">
+                                {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "" }} <option selected value="">Seleccione el
+                                    estado de Inmueble</option>{{/ifEquals}}
+                                <option {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "Terreno"}} selected {{/ifEquals}}>
+                                    Terreno</option>
+                                <option {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "En planos"}} selected {{/ifEquals}}>En
+                                    planos</option>
+                                <option {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "En construcción"}} selected
+                                    {{/ifEquals}}>En construcción</option>
+                                <option {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "Pre-venta"}} selected {{/ifEquals}}>
+                                    Pre-venta</option>
+                                <option {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "Venta"}} selected {{/ifEquals}}>Venta
+                                </option>
 
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 pl-3 pr-3 pt-2">
+                    <p class="text-center">Tamaño</p>
+                    <div class="md-form input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text md-addon"> <i class=" fas fa-expand-arrows-alt"></i></span>
+                        </div>
+                        <input type="number" class="form-control" placeholder="Total" name="ANUN_TAMANO_TOTAL" required
+                            value="{{anuncio.ANUN_TAMANO_TOTAL}}">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text md-addon">m&sup2</span>
+                        </div>
+                    </div>
+                    <div class="md-form input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text md-addon"> <i class=" fas fa-expand-arrows-alt"></i></span>
+                        </div>
+                        <input type="number" class="form-control" placeholder="Construcción"
+                            name="ANUN_TAMANO_CONSTRUCCION" value="{{anuncio.ANUN_TAMANO_CONSTRUCCION}}">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text md-addon">m&sup2</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <h5 class="font-weight-bolder text-white elegant-color rounded p-2">Ubicación</h5>
-        <div class="row border rounded-lg p-2 m-1">
-            <div class="col-sm-4">
-                <p class="text-center">Provincia</p>
-                <select class="browser-default custom-select">
-                    <option selected>Seleccione la provincia</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
+            <h5 class="font-weight-bolder text-white elegant-color rounded p-2">Costos</h5>
+            <div class="row border rounded-lg p-2 m-1">
+                <div class="col-md-6 pl-5 pr-5">
+                    <p class=" text-center">Precio</p>
+                    <div class="md-form input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text md-addon"> <i class=" fas fa-money-bill-alt"></i></span>
+                        </div>
+                        <input type="number" class="form-control" name="ANUN_PRECIO" required
+                            value="{{anuncio.ANUN_PRECIO}}">
+                    </div>
+                </div>
+                <div class="col-md-6 pl-5 pr-5">
+                    <p class="text-center">Alicuota/Condominio</p>
+                    <div class="md-form input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text md-addon"> <i class=" fas fa-money-bill-alt"></i></span>
+                        </div>
+                        <input type="number" class="form-control" name="ANUN_ALICUOTA"
+                            value="{{anuncio.ANUN_ALICUOTA}}">
+                    </div>
+                </div>
             </div>
-            <div class="col-sm-4">
-                <p class="text-center">Cantón</p>
-                <select class="browser-default custom-select">
-                    <option selected>Seleccione el cantón</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
+            <h5 class="font-weight-bolder text-white elegant-color rounded p-2">Características</h5>
+            <div class="row  border rounded-lg p-2 m-1 text-center">
+                <div class="col-sm-4">
+                    <i class="grey text-white rounded-circle p-3 mb-1 fas fa-bed fa-2x"></i>
+                    <input type="number" class="form-control w-50 mx-auto" min="0" step="1" name="ANUN_HABITACIONES"
+                        value="{{anuncio.ANUN_HABITACIONES}}">
+                    <b>Habitaciones</b>
+                </div>
+                <div class="col-sm-4">
+                    <i class="grey text-white rounded-circle p-3 mb-1 fas fa-bath fa-2x"></i>
+                    <input type="number" class="form-control w-50 mx-auto" min="0" step="1" name="ANUN_BANOS"
+                        value="{{anuncio.ANUN_BANOS}}">
+                    <b>Baños</b>
+                </div>
+                <div class="col-sm-4">
+                    <i class="grey text-white rounded-circle p-3 mb-1 fas fa-toilet fa-2x"></i>
+                    <input type="number" class="form-control w-50 mx-auto" min="0" step="1" name="ANUN_M_BANOS"
+                        value="{{anuncio.ANUN_M_BANOS}}">
+                    <b>1/2 Baños</b>
+                </div>
+                <div class="col-sm-6 pt-3 pl-5 pr-5">
+                    <i class="grey text-white rounded-circle p-3 mb-1 fas fa-car fa-2x"></i>
+                    <input type="number" class="form-control w-50 mx-auto" min="0" step="1" name="ANUN_ESTACIONAMIENTO"
+                        value="{{anuncio.ANUN_ESTACIONAMIENTO}}">
+                    <b>Estacionamientos</b>
+                </div>
+                <div class="col-sm-6 pt-3 pl-5 pr-5">
+                    <i class="grey text-white rounded-circle p-3 mb-1 fas fa-history fa-2x"></i>
+                    <input type="number" class="form-control w-50 mx-auto" min="0" step="1" name="ANUN_ANTIGUEDAD"
+                        value="{{anuncio.ANUN_ANTIGUEDAD}}">
+                    <b>Antiguedad (Años)</b>
+                </div>
             </div>
-            <div class="col-sm-4">
-                <p class="text-center">Zona</p>
-                <select class="browser-default custom-select">
-                    <option selected>Seleccione la Zona</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
-            </div>
-            <div class="col-sm-12 pt-2">
-                <p class="">Dirección</p>
-                <input type="text" class="form-control" placeholder="" aria-label="Username"
-                    aria-describedby="material-addon1">
-                <p class="pt-2">Localiza tu Inmueble en el mapa</p>
-                <div id="map"></div>
-            </div>
-        </div>
-        <h5 class="font-weight-bolder text-white elegant-color rounded p-2">Multimedia</h5>
-        <div class="row border rounded-lg p-2 m-1">
-            <div class="col-sm-12">
-                <h5>Imágenes de su Inmueble</h5>
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="customFileLangHTML">
-                    <label class="custom-file-label" for="customFileLangHTML" data-browse="Seleccionar">Seleccione uno o
-                        más archivos de imagen</label>
+            <div class="row border rounded-lg p-2 m-1">
+                <div class="col-sm-12">
+                    <h5>Otros</h5>
+                    {{#each grupos_caracteristicas}}
+                    <h6>{{GRUP_DESCRIPCION}}</h6>
+                    {{#each caracteristicas}}
+                    <ul class="col-ch">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input form-control"
+                                id="checks_caracteristicas{{CARACT_ID}}" name="CARACT_ID" value="{{CARACT_ID}}"
+                                {{#if ISCHECK }} checked {{/if}}>
+                            <label class="custom-control-label"
+                                for="checks_caracteristicas{{CARACT_ID}}">{{CARACT_DESCRIPCION}}</label>
+                        </div>
+
+                    </ul>
+                    {{/each}}
+                    {{/each}}
 
                 </div>
-                <hr>
-                <h5>Subir Video de Youtube</h5>
-                <input type="text" class="form-control" placeholder="URL" aria-label="Username">
             </div>
-        </div>
-        <div class="row d-flex justify-content-center">
-            <button type="button" class="btn btn-elegant rnd  btn-lg">Actualziar</button>
-        </div>
+            <h5 class="font-weight-bolder text-white elegant-color rounded p-2">Ubicación</h5>
+            <div class="row border rounded-lg p-2 m-1">
+                <div class="col-sm-4">
+                    <p class="text-center">Provincia</p>
+                    <select class="browser-default custom-select form-control" name="PROV_ID" id="anuncio_provincia"
+                        onchange="select_provincia()" required>
+                        {{#each provincias}}
+                        <option value="{{PROV_ID}}" {{#ifEquals ../anuncio.PROV_ID PROV_ID}} selected {{/ifEquals}}>
+                            {{PROV_NOMBRE}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <p class="text-center">Cantón</p>
+                    <select class="browser-default custom-select form-control" name="CANT_ID" id="anuncio_canton"
+                        onchange="select_canton()" required>
+                        {{#each cantones}}
+                        <option value="{{CANT_ID}}" {{#ifEquals ../anuncio.CANT_ID CANT_ID}} selected {{/ifEquals}}>
+                            {{CANT_NOMBRE}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <p class="text-center">Zona</p>
+                    <select class="browser-default custom-select form-control" name="ZON_ID" id="anuncio_zona" required>
+                        {{#each zonas}}
+                        <option value="{{ZON_ID}}" {{#ifEquals ../anuncio.ZON_ID ZON_ID}} selected {{/ifEquals}}>
+                            {{ZON_NOMBRE}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="col-sm-12 pt-2">
+                    <p class="">Dirección</p>
+                    <input type="text" class="form-control" name="ANUN_DIRECCION" required
+                        value="{{anuncio.ANUN_DIRECCION}}">
+                    <p class="pt-2">Localiza tu Inmueble en el mapa</p>
+                    <div id="map-registro">
+
+                    </div>
+                </div>
+                <input type="hidden" class="form-control" name="ANUN_LATITUD" id="anuncio_latitud"
+                    value="{{anuncio.ANUN_LATITUD}}">
+                <input type="hidden" class="form-control" name="ANUN_LONGITUD" id="anuncio_longitud"
+                    value="{{anuncio.ANUN_LONGITUD}}">
+            </div>
+            <h5 class="font-weight-bolder text-white elegant-color rounded p-2">Multimedia</h5>
+            <div class="row border rounded-lg p-2 m-1">
+                <div class="col-sm-12">
+                    <h5>Imágenes de su Inmueble</h5>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input form-control" id="anuncio_images"
+                            name="anuncio_images" accept="image/x-png, image/gif, image/jpeg, image/jpg" multiple>
+                        <label class="custom-file-label" for="anuncio_images" data-browse="Seleccionar">Seleccione
+                            uno o
+                            más archivos de imagen</label>
+
+                    </div>
+                    <div class="row">
+                        <div class="card-columns">
+                            {{#each anuncio.IMAGES}}
+                            <div class="card text-center m-2" id="card{{IMG_ID}}">
+                                <div class="card-body">
+                                    <img src="/anuncio_images/{{IMG_NOMBRE}}" class="img-fluid" style="height: 150px">
+                                    <button type="button" class="btn btn-danger btn-sm rnd" data-toggle="modal"
+                                data-target="#modal_delete_image{{IMG_ID}}">Borrar</button>
+                                </div>
+                            </div>
+                            <input type="hidden" id="{{IMG_ID}}" value="{{IMG_NOMBRE}}">
+                            <!-- Central Modal Small -->
+                            <div class="modal fade" id="modal_delete_image{{IMG_ID}}" tabindex="-1" role="dialog"
+                                aria-labelledby="myModalLabel" aria-hidden="true">
+                                <!-- Change class.modal-sm to change the size of the modal -->
+                                <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header danger-color">
+                                            <h4 class="modal-title text-white ">Eliminar</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Esta seguro de eliminar esta Imagen?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-light btn-sm"
+                                                data-dismiss="modal">Cancelar</button>
+                                            <a class="btn btn-danger btn-sm rnd"
+                                                onclick="deleteImg({{IMG_ID}})" data-dismiss="modal">Borrar</a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Central Modal Small -->
+                            {{/each}}
+                        </div>
+                    </div>
+
+
+                    <hr>
+                    <h5>Subir Video de Youtube</h5>
+                    <input type="url" class="form-control" placeholder="URL" name="VID_PATH"
+                        value="{{anuncio.ANUN_URL}}">
+                </div>
+            </div>
+            <input type="hidden" class="form-control" name="ANUN_ID" value="{{anuncio.ANUN_ID}}">
+            <div class="row d-flex justify-content-center">
+                <button type="button submit" class="btn btn-elegant rnd  btn-lg">Editar</button>
+            </div>
+        </form>
+
     </div>
 </div>

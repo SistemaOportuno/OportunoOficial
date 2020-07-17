@@ -1,12 +1,25 @@
+function deleteImg(IMG_ID) {
+    $("#card" + IMG_ID).remove()
+    IMG_NOMBRE=document.getElementById(IMG_ID).value;
+    $.ajax({
+        url: '/deleteImage/' + IMG_ID + '/' + IMG_NOMBRE,
+        success: function (result) {
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    });
+
+}
 function select_canton() {
-    var select_canton= document.getElementById('anuncio_canton');
-    var id_canton =select_canton.value;
+    var select_canton = document.getElementById('anuncio_canton');
+    var id_canton = select_canton.value;
     var nombre_canton = select_canton.options[select_canton.selectedIndex].text;
 
-    var select_provincia= document.getElementById('anuncio_provincia')
+    var select_provincia = document.getElementById('anuncio_provincia')
     var nombre_provincia = select_provincia.options[select_provincia.selectedIndex].text;
 
-    geocoder.geocode( {'address' :"Ecuador, "+ nombre_provincia+", "+nombre_canton}, function(results, status) {
+    geocoder.geocode({ 'address': "Ecuador, " + nombre_provincia + ", " + nombre_canton }, function (results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
             map_registro.setCenter(results[0].geometry.location);
             map_registro.setZoom(13);
@@ -35,10 +48,10 @@ function select_canton() {
     });
 }
 function select_provincia() {
-    var select_provincia= document.getElementById('anuncio_provincia')
+    var select_provincia = document.getElementById('anuncio_provincia')
     var id_provincia = select_provincia.value;
     var nombre_provincia = select_provincia.options[select_provincia.selectedIndex].text;
-    geocoder.geocode( {'address' :"Ecuador, "+nombre_provincia}, function(results, status) {
+    geocoder.geocode({ 'address': "Ecuador, " + nombre_provincia }, function (results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
             map_registro.setCenter(results[0].geometry.location);
             map_registro.setZoom(10);
@@ -151,7 +164,8 @@ $(document).ready(function () {
 });
 /*MAPS */
 var map_registro;
-var geocoder
+var map_anuncio;
+var geocoder;
 function init_map_registro() {
     geocoder = new google.maps.Geocoder();
     var mapOptions = {
@@ -162,19 +176,87 @@ function init_map_registro() {
     map_registro.addListener("click", function (event) {
         addMarker(event.latLng);
     });
-    var marker=null;
+    var marker = null;
     function addMarker(location) {
-        if(marker!=null){
+        if (marker != null) {
             marker.setMap(null);
         }
         marker = new google.maps.Marker({
             position: location,
             map: map_registro
         });
-        document.getElementById('anuncio_latitud').value=location.lat();
-        document.getElementById('anuncio_longitud').value=location.lng();
-
+        document.getElementById('anuncio_latitud').value = location.lat();
+        document.getElementById('anuncio_longitud').value = location.lng();
+    }
+}
+function init_map_edit() {
+    geocoder = new google.maps.Geocoder();
+    var lat = document.getElementById('anuncio_latitud').value;
+    var lon = document.getElementById('anuncio_longitud').value;
+    var mapOptions = {};
+    var pos = {};
+    if (lat == '') {
+        pos = { lat: -1.831239, lng: -78.183406 };
+        mapOptions = {
+            zoom: 7,
+            center: pos
+        };
+        map_registro = new google.maps.Map(document.getElementById('map-registro'), mapOptions);
+    } else {
+        pos = { lat: parseFloat(lat), lng: parseFloat(lon) };
+        mapOptions = {
+            zoom: 15,
+            center: pos
+        };
+        var marker_init = new google.maps.Marker({
+            position: pos,
+        });
+        map_registro = new google.maps.Map(document.getElementById('map-registro'), mapOptions);
+        marker_init.setMap(map_registro);
     }
 
-
+    map_registro.addListener("click", function (event) {
+        addMarker(event.latLng);
+    });
+    var marker = null;
+    function addMarker(location) {
+        if (marker != null) {
+            marker.setMap(null);
+        }
+        if (marker_init != null) {
+            marker_init.setMap(null);
+            marker_init = null;
+        }
+        marker = new google.maps.Marker({
+            position: location,
+            map: map_registro
+        });
+        document.getElementById('anuncio_latitud').value = location.lat();
+        document.getElementById('anuncio_longitud').value = location.lng();
+    }
+}
+function init_map_anuncio() {
+    var lat = document.getElementById('lat').value;
+    var lon = document.getElementById('lon').value;
+    var mapOptions = {};
+    var pos = {};
+    if (lat == '') {
+        pos = { lat: -1.831239, lng: -78.183406 };
+        mapOptions = {
+            zoom: 7,
+            center: pos
+        };
+        map_anuncio = new google.maps.Map(document.getElementById('map-anuncio'), mapOptions);
+    } else {
+        pos = { lat: parseFloat(lat), lng: parseFloat(lon) };
+        mapOptions = {
+            zoom: 15,
+            center: pos
+        };
+        var marker = new google.maps.Marker({
+            position: pos,
+        });
+        map_anuncio = new google.maps.Map(document.getElementById('map-anuncio'), mapOptions);
+        marker.setMap(map_anuncio);
+    }
 }

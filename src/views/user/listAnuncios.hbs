@@ -4,22 +4,22 @@
             <h5 class="h5 text-white text-center">Mi Panel</h5>
         </div>
         <div class="list-group list-group-flush pl-2 pr-2 pt-5 pb-5">
-            <a href="panel" class="list-group-item list-group-item-action waves-effect">
+            <a href="/panel" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-home mr-3"></i>Inicio
             </a>
-            <a href="addAnuncio" class="list-group-item list-group-item-action waves-effect ">
+            <a href="/addAnuncio" class="list-group-item list-group-item-action waves-effect ">
                 <i class="fas fa-plus-circle mr-3"></i>Nuevo Anuncio
             </a>
-            <a href="listAnuncios" class="list-group-item list-group-item-action waves-effect active">
+            <a href="/listAnuncios" class="list-group-item list-group-item-action waves-effect active">
                 <i class="fas fa-briefcase mr-3"></i>Administrar Anuncios
             </a>
-            <a href="listMensajes" class="list-group-item list-group-item-action waves-effect">
+            <a href="/listMensajes" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-envelope-open mr-3"></i>Mensajes</a>
-            <a href="contactar" class="list-group-item list-group-item-action waves-effect">
+            <a href="/contactar" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-headset mr-3"></i>Contáctese con Nosotros</a>
-            <a href="cuenta" class="list-group-item list-group-item-action waves-effect">
+            <a href="/cuenta" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-user mr-3"></i>Mi Cuenta</a>
-            <a href="#" class="list-group-item list-group-item-action waves-effect">
+            <a href="/logout" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión</a>
         </div>
     </div>
@@ -45,12 +45,12 @@
                             <div class="row">
                                 <div class="col-sm-5">
                                     <!--Carousel Wrapper-->
-                                    <div id="carousel{{ANUN_ID}}" class="carousel slide carousel-fade"
+                                    <div id="carousel{{ANUN_ID}}" class="carousel slide carousel-fade elegant-color"
                                         data-ride="carousel">
                                         <!--Indicators-->
                                         <ol class="carousel-indicators">
                                             {{#each IMAGES}}
-                                            <li data-target="#carousel{{../ANUN_ID}}" data-slide-to="{{POS}}" {{#ifEquals POS 0}} class="active" {{/ifEquals}}></li>
+                                            <li data-target="#carousel{{../ANUN_ID}}" data-slide-to="{{POS}}" {{#ifEquals POS 0}} class="active" {{/ifEquals}} ></li>
                                             {{/each}}
                                         </ol>
                                         <!--/.Indicators-->
@@ -58,8 +58,7 @@
                                         <div class="carousel-inner" role="listbox">
                                             {{#each IMAGES}}
                                             <div class="carousel-item {{#ifEquals POS 0}} active {{/ifEquals}}">
-                                                <img class="img-fluid"
-                                                    src="/anuncio_images/{{IMG_NOMBRE}}">
+                                                <img class="d-block  mx-auto img-fluid"src="/anuncio_images/{{IMG_NOMBRE}}" style="height: 150px">
                                             </div>
                                             {{/each}}
                                         </div>
@@ -111,13 +110,13 @@
                             <div class="row text-center m-1">
                                 <div class="col-sm-4">
                                     <p class="font-weight-light ml-3"><i class="blue-grey-text far fa-calendar-alt"></i>
-                                        {{ANUN_FECHA}}</p>
+                                        {{FECHA}}</p>
                                 </div>
                                 <div class="col-sm-2 ">
-                                    <a type="button" class="btn btn-info btn-sm" href="verAnuncio">Ver</a>
+                                    <a type="button" class="btn btn-info btn-sm" href="/verAnuncio/{{ANUN_ID}}">Ver</a>
                                 </div>
                                 <div class="col-sm-2 ">
-                                    <a type="button" class="btn btn-light btn-sm " href="editAnuncio">Editar</a>
+                                    <a type="button" class="btn btn-light btn-sm " href="/editAnuncio/{{ANUN_ID}}">Editar</a>
                                 </div>
                                 <div class="col-sm-2 ">
                                     <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
