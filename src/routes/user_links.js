@@ -118,14 +118,15 @@ router.get('/deleteImage/:IMG_ID/:IMG_NOMBRE', async (req, res, next) => {
     });
     res.send('OK');
 });
-
 router.get('/listAnuncios', isUserLog, async (req, res) => {
-    const anuncios = await db.query('SELECT *, DATE_FORMAT(ANUN_FECHA,"%Y-%m-%d") as FECHA FROM anuncios WHERE anun_estado="ACTIVO" AND usu_id=?', req.user.USU_ID);
+    const anuncios = await db.query('SELECT *, DATE_FORMAT(ANUN_FECHA,"%Y-%m-%d") as FECHA FROM anuncios WHERE anun_estado!="ELIMINADO" AND usu_id=?', req.user.USU_ID);
     anuncios.forEach(async element => {
         element.IMAGES = await db.query('SELECT * FROM imagenes WHERE anun_id=?', element.ANUN_ID);
         element.IMAGES.forEach(function (i, idx, array) {
             i.POS = idx;
         });
+        const aux= await db.query('SELECT count(anmsg_id) as msg FROM anuncios_mensajes WHERE anun_id=?', element.ANUN_ID);
+        element.MENSAJES=aux[0].msg;
     });
     res.render('user/listAnuncios', { anuncios });
 });
@@ -211,8 +212,6 @@ router.post('/editAnuncio', update_image, async (req, res) => {
 
     res.redirect('/listAnuncios');
 });
-
-
 router.get('/verAnuncio/:ANUN_ID', isUserLog, async (req, res) => {
     const { ANUN_ID } = req.params;
     const rows = await db.query('SELECT *, DATE_FORMAT(ANUN_FECHA,"%Y-%m-%d") as FECHA FROM anuncios WHERE anun_estado="ACTIVO" AND usu_id=? AND anun_id=?', [req.user.USU_ID, ANUN_ID]);
@@ -227,9 +226,25 @@ router.get('/verAnuncio/:ANUN_ID', isUserLog, async (req, res) => {
     anuncio.CANTON = aux[0].cant_nombre;
     aux = await db.query('SELECT zon_nombre FROM zonas WHERE zon_id=?', anuncio.ZON_ID);
     anuncio.ZONA = aux[0].zon_nombre;
+    aux = await db.query('SELECT tipinm_descripcion FROM tipos_inmuebles WHERE tipinm_id=?', anuncio.TIPINM_ID);
+    anuncio.TIPINM_DESCRIPCION=aux[0].tipinm_descripcion;
 
     anuncio.CARACTERISTICAS = await db.query('SELECT * FROM anuncio_caracteristica ac, caracteristicas c WHERE anun_id=? AND c.CARACT_ID=ac.CARACT_ID', anuncio.ANUN_ID);
     res.render('user/verAnuncio', { anuncio });
+});
+router.post('/bloquearAnuncio', async (req, res) => {
+    const update_anuncio={
+        ANUN_ESTADO:'BLOQUEADO'
+    }
+    await db.query('UPDATE anuncios SET ? WHERE anun_id=?',[update_anuncio, req.body.ANUN_ID]);
+    res.redirect('/listAnuncios');
+});
+router.post('/eliminarAnuncio', async (req, res) => {
+    const update_anuncio={
+        ANUN_ESTADO:'ELIMINADO'
+    }
+    await db.query('UPDATE anuncios SET ? WHERE anun_id=?',[update_anuncio, req.body.ANUN_ID]);
+    res.redirect('/listAnuncios');
 });
 router.get('/listMensajes', isUserLog, (req, res) => {
     res.render('user/listMensajes');

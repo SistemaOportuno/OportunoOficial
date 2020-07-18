@@ -50,7 +50,8 @@
                                         <!--Indicators-->
                                         <ol class="carousel-indicators">
                                             {{#each IMAGES}}
-                                            <li data-target="#carousel{{../ANUN_ID}}" data-slide-to="{{POS}}" {{#ifEquals POS 0}} class="active" {{/ifEquals}} ></li>
+                                            <li data-target="#carousel{{../ANUN_ID}}" data-slide-to="{{POS}}"
+                                                {{#ifEquals POS 0}} class="active" {{/ifEquals}}></li>
                                             {{/each}}
                                         </ol>
                                         <!--/.Indicators-->
@@ -58,7 +59,8 @@
                                         <div class="carousel-inner" role="listbox">
                                             {{#each IMAGES}}
                                             <div class="carousel-item {{#ifEquals POS 0}} active {{/ifEquals}}">
-                                                <img class="d-block  mx-auto img-fluid"src="/anuncio_images/{{IMG_NOMBRE}}" style="height: 150px">
+                                                <img class="d-block  mx-auto img-fluid"
+                                                    src="/anuncio_images/{{IMG_NOMBRE}}" style="height: 150px">
                                             </div>
                                             {{/each}}
                                         </div>
@@ -98,11 +100,26 @@
 
                                 </div>
                                 <div class="col-sm-7">
-                                    <div class="container m-2">
+                                    <div class="row pt-2">
+                                        <div class="col-sm-3">
+                                            <p><b>Tipo: </b>{{ANUN_TIPO}}</p>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <p><b>Vistas </b>{{ANUN_VISTAS}}</p>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <p><b>Mensajes: </b>{{MENSAJES}}</p>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <p><b>Estado: </b>{{ANUN_ESTADO}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="container">
                                         <a href="#" class="font-weight-bolder">{{ANUN_TITULO}}</a>
                                         <h3 class="font-weight-normal">USD {{ANUN_PRECIO}}</h3>
                                         <p class="font-weight-light"><i
-                                                class="deep-orange-text fas fa-map-marker-alt"></i> {{ANUN_DIRECCION}}</p>
+                                                class="deep-orange-text fas fa-map-marker-alt"></i> {{ANUN_DIRECCION}}
+                                        </p>
                                         <p class="font-weight-lighter description">{{ANUN_DESCRIPCION}} </p>
                                     </div>
                                 </div>
@@ -116,71 +133,82 @@
                                     <a type="button" class="btn btn-info btn-sm" href="/verAnuncio/{{ANUN_ID}}">Ver</a>
                                 </div>
                                 <div class="col-sm-2 ">
-                                    <a type="button" class="btn btn-light btn-sm " href="/editAnuncio/{{ANUN_ID}}">Editar</a>
+                                    <a type="button" class="btn btn-light btn-sm "
+                                        href="/editAnuncio/{{ANUN_ID}}">Editar</a>
                                 </div>
                                 <div class="col-sm-2 ">
                                     <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
-                                        data-target="#bloquearModal">Bloquear</button>
+                                        data-target="#bloquearModal{{ANUN_ID}}">Bloquear</button>
                                 </div>
                                 <div class="col-sm-2">
                                     <button type="button" class="btn btn-danger btn-sm " data-toggle="modal"
-                                        data-target="#eliminarModal">Eliminar</button>
+                                        data-target="#eliminarModal{{ANUN_ID}}">Eliminar</button>
                                 </div>
                             </div>
                         </div>
                     </td>
                 </tr>
+                <!-- Central Modal Small -->
+                <div class="modal fade" id="bloquearModal{{ANUN_ID}}" tabindex="-1" role="dialog"
+                    aria-labelledby="myModalLabel" aria-hidden="true">
+                    <!-- Change class.modal-sm to change the size of the modal -->
+                    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                        <form method="POST" action="/bloquearAnuncio">
+                            <div class="modal-content">
+                                <div class="modal-header warning-color">
+                                    <h4 class="modal-title text-white ">Bloquear Anuncio</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Esta seguro de BLoquear el anuncio...?</p>
+                                    <p>Si bloquea el anuncio no podra ser visible en la lista de anuncios y los
+                                        interesados
+                                        no se podran
+                                        poner en contacto</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-light btn-sm"
+                                        data-dismiss="modal">Cancelar</button>
+                                    <input type="hidden" class="form-control" name="ANUN_ID" value="{{ANUN_ID}}">
+                                    <button type="button submit" class="btn btn-warning btn-sm">Bloquear</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- Central Modal Small -->
+                <!-- Central Modal Small -->
+                <div class="modal fade" id="eliminarModal{{ANUN_ID}}" tabindex="-1" role="dialog"
+                    aria-labelledby="myModalLabel" aria-hidden="true">
+                    <!-- Change class.modal-sm to change the size of the modal -->
+                    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                        <form method="POST" action="/eliminarAnuncio">
+                            <div class="modal-content">
+                                <div class="modal-header danger-color">
+                                    <h4 class="modal-title text-white ">Eliminar Anuncio</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Esta seguro de eliminar el anuncio...?</p>
+                                    <p>Si elimina el anuncio se borraran todos los datos e imagenes registradas</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-light btn-sm"
+                                        data-dismiss="modal">Cancelar</button>
+                                    <input type="hidden" class="form-control" name="ANUN_ID" value="{{ANUN_ID}}">
+                                    <button type="button submit" class="btn btn-danger btn-sm">Borrar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- Central Modal Small -->
                 {{/each}}
             </tbody>
         </table>
     </div>
 </div>
-<!-- Central Modal Small -->
-<div class="modal fade" id="eliminarModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-    aria-hidden="true">
-    <!-- Change class.modal-sm to change the size of the modal -->
-    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header danger-color">
-                <h4 class="modal-title text-white ">Eliminar Anuncio</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Esta seguro de eliminar el anuncio...?</p>
-                <p>Si elimina el anuncio se borraran todos los datos e imagenes registradas</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-light btn-sm" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-danger btn-sm">Borrar</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Central Modal Small -->
-<!-- Central Modal Small -->
-<div class="modal fade" id="bloquearModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-    aria-hidden="true">
-    <!-- Change class.modal-sm to change the size of the modal -->
-    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header warning-color">
-                <h4 class="modal-title text-white ">Bloquear Anuncio</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Esta seguro de BLoquear el anuncio...?</p>
-                <p>Si bloquea el anuncio no podra ser visible en la lista de anuncios y los interesados no se podran
-                    poner en contacto</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-light btn-sm" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-warning btn-sm">Bloquear</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Central Modal Small -->

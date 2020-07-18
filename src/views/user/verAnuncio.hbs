@@ -85,6 +85,73 @@
                 <div class="col-sm-12">
                     <br>
                     <h4 class="font-weight-bolder text-white elegant-color rounded p-2"><i
+                            class="fas fa-info-circle pr-2"></i>Información</h4>
+                    <div class="container">
+                        <div class="row border rounded-lg p-2 mb-2">
+                            <div class="col-sm-3">
+                                <h5>Transacción:</h5>
+                                <ul>
+                                    <li>{{anuncio.ANUN_TRANSACCION}}</li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-3">
+                                <h5>Inmueble:</h5>
+                                <ul>
+                                    <li>{{anuncio.TIPINM_DESCRIPCION}}</li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-3">
+                                <h5>Fecha:</h5>
+                                <ul>
+                                    <li>{{anuncio.FECHA}}</li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-3">
+                                <h5>Alicuota:</h5>
+                                <ul>
+                                    <li>{{anuncio.ANUN_ALICUITA}}</li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-12">
+                                {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "Terreno"}}
+                                <h5>Estado de Inmueble:</h5>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 10%" >{{../anuncio.ANUN_ESTADO_CONSTR}}</div>
+                                </div>
+                                {{/ifEquals}}
+                                {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "En planos"}}
+                                 <h5>Estado de Inmueble:</h5>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 25%" >{{../anuncio.ANUN_ESTADO_CONSTR}}</div>
+                                </div>
+                                {{/ifEquals}}
+                                {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "En construcción"}}
+                                 <h5>Estado de Inmueble:</h5>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 50%" >{{../anuncio.ANUN_ESTADO_CONSTR}}</div>
+                                </div>
+                                {{/ifEquals}}
+                                {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "Pre-venta"}}
+                                <h5>Estado de Inmueble:</h5>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 75%" >{{../anuncio.ANUN_ESTADO_CONSTR}}</div>
+                                </div>
+                                {{/ifEquals}}
+                                {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "Venta"}}
+                                 <h5>Estado de Inmueble:</h5>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 100%" >{{../anuncio.ANUN_ESTADO_CONSTR}}</div>
+                                </div>
+                                {{/ifEquals}}
+                                
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <br>
+                    <h4 class="font-weight-bolder text-white elegant-color rounded p-2"><i
                             class="fas fa-file-alt pr-2"></i>Descipción</h4>
                     <div class="row ml-5 mt-2 mb-3">
                         <span class="large-description">{{anuncio.ANUN_DESCRIPCION}}</span>
@@ -174,13 +241,13 @@
                             <input type="hidden" name="lat" id="lat" value="{{anuncio.ANUN_LATITUD}}">
                             <input type="hidden" name="lon" id="lon" value="{{anuncio.ANUN_LONGITUD}}">
 
-                             <div class="col-sm-12">
+                            <div class="col-sm-12">
                                 <h5>Mapa:</h5>
                                 <div id="map-anuncio"></div>
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
 
             </div>

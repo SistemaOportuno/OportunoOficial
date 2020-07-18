@@ -11,6 +11,22 @@ function deleteImg(IMG_ID) {
     });
 
 }
+function select_zona(){
+    var select_zona = document.getElementById('anuncio_zona');
+    var nombre_zona = select_zona.options[select_zona.selectedIndex].text;
+
+    var select_canton = document.getElementById('anuncio_canton');
+    var nombre_canton = select_canton.options[select_canton.selectedIndex].text;
+    
+    var select_provincia = document.getElementById('anuncio_provincia')
+    var nombre_provincia = select_provincia.options[select_provincia.selectedIndex].text;
+    geocoder.geocode({ 'address': "Ecuador, " + nombre_provincia + ", " + nombre_canton + ", " + nombre_zona }, function (results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            map_registro.setCenter(results[0].geometry.location);
+            map_registro.setZoom(15);
+        }
+    });
+}
 function select_canton() {
     var select_canton = document.getElementById('anuncio_canton');
     var id_canton = select_canton.value;
@@ -145,6 +161,40 @@ function init_search_input() {
 
 $(document).ready(function () {
     $('#example').DataTable({
+        lengthMenu: [[5, 10, 25, -1], [5, 10, 25, "All"]],
+        language: {
+            "lengthMenu": "Mostrando   _MENU_   elementos",
+            "zeroRecords": "Ningun registro",
+            "info": "Página _PAGE_ de _PAGES_",
+            "infoEmpty": "No existen registros",
+            "infoFiltered": "(filtered from _MAX_ total records)",
+            "sSearch": "Buscar:",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+        },
+    });
+    $('#example2').DataTable({
+        lengthMenu: [[5, 10, 25, -1], [5, 10, 25, "All"]],
+        language: {
+            "lengthMenu": "Mostrando   _MENU_   elementos",
+            "zeroRecords": "Ningun registro",
+            "info": "Página _PAGE_ de _PAGES_",
+            "infoEmpty": "No existen registros",
+            "infoFiltered": "(filtered from _MAX_ total records)",
+            "sSearch": "Buscar:",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+        },
+    });
+    $('#example3').DataTable({
         lengthMenu: [[5, 10, 25, -1], [5, 10, 25, "All"]],
         language: {
             "lengthMenu": "Mostrando   _MENU_   elementos",

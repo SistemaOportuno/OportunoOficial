@@ -235,7 +235,7 @@
                 </div>
                 <div class="col-sm-4">
                     <p class="text-center">Zona</p>
-                    <select class="browser-default custom-select form-control" name="ZON_ID" id="anuncio_zona" required>
+                    <select class="browser-default custom-select form-control" name="ZON_ID" id="anuncio_zona" onchange="select_zona()" required>
                         {{#each zonas}}
                         <option value="{{ZON_ID}}" {{#ifEquals ../anuncio.ZON_ID ZON_ID}} selected {{/ifEquals}}>
                             {{ZON_NOMBRE}}</option>

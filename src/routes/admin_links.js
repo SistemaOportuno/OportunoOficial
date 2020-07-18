@@ -2,13 +2,36 @@ const express = require('express');
 const router = express.Router();
 const db = require('../database');
 
+const uuid = require('uuid');
+const multer = require('multer');
+const path = require('path');
+const fs = require('fs');
+
+const storage_image = multer.diskStorage({
+    destination: path.join(__dirname, '../public/logo_empresa'),
+    filename: (req, file, cb) => {
+        cb(null, uuid.v4() + path.extname(file.originalname).toLocaleLowerCase());
+    }
+})
+const update_image = multer({
+    storage: storage_image,
+    fileFilter: function (req, file, cb) {
+        var filetypes = /jpeg|jpg|png|gif/;
+        var mimetype = filetypes.test(file.mimetype);
+        var extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+        if (mimetype && extname) {
+            return cb(null, true);
+        }
+        cb("Error: Solo son permitidos los archivos de tipo imagen:  - " + filetypes);
+    },
+}).single('empresa_logo');
+
 router.get('/adminPanel', (req, res) => {
     res.render('admin/adminPanel');
 });
 router.get('/componentes', (req, res) => {
     res.render('admin/componentes');
 });
-
 //----------------------TIPOS INMUEBLES----------------------------
 router.get('/tiposInmuebles', async (req, res) => {
     const tipos_inmuebles = await db.query("SELECT * FROM tipos_inmuebles WHERE tipinm_estado='ACTIVO';")
@@ -177,7 +200,6 @@ router.post('/delete_canton', async (req, res) => {
 });
 //----------------------CANTONES----------------------------
 //----------------------ZONAS----------------------------
-
 router.get('/zonas/:CANT_ID', async (req, res) => {
     const { CANT_ID } = req.params;
     const row = await db.query("SELECT * FROM cantones WHERE cant_id=? AND cant_estado='ACTIVO';", [CANT_ID])
@@ -243,6 +265,125 @@ router.post('/delete_pregunta', async (req, res) => {
     res.redirect('/preguntas');
 });
 //----------------------PREGUNTAS----------------------------
+//----------------------EMPRESA----------------------------
+router.get('/adminEmpresa', async (req, res) => {
+    const row=await db.query('SELECT * FROM empresa');
+    const empresa=row[0];
+    res.render('admin/adminEmpresa',{empresa});
+});
+router.post('/editMision', async (req, res) => {
+    const edit_empresa = {
+        EMP_MISION: req.body.EMP_MISION
+    }
+    await db.query("UPDATE empresa SET ? WHERE emp_id=1;", [edit_empresa]);
+    req.flash('success', 'Misión editada exitosamente');
+    res.redirect('/adminEmpresa');
+});
+router.post('/editVision', async (req, res) => {
+    const edit_empresa = {
+        EMP_VISION: req.body.EMP_VISION
+    }
+    await db.query("UPDATE empresa SET ? WHERE emp_id=1;", [edit_empresa]);
+    req.flash('success', 'Visión editada exitosamente');
+    res.redirect('/adminEmpresa');
+});
+router.post('/editDescripcion', async (req, res) => {
+    const edit_empresa = {
+        EMP_INFO: req.body.EMP_INFO
+    }
+    await db.query("UPDATE empresa SET ? WHERE emp_id=1;", [edit_empresa]);
+    req.flash('success', 'Descripción editada exitosamente');
+    res.redirect('/adminEmpresa');
+});
+router.post('/editLogo',update_image, async (req, res) => {
+    const edit_empresa = {
+        EMP_LOGO: req.file.filename
+    }
+    await db.query("UPDATE empresa SET ? WHERE emp_id=1;", [edit_empresa]);
+    fs.unlink(path.resolve('./src/public/logo_empresa/'+req.body.EMP_LOGO),(err)=>{
+        if(err){
+            console.log(err);throw err;
+        }
+    });
+    req.flash('success', 'Logo editado exitosamente');
+
+
+    res.redirect('/adminEmpresa');
+});
+//----------------------EMPRESA----------------------------
+//----------------------CONTACTOS----------------------------
+router.get('/adminContactos', async(req, res) => {
+    const telefonos=await db.query("SELECT * FROM telefonos");
+    const correos=await db.query("SELECT * FROM correos");
+    const direcciones=await db.query("SELECT * FROM direcciones");
+
+    res.render('admin/adminContactos',{telefonos,correos,direcciones});
+});
+router.post('/add_telefono', async (req, res) => {
+    const new_telefono = {
+        TEL_NUM:req.body.TEL_NUM
+    }
+    await db.query("INSERT INTO telefonos set ?", [new_telefono]);
+    req.flash('success', 'Teléfono guardado exitosamente');
+    res.redirect('/adminContactos');
+});
+router.post('/edit_telefono', async (req, res) => {
+    const edit_telefono = {
+        TEL_NUM:req.body.TEL_NUM
+    }
+    await db.query("UPDATE telefonos SET ? WHERE tel_id=?;", [edit_telefono, req.body.TEL_ID]);
+    req.flash('success', 'Teléfono editado exitosamente');
+    res.redirect('/adminContactos');
+});
+router.post('/delete_telefono', async (req, res) => {
+    await db.query("DELETE FROM telefonos WHERE tel_id=?", [ req.body.TEL_ID]);
+    req.flash('success', 'Teléfono eliminado exitosamente');
+    res.redirect('/adminContactos');
+});
+router.post('/add_correo', async (req, res) => {
+    const new_correo = {
+        CORR_DIRECCION:req.body.CORR_DIRECCION
+    }
+    await db.query("INSERT INTO correos set ?", [new_correo]);
+    req.flash('success', 'Correo guardado exitosamente');
+    res.redirect('/adminContactos');
+});
+router.post('/edit_correo', async (req, res) => {
+    const edit_correo = {
+        CORR_DIRECCION:req.body.CORR_DIRECCION
+    }
+    await db.query("UPDATE correos SET ? WHERE corr_id=?;", [edit_correo, req.body.CORR_ID]);
+    req.flash('success', 'Correo editado exitosamente');
+    res.redirect('/adminContactos');
+});
+router.post('/delete_correo', async (req, res) => {
+    await db.query("DELETE FROM correos WHERE corr_id=?", [ req.body.CORR_ID]);
+    req.flash('success', 'Correo eliminado exitosamente');
+    res.redirect('/adminContactos');
+});
+router.post('/add_direccion', async (req, res) => {
+    const new_direccion = {
+        DIR_DESCRIPCION:req.body.DIR_DESCRIPCION
+    }
+    await db.query("INSERT INTO direcciones set ?", [new_direccion]);
+    req.flash('success', 'Dirección guardada exitosamente');
+    res.redirect('/adminContactos');
+});
+router.post('/edit_direccion', async (req, res) => {
+    const edit_direccion = {
+        DIR_DESCRIPCION:req.body.DIR_DESCRIPCION
+    }
+    await db.query("UPDATE direcciones SET ? WHERE dir_id=?;", [edit_direccion, req.body.DIR_ID]);
+    req.flash('success', 'Dirección editada exitosamente');
+    res.redirect('/adminContactos');
+});
+router.post('/delete_direccion', async (req, res) => {
+    await db.query("DELETE FROM direcciones WHERE dir_id=?", [ req.body.DIR_ID]);
+    req.flash('success', 'Dirección eliminada exitosamente');
+    res.redirect('/adminContactos');
+});
+//----------------------CONTACTOS----------------------------
+
 
 router.get('/adminAnuncios', (req, res) => {
     res.render('admin/adminAnuncios');

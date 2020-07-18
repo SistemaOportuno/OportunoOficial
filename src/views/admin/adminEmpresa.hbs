@@ -1,0 +1,174 @@
+<div class="container">
+    <div class="sidebar rounded-lg">
+        <div class="header  elegant-color p-1">
+            <h5 class="h5 text-white text-center">Panel Administracion</h5>
+        </div>
+        <div class="list-group list-group-flush pl-2 pr-2 pt-5 pb-5">
+            <a href="/adminPanel" class="list-group-item list-group-item-action waves-effect ">
+                <i class="fas fa-home mr-3"></i>Inicio
+            </a>
+            <a href="/componentes" class="list-group-item list-group-item-action waves-effect active">
+                <i class="fas fa-plus-circle mr-3"></i>Administar Componentes
+            </a>
+            <a href="/adminAnuncios" class="list-group-item list-group-item-action waves-effect">
+                <i class="fas fa-briefcase mr-3"></i>Administrar Anuncios
+            </a>
+            <a href="/adminUsuarios" class="list-group-item list-group-item-action waves-effect">
+                <i class="fas fa-envelope-open mr-3"></i>Administrar Usuarios</a>
+            <a href="/adminMensajes" class="list-group-item list-group-item-action waves-effect">
+                <i class="fas fa-headset mr-3"></i>Mensajes</a>
+            <a href="" class="list-group-item list-group-item-action waves-effect">
+                <i class="fas fa-user mr-3"></i>Mi Cuenta</a>
+            <a href="" class="list-group-item list-group-item-action waves-effect">
+                <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión</a>
+        </div>
+    </div>
+    <div class="content-panel white rounded-lg p-5 mb-5">
+        <a type="button" class="btn btn-elegant rnd mt-3" href="/componentes">Regresar</a>
+        <div class="header pt-5">
+            <h2 class="font-weight-normal font-italic text-center">Datos de la Empresa</h2>
+        </div>
+        <h5 class="font-weight-bolder text-white elegant-color rounded p-2">Misión Empresarial</h5>
+        <div class="row border rounded-lg m-2 p-2">
+            <span class="large-description">{{empresa.EMP_MISION}}</span>
+        </div>
+        <div class="d-flex justify-content-end">
+            <button type="button" class="btn btn-default btn-sm rnd" data-toggle="modal"
+                data-target="#modal_mision">Editar</button>
+        </div>
+        <h5 class="font-weight-bolder text-white elegant-color rounded p-2">Visión Empresarial</h5>
+        <div class="row border rounded-lg m-2 p-2">
+            <span class="large-description">{{empresa.EMP_VISION}}</span>
+        </div>
+        <div class="d-flex justify-content-end">
+            <button type="button" class="btn btn-default btn-sm rnd" data-toggle="modal"
+                data-target="#modal_vision">Editar</button>
+        </div>
+        <h5 class="font-weight-bolder text-white elegant-color rounded p-2">Descripción Empresarial</h5>
+        <div class="row border rounded-lg m-2 p-2">
+            <span class="large-description">{{empresa.EMP_INFO}}</span>
+        </div>
+        <div class="d-flex justify-content-end">
+            <button type="button" class="btn btn-default btn-sm rnd" data-toggle="modal"
+                data-target="#modal_descripcion">Editar</button>
+        </div>
+        <h5 class="font-weight-bolder text-white elegant-color rounded p-2">Logo de la Empresa</h5>
+        <div class="text-center">
+            <img src="/logo_empresa/{{empresa.EMP_LOGO}}" class="img-fluid">
+
+        </div>
+        <div class="d-flex justify-content-end">
+            <button type="button" class="btn btn-default btn-sm rnd" data-toggle="modal"
+                data-target="#modal_logo">Editar</button>
+
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Central Modal Small -->
+<div class="modal fade" id="modal_logo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <!-- Change class .modal-sm to change the size of the modal -->
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <form method="POST" action="/editLogo" enctype="multipart/form-data">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title " id="myModalLabel">Logo de la Empresa</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                     <div class="custom-file">
+                         <input type="hidden" class="form-control" name="EMP_LOGO" value="{{empresa.EMP_LOGO}}">
+                        <input type="file" class="custom-file-input form-control" id="empresa_logo"
+                            name="empresa_logo" accept="image/x-png, image/gif, image/jpeg, image/jpg" required>
+                        <label class="custom-file-label" for="empresa_logo" data-browse="Seleccionar">Seleccione
+                            un archivo de imagen</label>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm rnd" data-dismiss="modal">Cerrar</button>
+                    <button type="button submit" class="btn btn-primary btn-sm rnd">Guardar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="modal_mision" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Misión Empresarial</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" action="/editMision">
+                <div class="modal-body">
+                    <textarea class="md-textarea form-control" rows="5" name="EMP_MISION"
+                        required>{{empresa.EMP_MISION}}</textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm rnd" data-dismiss="modal">Cerrar</button>
+                    <button type="button submit" class="btn btn-primary btn-sm rnd">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="modal_vision" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Visión Empresarial</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" action="/editVision">
+                <div class="modal-body">
+                    <textarea class="md-textarea form-control" rows="5" name="EMP_VISION"
+                        required>{{empresa.EMP_VISION}}</textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm rnd" data-dismiss="modal">Cerrar</button>
+                    <button type="button submit" class="btn btn-primary btn-sm rnd">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="modal_descripcion" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Descripción Empresarial</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" action="/editDescripcion">
+                <div class="modal-body">
+                    <textarea class="md-textarea form-control" rows="5" name="EMP_INFO"
+                        required>{{empresa.EMP_INFO}}</textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm rnd" data-dismiss="modal">Cerrar</button>
+                    <button type="button submit" class="btn btn-primary btn-sm rnd">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
