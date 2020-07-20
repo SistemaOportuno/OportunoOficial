@@ -11,7 +11,7 @@ const path = require('path');
 const fs = require('fs');
 
 const storage_image = multer.diskStorage({
-    destination: path.join(__dirname, '../public/inmo_logos'),
+    destination: path.join(__dirname, '../public/inmo_logo'),
     filename: (req, file, cb) => {
         cb(null, uuid.v4() + path.extname(file.originalname).toLocaleLowerCase());
     }

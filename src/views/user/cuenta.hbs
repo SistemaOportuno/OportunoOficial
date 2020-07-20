@@ -4,22 +4,22 @@
             <h5 class="h5 text-white text-center">Mi Panel</h5>
         </div>
         <div class="list-group list-group-flush pl-2 pr-2 pt-5 pb-5">
-            <a href="panel" class="list-group-item list-group-item-action waves-effect">
+            <a href="/panel" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-home mr-3"></i>Inicio
             </a>
-            <a href="addAnuncio" class="list-group-item list-group-item-action waves-effect ">
+            <a href="/addAnuncio" class="list-group-item list-group-item-action waves-effect ">
                 <i class="fas fa-plus-circle mr-3"></i>Nuevo Anuncio
             </a>
-            <a href="listAnuncios" class="list-group-item list-group-item-action waves-effect ">
+            <a href="/listAnuncios" class="list-group-item list-group-item-action waves-effect ">
                 <i class="fas fa-briefcase mr-3"></i>Administrar Anuncios
             </a>
-            <a href="listMensajes" class="list-group-item list-group-item-action waves-effect ">
+            <a href="/listMensajes" class="list-group-item list-group-item-action waves-effect ">
                 <i class="fas fa-envelope-open mr-3"></i>Mensajes</a>
-            <a href="contactar" class="list-group-item list-group-item-action waves-effect ">
+            <a href="/contactar" class="list-group-item list-group-item-action waves-effect ">
                 <i class="fas fa-headset mr-3"></i>Contáctese con Nosotros</a>
-            <a href="cuenta" class="list-group-item list-group-item-action waves-effect active">
+            <a href="/cuenta" class="list-group-item list-group-item-action waves-effect active">
                 <i class="fas fa-user mr-3"></i>Mi Cuenta</a>
-            <a href="#" class="list-group-item list-group-item-action waves-effect">
+            <a href="/logout" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión</a>
         </div>
     </div>
@@ -28,7 +28,7 @@
             <h2 class="font-weight-normal font-italic text-center">Mi cuenta</h2>
         </div>
         <div class="container pb-5">
-            <div class="row border rounded pl-2 pr-2 pt-3 pb-2 mb-3">
+            <div class="row border rounded pl-2 pr-2 pt-3 pb-4 mb-4">
                 <div class="col-sm-12">
                     <h3>Información Basica</h3>
                 </div>
@@ -36,34 +36,35 @@
                     <h6 class="font-weight-bolder  ">Mi perfil:</h6>
                 </div>
                 <div class="col-sm-10">
-                    <p>Tipo de perfil</p>
+                    <p>{{usuario.USU_TIPO}}</p>
                 </div>
                 <div class="col-sm-2">
                     <h6 class="font-weight-bolder  ">Nombre:</h6>
                 </div>
                 <div class="col-sm-4">
-                    <p>Nombre del Usuario</p>
+                    <p>{{usuario.USU_NOMBRE}}</p>
                 </div>
                 <div class="col-sm-2">
                     <h6 class="font-weight-bolder  ">Apellido:</h6>
                 </div>
                 <div class="col-sm-4">
-                    <p>Apellido del Usuario</p>
+                    <p>{{usuario.USU_APELLIDO}}</p>
                 </div>
                 <div class="col-sm-2">
                     <h6 class="font-weight-bolder  ">Correo:</h6>
                 </div>
                 <div class="col-sm-4">
-                    <p>Correo del usuario</p>
+                    <p>{{usuario.USU_CORREO}}</p>
                 </div>
                 <div class="col-sm-2">
                     <h6 class="font-weight-bolder  ">Teléfono:</h6>
                 </div>
                 <div class="col-sm-4">
-                    <p>Teléfono del usuario</p>
+                    <p>{{usuario.USU_TELEFONO}}</p>
                 </div>
             </div>
-            <div class="row border rounded pl-2 pr-2 pt-3 pb-2 mb-3">
+            {{#ifEquals usuario.USU_TIPO "INMOBILIARIA"}}
+            <div class="row border rounded pl-2 pr-2 pt-3 pb-4 mb-4">
                 <div class="col-sm-12">
                     <h3>Información Empresa</h3>
                 </div>
@@ -71,42 +72,46 @@
                     <h6 class="font-weight-bolder  ">Nombre Empresa:</h6>
                 </div>
                 <div class="col-sm-9">
-                    <p>Nombre de la Empresa</p>
+                    <p>{{../usuario.USU_EMPRESA}}</p>
+                </div>
+                   <div class="col-sm-3">
+                    <h6 class="font-weight-bolder  ">Teléfono Empresa:</h6>
+                </div>
+                <div class="col-sm-9">
+                    <p>{{../usuario.USU_EMPRESA_TELEFONO}}</p>
                 </div>
                 <div class="col-sm-3">
                     <h6 class="font-weight-bolder  ">Correo Empresa:</h6>
                 </div>
                 <div class="col-sm-9">
-                    <p>Correo de la Empresa</p>
+                    <p>{{../usuario.USU_EMPRESA_CORREO}}</p>
                 </div>
                 <div class="col-sm-3">
                     <h6 class="font-weight-bolder  ">Logo:</h6>
                 </div>
                 <div class="col-sm-9">
-                    <img src="https://i.pinimg.com/236x/56/ef/84/56ef843c7222b295e1ffbb7db3ba0a90.jpg"
-                        class="rounded mx-auto d-block" alt="...">
+                    <img src="/inmo_logo/{{../usuario.USU_EMPRESA_LOGO}}" class="rounded mx-auto d-block" style="width: 250px;">
                 </div>
-
             </div>
-            <div class="row border rounded-lg p-2 mb-2">
+            {{/ifEquals}}
+            <div class="row border rounded-lg pl-2 pr-2 pt-3 pb-4 mb-4">
                 <div class="col-sm-12">
                     <h3>Cobertura</h3>
                     <ul>
-                        <li>Quito</li>
-                        <li>Guayaquil</li>
-                        <li>Cuenca</li>
-                        <li>Sangolqui</li>
-                        <li>Manabi</li>
+                       {{#each cobertura}}
+                        <li>{{PROV_NOMBRE}}</li>
+                       {{/each}}
                     </ul>
                 </div>
             </div>
-            <div class="row border rounded-lg p-2 ">
+            <div class="row border rounded-lg pl-2 pr-2 pt-3 pb-4 mb-4 ">
                 <div class="col-sm-12 text-center">
-                    
-                        <a href="editarCuenta" type="button" class="rnd btn btn-info  mb-2">Editar</a>
-                         <a href="editarContrasena" type="button" class="rnd btn btn-warning  mb-2">Cambiar Contraseña</a>
-                         <button type="button" class="rnd btn btn-danger  mb-2" data-toggle="modal" data-target="#eliminarperfilModal">Eliminar Perfil</button>
-       
+
+                    <a href="editarCuenta" type="button" class="rnd btn btn-info  mb-2">Editar</a>
+                    <a href="editarContrasena" type="button" class="rnd btn btn-warning  mb-2">Cambiar Contraseña</a>
+                    <button type="button" class="rnd btn btn-danger  mb-2" data-toggle="modal"
+                        data-target="#eliminarperfilModal">Eliminar Perfil</button>
+
                 </div>
             </div>
 
@@ -118,25 +123,26 @@
 
 <!-- Central Modal Small -->
 <div class="modal fade" id="eliminarperfilModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <!-- Change class.modal-sm to change the size of the modal -->
-  <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header danger-color">
-        <h4 class="modal-title text-white ">Eliminar Perfil</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Esta seguro de eliminar si perfil?</p>
-         <p>Si elimina el perfil se borraran todos los datos de los anuncios registrados, esta accion no tiene restauración</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-light btn-sm" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-danger btn-sm">Borrar</button>
-      </div>
+    aria-hidden="true">
+    <!-- Change class.modal-sm to change the size of the modal -->
+    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header danger-color">
+                <h4 class="modal-title text-white ">Eliminar Perfil</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Esta seguro de eliminar si perfil?</p>
+                <p>Si elimina el perfil se borraran todos los datos de los anuncios registrados, esta accion no tiene
+                    restauración</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light btn-sm" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger btn-sm">Borrar</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 <!-- Central Modal Small -->

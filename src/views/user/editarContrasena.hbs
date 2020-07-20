@@ -4,69 +4,67 @@
             <h5 class="h5 text-white text-center">Mi Panel</h5>
         </div>
         <div class="list-group list-group-flush pl-2 pr-2 pt-5 pb-5">
-            <a href="panel" class="list-group-item list-group-item-action waves-effect">
+            <a href="/panel" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-home mr-3"></i>Inicio
             </a>
-            <a href="addAnuncio" class="list-group-item list-group-item-action waves-effect ">
+            <a href="/addAnuncio" class="list-group-item list-group-item-action waves-effect ">
                 <i class="fas fa-plus-circle mr-3"></i>Nuevo Anuncio
             </a>
-            <a href="listAnuncios" class="list-group-item list-group-item-action waves-effect ">
+            <a href="/listAnuncios" class="list-group-item list-group-item-action waves-effect ">
                 <i class="fas fa-briefcase mr-3"></i>Administrar Anuncios
             </a>
-            <a href="listMensajes" class="list-group-item list-group-item-action waves-effect ">
+            <a href="/listMensajes" class="list-group-item list-group-item-action waves-effect ">
                 <i class="fas fa-envelope-open mr-3"></i>Mensajes</a>
-            <a href="contactar" class="list-group-item list-group-item-action waves-effect ">
+            <a href="/contactar" class="list-group-item list-group-item-action waves-effect ">
                 <i class="fas fa-headset mr-3"></i>Contáctese con Nosotros</a>
-            <a href="cuenta" class="list-group-item list-group-item-action waves-effect active">
+            <a href="/cuenta" class="list-group-item list-group-item-action waves-effect active">
                 <i class="fas fa-user mr-3"></i>Mi Cuenta</a>
-            <a href="#" class="list-group-item list-group-item-action waves-effect">
+            <a href="/logout" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión</a>
         </div>
     </div>
     <div class="content-panel white rounded-lg mb-5 pl-3 pr-3 ">
-         <a type="button" class="btn btn-elegant rnd mt-3" href="cuenta">Regresar</a>
+        <a type="button" class="btn btn-elegant rnd mt-3" href="/cuenta">Regresar</a>
         <div class="header pt-5">
             <h2 class="font-weight-normal font-italic text-center">Cambio de Contraseña</h2>
         </div>
         <div class="container pb-5 pt-5">
-            <div class="row border rounded pl-2 pr-2 pt-3 pb-2 mb-3">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-8">
-                    <div class="md-form">
-                        <i class="fas fa-key prefix grey-text"></i>
-                        <input type="password" id="form104" class="form-control">
-                        <label for="form104">Contraseña Actual</label>
+            <form action="/editarContrasena" method="POST">
+                <div class="row border rounded pl-2 pr-2 pt-3 pb-2 mb-3">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-8">
+                        <div class="md-form">
+                            <i class="fas fa-key prefix grey-text"></i>
+                            <input type="password" id="USU_CONTRASENA" name="USU_CONTRASENA" class="form-control" required>
+                            <label for="USU_CONTRASENA">Contraseña Actual</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-8">
+                        <div class="md-form">
+                            <i class="fas fa-key prefix grey-text"></i>
+                            <input type="password" id="USU_CONTRASENA_NUEVA" name="USU_CONTRASENA_NUEVA" class="form-control" required>
+                            <label for="USU_CONTRASENA_NUEVA">Conttraseña Nueva</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-8">
+                        <div class="md-form">
+                            <i class="fas fa-key prefix grey-text"></i>
+                            <input type="password" id="USU_CONTRASENA_NUEVA_C" name="USU_CONTRASENA_NUEVA_C" class="form-control">
+                            <label for="USU_CONTRASENA_NUEVA_C"> RepetirConttraseña Nueva</label>
+                        </div>
                     </div>
                 </div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-8">
-                    <div class="md-form">
-                        <i class="fas fa-key prefix grey-text"></i>
-                        <input type="password" id="form104" class="form-control">
-                        <label for="form104">Conttraseña Nueva</label>
+                <div class="row border rounded-lg p-2 m-3">
+                    <div class="col-sm-12 text-center">
+                        <button type="button submit" class="rnd btn btn-success mb-2">Cambiar
+                            Contraseña</button>
                     </div>
                 </div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-8">
-                    <div class="md-form">
-                        <i class="fas fa-key prefix grey-text"></i>
-                        <input type="password" id="form104" class="form-control">
-                        <label for="form104"> RepetirConttraseña Nueva</label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row border rounded-lg p-2 m-3">
-                <div class="col-sm-12 text-center">
-
-                        <a href="editarContrasena" type="button" class="rnd btn btn-success  mb-2">Cambiar
-                            Contraseña</a>
-                    
-                </div>
-            </div>
-
+            </form>
         </div>
 
 

@@ -313,15 +313,16 @@ router.post('/editLogo',update_image, async (req, res) => {
 //----------------------EMPRESA----------------------------
 //----------------------CONTACTOS----------------------------
 router.get('/adminContactos', async(req, res) => {
-    const telefonos=await db.query("SELECT * FROM telefonos");
-    const correos=await db.query("SELECT * FROM correos");
-    const direcciones=await db.query("SELECT * FROM direcciones");
+    const telefonos=await db.query("SELECT * FROM telefonos WHERE tel_estado='ACTIVO'");
+    const correos=await db.query("SELECT * FROM correos corr_estado='ACTIVO'");
+    const direcciones=await db.query("SELECT * FROM direcciones dir_estado='ACTIVO'");
 
     res.render('admin/adminContactos',{telefonos,correos,direcciones});
 });
 router.post('/add_telefono', async (req, res) => {
     const new_telefono = {
-        TEL_NUM:req.body.TEL_NUM
+        TEL_NUM:req.body.TEL_NUM,
+        TEL_ESTADO:"ACTIVO"
     }
     await db.query("INSERT INTO telefonos set ?", [new_telefono]);
     req.flash('success', 'Teléfono guardado exitosamente');
@@ -329,20 +330,24 @@ router.post('/add_telefono', async (req, res) => {
 });
 router.post('/edit_telefono', async (req, res) => {
     const edit_telefono = {
-        TEL_NUM:req.body.TEL_NUM
+        TEL_NUM:req.body.TEL_NUM,
     }
     await db.query("UPDATE telefonos SET ? WHERE tel_id=?;", [edit_telefono, req.body.TEL_ID]);
     req.flash('success', 'Teléfono editado exitosamente');
     res.redirect('/adminContactos');
 });
 router.post('/delete_telefono', async (req, res) => {
-    await db.query("DELETE FROM telefonos WHERE tel_id=?", [ req.body.TEL_ID]);
+    const edit_telefono = {
+        TEL_ESTADO:"ELIMINADO"
+    }
+    await db.query("UPDATE telefonos SET ? WHERE tel_id=?;", [edit_telefono, req.body.TEL_ID]);
     req.flash('success', 'Teléfono eliminado exitosamente');
     res.redirect('/adminContactos');
 });
 router.post('/add_correo', async (req, res) => {
     const new_correo = {
-        CORR_DIRECCION:req.body.CORR_DIRECCION
+        CORR_DIRECCION:req.body.CORR_DIRECCION,
+        CORR_ESTADO:"ACTIVO"
     }
     await db.query("INSERT INTO correos set ?", [new_correo]);
     req.flash('success', 'Correo guardado exitosamente');
@@ -357,13 +362,17 @@ router.post('/edit_correo', async (req, res) => {
     res.redirect('/adminContactos');
 });
 router.post('/delete_correo', async (req, res) => {
-    await db.query("DELETE FROM correos WHERE corr_id=?", [ req.body.CORR_ID]);
+    const edit_correo = {
+        CORR_ESTADO:"ELIMINADO"
+    }
+    await db.query("UPDATE correos SET ? WHERE corr_id=?;", [edit_correo, req.body.CORR_ID]);
     req.flash('success', 'Correo eliminado exitosamente');
     res.redirect('/adminContactos');
 });
 router.post('/add_direccion', async (req, res) => {
     const new_direccion = {
-        DIR_DESCRIPCION:req.body.DIR_DESCRIPCION
+        DIR_DESCRIPCION:req.body.DIR_DESCRIPCION,
+        DIR_ESTADO:"ACTIVO"
     }
     await db.query("INSERT INTO direcciones set ?", [new_direccion]);
     req.flash('success', 'Dirección guardada exitosamente');
@@ -378,7 +387,10 @@ router.post('/edit_direccion', async (req, res) => {
     res.redirect('/adminContactos');
 });
 router.post('/delete_direccion', async (req, res) => {
-    await db.query("DELETE FROM direcciones WHERE dir_id=?", [ req.body.DIR_ID]);
+    const edit_direccion = {
+        DIR_ESTADO:"ELIMINADO"
+    }
+    await db.query("UPDATE direcciones SET ? WHERE dir_id=?;", [edit_direccion, req.body.DIR_ID]);
     req.flash('success', 'Dirección eliminada exitosamente');
     res.redirect('/adminContactos');
 });
