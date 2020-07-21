@@ -279,8 +279,25 @@ router.post('/modifylist', async (req, res) => {
     res.render('public/lista', { transaccion, provincias, cantones, zonas, costo_min, costo_max, area_min, area_max, tipos_inmuebles, btn, filtro });
 });
 
-router.get('/anuncio', (req, res) => {
-    res.render('public/anuncio');
+router.get('/anuncio/:ANUN_ID',async(req, res) => {
+    const { ANUN_ID } = req.params;
+    const rows = await db.query('SELECT *, DATE_FORMAT(ANUN_FECHA,"%Y-%m-%d") as FECHA FROM anuncios WHERE anun_estado="ACTIVO" AND anun_id=?', [ ANUN_ID]);
+    const anuncio = rows[0];
+    anuncio.IMAGES = await db.query('SELECT * FROM imagenes WHERE anun_id=?', anuncio.ANUN_ID);
+    anuncio.IMAGES.forEach(function (i, idx, array) {
+        i.POS = idx;
+    });
+    var aux = await db.query('SELECT prov_nombre FROM provincias WHERE prov_id=?', anuncio.PROV_ID);
+    anuncio.PROVINCIA = aux[0].prov_nombre;
+    aux = await db.query('SELECT cant_nombre FROM cantones WHERE cant_id=?', anuncio.CANT_ID);
+    anuncio.CANTON = aux[0].cant_nombre;
+    aux = await db.query('SELECT zon_nombre FROM zonas WHERE zon_id=?', anuncio.ZON_ID);
+    anuncio.ZONA = aux[0].zon_nombre;
+    aux = await db.query('SELECT tipinm_descripcion FROM tipos_inmuebles WHERE tipinm_id=?', anuncio.TIPINM_ID);
+    anuncio.TIPINM_DESCRIPCION = aux[0].tipinm_descripcion;
+
+    anuncio.CARACTERISTICAS = await db.query('SELECT * FROM anuncio_caracteristica ac, caracteristicas c WHERE anun_id=? AND c.CARACT_ID=ac.CARACT_ID', anuncio.ANUN_ID);
+    res.render('public/anuncio',{anuncio});
 });
 
 module.exports = router;

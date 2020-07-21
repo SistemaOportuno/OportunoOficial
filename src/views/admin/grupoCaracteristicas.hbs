@@ -41,9 +41,6 @@
                         <center>Nombre Grupo</center>
                     </th>
                     <th>
-                        <center>Características</center>
-                    </th>
-                    <th>
                         <center>Acción</center>
                     </th>
             </thead>
@@ -51,13 +48,6 @@
                 {{#each grupo_caracteristicas}}
                 <tr>
                     <td>{{GRUP_DESCRIPCION}}</td>
-                    <td>
-                        <ul>
-                            {{#each caracteristicas}}
-                            <li>{{caract_descripcion}}</li>
-                            {{/each}}
-                        </ul>
-                    </td>
                     <td>
                         <center>
                             <a href="/caracteristicas/{{GRUP_ID}}" type="button" class="btn btn-secondary btn-sm ">Gestionar</a>

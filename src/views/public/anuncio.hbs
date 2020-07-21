@@ -1,47 +1,41 @@
+<script>
+    window.onload = function init_components() {
+        init_map_anuncio();
+    }
+</script>
+
 <!--CONTAINER GENERAL-->
 <div class="container-fluid pt-5 pb-5">
-    <br>
-    <!--FILA GENERAL-->
+    <br> <!--FILA GENERAL-->
     <div class="row wow fadeIn ml-1 mr-1">
+
         <!--COLUMNA IZUIERDA-->
         <div class="col-sm-9 ">
             <!--Carousel Wrapper-->
-            <div id="carousel-example-1z" class="carousel slide carousel-fade elegant-color" data-ride="carousel">
+            <div id="carousel" class="carousel slide carousel-fade elegant-color" data-ride="carousel">
                 <!--Indicators-->
                 <ol class="carousel-indicators">
-                    <li data-target="#carousel-example-1z" data-slide-to="0" class="active"></li>
-                    <li data-target="#carousel-example-1z" data-slide-to="1"></li>
-                    <li data-target="#carousel-example-1z" data-slide-to="2"></li>
+                    {{#each anuncio.IMAGES}}
+                    <li data-target="#carousel" data-slide-to="{{POS}}" {{#ifEquals POS 0}} class="active"
+                        {{/ifEquals}}></li>
+                    {{/each}}
                 </ol>
                 <!--/.Indicators-->
                 <!--Slides-->
                 <div class="carousel-inner" role="listbox">
-                    <!--First slide-->
-                    <div class="carousel-item active">
-                        <img class="d-block w-75 mx-auto"
-                            src="https://mdbootstrap.com/img/Photos/Slides/img%20(130).jpg" alt="First slide">
+                    {{#each anuncio.IMAGES}}
+                    <div class="carousel-item {{#ifEquals POS 0}} active {{/ifEquals}}">
+                        <img class="d-block mx-auto" src="/anuncio_images/{{IMG_NOMBRE}}" style="height: 600px;">
                     </div>
-                    <!--/First slide-->
-                    <!--Second slide-->
-                    <div class="carousel-item">
-                        <img class="d-block w-75 mx-auto"
-                            src="https://mdbootstrap.com/img/Photos/Slides/img%20(129).jpg" alt="Second slide">
-                    </div>
-                    <!--/Second slide-->
-                    <!--Third slide-->
-                    <div class="carousel-item">
-                        <img class="d-block w-75 mx-auto" src="https://mdbootstrap.com/img/Photos/Slides/img%20(70).jpg"
-                            alt="Third slide">
-                    </div>
-                    <!--/Third slide-->
+                    {{/each}}
                 </div>
                 <!--/.Slides-->
                 <!--Controls-->
-                <a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
+                <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="sr-only">Previous</span>
                 </a>
-                <a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
+                <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a>
@@ -72,43 +66,91 @@
             <hr>
             <div class="row white rounded ">
                 <div class="col-sm-9 pt-3 ">
-                    <h3 class="font-weight-bolder">Título del Anuncio</h3>
+                    <h3 class="font-weight-bolder">{{anuncio.ANUN_TITULO}}</h3>
                 </div>
                 <div class="col-sm-3 pt-3">
-                    <h4 class="font-weight-bolder">$45454 </h4>
+                    <h4 class="font-weight-bolder">${{anuncio.ANUN_PRECIO}} </h4>
+                </div>
+                <div class="col-sm-12">
+                    <br>
+                    <h4 class="font-weight-bolder text-white elegant-color rounded p-2"><i
+                            class="fas fa-info-circle pr-2"></i>Información</h4>
+                    <div class="container">
+                        <div class="row border rounded-lg p-2 mb-2">
+                            <div class="col-sm-3">
+                                <h5>Transacción:</h5>
+                                <ul>
+                                    <li>{{anuncio.ANUN_TRANSACCION}}</li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-3">
+                                <h5>Inmueble:</h5>
+                                <ul>
+                                    <li>{{anuncio.TIPINM_DESCRIPCION}}</li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-3">
+                                <h5>Fecha:</h5>
+                                <ul>
+                                    <li>{{anuncio.FECHA}}</li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-3">
+                                <h5>Alicuota:</h5>
+                                <ul>
+                                    <li>{{anuncio.ANUN_ALICUITA}}</li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-12">
+                                {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "Terreno"}}
+                                <h5>Estado de Inmueble:</h5>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 10%">
+                                        {{../anuncio.ANUN_ESTADO_CONSTR}}</div>
+                                </div>
+                                {{/ifEquals}}
+                                {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "En planos"}}
+                                <h5>Estado de Inmueble:</h5>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 25%">
+                                        {{../anuncio.ANUN_ESTADO_CONSTR}}</div>
+                                </div>
+                                {{/ifEquals}}
+                                {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "En construcción"}}
+                                <h5>Estado de Inmueble:</h5>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 50%">
+                                        {{../anuncio.ANUN_ESTADO_CONSTR}}</div>
+                                </div>
+                                {{/ifEquals}}
+                                {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "Pre-venta"}}
+                                <h5>Estado de Inmueble:</h5>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 75%">
+                                        {{../anuncio.ANUN_ESTADO_CONSTR}}</div>
+                                </div>
+                                {{/ifEquals}}
+                                {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "Venta"}}
+                                <h5>Estado de Inmueble:</h5>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 100%">
+                                        {{../anuncio.ANUN_ESTADO_CONSTR}}</div>
+                                </div>
+                                {{/ifEquals}}
+
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
                 <div class="col-sm-12">
                     <br>
                     <h4 class="font-weight-bolder text-white elegant-color rounded p-2"><i
                             class="fas fa-file-alt pr-2"></i>Descipción</h4>
-                    <p class="font-weight-lighter">
-                        APROVECHE LOS NUEVOS CRÉDITOS HIPOTECARIOS DEL Biess POR EL 90% DELPRECIO TOTAL, y NOSOTROS LE
-                        FINANCIAMOS EL 10% RESTANTE:
-                        5% para la firma de la promesa.
-                        5% en cuotas mensuales iguales hasta la firma de la escritura definitiva.
+                    <div class="row ml-5 mt-2 mb-3">
+                        <span class="large-description">{{anuncio.ANUN_DESCRIPCION}}</span>
 
-                        Edificio Eco-Eficiente, UBICACIÓN ESTRATÉGICA: Cerca de Centros comerciales (EL JARDIN,
-                        CCI),Universidades (UTE), cerca al parque La Carolina y de la zona financiera de Quito.
-
-                        CONOZCA OFICINAS: LUNES A SÁBADO DE 9:00 A 18:00, EN NUESTRAS OFICINAS: EDF. REPÚBLICA:
-                        Av.República y Atahualpa esquina.
-
-                        UNIDADES:
-                        Amplios ambientes iluminados naturalmente con ventanales piso-tumbado permiten su división
-                        segúnnecesidad de su negocioParqueaderos, bodegas
-
-                        BENEFICIOS COMUNALES:
-                        Ascensor europeo de última generación
-                        Amplio Lobby de Planta Baja con gran hall de 3m
-                        Generador de emergencia para el 100% del edificio.
-                        Sala comunal con instalaciones para reuniones
-                        Seguridad y control de accesos CTV
-                        Video citófono IP
-                        Telefonía e internet privado por fibra óptica
-                        Red de datos e internet comunal
-                        Áreas comunales iluminación LED
-
-                        LAS IMÁGENES SON REFERENCIALES Y PUEDEN VARIAR</p>
+                    </div>
                 </div>
                 <div class="col-sm-12">
                     <h4 class="font-weight-bolder text-white elegant-color rounded p-2 "><i
@@ -117,50 +159,43 @@
                         <div class="row text-center border rounded-lg p-2">
                             <div class="col-sm-2">
                                 <i class="grey text-white rounded-circle p-3 mb-1 fas fa-expand-arrows-alt fa-2x"></i>
-                                <h6>1000 (m&sup2)</h6>
-                                <b>Construcción</b>
+                                <h6>{{anuncio.ANUN_TAMANO_TOTAL}} (m&sup2)</h6>
+                                <b>Área</b>
                             </div>
                             <div class="col-sm-2">
                                 <i class="grey text-white rounded-circle p-3 mb-1 fas fa-bed fa-2x"></i>
-                                <h6>2</h6>
+                                <h6>{{anuncio.ANUN_HABITACIONES}}</h6>
                                 <b>Habitaciones</b>
                             </div>
                             <div class="col-sm-2">
                                 <i class="grey text-white rounded-circle p-3 mb-1 fas fa-bath fa-2x"></i>
-                                <h6>2</h6>
+                                <h6>{{anuncio.ANUN_BANOS}}</h6>
                                 <b>Baños</b>
                             </div>
                             <div class="col-sm-2">
                                 <i class="grey text-white rounded-circle p-3 mb-1 fas fa-toilet fa-2x"></i>
-                                <h6>1</h6>
+                                <h6>{{anuncio.ANUN_M_BANOS}}</h6>
                                 <b>1/2 Baños</b>
                             </div>
                             <div class="col-sm-2">
                                 <i class="grey text-white rounded-circle p-3 mb-1 fas fa-car fa-2x"></i>
-                                <h6>2</h6>
+                                <h6>{{anuncio.ANUN_ESTACIONAMIENTO}}</h6>
                                 <b>Estacionamientos</b>
                             </div>
                             <div class="col-sm-2">
                                 <i class="grey text-white rounded-circle p-3 mb-1 fas fa-history fa-2x"></i>
-                                <h6>3</h6>
-                                <b>Antoguedad</b>
+                                <h6>{{anuncio.ANUN_ANTIGUEDAD}}</h6>
+                                <b>Antiguedad</b>
                             </div>
                         </div>
                         <br>
                         <div class="row border rounded-lg p-2 mb-2">
                             <div class="col-sm-12">
                                 <h5>Otros</h5>
-                                <ul class="ul-multiple">
-                                    <li>Coffee</li>
-                                    <li>Tea</li>
-                                    <li>Milk</li>
-                                    <li>Coffee</li>
-                                    <li>Tea</li>
-                                    <li>Milk</li>
-                                    <li>Coffee</li>
-                                    <li>Tea</li>
-                                    <li>Milk</li>
-                                    <li>Coffee</li>
+                                <ul>
+                                    {{#each anuncio.CARACTERISTICAS}}
+                                    <li>{{CARACT_DESCRIPCION}}</li>
+                                    {{/each}}
                                 </ul>
                             </div>
                         </div>
@@ -169,7 +204,55 @@
                 <div class="col-sm-12 mb-2">
                     <h4 class="font-weight-bolder text-white elegant-color rounded p-2"><i
                             class="fas fa-map-marker pr-2"></i>Ubicación</h4>
-                    <div id="map-anuncio"></div>
+
+
+                    <div class="container">
+                        <div class="row border rounded-lg p-2 mb-2">
+                            <div class="col-sm-4">
+                                <h5>Provincia:</h5>
+                                <ul>
+                                    <li>{{anuncio.PROVINCIA}}</li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-4">
+                                <h5>Cantón:</h5>
+                                <ul>
+                                    <li>{{anuncio.CANTON}}</li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-4">
+                                <h5>Zona:</h5>
+                                <ul>
+                                    <li>{{anuncio.ZONA}}</li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-12">
+                                <h5>Dirección:</h5>
+                                <ul>
+                                    <li>{{anuncio.ANUN_DIRECCION}}</li>
+                                </ul>
+                            </div>
+                            <input type="hidden" name="lat" id="lat" value="{{anuncio.ANUN_LATITUD}}">
+                            <input type="hidden" name="lon" id="lon" value="{{anuncio.ANUN_LONGITUD}}">
+
+                            <div class="col-sm-12">
+                                <h5>Mapa:</h5>
+                                <div id="map-anuncio"></div>
+                            </div>
+                        </div>
+                    </div>
+                    {{#if anuncio.ANUN_EMBEBED}}
+                    <div class="col-sm-12 mb-2">
+                        <h4 class="font-weight-bolder text-white elegant-color rounded p-2"><i
+                                class="fab fa-youtube pr-2"></i>Video</h4>
+                        <center>
+                            <iframe width="727" height="409"
+                                src="https://www.youtube.com/embed/{{anuncio.ANUN_EMBEBED}}" frameborder="0"
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                        </center>
+                    </div>
+                    {{/if}}
                 </div>
 
             </div>
@@ -190,26 +273,26 @@
 
                     <div class="md-form">
                         <i class="fas fa-user prefix grey-text"></i>
-                        <input type="text" id="form104" class="form-control">
-                        <label for="form104">Nombre</label>
+                        <input type="text" id="contacto_nombre" class="form-control">
+                        <label for="contacto_nombre">Nombre</label>
                     </div>
 
                     <div class="md-form">
                         <i class="fas fa-envelope prefix grey-text"></i>
-                        <input type="email" id="form105" class="form-control">
-                        <label for="form105">Correo</label>
+                        <input type="email" id="contacto_correo" class="form-control">
+                        <label for="contacto_correo">Correo</label>
                     </div>
 
                     <div class="md-form">
                         <i class="fas fa-phone prefix grey-text"></i>
-                        <input type="tel" id="form106" class="form-control">
-                        <label for="form106">Teléfono</label>
+                        <input type="tel" id="contacto_telefono" class="form-control">
+                        <label for="contacto_telefono">Teléfono</label>
                     </div>
 
                     <div class="md-form">
                         <i class="fas fa-pencil-alt prefix grey-text"></i>
-                        <textarea id="form107" class="md-textarea form-control" rows="5"></textarea>
-                        <label for="form107">Mensaje</label>
+                        <textarea id="contacto_mensaje" class="md-textarea form-control" rows="5"></textarea>
+                        <label for="contacto_mensaje">Mensaje</label>
                     </div>
 
 
@@ -252,20 +335,20 @@
             <div class="modal-body">
                 <div class="md-form">
                     <i class="fas fa-user prefix grey-text"></i>
-                    <input type="text" id="form104" class="form-control">
-                    <label for="form104">Nombre</label>
+                    <input type="text" id="llamada_nombre" class="form-control">
+                    <label for="llamada_nombre">Nombre</label>
                 </div>
 
                 <div class="md-form">
                     <i class="fas fa-envelope prefix grey-text"></i>
-                    <input type="email" id="form105" class="form-control">
-                    <label for="form105">Correo</label>
+                    <input type="email" id="llamada_correo" class="form-control">
+                    <label for="llamada_correo">Correo</label>
                 </div>
 
                 <div class="md-form">
                     <i class="fas fa-phone prefix grey-text"></i>
-                    <input type="tel" id="form106" class="form-control">
-                    <label for="form106">Teléfono</label>
+                    <input type="tel" id="llamada_teléfono" class="form-control">
+                    <label for="llamada_teléfono">Teléfono</label>
                 </div>
             </div>
             <div class="modal-footer justify-content-center">
@@ -290,25 +373,25 @@
             <div class="modal-body">
                 <div class="md-form">
                     <i class="fas fa-user prefix grey-text"></i>
-                    <input type="text" id="form104" class="form-control">
-                    <label for="form104">Nombre</label>
+                    <input type="text" id="planificar_nombre" class="form-control">
+                    <label for="planificar_nombre">Nombre</label>
                 </div>
 
                 <div class="md-form">
                     <i class="fas fa-envelope prefix grey-text"></i>
-                    <input type="email" id="form105" class="form-control">
-                    <label for="form105">Correo</label>
+                    <input type="email" id="planificar_correo" class="form-control">
+                    <label for="planificar_correo">Correo</label>
                 </div>
 
                 <div class="md-form">
                     <i class="fas fa-phone prefix grey-text"></i>
-                    <input type="tel" id="form106" class="form-control">
-                    <label for="form106">Teléfono</label>
+                    <input type="tel" id="planificar_telefono" class="form-control">
+                    <label for="planificar_telefono">Teléfono</label>
                 </div>
                 <div class="md-form">
                     <i class="fas fa-calendar-day prefix grey-text"></i>
-                    <input type="date" id="datetet" class="form-control">
-                    <label for="datetet">En qué fecha desea visitar?</label>
+                    <input type="date" id="planificar_fecha" class="form-control">
+                    <label for="planificar_fecha">En qué fecha desea visitar?</label>
                 </div>
             </div>
             <div class="modal-footer justify-content-center">
@@ -333,26 +416,26 @@
             <div class="modal-body">
                 <div class="md-form">
                     <i class="fas fa-user prefix grey-text"></i>
-                    <input type="text" id="form104" class="form-control">
-                    <label for="form104">Nombre</label>
+                    <input type="text" id="consultar_nombre" class="form-control">
+                    <label for="consultar_nombre">Nombre</label>
                 </div>
 
                 <div class="md-form">
                     <i class="fas fa-envelope prefix grey-text"></i>
-                    <input type="email" id="form105" class="form-control">
-                    <label for="form105">Correo</label>
+                    <input type="email" id="consultar_apellido" class="form-control">
+                    <label for="consultar_apellido">Correo</label>
                 </div>
 
                 <div class="md-form">
                     <i class="fas fa-phone prefix grey-text"></i>
-                    <input type="tel" id="form106" class="form-control">
-                    <label for="form106">Teléfono</label>
+                    <input type="tel" id="consultar_telefono" class="form-control">
+                    <label for="consultar_telefono">Teléfono</label>
                 </div>
 
                 <div class="md-form">
                     <i class="fas fa-pencil-alt prefix grey-text"></i>
-                    <textarea id="form107" class="md-textarea form-control" rows="5"></textarea>
-                    <label for="form107">Mensaje</label>
+                    <textarea id="consultar__mensaje" class="md-textarea form-control" rows="5"></textarea>
+                    <label for="consultar__mensaje">Mensaje</label>
                 </div>
             </div>
             <div class="modal-footer justify-content-center">

@@ -243,12 +243,42 @@
                     </div>
                     <hr>
                     <h5>Subir Video de Youtube</h5>
-                    <input type="url" class="form-control" placeholder="URL" name="VID_PATH">
+                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                        data-target="#modal_subir">Cómo?</button>
+                    <input type="text" class="form-control" placeholder="ID Video" name="ANUN_EMBEBED">
                 </div>
             </div>
             <div class="row d-flex justify-content-center">
-                <button type="button submit" class="btn btn-elegant rnd  btn-lg">Publicar</button>
+                <button type="button submit" class="btn btn-elegant rnd btn-lg">Publicar</button>
             </div>
         </form>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal_subir" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header elegant-color  justify-content-center">
+                <h5 class="modal-title text-white"><i class="fas fa-question pr-2"></i>Cómo subiir video de youtube?</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h6>1. Vata al navegador en la url del video</h6>
+                <img src="/imagenes/in_1.png" class="img-fluid">
+                <h6>2. Copie el código del video que esta a la derecha del "="</h6>
+                <img src="/imagenes/in_2.png" class="img-fluid">
+                <h6>3. Pegue el código en el campo indicado</h6>
+                <img src="/imagenes/in_3.png" class="img-fluid">
+
+               
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-elegant rnd" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
     </div>
 </div>

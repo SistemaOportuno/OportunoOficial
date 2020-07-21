@@ -54,7 +54,7 @@ p {
     margin-top: 80px;
     height: 150vh;
   }
-  div.content-panel {
+  div.content-panel  {
     margin-left: 310px;
     margin-top: 80px;
   }
@@ -63,12 +63,12 @@ p {
   }
   div.content-ntop {
     margin-left: 310px;
-    height: 70vh;
+    height: 80vh;
   }
   div.content-top {
     margin-left: 310px;
     margin-top: 80px;
-    height: 70vh;
+    height: 80vh;
   }
   
   

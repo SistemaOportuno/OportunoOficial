@@ -29,7 +29,6 @@ const update_image = multer({
         cb("Error: Solo son permitidos los archivos de tipo imagen:  - " + filetypes);
     },
 }).array('anuncio_images');
-
 const storage_logo = multer.diskStorage({
     destination: path.join(__dirname, '../public/inmo_logo'),
     filename: (req, file, cb) => {
@@ -48,7 +47,6 @@ const update_logo = multer({
         cb("Error: Solo son permitidos los archivos de tipo imagen:  - " + filetypes);
     },
 }).single('logo');
-
 router.get('/panel', isUserLog, (req, res) => {
     res.render('user/panel');
 });
@@ -86,6 +84,7 @@ router.post('/addAnuncio', update_image, async (req, res) => {
         ANUN_FECHA: helpers.fecha_actual(),
         ANUN_TIPO: "NORMAL",
         ANUN_ESTADO_CONSTR: req.body.ANUN_ESTADO_CONSTR,
+        ANUN_EMBEBED:req.body.ANUN_EMBEBED,
         ANUN_ESTADO: "ACTIVO"
     }
     const result = await db.query('INSERT INTO anuncios SET ? ', new_anuncio);
@@ -198,7 +197,7 @@ router.post('/editAnuncio', update_image, async (req, res) => {
         ANUN_LATITUD: req.body.ANUN_LATITUD,
         ANUN_LONGITUD: req.body.ANUN_LONGITUD,
         ANUN_FECHA: helpers.fecha_actual(),
-        ANUN_TIPO: "NORMAL",
+        ANUN_EMBEBED:req.body.ANUN_EMBEBED,
         ANUN_ESTADO_CONSTR: req.body.ANUN_ESTADO_CONSTR,
     }
     await db.query('UPDATE anuncios SET ? WHERE anun_id=? ', [editAnuncio, req.body.ANUN_ID]);
@@ -267,6 +266,13 @@ router.post('/eliminarAnuncio', async (req, res) => {
 });
 router.get('/listMensajes', isUserLog, (req, res) => {
     res.render('user/listMensajes');
+});
+router.post('/desbloquearAnuncio', async (req, res) => {
+    const update_anuncio = {
+        ANUN_ESTADO: 'ACTIVO'
+    }
+    await db.query('UPDATE anuncios SET ? WHERE anun_id=?', [update_anuncio, req.body.ANUN_ID]);
+    res.redirect('/listAnuncios');
 });
 router.get('/contactar', isUserLog, async (req, res) => {
     const preguntas = await db.query('SELECT * FROM preguntas WHERE preg_estado="ACTIVO"');

@@ -314,8 +314,8 @@ router.post('/editLogo',update_image, async (req, res) => {
 //----------------------CONTACTOS----------------------------
 router.get('/adminContactos', async(req, res) => {
     const telefonos=await db.query("SELECT * FROM telefonos WHERE tel_estado='ACTIVO'");
-    const correos=await db.query("SELECT * FROM correos corr_estado='ACTIVO'");
-    const direcciones=await db.query("SELECT * FROM direcciones dir_estado='ACTIVO'");
+    const correos=await db.query("SELECT * FROM correos WHERE corr_estado='ACTIVO'");
+    const direcciones=await db.query("SELECT * FROM direcciones WHERE dir_estado='ACTIVO'");
 
     res.render('admin/adminContactos',{telefonos,correos,direcciones});
 });
@@ -396,10 +396,43 @@ router.post('/delete_direccion', async (req, res) => {
 });
 //----------------------CONTACTOS----------------------------
 
-
-router.get('/adminAnuncios', (req, res) => {
-    res.render('admin/adminAnuncios');
+//----------------------ADMIN ANUNCIOS----------------------------
+router.get('/adminAnuncios', async (req, res) => {
+    const anuncios = await db.query('SELECT *, DATE_FORMAT(ANUN_FECHA,"%Y-%m-%d") as FECHA FROM anuncios WHERE anun_estado!="ELIMINADO"');
+    anuncios.forEach(async element => {
+        element.IMAGES = await db.query('SELECT * FROM imagenes WHERE anun_id=?', element.ANUN_ID);
+        element.IMAGES.forEach(function (i, idx, array) {
+            i.POS = idx;
+        });
+        const aux = await db.query('SELECT count(anmsg_id) as msg FROM anuncios_mensajes WHERE anun_id=?', element.ANUN_ID);
+        element.MENSAJES = aux[0].msg;
+    });
+    res.render('admin/adminAnuncios',{ anuncios });
 });
+router.post('/bloquearAnuncioAdmin', async (req, res) => {
+    const update_anuncio = {
+        ANUN_ESTADO: 'BLOQUEADO'
+    }
+    await db.query('UPDATE anuncios SET ? WHERE anun_id=?', [update_anuncio, req.body.ANUN_ID]);
+    console.log(req.body);
+    res.redirect('/adminAnuncios');
+});
+router.post('/eliminarAnuncioAdmin', async (req, res) => {
+    const update_anuncio = {
+        ANUN_ESTADO: 'ELIMINADO'
+    }
+    await db.query('UPDATE anuncios SET ? WHERE anun_id=?', [update_anuncio, req.body.ANUN_ID]);
+    res.redirect('/adminAnuncios');
+});
+router.post('/desbloquearAnuncioAdmin', async (req, res) => {
+    const update_anuncio = {
+        ANUN_ESTADO: 'ACTIVO'
+    }
+    await db.query('UPDATE anuncios SET ? WHERE anun_id=?', [update_anuncio, req.body.ANUN_ID]);
+    res.redirect('/adminAnuncios');
+});
+//----------------------ADMIN ANUNCIOS----------------------------
+
 router.get('/adminUsuarios', (req, res) => {
     res.render('admin/adminUsuarios');
 });

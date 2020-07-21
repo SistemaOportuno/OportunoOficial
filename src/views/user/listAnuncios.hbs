@@ -136,10 +136,18 @@
                                     <a type="button" class="btn btn-light btn-sm "
                                         href="/editAnuncio/{{ANUN_ID}}">Editar</a>
                                 </div>
+                                {{#ifEquals ANUN_ESTADO "ACTIVO"}}
                                 <div class="col-sm-2 ">
                                     <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
-                                        data-target="#bloquearModal{{ANUN_ID}}">Bloquear</button>
+                                        data-target="#bloquearModal{{../ANUN_ID}}">Bloquear</button>
                                 </div>
+                                 {{/ifEquals}}
+                                 {{#ifEquals ANUN_ESTADO "BLOQUEADO"}}
+                                <div class="col-sm-2 ">
+                                    <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal"
+                                        data-target="#activarModal{{../ANUN_ID}}">Activar</button>
+                                </div>
+                                 {{/ifEquals}}
                                 <div class="col-sm-2">
                                     <button type="button" class="btn btn-danger btn-sm " data-toggle="modal"
                                         data-target="#eliminarModal{{ANUN_ID}}">Eliminar</button>
@@ -148,8 +156,9 @@
                         </div>
                     </td>
                 </tr>
+                {{#ifEquals ANUN_ESTADO "ACTIVO"}}
                 <!-- Central Modal Small -->
-                <div class="modal fade" id="bloquearModal{{ANUN_ID}}" tabindex="-1" role="dialog"
+                <div class="modal fade" id="bloquearModal{{../ANUN_ID}}" tabindex="-1" role="dialog"
                     aria-labelledby="myModalLabel" aria-hidden="true">
                     <!-- Change class.modal-sm to change the size of the modal -->
                     <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
@@ -171,7 +180,7 @@
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-light btn-sm"
                                         data-dismiss="modal">Cancelar</button>
-                                    <input type="hidden" class="form-control" name="ANUN_ID" value="{{ANUN_ID}}">
+                                    <input type="hidden" class="form-control" name="ANUN_ID" value="{{../ANUN_ID}}">
                                     <button type="button submit" class="btn btn-warning btn-sm">Bloquear</button>
                                 </div>
                             </div>
@@ -179,6 +188,39 @@
                     </div>
                 </div>
                 <!-- Central Modal Small -->
+                 {{/ifEquals}}
+                {{#ifEquals ANUN_ESTADO "BLOQUEADO"}}
+                <!-- Central Modal Small -->
+                <div class="modal fade" id="activarModal{{../ANUN_ID}}" tabindex="-1" role="dialog"
+                    aria-labelledby="myModalLabel" aria-hidden="true">
+                    <!-- Change class.modal-sm to change the size of the modal -->
+                    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                        <form method="POST" action="/desbloquearAnuncio">
+                            <div class="modal-content">
+                                <div class="modal-header secondary-color">
+                                    <h4 class="modal-title text-white ">Activar Anuncio</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Activar anuncio...?</p>
+                                    <p>El anuncio podrá ser visible en la lista de anuncios y los
+                                        interesados se podrán poner en contacto</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-light btn-sm"
+                                        data-dismiss="modal">Cancelar</button>
+                                    <input type="hidden" class="form-control" name="ANUN_ID" value="{{../ANUN_ID}}">
+                                    <button type="button submit" class="btn btn-secondary btn-sm">Activar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- Central Modal Small -->
+                 {{/ifEquals}}
+
                 <!-- Central Modal Small -->
                 <div class="modal fade" id="eliminarModal{{ANUN_ID}}" tabindex="-1" role="dialog"
                     aria-labelledby="myModalLabel" aria-hidden="true">

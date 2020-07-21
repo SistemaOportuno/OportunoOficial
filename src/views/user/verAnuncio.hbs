@@ -3,6 +3,7 @@
         init_map_anuncio();
     }
 </script>
+
 <!--CONTAINER GENERAL-->
 <div class="container-fluid pt-5 pb-5">
     <br>
@@ -116,34 +117,39 @@
                                 {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "Terreno"}}
                                 <h5>Estado de Inmueble:</h5>
                                 <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 10%" >{{../anuncio.ANUN_ESTADO_CONSTR}}</div>
+                                    <div class="progress-bar" role="progressbar" style="width: 10%">
+                                        {{../anuncio.ANUN_ESTADO_CONSTR}}</div>
                                 </div>
                                 {{/ifEquals}}
                                 {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "En planos"}}
-                                 <h5>Estado de Inmueble:</h5>
+                                <h5>Estado de Inmueble:</h5>
                                 <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 25%" >{{../anuncio.ANUN_ESTADO_CONSTR}}</div>
+                                    <div class="progress-bar" role="progressbar" style="width: 25%">
+                                        {{../anuncio.ANUN_ESTADO_CONSTR}}</div>
                                 </div>
                                 {{/ifEquals}}
                                 {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "En construcción"}}
-                                 <h5>Estado de Inmueble:</h5>
+                                <h5>Estado de Inmueble:</h5>
                                 <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 50%" >{{../anuncio.ANUN_ESTADO_CONSTR}}</div>
+                                    <div class="progress-bar" role="progressbar" style="width: 50%">
+                                        {{../anuncio.ANUN_ESTADO_CONSTR}}</div>
                                 </div>
                                 {{/ifEquals}}
                                 {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "Pre-venta"}}
                                 <h5>Estado de Inmueble:</h5>
                                 <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 75%" >{{../anuncio.ANUN_ESTADO_CONSTR}}</div>
+                                    <div class="progress-bar" role="progressbar" style="width: 75%">
+                                        {{../anuncio.ANUN_ESTADO_CONSTR}}</div>
                                 </div>
                                 {{/ifEquals}}
                                 {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "Venta"}}
-                                 <h5>Estado de Inmueble:</h5>
+                                <h5>Estado de Inmueble:</h5>
                                 <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 100%" >{{../anuncio.ANUN_ESTADO_CONSTR}}</div>
+                                    <div class="progress-bar" role="progressbar" style="width: 100%">
+                                        {{../anuncio.ANUN_ESTADO_CONSTR}}</div>
                                 </div>
                                 {{/ifEquals}}
-                                
+
                             </div>
 
                         </div>
@@ -247,7 +253,18 @@
                             </div>
                         </div>
                     </div>
-
+                    {{#if anuncio.ANUN_EMBEBED}}
+                    <div class="col-sm-12 mb-2">
+                        <h4 class="font-weight-bolder text-white elegant-color rounded p-2"><i
+                                class="fab fa-youtube pr-2"></i>Video</h4>
+                        <center>
+                            <iframe width="727" height="409"
+                                src="https://www.youtube.com/embed/{{anuncio.ANUN_EMBEBED}}" frameborder="0"
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                        </center>
+                    </div>
+                    {{/if}}
                 </div>
 
             </div>
