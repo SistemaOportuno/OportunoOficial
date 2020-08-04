@@ -64,11 +64,21 @@ router.post('/addInmo',update_image, passport.authenticate('local.addInmo', {
 router.get('/login',isNotLoggedIn, async (req, res) => {
     res.render('auth/login');
 });
+router.get('/adminLogin',isNotLoggedIn, async (req, res) => {
+    res.render('auth/AdminLogin');
+});
 
 router.post('/login',(req,res,next)=>{
     passport.authenticate('local.login',{
         successRedirect:'/panel',
         failureRedirect:'/login',
+        failureFlash:true
+    })(req,res,next);
+});
+router.post('/admnLogin',(req,res,next)=>{
+    passport.authenticate('local.adminLogin',{
+        successRedirect:'/adminPanel',
+        failureRedirect:'/adminLogin',
         failureFlash:true
     })(req,res,next);
 });

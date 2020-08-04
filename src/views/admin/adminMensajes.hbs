@@ -4,10 +4,10 @@
             <h5 class="h5 text-white text-center">Panel Administracion</h5>
         </div>
         <div class="list-group list-group-flush pl-2 pr-2 pt-5 pb-5">
-             <a href="/adminPanel" class="list-group-item list-group-item-action waves-effect ">
+            <a href="/adminPanel" class="list-group-item list-group-item-action waves-effect ">
                 <i class="fas fa-home mr-3"></i>Inicio
             </a>
-             <a href="/componentes" class="list-group-item list-group-item-action waves-effect">
+            <a href="/componentes" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-plus-circle mr-3"></i>Administar Componentes
             </a>
             <a href="/adminAnuncios" class="list-group-item list-group-item-action waves-effect">
@@ -19,15 +19,16 @@
                 <i class="fas fa-headset mr-3"></i>Mensajes</a>
             <a href="" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-user mr-3"></i>Mi Cuenta</a>
-            <a href="" class="list-group-item list-group-item-action waves-effect">
+            <a href="/logout" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión</a>
         </div>
     </div>
-    <div class="content-panel white rounded-lg mb-5 pl-3 pr-3 ">
+    <div class="content white rounded-lg mb-5 pl-3 pr-3 ">
         <div class="header pt-5">
             <h2 class="font-weight-normal font-italic text-center">Mensajes</h2>
         </div>
-        <h5 class="font-weight-normal font-italic pl-2 pr-2 text-center">Mire los mensajes acerca de las inquietudes de los clientes</h5>
+        <h5 class="font-weight-normal font-italic pl-2 pr-2 text-center">Mire los mensajes acerca de las inquietudes de
+            los clientes</h5>
         <table id="example" class="hover">
             <thead>
                 <tr>
@@ -35,6 +36,7 @@
                 </tr>
             </thead>
             <tbody>
+                {{#each mensajes}}
                 <tr>
                     <td>
                         <div class="container border rounded border-dark p-3">
@@ -42,64 +44,95 @@
                                 <div class="col-sm-9">
                                     <div class="row">
                                         <div class="col-sm-3">
-                                            <h6 class="font-weight-bolder  ">Usuario:</h6>
+                                            <h6 class="font-weight-bolder  ">Fecha:</h6>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p>Usuario</p>
+                                            <p>{{FECHA}}</p>
                                         </div>
                                         <div class="col-sm-3">
                                             <h6 class="font-weight-bolder  ">Nombres:</h6>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p>Nombre del usuario</p>
+                                            <p>{{USU_NOMBRE}} {{USU_APELLIDO}}</p>
                                         </div>
                                         <div class="col-sm-3">
                                             <h6 class="font-weight-bolder  ">Correo:</h6>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p>Correo del usuario</p>
+                                            <p>{{USU_CORREO}}</p>
                                         </div>
                                         <div class="col-sm-3">
                                             <h6 class="font-weight-bolder  ">Teléfono:</h6>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p>Teléfono del usuario</p>
+                                            <p>{{USU_TELEFONO}}</p>
                                         </div>
                                         <div class="col-sm-3">
                                             <h6 class="font-weight-bolder  ">Asunto:</h6>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p>Asunto del mensaje</p>
+                                            <p>{{PREG_DESCRIPCION}}</p>
                                         </div>
-                                         <div class="col-sm-3">
+                                        <div class="col-sm-3">
                                             <h6 class="font-weight-bolder  ">Mensaje:</h6>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p> mensaje</p>
+                                            <p> {{USUMSG_MENSAJE}}</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
-                                    <a href="https://api.whatsapp.com/send?phone=593995497436"
-                                        class="btn btn-md btn-elegant btn-block rnd" type="button"><i
+                                    <a href="" class="btn btn-md btn-elegant btn-block rnd" type="button"><i
                                             class="fas fa-envelope pr-3"></i>Correo</a>
                                     <br>
                                     <br>
-                                    <a href="https://api.whatsapp.com/send?phone=593995497436"
+                                    <a href="https://api.whatsapp.com/send?phone=593{{USU_TELEFONO}}"
                                         class="btn btn-md btn-success  btn-block rnd" type="button"><i
                                             class="fab fa-whatsapp pr-3"></i>Contactar</a>
                                     <br>
                                     <br>
-                                    
-                                    <a href="https://api.whatsapp.com/send?phone=593995497436"
-                                        class="btn btn-md btn-danger btn-block rnd" type="button"><i
-                                            class="fas fa-trash pr-3"></i>Eliminar</a>
+
+                                    <button type="button" class="btn btn-md btn-danger btn-block rnd" type="button"
+                                        data-toggle="modal" data-target="#eliminarModal{{USUMSG_ID}}"><i
+                                            class="fas fa-trash pr-3"></i>Eliminar</button>
                                 </div>
+                                <!-- Central Modal Small -->
+                                <div class="modal fade" id="eliminarModal{{USUMSG_ID}}" tabindex="-1" role="dialog"
+                                    aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <!-- Change class.modal-sm to change the size of the modal -->
+                                    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                                        <form method="POST" action="/eliminarMensaje">
+                                            <div class="modal-content">
+                                                <div class="modal-header danger-color">
+                                                    <h4 class="modal-title text-white ">Eliminar Mensaje</h4>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Esta seguro de eliminar el mensaje...?</p>
+                                                    <p>Si elimina el mensaje no quedara constancia alguna de este
+                                                        mensaje, esta acción es irreversible</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-light btn-sm"
+                                                        data-dismiss="modal">Cancelar</button>
+                                                    <input type="hidden" class="form-control" name="USUMSG_ID"
+                                                        value="{{USUMSG_ID}}">
+                                                    <button type="button submit"
+                                                        class="btn btn-danger btn-sm">Borrar</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!-- Central Modal Small -->
                             </div>
                         </div>
                     </td>
                 </tr>
-                
+                {{/each}}
             </tbody>
         </table>
     </div>

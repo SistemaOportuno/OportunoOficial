@@ -19,7 +19,7 @@
                 <i class="fas fa-headset mr-3"></i>Mensajes</a>
             <a href="" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-user mr-3"></i>Mi Cuenta</a>
-            <a href="" class="list-group-item list-group-item-action waves-effect">
+            <a href="/logout" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión</a>
         </div>
     </div>
@@ -128,7 +128,7 @@
                                                     data-target="#principalModal{{../ANUN_ID}}">Principal</a>
                                             </div>
                                             <div class="col-sm-4 ">
-                                                <a type="button" class="btn btn-light btn-sm" data-toggle="modal"
+                                                <a type="button" class="btn btn-dark btn-sm" data-toggle="modal"
                                                     data-target="#recomendadoModal{{../ANUN_ID}}">Recomendados</a>
                                             </div>
                                             {{/ifEquals}}
@@ -138,17 +138,17 @@
                                                     data-target="#principalModal{{../ANUN_ID}}">Principal</a>
                                             </div>
                                             <div class="col-sm-4 ">
-                                                <a type="button" class="btn btn-light btn-sm " data-toggle="modal"
-                                                    data-target="#norecomendadoModal{{../ANUN_ID}}">No Recomendados</a>
+                                                <a type="button" class="btn btn-default btn-sm " data-toggle="modal"
+                                                    data-target="#normalModal{{../ANUN_ID}}">Normal</a>
                                             </div>
                                             {{/ifEquals}}
                                             {{#ifEquals ANUN_TIPO "PRINCIPAL"}}
                                             <div class="col-sm-4 ">
-                                                <a type="button" class="btn btn-success btn-sm" data-toggle="modal"
-                                                    data-target="#noprincipalModal{{../ANUN_ID}}">No Principal</a>
+                                                <a type="button" class="btn btn-default btn-sm" data-toggle="modal"
+                                                    data-target="#normalModal{{../ANUN_ID}}">Normal</a>
                                             </div>
                                             <div class="col-sm-4 ">
-                                                <a type="button" class="btn btn-light btn-sm " data-toggle="modal"
+                                                <a type="button" class="btn btn-dark btn-sm " data-toggle="modal"
                                                     data-target="#recomendadoModal{{../ANUN_ID}}">Recomendados</a>
                                             </div>
                                             {{/ifEquals}}
@@ -194,7 +194,9 @@
                                 </div>
                                 <div class="modal-body">
                                     <p>Esta seguro de eliminar el anuncio...?</p>
-                                    <p>Si elimina el anuncio se borraran todos los datos e imagenes registradas</p>
+                                    <p>Si elimina el anuncio se borraran todos los datos e imagenes registradas, Haga
+                                        esto solo si verifica que el anuncio viola las politicas establecidas y lo hace
+                                        bajo su responsabilidad</p>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-light btn-sm"
@@ -272,7 +274,7 @@
                 <!-- Central Modal Small -->
                 {{/ifEquals}}
                 {{#ifEquals ANUN_TIPO "NORMAL"}}
-                 <!-- Central Modal Small -->
+                <!-- Central Modal Small -->
                 <div class="modal fade" id="principalModal{{../ANUN_ID}}" tabindex="-1" role="dialog"
                     aria-labelledby="myModalLabel" aria-hidden="true">
                     <!-- Change class.modal-sm to change the size of the modal -->
@@ -287,7 +289,8 @@
                                 </div>
                                 <div class="modal-body">
                                     <p>Poner anuncio como Tipo Principal...?</p>
-                                    <p>El anuncio se verá en la página principal des sistema y tambien saldra como anuncio recomendado</p>
+                                    <p>El anuncio se verá en la página principal des sistema y tambien saldra como
+                                        anuncio recomendado</p>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-light btn-sm"
@@ -300,12 +303,151 @@
                     </div>
                 </div>
                 <!-- Central Modal Small -->
+                <!-- Central Modal Small -->
+                <div class="modal fade" id="recomendadoModal{{../ANUN_ID}}" tabindex="-1" role="dialog"
+                    aria-labelledby="myModalLabel" aria-hidden="true">
+                    <!-- Change class.modal-sm to change the size of the modal -->
+                    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                        <form method="POST" action="/recomendadoAnuncio">
+                            <div class="modal-content">
+                                <div class="modal-header elegant-color">
+                                    <h4 class="modal-title text-white ">Anuncio Recomendado</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Poner anuncio como Tipo Recomendado...?</p>
+                                    <p>El anuncio se verá al principio de las busquedas de forma llamativa</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-light btn-sm"
+                                        data-dismiss="modal">Cancelar</button>
+                                    <input type="hidden" class="form-control" name="ANUN_ID" value="{{../ANUN_ID}}">
+                                    <button type="button submit" class="btn btn-dark btn-sm">Cambiar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- Central Modal Small -->
                 {{/ifEquals}}
                 {{#ifEquals ANUN_TIPO "RECOMENDADO"}}
-                
+                <!-- Central Modal Small -->
+                <div class="modal fade" id="principalModal{{../ANUN_ID}}" tabindex="-1" role="dialog"
+                    aria-labelledby="myModalLabel" aria-hidden="true">
+                    <!-- Change class.modal-sm to change the size of the modal -->
+                    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                        <form method="POST" action="/principalAnuncio">
+                            <div class="modal-content">
+                                <div class="modal-header success-color">
+                                    <h4 class="modal-title text-white ">Anuncio Principal</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Poner anuncio como Tipo Principal...?</p>
+                                    <p>El anuncio se verá en la página principal des sistema y tambien saldra como
+                                        anuncio recomendado</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-light btn-sm"
+                                        data-dismiss="modal">Cancelar</button>
+                                    <input type="hidden" class="form-control" name="ANUN_ID" value="{{../ANUN_ID}}">
+                                    <button type="button submit" class="btn btn-success btn-sm">Cambiar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- Central Modal Small -->
+                <!-- Central Modal Small -->
+                <div class="modal fade" id="normalModal{{../ANUN_ID}}" tabindex="-1" role="dialog"
+                    aria-labelledby="myModalLabel" aria-hidden="true">
+                    <!-- Change class.modal-sm to change the size of the modal -->
+                    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                        <form method="POST" action="/normalAnuncio">
+                            <div class="modal-content">
+                                <div class="modal-header default-color">
+                                    <h4 class="modal-title text-white ">Anuncio Normal</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Poner anuncio como Tipo Normal...?</p>
+                                    <p>El anuncio no tendrá grán relevancia en la búsqueda de los interesados</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-light btn-sm"
+                                        data-dismiss="modal">Cancelar</button>
+                                    <input type="hidden" class="form-control" name="ANUN_ID" value="{{../ANUN_ID}}">
+                                    <button type="button submit" class="btn btn-default btn-sm">Cambiar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- Central Modal Small -->
                 {{/ifEquals}}
                 {{#ifEquals ANUN_TIPO "PRINCIPAL"}}
-               
+                <!-- Central Modal Small -->
+                <div class="modal fade" id="normalModal{{../ANUN_ID}}" tabindex="-1" role="dialog"
+                    aria-labelledby="myModalLabel" aria-hidden="true">
+                    <!-- Change class.modal-sm to change the size of the modal -->
+                    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                        <form method="POST" action="/normalAnuncio">
+                            <div class="modal-content">
+                                <div class="modal-header default-color">
+                                    <h4 class="modal-title text-white ">Anuncio Normal</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Poner anuncio como Tipo Normal...?</p>
+                                    <p>El anuncio no tendrá grán relevancia en la búsqueda de los interesados</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-light btn-sm"
+                                        data-dismiss="modal">Cancelar</button>
+                                    <input type="hidden" class="form-control" name="ANUN_ID" value="{{../ANUN_ID}}">
+                                    <button type="button submit" class="btn btn-default btn-sm">Cambiar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- Central Modal Small -->
+                <!-- Central Modal Small -->
+                <div class="modal fade" id="recomendadoModal{{../ANUN_ID}}" tabindex="-1" role="dialog"
+                    aria-labelledby="myModalLabel" aria-hidden="true">
+                    <!-- Change class.modal-sm to change the size of the modal -->
+                    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                        <form method="POST" action="/recomendadoAnuncio">
+                            <div class="modal-content">
+                                <div class="modal-header elegant-color">
+                                    <h4 class="modal-title text-white ">Anuncio Recomendado</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Poner anuncio como Tipo Recomendado...?</p>
+                                    <p>El anuncio se verá al principio de las busquedas de forma llamativa</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-light btn-sm"
+                                        data-dismiss="modal">Cancelar</button>
+                                    <input type="hidden" class="form-control" name="ANUN_ID" value="{{../ANUN_ID}}">
+                                    <button type="button submit" class="btn btn-dark btn-sm">Cambiar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- Central Modal Small -->
                 {{/ifEquals}}
                 {{/each}}
 
@@ -313,52 +455,3 @@
         </table>
     </div>
 </div>
-<!-- Central Modal Small -->
-<div class="modal fade" id="eliminarModalAdmin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-    aria-hidden="true">
-    <!-- Change class.modal-sm to change the size of the modal -->
-    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header danger-color">
-                <h4 class="modal-title text-white ">Eliminar Anuncio</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Esta seguro de eliminar el anuncio...?</p>
-                <p>Si elimina el anuncio se borraran todos los datos e imagenes registradas</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-light btn-sm" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-danger btn-sm">Borrar</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Central Modal Small -->
-<!-- Central Modal Small -->
-<div class="modal fade" id="bloquearModalAdmin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-    aria-hidden="true">
-    <!-- Change class.modal-sm to change the size of the modal -->
-    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header warning-color">
-                <h4 class="modal-title text-white ">Bloquear Anuncio</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Esta seguro de BLoquear el anuncio...?</p>
-                <p>Si bloquea el anuncio no podra ser visible en la lista de anuncios y los interesados no se podran
-                    poner en contacto</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-light btn-sm" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-warning btn-sm">Bloquear</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Central Modal Small -->

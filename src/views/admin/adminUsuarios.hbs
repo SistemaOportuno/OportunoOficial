@@ -19,11 +19,11 @@
                 <i class="fas fa-headset mr-3"></i>Mensajes</a>
             <a href="" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-user mr-3"></i>Mi Cuenta</a>
-            <a href="" class="list-group-item list-group-item-action waves-effect">
+            <a href="/logout" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión</a>
         </div>
     </div>
-    <div class="content-short white rounded-lg p-3 mb-5">
+    <div class="content-top white rounded-lg p-3 mb-5">
         <div class="header pt-5">
             <h2 class="font-weight-normal font-italic text-center">Usuarios del Sistema</h2>
         </div>
@@ -31,10 +31,13 @@
             <thead>
                 <tr>
                     <th>
-                        <center>Usuario</center>
+                        <center>Nombres</center>
                     </th>
                     <th>
                         <center>Tipo</center>
+                    </th>
+                    <th>
+                        <center>Correo</center>
                     </th>
                     <th>
                         <center>N° Anuncios</center>
@@ -44,43 +47,87 @@
                     </th>
             </thead>
             <tbody>
+                {{#each usuarios}}
                 <tr>
-                    <td>Luis Cuascota</td>
-                    <td>Propietario</td>
-                    <td>1</td>
+                    <td>{{USU_NOMBRE}} {{USU_APELLIDO}}</td>
+                    <td>{{USU_TIPO}}</td>
+                    <td>{{USU_CORREO}}</td>
+                    <td>{{ANUNCIOS}}</td>
                     <td>
                         <center>
-                            <a href="usuarioAnuncios" type="button" class="btn btn-secondary btn-sm ">Anuncios</a>
-                            <button type="button" class="btn btn-info btn-sm " data-toggle="modal"
-                                data-target="#modal_edit_provincia">Bloquear</button>
-                            <button type="button" class="btn btn-warning btn-sm ">Eliminar</button>
+                            <a href="/usuarioAnuncios/{{USU_ID}}" type="button"
+                                class="btn btn-info btn-sm ">Anuncios</a>
+                            {{#ifEquals USU_ESTADO "ACTIVO" }}
+                            <button type="button" class="btn btn-warning btn-sm " data-toggle="modal"
+                                data-target="#bloquearModal{{../USU_ID}}">Bloquear</button>
+                            {{/ifEquals}}
+                            {{#ifEquals USU_ESTADO "BLOQUEADO" }}
+                            <button type="button" class="btn btn-elegant btn-sm " data-toggle="modal"
+                                data-target="#desbloquearModal{{../USU_ID}}">Desbloquear</button>
+                            {{/ifEquals}}
                         </center>
                     </td>
                 </tr>
-                <tr>
-                    <td>Hugo Yepez</td>
-                    <td>Agente</td>
-                    <td>10</td>
-                    <td>
-                        <center>
-                            <a href="usuarioAnuncios" type="button" class="btn btn-secondary btn-sm ">Anuncios</a>
-                            <button type="button" class="btn btn-info btn-sm ">Bloquear</button>
-                            <button type="button" class="btn btn-warning btn-sm ">Eliminar</button>
-                        </center>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Creativos</td>
-                    <td>Inmobiliaria</td>
-                    <td>100</td>
-                    <td>
-                        <center>
-                            <a href="usuarioAnuncios" type="button" class="btn btn-secondary btn-sm ">Anuncios</a>
-                            <button type="button" class="btn btn-info btn-sm ">Bloquear</button>
-                            <button type="button" class="btn btn-warning btn-sm ">Eliminar</button>
-                        </center>
-                    </td>
-                </tr>
+                <!-- Central Modal Small -->
+                <div class="modal fade" id="bloquearModal{{USU_ID}}" tabindex="-1" role="dialog"
+                    aria-labelledby="myModalLabel" aria-hidden="true">
+                    <!-- Change class.modal-sm to change the size of the modal -->
+                    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <form method="POST" action="/blockUser">
+                                <div class="modal-header warning-color">
+                                    <h4 class="modal-title text-white ">Bloquear Usuario</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Esta seguro de BLoquear el Usuario...?</p>
+                                    <p>Realize esta accion solo si considera que los anuncios del usuario inflinjen las
+                                        politicas establecidas y lo hara bajo su propia responsabilidad</p>
+                                </div>
+                                <input type="hidden" name="USU_ID" class="form-control" value="{{USU_ID}}">
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-light btn-sm"
+                                        data-dismiss="modal">Cancelar</button>
+                                    <button type="button submit" class="btn btn-warning btn-sm">Bloquear</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- Central Modal Small -->
+                <!-- Central Modal Small -->
+                <div class="modal fade" id="desbloquearModal{{USU_ID}}" tabindex="-1" role="dialog"
+                    aria-labelledby="myModalLabel" aria-hidden="true">
+                    <!-- Change class.modal-sm to change the size of the modal -->
+                    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <form method="POST" action="/unlockUser">
+                                <div class="modal-header elegant-color">
+                                    <h4 class="modal-title text-white ">Desbloquear Usuario</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>DesbLoquear el Usuario...?</p>
+                                    <p>Realize esta accion solo si considera que los anuncios del usuario dejaran de
+                                        inflinjir las
+                                        politicas establecidas y lo hara bajo su propia responsabilidad</p>
+                                </div>
+                                <input type="hidden" name="USU_ID" class="form-control" value="{{USU_ID}}">
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-light btn-sm"
+                                        data-dismiss="modal">Cancelar</button>
+                                    <button type="button submit" class="btn btn-elegant btn-sm">Desbloquear</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- Central Modal Small -->
+                {{/each}}
             </tbody>
         </table>
     </div>

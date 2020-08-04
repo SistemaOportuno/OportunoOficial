@@ -17,6 +17,21 @@ passport.use('local.login', new LocalStrategy({
     }
 }));
 
+passport.use('local.adminLogin', new LocalStrategy({
+    usernameField: 'admin_usuario',
+    passwordField: 'admin_contrasena',
+    passReqToCallback: true
+}, async (req, USUARIO, CONTRASENA, done) => {
+    const rows = await db.query('SELECT * FROM administrador WHERE  admin_usuario= ? AND admin_contrasena=?', [USUARIO, helpers.encriptar(CONTRASENA)]);
+    if (rows.length > 0) {
+        const usuario = rows[0];
+        return done(null, usuario);
+    } else {
+        return done(null, false, req.flash('fail', 'Credenciales Incorrectas'));
+    }
+}));
+
+
 passport.use('local.addPropietario', new LocalStrategy({
     usernameField: 'propietario_correo',
     passwordField: 'propietario_contrasena_n',
@@ -142,23 +157,16 @@ passport.use('local.addInmo', new LocalStrategy({
     }
 }));
 
-
-
-
 passport.serializeUser((new_usuario, done) => {
     done(null, new_usuario);
 });
 passport.deserializeUser(async (new_usuario, done) => {
-    if (new_usuario.USU_TIPO == 'PROPIETARIO') {
+    if (new_usuario.USU_TIPO) {
         const rows = await db.query('SELECT * FROM usuarios WHERE usu_estado = "ACTIVO" AND usu_correo = ? ', [new_usuario.USU_CORREO]);
         done(null, rows[0]);
     }
-    if (new_usuario.USU_TIPO == 'AGENTE') {
-        const rows = await db.query('SELECT * FROM usuarios WHERE usu_estado = "ACTIVO" AND usu_correo = ? ', [new_usuario.USU_CORREO]);
-        done(null, rows[0]);
-    }
-    if (new_usuario.USU_TIPO == 'INMOBILIARIA') {
-        const rows = await db.query('SELECT * FROM usuarios WHERE usu_estado = "ACTIVO" AND usu_correo = ? ', [new_usuario.USU_CORREO]);
+    else{
+        const rows = await db.query('SELECT * FROM administrador WHERE  admin_usuario = ? ', [new_usuario.ADMIN_USUARIO]);
         done(null, rows[0]);
     }
 

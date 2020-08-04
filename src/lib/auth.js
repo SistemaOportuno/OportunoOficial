@@ -5,6 +5,12 @@ module.exports = {
         }
         return res.redirect('/');
     },
+    isAdminLog(req, res, next) {
+        if (req.isAuthenticated() && (req.user.ADMIN_ID)) {
+            return next();
+        }
+        return res.redirect('/');
+    },
     isLoggedIn(req, res, next) {
         if (req.isAuthenticated()) {
             return next();
