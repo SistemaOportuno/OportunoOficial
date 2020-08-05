@@ -1,0 +1,75 @@
+<div class="container">
+    <div class="sidebar rounded-lg">
+        <div class="header  elegant-color p-1">
+            <h5 class="h5 text-white text-center">Panel Administracion</h5>
+        </div>
+        <div class="list-group list-group-flush pl-2 pr-2 pt-5 pb-5">
+            <a href="/adminPanel" class="list-group-item list-group-item-action waves-effect ">
+                <i class="fas fa-home mr-3"></i>Inicio
+            </a>
+            <a href="/componentes" class="list-group-item list-group-item-action waves-effect ">
+                <i class="fas fa-plus-circle mr-3"></i>Administar Componentes
+            </a>
+            <a href="/adminAnuncios" class="list-group-item list-group-item-action waves-effect ">
+                <i class="fas fa-briefcase mr-3"></i>Administrar Anuncios
+            </a>
+            <a href="/adminUsuarios" class="list-group-item list-group-item-action waves-effect">
+                <i class="fas fa-envelope-open mr-3"></i>Administrar Usuarios</a>
+            <a href="/adminMensajes" class="list-group-item list-group-item-action waves-effect">
+                <i class="fas fa-headset mr-3"></i>Mensajes</a>
+            <a href="/adminCuenta" class="list-group-item list-group-item-action waves-effect active">
+                <i class="fas fa-user mr-3"></i>Mi Cuenta</a>
+            <a href="/logout" class="list-group-item list-group-item-action waves-effect">
+                <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión</a>
+        </div>
+    </div>
+    <div class="content-top white rounded-lg mb-5 pl-2 pr-2 ">
+        <a type="button" class="btn btn-elegant rnd mt-3" href="/adminCuenta">Regresar</a>
+
+        <div class="header pt-5">
+            <h2 class="font-weight-normal font-italic text-center">Editar Cuenta</h2>
+        </div>
+        <form method="POST" action="/editarAdminCuenta">
+            <div class="container pb-5">
+                <div class="row border rounded pl-2 pr-2 pt-3 pb-2 mb-3">
+                    <div class="col-sm-12">
+                        <h3>Información Basica</h3>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="md-form">
+                            <i class="fas fa-signature prefix grey-text"></i>
+                            <input type="text" id="ADMIN_NOMBRE" name="ADMIN_NOMBRE" class="form-control"
+                                value="{{usuario.ADMIN_NOMBRE}}" required>
+                            <label for="ADMIN_NOMBRE">Nombre</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="md-form">
+                            <i class="fas fa-signature prefix grey-text"></i>
+                            <input type="text" id="ADMIN_APELLIDO" name="ADMIN_APELLIDO" class="form-control"
+                                value="{{usuario.ADMIN_APELLIDO}}" required>
+                            <label for="ADMIN_APELLIDO">Apellido</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="md-form">
+                            <i class="fas fa-user prefix grey-text"></i>
+                            <input type="text" id="ADMIN_USUARIO" name="ADMIN_USUARIO" class="form-control"
+                                value="{{usuario.ADMIN_USUARIO}}" required>
+                            <label for="ADMIN_USUARIO">Usuario</label>
+                        </div>
+                    </div>
+
+                </div>
+              
+                <div class="row border rounded-lg p-2 m-5">
+                    <div class="col-sm-12">
+                        <div class="d-flex justify-content-around">
+                            <button type="button submit" class="rnd btn btn-elegant mb-2">Editar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

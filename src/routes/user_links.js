@@ -153,7 +153,7 @@ router.get('/editAnuncio/:ANUN_ID', isUserLog, async (req, res) => {
 
     const provincias = await db.query("SELECT * FROM provincias WHERE prov_estado='ACTIVO'");
     const tipos_inmuebles = await db.query("SELECT * FROM tipos_inmuebles WHERE tipinm_estado='ACTIVO'");
-    const rows = await db.query('SELECT * FROM anuncios WHERE anun_estado="ACTIVO" AND usu_id=? AND anun_id=?', [req.user.USU_ID, ANUN_ID]);
+    const rows = await db.query('SELECT * FROM anuncios WHERE anun_estado!="ELIMINADO" AND usu_id=? AND anun_id=?', [req.user.USU_ID, ANUN_ID]);
     const anuncio = rows[0];
     anuncio.IMAGES = await db.query('SELECT * FROM imagenes WHERE anun_id=?', anuncio.ANUN_ID);
     anuncio.CARACTERISTICAS = await db.query('SELECT * FROM anuncio_caracteristica ac, caracteristicas c WHERE anun_id=? AND c.CARACT_ID=ac.CARACT_ID', anuncio.ANUN_ID);

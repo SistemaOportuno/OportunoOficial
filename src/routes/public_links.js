@@ -45,10 +45,10 @@ router.post('/busqueda', async (req, res) => {
     //transaccion on=arrendar, off=comprar
     if (req.body.transaccion) {
         transaccion.ischeck = true;
-        query += " AND anun_transaccion='ARRENDAR'";
+        query += " AND anun_transaccion='ARRIENDO'";
         filtro.transaccion = 'ARRENDAR';
     } else {
-        query += " AND anun_transaccion='COMPRAR'";
+        query += " AND anun_transaccion='VENTA'";
         filtro.transaccion = 'COMPRAR';
     }
     //provincias
@@ -128,8 +128,14 @@ router.post('/busqueda', async (req, res) => {
             query += " AND tipinm_id in (" + in_states + ")"
         }
     }
-    console.log(query);
-    res.render('public/lista', { transaccion, provincias, zonas, cantones, costo_min, costo_max, tipos_inmuebles, filtro });
+    const anuncios=await db.query(query+" AND anun_estado='ACTIVO'");
+    anuncios.forEach(async element => {
+        element.IMAGES = await db.query('SELECT * FROM imagenes WHERE anun_id=?', element.ANUN_ID);
+        element.IMAGES.forEach(function (i, idx, array) {
+            i.POS = idx;
+        });
+    });
+    res.render('public/lista', { transaccion, provincias, zonas, cantones, costo_min, costo_max, tipos_inmuebles, filtro, anuncios });
 });
 router.post('/modifylist', async (req, res) => {
     var filtro = {
@@ -153,10 +159,10 @@ router.post('/modifylist', async (req, res) => {
     var query = "SELECT * FROM anuncios WHERE anun_estado='ACTIVO'";
     if (req.body.transaccion) {
         transaccion.ischeck = true;
-        query += " AND anun_transaccion='ARRENDAR'";
+        query += " AND anun_transaccion='ARRIENDO'";
         filtro.transaccion = 'ARRENDAR';
     } else {
-        query += " AND anun_transaccion='COMPRAR'";
+        query += " AND anun_transaccion='VENTA'";
         filtro.transaccion = 'COMPRAR';
     }
     const provincias = await db.query("SELECT * FROM provincias WHERE prov_estado='ACTIVO'");
@@ -275,8 +281,15 @@ router.post('/modifylist', async (req, res) => {
             query += " AND anun_estacionamiento <=" + btn.garajes;
         }
     }
-    console.log(query);
-    res.render('public/lista', { transaccion, provincias, cantones, zonas, costo_min, costo_max, area_min, area_max, tipos_inmuebles, btn, filtro });
+    console.log(query)
+    const anuncios=await db.query(query+" AND anun_estado='ACTIVO'");
+    anuncios.forEach(async element => {
+        element.IMAGES = await db.query('SELECT * FROM imagenes WHERE anun_id=?', element.ANUN_ID);
+        element.IMAGES.forEach(function (i, idx, array) {
+            i.POS = idx;
+        });
+    });
+    res.render('public/lista', { transaccion, provincias, cantones, zonas, costo_min, costo_max, area_min, area_max, tipos_inmuebles, btn, filtro, anuncios });
 });
 
 router.get('/anuncio/:ANUN_ID',async(req, res) => {

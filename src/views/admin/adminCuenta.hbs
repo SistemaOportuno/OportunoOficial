@@ -1,0 +1,100 @@
+<div class="container">
+    <div class="sidebar rounded-lg">
+        <div class="header  elegant-color p-1">
+            <h5 class="h5 text-white text-center">Panel Administracion</h5>
+        </div>
+        <div class="list-group list-group-flush pl-2 pr-2 pt-5 pb-5">
+            <a href="/adminPanel" class="list-group-item list-group-item-action waves-effect ">
+                <i class="fas fa-home mr-3"></i>Inicio
+            </a>
+            <a href="/componentes" class="list-group-item list-group-item-action waves-effect ">
+                <i class="fas fa-plus-circle mr-3"></i>Administar Componentes
+            </a>
+            <a href="/adminAnuncios" class="list-group-item list-group-item-action waves-effect">
+                <i class="fas fa-briefcase mr-3"></i>Administrar Anuncios
+            </a>
+            <a href="/adminUsuarios" class="list-group-item list-group-item-action waves-effect">
+                <i class="fas fa-envelope-open mr-3"></i>Administrar Usuarios</a>
+            <a href="/adminMensajes" class="list-group-item list-group-item-action waves-effect">
+                <i class="fas fa-headset mr-3"></i>Mensajes</a>
+            <a href="/adminCuenta" class="list-group-item list-group-item-action waves-effect active">
+                <i class="fas fa-user mr-3"></i>Mi Cuenta</a>
+            <a href="/logout" class="list-group-item list-group-item-action waves-effect">
+                <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión</a>
+        </div>
+    </div>
+    <div class="content-top white rounded-lg mb-5 pl-3 pr-3 ">
+        <div class="header pt-5">
+            <h2 class="font-weight-normal font-italic text-center">Mi cuenta</h2>
+        </div>
+        <div class="container pb-5">
+            <div class="row border rounded pl-2 pr-2 pt-3 pb-4 mb-4">
+                <div class="col-sm-12">
+                    <h3>Información Basica</h3>
+                </div>
+                <div class="col-sm-2">
+                    <h6 class="font-weight-bolder  ">Mi perfil:</h6>
+                </div>
+                <div class="col-sm-10">
+                    <p>ADMINISTRADOR</p>
+                </div>
+                <div class="col-sm-2">
+                    <h6 class="font-weight-bolder  ">Nombre:</h6>
+                </div>
+                <div class="col-sm-4">
+                    <p>{{usuario.ADMIN_NOMBRE}}</p>
+                </div>
+                <div class="col-sm-2">
+                    <h6 class="font-weight-bolder  ">Apellido:</h6>
+                </div>
+                <div class="col-sm-4">
+                    <p>{{usuario.ADMIN_APELLIDO}}</p>
+                </div>
+                <div class="col-sm-2">
+                    <h6 class="font-weight-bolder  ">Usuario:</h6>
+                </div>
+                <div class="col-sm-4">
+                    <p>{{usuario.ADMIN_USUARIO}}</p>
+                </div>
+               
+            </div>
+          
+            <div class="row border rounded-lg pl-2 pr-2 pt-3 pb-4 mb-4 ">
+                <div class="col-sm-12 text-center">
+
+                    <a href="/editarAdminCuenta" type="button" class="rnd btn btn-info  mb-2">Editar</a>
+                    <a href="/editarAdminContrasena" type="button" class="rnd btn btn-warning  mb-2">Cambiar Contraseña</a>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+<!-- Central Modal Small -->
+<div class="modal fade" id="eliminarperfilModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <!-- Change class.modal-sm to change the size of the modal -->
+    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header danger-color">
+                <h4 class="modal-title text-white ">Eliminar Perfil</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Esta seguro de eliminar si perfil?</p>
+                <p>Si elimina el perfil se borraran todos los datos de los anuncios registrados, esta accion no tiene
+                    restauración</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light btn-sm" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger btn-sm">Borrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Central Modal Small -->
