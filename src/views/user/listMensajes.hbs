@@ -37,122 +37,97 @@
                 </tr>
             </thead>
             <tbody>
+                {{#each mensajes}}
                 <tr>
                     <td>
                         <div class="container border rounded border-dark p-3">
                             <div class="row">
                                 <div class="col-sm-9">
                                     <div class="row">
-                                        <div class="col-sm-3">
-                                            <h6 class="font-weight-bolder  ">Anuncio:</h6>
+                                        <div class="col-sm-12">
+                                            <p><b>Anuncio: </b> {{ANUN_TITULO}}</p>
                                         </div>
-                                        <div class="col-sm-9">
-                                            <p>Titulo del anuncio</p>
+                                        <div class="col-sm-6">
+                                            <p><b>Fecha: </b> {{ANMSG_FECHA}}</p>
                                         </div>
-                                        <div class="col-sm-3">
-                                            <h6 class="font-weight-bolder  ">Nombre:</h6>
+                                        <div class="col-sm-6">
+                                            <p><b>Asunto: </b> {{ANMSG_ASUNTO}}</p>
                                         </div>
-                                        <div class="col-sm-9">
-                                            <p>Nombre del interesado</p>
+                                        <div class="col-sm-6">
+                                            <p><b>Nombre: </b> {{ANMSG_NOMBRE}}</p>
                                         </div>
-                                        <div class="col-sm-3">
-                                            <h6 class="font-weight-bolder  ">Correo:</h6>
+                                        {{#if ANMSG_CORREO}}
+                                        <div class="col-sm-6">
+                                            <p><b>Correo: </b> {{ANMSG_CORREO}}</p>
                                         </div>
-                                        <div class="col-sm-9">
-                                            <p>Correo del interesado</p>
+                                        {{/if}}
+                                        <div class="col-sm-6">
+                                            <p><b>Teléfono: </b> {{ANMSG_TELEFONO}}</p>
                                         </div>
-                                        <div class="col-sm-3">
-                                            <h6 class="font-weight-bolder  ">Teléfono:</h6>
+                                        {{#if ANMSG_FECHA_VISITA}}
+                                        <div class="col-sm-6">
+                                            <p><b>Fecha Visita: </b> {{ANMSG_FECHA_VISITA}}</p>
                                         </div>
-                                        <div class="col-sm-9">
-                                            <p>Teléfono del interesado</p>
+                                        {{/if}}
+                                        {{#if ANMSG_MENSAJE}}
+                                        <div class="col-sm-12">
+                                            <p><b>Mensaje: </b></p>
                                         </div>
-                                        <div class="col-sm-3">
-                                            <h6 class="font-weight-bolder  ">Mensaje:</h6>
+                                        <div class="col-sm-12">
+                                            <p> {{ANMSG_MENSAJE}}</p>
                                         </div>
-                                        <div class="col-sm-9">
-                                            <p>Mensadel interesado</p>
-                                        </div>
+                                        {{/if}}
+
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
-                                    <a href="https://api.whatsapp.com/send?phone=593995497436"
-                                        class="btn btn-md btn-elegant btn-block rnd" type="button"><i
-                                            class="far fa-eye pr-3"></i>Ver Anuncio</a>
+                                    <a href="/anuncio/{{ANUN_ID}}" class="btn btn-md btn-elegant btn-block rnd"
+                                        type="button"><i class="far fa-eye pr-3"></i>Ver Anuncio</a>
                                     <br>
                                     <br>
-                                    <a href="https://api.whatsapp.com/send?phone=593995497436"
+                                    <a href="https://api.whatsapp.com/send?phone=593{{ANMSG_TELEFONO}}"
                                         class="btn btn-md btn-success  btn-block rnd" type="button"><i
                                             class="fab fa-whatsapp pr-3"></i>Contactar</a>
                                     <br>
                                     <br>
-                                    
-                                    <a href="https://api.whatsapp.com/send?phone=593995497436"
-                                        class="btn btn-md btn-danger btn-block rnd" type="button"><i
-                                            class="fas fa-trash pr-3"></i>Eliminar</a>
+
+                                    <button class="btn btn-md btn-danger btn-block rnd" type="button" data-toggle="modal"
+                                        data-target="#eliminarMensajeModal{{ANMSG_ID}}"><i
+                                            class="fas fa-trash pr-3"></i>Eliminar</button>
                                 </div>
                             </div>
                         </div>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <div class="container border rounded border-dark p-3">
-                            <div class="row">
-                                <div class="col-sm-9">
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <h6 class="font-weight-bolder  ">Anuncio:</h6>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            <p>Titulo del anuncio</p>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <h6 class="font-weight-bolder  ">Nombre:</h6>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            <p>Nombre del interesado</p>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <h6 class="font-weight-bolder  ">Correo:</h6>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            <p>Correo del interesado</p>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <h6 class="font-weight-bolder  ">Teléfono:</h6>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            <p>Teléfono del interesado</p>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <h6 class="font-weight-bolder  ">Mensaje:</h6>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            <p>Mensadel interesado</p>
-                                        </div>
-                                    </div>
+                <!-- Central Modal Small -->
+                <div class="modal fade" id="eliminarMensajeModal{{ANMSG_ID}}" tabindex="-1" role="dialog"
+                    aria-labelledby="myModalLabel" aria-hidden="true">
+                    <!-- Change class.modal-sm to change the size of the modal -->
+                    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                        <form method="POST" action="/eliminarMensajeAnuncio">
+                            <div class="modal-content">
+                                <div class="modal-header danger-color">
+                                    <h4 class="modal-title text-white ">Eliminar Mensaje</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                                 </div>
-                                <div class="col-sm-3">
-                                    <a href="https://api.whatsapp.com/send?phone=593995497436"
-                                        class="btn btn-md btn-elegant btn-block rnd" type="button"><i
-                                            class="far fa-eye pr-3"></i>Ver Anuncio</a>
-                                    <br>
-                                    <br>
-                                    <a href="https://api.whatsapp.com/send?phone=593995497436"
-                                        class="btn btn-md btn-success  btn-block rnd" type="button"><i
-                                            class="fab fa-whatsapp pr-3"></i>Contactar</a>
-                                    <br>
-                                    <br>
-                                    <a href="https://api.whatsapp.com/send?phone=593995497436"
-                                        class="btn btn-md btn-danger btn-block rnd" type="button"><i
-                                            class="fas fa-trash pr-3"></i>Eliminar</a>
+                                <div class="modal-body">
+                                    <p>Esta seguro de eliminar el mensaje...?</p>
+                                    <p>Esta acción es irreversible</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-light btn-sm"
+                                        data-dismiss="modal">Cancelar</button>
+                                    <input type="hidden" class="form-control" name="ANMSG_ID" value="{{ANMSG_ID}}">
+                                    <button type="button submit" class="btn btn-danger btn-sm">Borrar</button>
                                 </div>
                             </div>
-                        </div>
-                    </td>
-                </tr>
-                
+                        </form>
+                    </div>
+                </div>
+                <!-- Central Modal Small -->
+                {{/each}}
             </tbody>
         </table>
     </div>

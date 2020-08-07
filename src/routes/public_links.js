@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const db = require('../database');
+const helpers = require('../lib/helpers');
+const {isNotLoggedIn}=require('../lib/auth');
 //-----------------------------------FUNCIONES------------------------------
 function slugify(str) {
     var map = {
@@ -291,7 +293,6 @@ router.post('/modifylist', async (req, res) => {
     });
     res.render('public/lista', { transaccion, provincias, cantones, zonas, costo_min, costo_max, area_min, area_max, tipos_inmuebles, btn, filtro, anuncios });
 });
-
 router.get('/anuncio/:ANUN_ID',async(req, res) => {
     const { ANUN_ID } = req.params;
     const rows = await db.query('SELECT *, DATE_FORMAT(ANUN_FECHA,"%Y-%m-%d") as FECHA FROM anuncios WHERE anun_estado="ACTIVO" AND anun_id=?', [ ANUN_ID]);
@@ -311,6 +312,23 @@ router.get('/anuncio/:ANUN_ID',async(req, res) => {
 
     anuncio.CARACTERISTICAS = await db.query('SELECT * FROM anuncio_caracteristica ac, caracteristicas c WHERE anun_id=? AND c.CARACT_ID=ac.CARACT_ID', anuncio.ANUN_ID);
     res.render('public/anuncio',{anuncio});
+});
+router.post('/addMensajeCliente',isNotLoggedIn, async (req, res) => {
+    new_mensaje = {
+        ANUN_ID:req.body.ANUN_ID,
+        ANMSG_NOMBRE:req.body.ANMSG_NOMBRE,	
+        ANMSG_CORREO:req.body.ANMSG_CORREO,	
+        ANMSG_TELEFONO:req.body.ANMSG_TELEFONO,	
+        ANMSG_FECHA_VISITA:req.body.ANMSG_FECHA_VISITA,	
+        ANMSG_FECHA:helpers.fecha_actual(),	
+        ANMSG_ASUNTO:req.body.ANMSG_ASUNTO,	
+        ANMSG_MENSAJE:req.body.ANMSG_MENSAJE,	
+        ANMSG_ESTADO:'ACTIVO'
+    }
+    console.log(req.body);
+    await db.query('INSERT INTO anuncios_mensajes SET ?', [new_mensaje]);
+    req.flash('success', 'Mensaje enviado correctamente, muy pronto el anunciante se contactará con usted');
+    res.redirect('/anuncio/'+req.body.ANUN_ID);
 });
 
 module.exports = router;

@@ -20,7 +20,13 @@ module.exports = {
     isNotLoggedIn(req, res, next) {
         if (!req.isAuthenticated()) {
             return next();
+        }else{
+            if (req.isAuthenticated() && (req.user.ADMIN_ID)) {
+                return res.redirect('/adminPanel');
+            }else{
+                return res.redirect('/panel');
+            }
         }
-        return res.redirect('/panel');
+        
     }
 };

@@ -478,7 +478,6 @@ router.get('/usuarioAnuncios/:USU_ID', isAdminLog, async (req, res) => {
     });
     res.render('admin/adminAnuncios', { anuncios });
 });
-
 router.post('/blockUser', isAdminLog, async (req, res) => {
     const update_user = {
         USU_ESTADO: 'BLOQUEADO'
@@ -496,8 +495,6 @@ router.post('/unlockUser', isAdminLog, async (req, res) => {
 //----------------------ADMIN USUARIOS----------------------------
 
 //----------------------ADMIN MENSAJES----------------------------
-
-
 router.get('/adminMensajes', isAdminLog, async (req, res) => {
     const mensajes = await db.query("SELECT *,DATE_FORMAT(USUMSG_FECHA,'%Y-%m-%d') as FECHA FROM usuarios_mensajes um, usuarios u, preguntas p WHERE u.usu_id=um.usu_id AND p.preg_id=um.preg_id AND um.usumsg_estado='ACTIVO' ");
 
@@ -510,7 +507,6 @@ router.post('/eliminarMensaje', isAdminLog, async (req, res) => {
     await db.query('UPDATE usuarios_mensajes SET ? WHERE usumsg_id=?', [update_mensaje, req.body.USUMSG_ID]);
     res.redirect('/adminMensajes');
 });
-//---
 //----------------------ADMIN MENSAJES----------------------------
 
 //----------------------ADMIN CUENTA----------------------------
@@ -520,7 +516,6 @@ router.get('/adminCuenta', isAdminLog, async (req, res) => {
 router.get('/editarAdminCuenta', isAdminLog, async (req, res) => {
     res.render('admin/adminEditarCuenta', {});
 });
-
 router.get('/editarAdminContrasena', isAdminLog, async (req, res) => {
     res.render('admin/adminEditarContrasena', {});
 });

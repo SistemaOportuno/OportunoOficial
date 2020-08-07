@@ -6,7 +6,8 @@
 
 <!--CONTAINER GENERAL-->
 <div class="container-fluid pt-5 pb-5">
-    <br> <!--FILA GENERAL-->
+    <br>
+    <!--FILA GENERAL-->
     <div class="row wow fadeIn ml-1 mr-1">
 
         <!--COLUMNA IZUIERDA-->
@@ -269,48 +270,48 @@
                     </div>
                 </div>
                 <!--Header-->
-                <div class="card-body mx-4">
-
-                    <div class="md-form">
-                        <i class="fas fa-user prefix grey-text"></i>
-                        <input type="text" id="contacto_nombre" class="form-control">
-                        <label for="contacto_nombre">Nombre</label>
-                    </div>
-
-                    <div class="md-form">
-                        <i class="fas fa-envelope prefix grey-text"></i>
-                        <input type="email" id="contacto_correo" class="form-control">
-                        <label for="contacto_correo">Correo</label>
-                    </div>
-
-                    <div class="md-form">
-                        <i class="fas fa-phone prefix grey-text"></i>
-                        <input type="tel" id="contacto_telefono" class="form-control">
-                        <label for="contacto_telefono">Teléfono</label>
-                    </div>
-
-                    <div class="md-form">
-                        <i class="fas fa-pencil-alt prefix grey-text"></i>
-                        <textarea id="contacto_mensaje" class="md-textarea form-control" rows="5"></textarea>
-                        <label for="contacto_mensaje">Mensaje</label>
-                    </div>
-
-
-                    <!--Grid row-->
-                    <div class="row d-flex align-items-center mb-3 mt-4">
-
-                        <!--Grid column-->
-                        <div class="col-md-12">
-                            <div class="text-center">
-                                <button type="button" class="btn btn-elegant rnd">Contactar</button>
-                            </div>
+                <form method="POST" action="/addMensajeCliente">
+                    <div class="card-body mx-4">
+                        <div class="md-form">
+                            <i class="fas fa-user prefix grey-text"></i>
+                            <input type="text" id="ANMSG_NOMBRE" name="ANMSG_NOMBRE" class="form-control">
+                            <label for="ANMSG_NOMBRE">Nombre</label>
                         </div>
-                        <!--Grid column-->
 
+                        <div class="md-form">
+                            <i class="fas fa-envelope prefix grey-text"></i>
+                            <input type="email" id="ANMSG_CORREO" name="ANMSG_CORREO" class="form-control">
+                            <label for="ANMSG_CORREO">Correo</label>
+                        </div>
+
+                        <div class="md-form">
+                            <i class="fas fa-phone prefix grey-text"></i>
+                            <input type="tel" id="ANMSG_TELEFONO" name="ANMSG_TELEFONO" class="form-control">
+                            <label for="ANMSG_TELEFONO">Teléfono</label>
+                        </div>
+
+                        <div class="md-form">
+                            <i class="fas fa-pencil-alt prefix grey-text"></i>
+                            <textarea id="ANMSG_MENSAJE" name="ANMSG_MENSAJE" class="md-textarea form-control"
+                                rows="5"></textarea>
+                            <label for="ANMSG_MENSAJE">Mensaje</label>
+                        </div>
+                        <input type="hidden" class="form-control" name="ANUN_ID" value="{{anuncio.ANUN_ID}}">
+                        <input type="hidden" class="form-control" name="ANMSG_ASUNTO" value="CONTACTARSE">
+                        <!--Grid row-->
+                        <div class="row d-flex align-items-center mb-3 mt-4">
+
+                            <!--Grid column-->
+                            <div class="col-md-12">
+                                <div class="text-center">
+                                    <button type="button submit" class="btn btn-elegant rnd">Contactar</button>
+                                </div>
+                            </div>
+                            <!--Grid column-->
+                        </div>
+                        <!--Grid row-->
                     </div>
-                    <!--Grid row-->
-                </div>
-
+                </form>
             </div>
             <!--/Form with header-->
         </div>
@@ -332,28 +333,26 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <div class="md-form">
-                    <i class="fas fa-user prefix grey-text"></i>
-                    <input type="text" id="llamada_nombre" class="form-control">
-                    <label for="llamada_nombre">Nombre</label>
-                </div>
+            <form method="POST" action="/addMensajeCliente">
+                <div class="modal-body">
+                    <div class="md-form">
+                        <i class="fas fa-user prefix grey-text"></i>
+                        <input type="text" id="ANMSG_NOMBRE" name="ANMSG_NOMBRE" class="form-control">
+                        <label for="ANMSG_NOMBRE">Nombre</label>
+                    </div>
 
-                <div class="md-form">
-                    <i class="fas fa-envelope prefix grey-text"></i>
-                    <input type="email" id="llamada_correo" class="form-control">
-                    <label for="llamada_correo">Correo</label>
+                    <div class="md-form">
+                        <i class="fas fa-phone prefix grey-text"></i>
+                        <input type="tel" id="ANMSG_TELEFONO" name="ANMSG_TELEFONO" class="form-control">
+                        <label for="ANMSG_TELEFONO">Teléfono</label>
+                    </div>
                 </div>
-
-                <div class="md-form">
-                    <i class="fas fa-phone prefix grey-text"></i>
-                    <input type="tel" id="llamada_teléfono" class="form-control">
-                    <label for="llamada_teléfono">Teléfono</label>
+                <input type="hidden" class="form-control" name="ANUN_ID" value="{{anuncio.ANUN_ID}}">
+                <input type="hidden" class="form-control" name="ANMSG_ASUNTO" value="LLAMDA">
+                <div class="modal-footer justify-content-center">
+                    <button type="button submit" class="btn btn-elegant rnd">Enviar</button>
                 </div>
-            </div>
-            <div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-elegant rnd">Enviar</button>
-            </div>
+            </form>
         </div>
     </div>
 </div>
@@ -370,33 +369,38 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <div class="md-form">
-                    <i class="fas fa-user prefix grey-text"></i>
-                    <input type="text" id="planificar_nombre" class="form-control">
-                    <label for="planificar_nombre">Nombre</label>
-                </div>
+            <form method="POST" action="/addMensajeCliente">
 
-                <div class="md-form">
-                    <i class="fas fa-envelope prefix grey-text"></i>
-                    <input type="email" id="planificar_correo" class="form-control">
-                    <label for="planificar_correo">Correo</label>
-                </div>
+                <div class="modal-body">
+                    <div class="md-form">
+                        <i class="fas fa-user prefix grey-text"></i>
+                        <input type="text" id="ANMSG_NOMBRE" name="ANMSG_NOMBRE" class="form-control">
+                        <label for="ANMSG_NOMBRE">Nombre</label>
+                    </div>
 
-                <div class="md-form">
-                    <i class="fas fa-phone prefix grey-text"></i>
-                    <input type="tel" id="planificar_telefono" class="form-control">
-                    <label for="planificar_telefono">Teléfono</label>
+                    <div class="md-form">
+                        <i class="fas fa-envelope prefix grey-text"></i>
+                        <input type="email" id="ANMSG_CORREO" name="ANMSG_CORREO" class="form-control">
+                        <label for="ANMSG_CORREO">Correo</label>
+                    </div>
+
+                    <div class="md-form">
+                        <i class="fas fa-phone prefix grey-text"></i>
+                        <input type="tel" id="ANMSG_TELEFONO" name="ANMSG_TELEFONO" class="form-control">
+                        <label for="ANMSG_TELEFONO">Teléfono</label>
+                    </div>
+                    <div class="md-form">
+                        <i class="fas fa-calendar-day prefix grey-text"></i>
+                        <input type="date" id="ANMSG_FECHA_VISITA" name="ANMSG_FECHA_VISITA" class="form-control">
+                        <label for="ANMSG_FECHA_VISITA">En qué fecha desea visitar?</label>
+                    </div>
                 </div>
-                <div class="md-form">
-                    <i class="fas fa-calendar-day prefix grey-text"></i>
-                    <input type="date" id="planificar_fecha" class="form-control">
-                    <label for="planificar_fecha">En qué fecha desea visitar?</label>
+                <input type="hidden" class="form-control" name="ANUN_ID" value="{{anuncio.ANUN_ID}}">
+                <input type="hidden" class="form-control" name="ANMSG_ASUNTO" value="VISITA">
+                <div class="modal-footer justify-content-center">
+                    <button type="button submit" class="btn btn-elegant rnd">Enviar</button>
                 </div>
-            </div>
-            <div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-elegant rnd">Enviar</button>
-            </div>
+            </form>
         </div>
     </div>
 </div>
@@ -413,34 +417,40 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <div class="md-form">
-                    <i class="fas fa-user prefix grey-text"></i>
-                    <input type="text" id="consultar_nombre" class="form-control">
-                    <label for="consultar_nombre">Nombre</label>
-                </div>
+            <form method="POST" action="/addMensajeCliente">
 
-                <div class="md-form">
-                    <i class="fas fa-envelope prefix grey-text"></i>
-                    <input type="email" id="consultar_apellido" class="form-control">
-                    <label for="consultar_apellido">Correo</label>
-                </div>
+                <div class="modal-body">
+                    <div class="md-form">
+                        <i class="fas fa-user prefix grey-text"></i>
+                        <input type="text" id="ANMSG_NOMBRE" name="ANMSG_NOMBRE" class="form-control">
+                        <label for="ANMSG_NOMBRE">Nombre</label>
+                    </div>
 
-                <div class="md-form">
-                    <i class="fas fa-phone prefix grey-text"></i>
-                    <input type="tel" id="consultar_telefono" class="form-control">
-                    <label for="consultar_telefono">Teléfono</label>
-                </div>
+                    <div class="md-form">
+                        <i class="fas fa-envelope prefix grey-text"></i>
+                        <input type="email" id="ANMSG_CORREO" name="ANMSG_CORREO" class="form-control">
+                        <label for="ANMSG_CORREO">Correo</label>
+                    </div>
 
-                <div class="md-form">
-                    <i class="fas fa-pencil-alt prefix grey-text"></i>
-                    <textarea id="consultar__mensaje" class="md-textarea form-control" rows="5"></textarea>
-                    <label for="consultar__mensaje">Mensaje</label>
+                    <div class="md-form">
+                        <i class="fas fa-phone prefix grey-text"></i>
+                        <input type="tel" id="ANMSG_TELEFONO" name="ANMSG_TELEFONO" class="form-control">
+                        <label for="ANMSG_TELEFONO">Teléfono</label>
+                    </div>
+
+                    <div class="md-form">
+                        <i class="fas fa-pencil-alt prefix grey-text"></i>
+                        <textarea id="ANMSG_MENSAJE" name="ANMSG_MENSAJE" class="md-textarea form-control"
+                            rows="5"></textarea>
+                        <label for="ANMSG_MENSAJE">Mensaje</label>
+                    </div>
                 </div>
-            </div>
-            <div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-elegant rnd">Enviar</button>
-            </div>
+                <input type="hidden" class="form-control" name="ANUN_ID" value="{{anuncio.ANUN_ID}}">
+                <input type="hidden" class="form-control" name="ANMSG_ASUNTO" value="CONSULTA">
+                <div class="modal-footer justify-content-center">
+                    <button type="button submit" class="btn btn-elegant rnd">Enviar</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

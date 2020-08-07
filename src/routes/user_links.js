@@ -84,7 +84,7 @@ router.post('/addAnuncio', update_image, async (req, res) => {
         ANUN_FECHA: helpers.fecha_actual(),
         ANUN_TIPO: "NORMAL",
         ANUN_ESTADO_CONSTR: req.body.ANUN_ESTADO_CONSTR,
-        ANUN_EMBEBED:req.body.ANUN_EMBEBED,
+        ANUN_EMBEBED: req.body.ANUN_EMBEBED,
         ANUN_ESTADO: "ACTIVO"
     }
     const result = await db.query('INSERT INTO anuncios SET ? ', new_anuncio);
@@ -115,17 +115,17 @@ router.post('/addAnuncio', update_image, async (req, res) => {
 
     res.redirect('/listAnuncios');
 });
-router.get('/getCantones/:PROV_ID', async (req, res, next) => {
+router.get('/getCantones/:PROV_ID',isUserLog, async (req, res, next) => {
     const { PROV_ID } = req.params;
     const cantones = await db.query("SELECT * FROM cantones WHERE cant_estado='ACTIVO' AND prov_id=?", PROV_ID);
     res.send(cantones);
 });
-router.get('/getZonas/:CANT_ID', async (req, res, next) => {
+router.get('/getZonas/:CANT_ID',isUserLog, async (req, res, next) => {
     const { CANT_ID } = req.params;
     const zonas = await db.query("SELECT * FROM zonas WHERE zon_estado='ACTIVO' AND cant_id=?", CANT_ID);
     res.send(zonas);
 });
-router.get('/deleteImage/:IMG_ID/:IMG_NOMBRE', async (req, res, next) => {
+router.get('/deleteImage/:IMG_ID/:IMG_NOMBRE',isUserLog, async (req, res, next) => {
     const { IMG_ID } = req.params;
     const { IMG_NOMBRE } = req.params;
     await db.query("DELETE FROM imagenes WHERE img_id=?", IMG_ID);
@@ -197,7 +197,7 @@ router.post('/editAnuncio', update_image, async (req, res) => {
         ANUN_LATITUD: req.body.ANUN_LATITUD,
         ANUN_LONGITUD: req.body.ANUN_LONGITUD,
         ANUN_FECHA: helpers.fecha_actual(),
-        ANUN_EMBEBED:req.body.ANUN_EMBEBED,
+        ANUN_EMBEBED: req.body.ANUN_EMBEBED,
         ANUN_ESTADO_CONSTR: req.body.ANUN_ESTADO_CONSTR,
     }
     await db.query('UPDATE anuncios SET ? WHERE anun_id=? ', [editAnuncio, req.body.ANUN_ID]);
@@ -250,24 +250,33 @@ router.get('/verAnuncio/:ANUN_ID', isUserLog, async (req, res) => {
     anuncio.CARACTERISTICAS = await db.query('SELECT * FROM anuncio_caracteristica ac, caracteristicas c WHERE anun_id=? AND c.CARACT_ID=ac.CARACT_ID', anuncio.ANUN_ID);
     res.render('user/verAnuncio', { anuncio });
 });
-router.post('/bloquearAnuncio', async (req, res) => {
+router.post('/bloquearAnuncio',isUserLog, async (req, res) => {
     const update_anuncio = {
         ANUN_ESTADO: 'BLOQUEADO'
     }
     await db.query('UPDATE anuncios SET ? WHERE anun_id=?', [update_anuncio, req.body.ANUN_ID]);
     res.redirect('/listAnuncios');
 });
-router.post('/eliminarAnuncio', async (req, res) => {
+router.post('/eliminarAnuncio',isUserLog, async (req, res) => {
     const update_anuncio = {
         ANUN_ESTADO: 'ELIMINADO'
     }
     await db.query('UPDATE anuncios SET ? WHERE anun_id=?', [update_anuncio, req.body.ANUN_ID]);
     res.redirect('/listAnuncios');
 });
-router.get('/listMensajes', isUserLog, (req, res) => {
-    res.render('user/listMensajes');
+router.get('/listMensajes', isUserLog,async (req, res) => {
+    const mensajes = await db.query('SELECT a.ANUN_ID, a.ANUN_TITULO, am.ANMSG_ID , am.ANUN_ID ,am.ANMSG_NOMBRE, am.ANMSG_CORREO, am.ANMSG_TELEFONO, am.ANMSG_ASUNTO, am.ANMSG_MENSAJE, am.ANMSG_ESTADO, DATE_FORMAT(am.ANMSG_FECHA_VISITA,"%Y-%m-%d") as ANMSG_FECHA_VISITA, DATE_FORMAT(am.ANMSG_FECHA,"%Y-%m-%d") as ANMSG_FECHA  FROM anuncios_mensajes am, anuncios a WHERE am.anun_id= a.anun_id AND am.anmsg_estado="ACTIVO" AND a.usu_id=?', req.user.USU_ID);
+    
+    res.render('user/listMensajes',{mensajes});
 });
-router.post('/desbloquearAnuncio', async (req, res) => {
+router.post('/eliminarMensajeAnuncio',isUserLog, async (req, res) => {
+    const update_mensaje = {
+        ANMSG_ESTADO: 'ELIMINADO'
+    }
+    await db.query('UPDATE anuncios_mensajes SET ? WHERE ANMSG_ID =?', [update_mensaje, req.body.ANMSG_ID]);
+    res.redirect('/listMensajes');
+});
+router.post('/desbloquearAnuncio',isUserLog, async (req, res) => {
     const update_anuncio = {
         ANUN_ESTADO: 'ACTIVO'
     }
@@ -282,7 +291,7 @@ router.get('/contactar', isUserLog, async (req, res) => {
 
     res.render('user/contactar', { preguntas, correos, telefonos, direcciones });
 });
-router.post('/newUsuarioMensaje', async (req, res) => {
+router.post('/newUsuarioMensaje',isUserLog, async (req, res) => {
     new_usuario_mensaje = {
         USU_ID: req.user.USU_ID,
         PREG_ID: req.body.PREG_ID,
@@ -298,39 +307,39 @@ router.get('/cuenta', isUserLog, async (req, res) => {
     const cobertura = await db.query("SELECT * FROM cobertura c, provincias p WHERE c.USU_ID=? AND c.PROV_ID=p.PROV_ID", [req.user.USU_ID]);
     res.render('user/cuenta', { cobertura });
 });
-router.get('/editarCuenta', isUserLog, async(req, res) => {
+router.get('/editarCuenta', isUserLog, async (req, res) => {
     const coberturas = await db.query("SELECT * FROM cobertura  WHERE USU_ID=?", [req.user.USU_ID]);
     const provincias = await db.query("SELECT * FROM provincias  WHERE prov_estado='ACTIVO'");
     provincias.forEach(provincia => {
         coberturas.forEach(cobertura => {
-            if(provincia.PROV_ID==cobertura.PROV_ID){
-                provincia.CHECK=true;
+            if (provincia.PROV_ID == cobertura.PROV_ID) {
+                provincia.CHECK = true;
             }
         });
     });
-    res.render('user/editarCuenta',{provincias});
+    res.render('user/editarCuenta', { provincias });
 });
-router.post('/editarCuenta',update_logo, isUserLog, async(req, res) => {
-    var update_usuario={};
-    if(req.user.USU_TIPO=='PROPIETARIO' || req.user.USU_TIPO=='AGENTE'){
+router.post('/editarCuenta', update_logo, isUserLog, async (req, res) => {
+    var update_usuario = {};
+    if (req.user.USU_TIPO == 'PROPIETARIO' || req.user.USU_TIPO == 'AGENTE') {
         update_usuario = {
             USU_NOMBRE: req.body.USU_NOMBRE,
             USU_APELLIDO: req.body.USU_APELLIDO,
             USU_CORREO: req.body.USU_CORREO,
             USU_TELEFONO: req.body.USU_TELEFONO
         }
-    }else if(req.user.USU_TIPO=='INMOBILIARIA'){
+    } else if (req.user.USU_TIPO == 'INMOBILIARIA') {
         update_usuario = {
             USU_NOMBRE: req.body.USU_NOMBRE,
             USU_APELLIDO: req.body.USU_APELLIDO,
             USU_CORREO: req.body.USU_CORREO,
             USU_TELEFONO: req.body.USU_TELEFONO,
-            USU_EMPRESA:req.body.USU_EMPRESA,
-            USU_EMPRESA_CORREO:req.body.USU_EMPRESA_CORREO,
-            USU_EMPRESA_TELEFONO:req.body.USU_EMPRESA_TELEFONO,
+            USU_EMPRESA: req.body.USU_EMPRESA,
+            USU_EMPRESA_CORREO: req.body.USU_EMPRESA_CORREO,
+            USU_EMPRESA_TELEFONO: req.body.USU_EMPRESA_TELEFONO,
         }
-        if(req.file){
-            update_usuario.USU_EMPRESA_LOGO=req.file.filename;
+        if (req.file) {
+            update_usuario.USU_EMPRESA_LOGO = req.file.filename;
             fs.unlink(path.resolve('./src/public/inmo_logo/' + req.user.USU_EMPRESA_LOGO), (err) => {
                 if (err) {
                     console.log(err); throw err;
@@ -338,30 +347,30 @@ router.post('/editarCuenta',update_logo, isUserLog, async(req, res) => {
             });
         }
     }
-    await db.query('DELETE FROM cobertura WHERE usu_id=?',req.user.USU_ID);
-    if(Array.isArray(req.body.PROV_ID)){
+    await db.query('DELETE FROM cobertura WHERE usu_id=?', req.user.USU_ID);
+    if (Array.isArray(req.body.PROV_ID)) {
         req.body.PROV_ID.forEach(async element => {
-            const new_cobertura={
-                USU_ID:req.user.USU_ID,
-                PROV_ID:  element
+            const new_cobertura = {
+                USU_ID: req.user.USU_ID,
+                PROV_ID: element
             }
-            await db.query('INSERT INTO cobertura SET ?',new_cobertura);
+            await db.query('INSERT INTO cobertura SET ?', new_cobertura);
         });
-    }else{
-        const new_cobertura={
-            USU_ID:req.user.USU_ID,
-            PROV_ID:req.body.PROV_ID
+    } else {
+        const new_cobertura = {
+            USU_ID: req.user.USU_ID,
+            PROV_ID: req.body.PROV_ID
         }
-        await db.query('INSERT INTO cobertura SET ?',new_cobertura);
+        await db.query('INSERT INTO cobertura SET ?', new_cobertura);
     }
-    await db.query('UPDATE usuarios SET ? WHERE usu_id=?',[update_usuario,req.user.USU_ID]);
+    await db.query('UPDATE usuarios SET ? WHERE usu_id=?', [update_usuario, req.user.USU_ID]);
     req.flash('success', 'Datos modificados correctamente');
     res.redirect('/cuenta');
 });
 router.get('/editarContrasena', isUserLog, (req, res) => {
     res.render('user/editarContrasena');
 });
-router.post('/editarContrasena', isUserLog, async(req, res) => {
+router.post('/editarContrasena', isUserLog, async (req, res) => {
     if (helpers.comparar(req.body.USU_CONTRASENA, req.user.USU_CONTRASENA)) {
         if (req.body.USU_CONTRASENA_NUEVA == req.body.USU_CONTRASENA_NUEVA_C) {
             update_user = {
@@ -378,6 +387,7 @@ router.post('/editarContrasena', isUserLog, async(req, res) => {
     }
     res.redirect('/editarContrasena');
 });
+
 
 
 module.exports = router;
