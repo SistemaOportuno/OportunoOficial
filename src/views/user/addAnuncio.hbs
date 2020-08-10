@@ -105,7 +105,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text md-addon"> <i class=" fas fa-expand-arrows-alt"></i></span>
                         </div>
-                        <input type="number" class="form-control" placeholder="Total" name="ANUN_TAMANO_TOTAL" required>
+                        <input type="number" class="form-control" placeholder="Total" name="ANUN_TAMANO_TOTAL" min="0" required>
                         <div class="input-group-prepend">
                             <span class="input-group-text md-addon">m&sup2</span>
                         </div>
@@ -114,7 +114,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text md-addon"> <i class=" fas fa-expand-arrows-alt"></i></span>
                         </div>
-                        <input type="number" class="form-control" placeholder="Construcción" name="ANUN_TAMANO_CONSTRUCCION">
+                        <input type="number" class="form-control" placeholder="Construcción" name="ANUN_TAMANO_CONSTRUCCION" min="0">
                         <div class="input-group-prepend">
                             <span class="input-group-text md-addon">m&sup2</span>
                         </div>
@@ -129,7 +129,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text md-addon"> <i class=" fas fa-money-bill-alt"></i></span>
                         </div>
-                        <input type="number" class="form-control" name="ANUN_PRECIO" required>
+                        <input type="number" class="form-control" name="ANUN_PRECIO" required min="0">
                     </div>
                 </div>
                 <div class="col-md-6 pl-5 pr-5">
@@ -138,7 +138,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text md-addon"> <i class=" fas fa-money-bill-alt"></i></span>
                         </div>
-                        <input type="number" class="form-control" name="ANUN_ALICUOTA">
+                        <input type="number" class="form-control" name="ANUN_ALICUOTA" min="0">
                     </div>
                 </div>
             </div>
@@ -262,13 +262,13 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header elegant-color  justify-content-center">
-                <h5 class="modal-title text-white"><i class="fas fa-question pr-2"></i>Cómo subiir video de youtube?</h5>
+                <h5 class="modal-title text-white"><i class="fas fa-question pr-2"></i>Cómo subir video de youtube?</h5>
                 <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <h6>1. Vata al navegador en la url del video</h6>
+                <h6>1. Diríjase al navegador en la url del video</h6>
                 <img src="/imagenes/in_1.png" class="img-fluid">
                 <h6>2. Copie el código del video que esta a la derecha del "="</h6>
                 <img src="/imagenes/in_2.png" class="img-fluid">

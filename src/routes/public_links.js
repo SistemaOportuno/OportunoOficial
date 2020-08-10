@@ -3,7 +3,7 @@ const router = express.Router();
 const passport = require('passport');
 const db = require('../database');
 const helpers = require('../lib/helpers');
-const {isNotLoggedIn}=require('../lib/auth');
+const { isNotLoggedIn } = require('../lib/auth');
 //-----------------------------------FUNCIONES------------------------------
 function slugify(str) {
     var map = {
@@ -130,7 +130,7 @@ router.post('/busqueda', async (req, res) => {
             query += " AND tipinm_id in (" + in_states + ")"
         }
     }
-    const anuncios=await db.query(query+" AND anun_estado='ACTIVO'");
+    const anuncios = await db.query(query + " AND anun_estado='ACTIVO'");
     anuncios.forEach(async element => {
         element.IMAGES = await db.query('SELECT * FROM imagenes WHERE anun_id=?', element.ANUN_ID);
         element.IMAGES.forEach(function (i, idx, array) {
@@ -284,7 +284,7 @@ router.post('/modifylist', async (req, res) => {
         }
     }
     console.log(query)
-    const anuncios=await db.query(query+" AND anun_estado='ACTIVO'");
+    const anuncios = await db.query(query + " AND anun_estado='ACTIVO'");
     anuncios.forEach(async element => {
         element.IMAGES = await db.query('SELECT * FROM imagenes WHERE anun_id=?', element.ANUN_ID);
         element.IMAGES.forEach(function (i, idx, array) {
@@ -293,42 +293,59 @@ router.post('/modifylist', async (req, res) => {
     });
     res.render('public/lista', { transaccion, provincias, cantones, zonas, costo_min, costo_max, area_min, area_max, tipos_inmuebles, btn, filtro, anuncios });
 });
-router.get('/anuncio/:ANUN_ID',async(req, res) => {
+router.get('/anuncio/:ANUN_ID', async (req, res) => {
     const { ANUN_ID } = req.params;
-    const rows = await db.query('SELECT *, DATE_FORMAT(ANUN_FECHA,"%Y-%m-%d") as FECHA FROM anuncios WHERE anun_estado="ACTIVO" AND anun_id=?', [ ANUN_ID]);
+    const rows = await db.query('SELECT *, DATE_FORMAT(ANUN_FECHA,"%Y-%m-%d") as FECHA FROM anuncios WHERE anun_estado="ACTIVO" AND anun_id=?', [ANUN_ID]);
     const anuncio = rows[0];
-    anuncio.IMAGES = await db.query('SELECT * FROM imagenes WHERE anun_id=?', anuncio.ANUN_ID);
-    anuncio.IMAGES.forEach(function (i, idx, array) {
-        i.POS = idx;
-    });
-    var aux = await db.query('SELECT prov_nombre FROM provincias WHERE prov_id=?', anuncio.PROV_ID);
-    anuncio.PROVINCIA = aux[0].prov_nombre;
-    aux = await db.query('SELECT cant_nombre FROM cantones WHERE cant_id=?', anuncio.CANT_ID);
-    anuncio.CANTON = aux[0].cant_nombre;
-    aux = await db.query('SELECT zon_nombre FROM zonas WHERE zon_id=?', anuncio.ZON_ID);
-    anuncio.ZONA = aux[0].zon_nombre;
-    aux = await db.query('SELECT tipinm_descripcion FROM tipos_inmuebles WHERE tipinm_id=?', anuncio.TIPINM_ID);
-    anuncio.TIPINM_DESCRIPCION = aux[0].tipinm_descripcion;
+    if (anuncio != undefined) {
+        if (req.user==undefined || req.user.USU_ID != anuncio.USU_ID) {
+            update_anuncio = {
+                ANUN_VISTAS: anuncio.ANUN_VISTAS += 1
+            }
+            await db.query('UPDATE anuncios SET ? WHERE anun_id=?', [update_anuncio, anuncio.ANUN_ID]);
+        }
+        anuncio.IMAGES = await db.query('SELECT * FROM imagenes WHERE anun_id=?', anuncio.ANUN_ID);
+        anuncio.IMAGES.forEach(function (i, idx, array) {
+            i.POS = idx;
+        });
+        var aux = await db.query('SELECT prov_nombre FROM provincias WHERE prov_id=?', anuncio.PROV_ID);
+        anuncio.PROVINCIA = aux[0].prov_nombre;
+        aux = await db.query('SELECT cant_nombre FROM cantones WHERE cant_id=?', anuncio.CANT_ID);
+        anuncio.CANTON = aux[0].cant_nombre;
+        aux = await db.query('SELECT zon_nombre FROM zonas WHERE zon_id=?', anuncio.ZON_ID);
+        anuncio.ZONA = aux[0].zon_nombre;
+        aux = await db.query('SELECT tipinm_descripcion FROM tipos_inmuebles WHERE tipinm_id=?', anuncio.TIPINM_ID);
+        anuncio.TIPINM_DESCRIPCION = aux[0].tipinm_descripcion;
 
-    anuncio.CARACTERISTICAS = await db.query('SELECT * FROM anuncio_caracteristica ac, caracteristicas c WHERE anun_id=? AND c.CARACT_ID=ac.CARACT_ID', anuncio.ANUN_ID);
-    res.render('public/anuncio',{anuncio});
+        anuncio.CARACTERISTICAS = await db.query('SELECT * FROM anuncio_caracteristica ac, caracteristicas c WHERE anun_id=? AND c.CARACT_ID=ac.CARACT_ID', anuncio.ANUN_ID);
+        res.render('public/anuncio', { anuncio });
+    } else {
+        res.redirect('/');
+    }
 });
-router.post('/addMensajeCliente',isNotLoggedIn, async (req, res) => {
+router.post('/addMensajeCliente', isNotLoggedIn, async (req, res) => {
     new_mensaje = {
-        ANUN_ID:req.body.ANUN_ID,
-        ANMSG_NOMBRE:req.body.ANMSG_NOMBRE,	
-        ANMSG_CORREO:req.body.ANMSG_CORREO,	
-        ANMSG_TELEFONO:req.body.ANMSG_TELEFONO,	
-        ANMSG_FECHA_VISITA:req.body.ANMSG_FECHA_VISITA,	
-        ANMSG_FECHA:helpers.fecha_actual(),	
-        ANMSG_ASUNTO:req.body.ANMSG_ASUNTO,	
-        ANMSG_MENSAJE:req.body.ANMSG_MENSAJE,	
-        ANMSG_ESTADO:'ACTIVO'
+        ANUN_ID: req.body.ANUN_ID,
+        ANMSG_NOMBRE: req.body.ANMSG_NOMBRE,
+        ANMSG_CORREO: req.body.ANMSG_CORREO,
+        ANMSG_TELEFONO: req.body.ANMSG_TELEFONO,
+        ANMSG_FECHA_VISITA: req.body.ANMSG_FECHA_VISITA,
+        ANMSG_FECHA: helpers.fecha_actual(),
+        ANMSG_ASUNTO: req.body.ANMSG_ASUNTO,
+        ANMSG_MENSAJE: req.body.ANMSG_MENSAJE,
+        ANMSG_ESTADO: 'ACTIVO'
     }
     console.log(req.body);
     await db.query('INSERT INTO anuncios_mensajes SET ?', [new_mensaje]);
     req.flash('success', 'Mensaje enviado correctamente, muy pronto el anunciante se contactará con usted');
-    res.redirect('/anuncio/'+req.body.ANUN_ID);
+    res.redirect('/anuncio/' + req.body.ANUN_ID);
 });
-
+router.get('/empresa', async (req, res) => {
+    res.render('public/empresa');
+    
+});
+router.get('/misionYvision', async (req, res) => {
+    res.render('public/misionYvision');
+    
+});
 module.exports = router;

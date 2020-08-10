@@ -116,7 +116,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text md-addon"> <i class=" fas fa-expand-arrows-alt"></i></span>
                         </div>
-                        <input type="number" class="form-control" placeholder="Total" name="ANUN_TAMANO_TOTAL" required
+                        <input type="number" class="form-control" placeholder="Total" name="ANUN_TAMANO_TOTAL" min="0" required
                             value="{{anuncio.ANUN_TAMANO_TOTAL}}">
                         <div class="input-group-prepend">
                             <span class="input-group-text md-addon">m&sup2</span>
@@ -127,7 +127,7 @@
                             <span class="input-group-text md-addon"> <i class=" fas fa-expand-arrows-alt"></i></span>
                         </div>
                         <input type="number" class="form-control" placeholder="Construcción"
-                            name="ANUN_TAMANO_CONSTRUCCION" value="{{anuncio.ANUN_TAMANO_CONSTRUCCION}}">
+                            name="ANUN_TAMANO_CONSTRUCCION" value="{{anuncio.ANUN_TAMANO_CONSTRUCCION}}" min="0">
                         <div class="input-group-prepend">
                             <span class="input-group-text md-addon">m&sup2</span>
                         </div>
@@ -143,7 +143,7 @@
                             <span class="input-group-text md-addon"> <i class=" fas fa-money-bill-alt"></i></span>
                         </div>
                         <input type="number" class="form-control" name="ANUN_PRECIO" required
-                            value="{{anuncio.ANUN_PRECIO}}">
+                            value="{{anuncio.ANUN_PRECIO}}" min="0">
                     </div>
                 </div>
                 <div class="col-md-6 pl-5 pr-5">
@@ -153,7 +153,7 @@
                             <span class="input-group-text md-addon"> <i class=" fas fa-money-bill-alt"></i></span>
                         </div>
                         <input type="number" class="form-control" name="ANUN_ALICUOTA"
-                            value="{{anuncio.ANUN_ALICUOTA}}">
+                            value="{{anuncio.ANUN_ALICUOTA}}" min="0">
                     </div>
                 </div>
             </div>

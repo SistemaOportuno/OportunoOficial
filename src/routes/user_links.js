@@ -51,13 +51,22 @@ router.get('/panel', isUserLog, (req, res) => {
     res.render('user/panel');
 });
 router.get('/addAnuncio', isUserLog, async (req, res) => {
-    const provincias = await db.query("SELECT * FROM provincias WHERE prov_estado='ACTIVO'");
-    const tipos_inmuebles = await db.query("SELECT * FROM tipos_inmuebles WHERE tipinm_estado='ACTIVO'");
-    const grupos_caracteristicas = await db.query("SELECT * FROM grupos_caracteristicas WHERE grup_estado='ACTIVO'");
-    grupos_caracteristicas.forEach(async (element) => {
-        element.caracteristicas = await db.query("SELECT * FROM caracteristicas WHERE caract_estado='ACTIVO' AND grup_id=?", [element.GRUP_ID]);
-    });
-    res.render('user/addAnuncio', { tipos_inmuebles, grupos_caracteristicas, provincias });
+    const row= await db.query("SELECT count(USU_ID) as n FROM anuncios WHERE usu_id=?",req.user.USU_ID);
+    const count=row[0].n;
+    console.log(count)
+    if(req.user.USU_HABILITADO || count<1){
+        const provincias = await db.query("SELECT * FROM provincias WHERE prov_estado='ACTIVO'");
+        const tipos_inmuebles = await db.query("SELECT * FROM tipos_inmuebles WHERE tipinm_estado='ACTIVO'");
+        const grupos_caracteristicas = await db.query("SELECT * FROM grupos_caracteristicas WHERE grup_estado='ACTIVO'");
+        grupos_caracteristicas.forEach(async (element) => {
+            element.caracteristicas = await db.query("SELECT * FROM caracteristicas WHERE caract_estado='ACTIVO' AND grup_id=?", [element.GRUP_ID]);
+        });
+        res.render('user/addAnuncio', { tipos_inmuebles, grupos_caracteristicas, provincias });
+    }else{
+        req.flash('success', 'Póngase en contacto con nosotros para gestionar la habilitación de publicación mas anuncios');
+        res.redirect('/contactar');
+    }
+    
 });
 router.post('/addAnuncio', update_image, async (req, res) => {
     const new_anuncio = {
@@ -143,7 +152,7 @@ router.get('/listAnuncios', isUserLog, async (req, res) => {
         element.IMAGES.forEach(function (i, idx, array) {
             i.POS = idx;
         });
-        const aux = await db.query('SELECT count(anmsg_id) as msg FROM anuncios_mensajes WHERE anun_id=?', element.ANUN_ID);
+        const aux = await db.query('SELECT count(anmsg_id) as msg FROM anuncios_mensajes WHERE anun_id=? AND anmsg_estado="ACTIVO"', element.ANUN_ID);
         element.MENSAJES = aux[0].msg;
     });
     res.render('user/listAnuncios', { anuncios });
@@ -232,7 +241,7 @@ router.post('/editAnuncio', update_image, async (req, res) => {
 });
 router.get('/verAnuncio/:ANUN_ID', isUserLog, async (req, res) => {
     const { ANUN_ID } = req.params;
-    const rows = await db.query('SELECT *, DATE_FORMAT(ANUN_FECHA,"%Y-%m-%d") as FECHA FROM anuncios WHERE anun_estado="ACTIVO" AND usu_id=? AND anun_id=?', [req.user.USU_ID, ANUN_ID]);
+    const rows = await db.query('SELECT *, DATE_FORMAT(ANUN_FECHA,"%Y-%m-%d") as FECHA FROM anuncios WHERE anun_estado!="ELIMINADO" AND usu_id=? AND anun_id=?', [req.user.USU_ID, ANUN_ID]);
     const anuncio = rows[0];
     anuncio.IMAGES = await db.query('SELECT * FROM imagenes WHERE anun_id=?', anuncio.ANUN_ID);
     anuncio.IMAGES.forEach(function (i, idx, array) {

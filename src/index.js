@@ -6,7 +6,7 @@ const flash =require('connect-flash');
 const session=require('express-session');
 const mysqlStore=require('express-mysql-session');
 const passport=require('passport');
-
+const db = require('./database');
 const {database}=require('./keys');
 //Iniciar variable
 const app=express();
@@ -39,10 +39,15 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //Variables globales
-app.use((req,res,next)=>{
+app.use(async(req,res,next)=>{
     app.locals.success=req.flash('success');
     app.locals.fail=req.flash('fail');
     app.locals.usuario=req.user;
+    const rows=await db.query("select * from empresa");
+    app.locals.empresa=rows[0];
+    app.locals.telefonos=await db.query("select * from telefonos where tel_estado='ACTIVO'");
+    app.locals.correos=await db.query("select * from correos where corr_estado='ACTIVO'");
+    app.locals.direcciones=await db.query("select * from direcciones where dir_estado='ACTIVO'");
     next();
 });
 

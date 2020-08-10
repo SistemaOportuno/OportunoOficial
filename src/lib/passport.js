@@ -8,10 +8,18 @@ passport.use('local.login', new LocalStrategy({
     passwordField: 'usuario_contrasena',
     passReqToCallback: true
 }, async (req, USUARIO, CONTRASENA, done) => {
-    const rows = await db.query('SELECT * FROM usuarios WHERE usu_estado = "ACTIVO" AND usu_correo= ? AND usu_contrasena=?', [USUARIO, helpers.encriptar(CONTRASENA)]);
+    const rows = await db.query('SELECT * FROM usuarios WHERE usu_correo= ? AND usu_contrasena=?', [USUARIO, helpers.encriptar(CONTRASENA)]);
     if (rows.length > 0) {
+        
         const usuario = rows[0];
-        return done(null, usuario);
+        if(usuario.USU_ESTADO=="ACTIVO"){
+            return done(null, usuario);
+        }else if(usuario.USU_ESTADO=="BLOQUEADO"){
+            return done(null, false, req.flash('fail', 'Usuario Bloqueado'));
+        }else{
+            return done(null, false, req.flash('fail', 'Usuario Eliminado'));
+        }
+        
     } else {
         return done(null, false, req.flash('fail', 'Credenciales Incorrectas'));
     }

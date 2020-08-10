@@ -71,7 +71,8 @@
                 <div class="col-sm-6">
                     <div class="md-form">
                         <i class="fas fa-phone prefix grey-text"></i>
-                        <input type="tel" id="inmo_telefono_empresa" name="inmo_telefono_empresa" class="form-control" required>
+                        <input type="tel" id="inmo_telefono_empresa" name="inmo_telefono_empresa" class="form-control" required pattern="[0-9]{7,10}"
+                  title="Solo números telefónicos">
                         <label for="inmo_telefono_empresa">Teléfono Empresa</label>
                     </div>
                 </div>
@@ -113,8 +114,9 @@
                 <div class="col-sm-3">
                     <div class="md-form">
                         <i class="fas fa-phone prefix grey-text"></i>
-                        <input type="tel" id="inmo_telefono" name="inmo_telefono" class="form-control" required>
-                        <label for="inmo_telefono">Teléfono</label>
+                        <input type="tel" id="inmo_telefono" name="inmo_telefono" class="form-control" required pattern="[0-9]{7,10}"
+                  title="Solo números telefónicos">
+                        <label for="inmo_telefono">Teléfono Representante</label>
                     </div>
                 </div>
                 <div class="col-sm-3">

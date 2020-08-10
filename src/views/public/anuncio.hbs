@@ -61,7 +61,7 @@
                 </div>
                 <div class="col-sm-3">
                     <button type="button" class="rnd btn btn-elegant btn-block mb-2" data-toggle="modal"
-                        data-target="#modal_consulta"><i class="far fa-handshake pr-2"></i>LLaves en Mano</button>
+                        data-target="#modal_llaves"><i class="far fa-handshake pr-2"></i>LLaves en Mano</button>
                 </div>
             </div>
             <hr>
@@ -274,30 +274,31 @@
                     <div class="card-body mx-4">
                         <div class="md-form">
                             <i class="fas fa-user prefix grey-text"></i>
-                            <input type="text" id="ANMSG_NOMBRE" name="ANMSG_NOMBRE" class="form-control">
+                            <input type="text" id="ANMSG_NOMBRE" name="ANMSG_NOMBRE" class="form-control" required>
                             <label for="ANMSG_NOMBRE">Nombre</label>
                         </div>
 
                         <div class="md-form">
                             <i class="fas fa-envelope prefix grey-text"></i>
-                            <input type="email" id="ANMSG_CORREO" name="ANMSG_CORREO" class="form-control">
+                            <input type="email" id="ANMSG_CORREO" name="ANMSG_CORREO" class="form-control" required>
                             <label for="ANMSG_CORREO">Correo</label>
                         </div>
 
                         <div class="md-form">
                             <i class="fas fa-phone prefix grey-text"></i>
-                            <input type="tel" id="ANMSG_TELEFONO" name="ANMSG_TELEFONO" class="form-control">
+                            <input type="tel" id="ANMSG_TELEFONO" name="ANMSG_TELEFONO" class="form-control" required
+                                pattern="[0-9]{7,10}" title="Solo números telefónicos">
                             <label for="ANMSG_TELEFONO">Teléfono</label>
                         </div>
 
                         <div class="md-form">
                             <i class="fas fa-pencil-alt prefix grey-text"></i>
-                            <textarea id="ANMSG_MENSAJE" name="ANMSG_MENSAJE" class="md-textarea form-control"
-                                rows="5"></textarea>
+                            <textarea id="ANMSG_MENSAJE" name="ANMSG_MENSAJE" class="md-textarea form-control" rows="5"
+                                required></textarea>
                             <label for="ANMSG_MENSAJE">Mensaje</label>
                         </div>
-                        <input type="hidden" class="form-control" name="ANUN_ID" value="{{anuncio.ANUN_ID}}">
-                        <input type="hidden" class="form-control" name="ANMSG_ASUNTO" value="CONTACTARSE">
+                        <input type="hidden" class="form-control" name="ANUN_ID" value="{{anuncio.ANUN_ID}}" required>
+                        <input type="hidden" class="form-control" name="ANMSG_ASUNTO" value="CONTACTARSE" required>
                         <!--Grid row-->
                         <div class="row d-flex align-items-center mb-3 mt-4">
 
@@ -337,18 +338,19 @@
                 <div class="modal-body">
                     <div class="md-form">
                         <i class="fas fa-user prefix grey-text"></i>
-                        <input type="text" id="ANMSG_NOMBRE" name="ANMSG_NOMBRE" class="form-control">
+                        <input type="text" id="ANMSG_NOMBRE" name="ANMSG_NOMBRE" class="form-control" required>
                         <label for="ANMSG_NOMBRE">Nombre</label>
                     </div>
 
                     <div class="md-form">
                         <i class="fas fa-phone prefix grey-text"></i>
-                        <input type="tel" id="ANMSG_TELEFONO" name="ANMSG_TELEFONO" class="form-control">
+                        <input type="tel" id="ANMSG_TELEFONO" name="ANMSG_TELEFONO" class="form-control" required
+                            pattern="[0-9]{7,10}" title="Solo números telefónicos">
                         <label for="ANMSG_TELEFONO">Teléfono</label>
                     </div>
                 </div>
-                <input type="hidden" class="form-control" name="ANUN_ID" value="{{anuncio.ANUN_ID}}">
-                <input type="hidden" class="form-control" name="ANMSG_ASUNTO" value="LLAMDA">
+                <input type="hidden" class="form-control" name="ANUN_ID" value="{{anuncio.ANUN_ID}}" required>
+                <input type="hidden" class="form-control" name="ANMSG_ASUNTO" value="LLAMDA" required>
                 <div class="modal-footer justify-content-center">
                     <button type="button submit" class="btn btn-elegant rnd">Enviar</button>
                 </div>
@@ -374,29 +376,31 @@
                 <div class="modal-body">
                     <div class="md-form">
                         <i class="fas fa-user prefix grey-text"></i>
-                        <input type="text" id="ANMSG_NOMBRE" name="ANMSG_NOMBRE" class="form-control">
+                        <input type="text" id="ANMSG_NOMBRE" name="ANMSG_NOMBRE" class="form-control"> required
                         <label for="ANMSG_NOMBRE">Nombre</label>
                     </div>
 
                     <div class="md-form">
                         <i class="fas fa-envelope prefix grey-text"></i>
-                        <input type="email" id="ANMSG_CORREO" name="ANMSG_CORREO" class="form-control">
+                        <input type="email" id="ANMSG_CORREO" name="ANMSG_CORREO" class="form-control" required>
                         <label for="ANMSG_CORREO">Correo</label>
                     </div>
 
                     <div class="md-form">
                         <i class="fas fa-phone prefix grey-text"></i>
-                        <input type="tel" id="ANMSG_TELEFONO" name="ANMSG_TELEFONO" class="form-control">
+                        <input type="tel" id="ANMSG_TELEFONO" name="ANMSG_TELEFONO" class="form-control"
+                            pattern="[0-9]{7,10}" title="Solo números telefónicos">
                         <label for="ANMSG_TELEFONO">Teléfono</label>
                     </div>
                     <div class="md-form">
                         <i class="fas fa-calendar-day prefix grey-text"></i>
-                        <input type="date" id="ANMSG_FECHA_VISITA" name="ANMSG_FECHA_VISITA" class="form-control">
+                        <input type="date" id="ANMSG_FECHA_VISITA" name="ANMSG_FECHA_VISITA" class="form-control"
+                            required>
                         <label for="ANMSG_FECHA_VISITA">En qué fecha desea visitar?</label>
                     </div>
                 </div>
-                <input type="hidden" class="form-control" name="ANUN_ID" value="{{anuncio.ANUN_ID}}">
-                <input type="hidden" class="form-control" name="ANMSG_ASUNTO" value="VISITA">
+                <input type="hidden" class="form-control" name="ANUN_ID" value="{{anuncio.ANUN_ID}}" required>
+                <input type="hidden" class="form-control" name="ANMSG_ASUNTO" value="VISITA" required>
                 <div class="modal-footer justify-content-center">
                     <button type="button submit" class="btn btn-elegant rnd">Enviar</button>
                 </div>
@@ -422,31 +426,94 @@
                 <div class="modal-body">
                     <div class="md-form">
                         <i class="fas fa-user prefix grey-text"></i>
-                        <input type="text" id="ANMSG_NOMBRE" name="ANMSG_NOMBRE" class="form-control">
+                        <input type="text" id="ANMSG_NOMBRE" name="ANMSG_NOMBRE" class="form-control" required>
                         <label for="ANMSG_NOMBRE">Nombre</label>
                     </div>
 
                     <div class="md-form">
                         <i class="fas fa-envelope prefix grey-text"></i>
-                        <input type="email" id="ANMSG_CORREO" name="ANMSG_CORREO" class="form-control">
+                        <input type="email" id="ANMSG_CORREO" name="ANMSG_CORREO" class="form-control" required>
                         <label for="ANMSG_CORREO">Correo</label>
                     </div>
 
                     <div class="md-form">
                         <i class="fas fa-phone prefix grey-text"></i>
-                        <input type="tel" id="ANMSG_TELEFONO" name="ANMSG_TELEFONO" class="form-control">
+                        <input type="tel" id="ANMSG_TELEFONO" name="ANMSG_TELEFONO" class="form-control" required
+                            pattern="[0-9]{7,10}" title="Solo números telefónicos">
                         <label for="ANMSG_TELEFONO">Teléfono</label>
                     </div>
 
                     <div class="md-form">
                         <i class="fas fa-pencil-alt prefix grey-text"></i>
-                        <textarea id="ANMSG_MENSAJE" name="ANMSG_MENSAJE" class="md-textarea form-control"
-                            rows="5"></textarea>
+                        <textarea id="ANMSG_MENSAJE" name="ANMSG_MENSAJE" class="md-textarea form-control" rows="5"
+                            required></textarea>
                         <label for="ANMSG_MENSAJE">Mensaje</label>
                     </div>
                 </div>
-                <input type="hidden" class="form-control" name="ANUN_ID" value="{{anuncio.ANUN_ID}}">
-                <input type="hidden" class="form-control" name="ANMSG_ASUNTO" value="CONSULTA">
+                <input type="hidden" class="form-control" name="ANUN_ID" value="{{anuncio.ANUN_ID}}" required>
+                <input type="hidden" class="form-control" name="ANMSG_ASUNTO" value="CONSULTA" required>
+                <div class="modal-footer justify-content-center">
+                    <button type="button submit" class="btn btn-elegant rnd">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modal_llaves" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header elegant-color  justify-content-center">
+                <h5 class="modal-title text-white"><i class="fas fa-question pr-2"></i>Llaves en mano</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" action="/addMensajeCliente">
+
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+
+                            
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="md-form">
+                                <i class="fas fa-user prefix grey-text"></i>
+                                <input type="text" id="ANMSG_NOMBRE" name="ANMSG_NOMBRE" class="form-control" required>
+                                <label for="ANMSG_NOMBRE">Nombre</label>
+                            </div>
+
+                            <div class="md-form">
+                                <i class="fas fa-envelope prefix grey-text"></i>
+                                <input type="email" id="ANMSG_CORREO" name="ANMSG_CORREO" class="form-control" required>
+                                <label for="ANMSG_CORREO">Correo</label>
+                            </div>
+
+                            <div class="md-form">
+                                <i class="fas fa-phone prefix grey-text"></i>
+                                <input type="tel" id="ANMSG_TELEFONO" name="ANMSG_TELEFONO" class="form-control"
+                                    required pattern="[0-9]{7,10}" title="Solo números telefónicos">
+                                <label for="ANMSG_TELEFONO">Teléfono</label>
+                            </div>
+
+                            <div class="md-form">
+                                <i class="fas fa-pencil-alt prefix grey-text"></i>
+                                <textarea id="ANMSG_MENSAJE" name="ANMSG_MENSAJE" class="md-textarea form-control"
+                                    rows="5" required></textarea>
+                                <label for="ANMSG_MENSAJE">Mensaje</label>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <input type="hidden" class="form-control" name="ANUN_ID" value="{{anuncio.ANUN_ID}}" required>
+                <input type="hidden" class="form-control" name="ANMSG_ASUNTO" value="CONSULTA" required>
                 <div class="modal-footer justify-content-center">
                     <button type="button submit" class="btn btn-elegant rnd">Enviar</button>
                 </div>

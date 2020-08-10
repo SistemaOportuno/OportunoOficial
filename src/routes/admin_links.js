@@ -12,7 +12,7 @@ const fs = require('fs');
 const storage_image = multer.diskStorage({
     destination: path.join(__dirname, '../public/logo_empresa'),
     filename: (req, file, cb) => {
-        cb(null, uuid.v4() + path.extname(file.originalname).toLocaleLowerCase());
+        cb(null, "empresa_logo" + path.extname(file.originalname).toLocaleLowerCase());
     }
 })
 const update_image = multer({
@@ -488,6 +488,20 @@ router.post('/blockUser', isAdminLog, async (req, res) => {
 router.post('/unlockUser', isAdminLog, async (req, res) => {
     const update_user = {
         USU_ESTADO: 'ACTIVO'
+    }
+    await db.query('UPDATE usuarios SET ? WHERE usu_id=?', [update_user, req.body.USU_ID]);
+    res.redirect('/adminUsuarios');
+});
+router.post('/deshablitarPublicacion', isAdminLog, async (req, res) => {
+    const update_user = {
+        USU_HABILITADO: false
+    }
+    await db.query('UPDATE usuarios SET ? WHERE usu_id=?', [update_user, req.body.USU_ID]);
+    res.redirect('/adminUsuarios');
+});
+router.post('/hablitarPublicacion', isAdminLog, async (req, res) => {
+    const update_user = {
+        USU_HABILITADO: true
     }
     await db.query('UPDATE usuarios SET ? WHERE usu_id=?', [update_user, req.body.USU_ID]);
     res.redirect('/adminUsuarios');
