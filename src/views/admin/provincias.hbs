@@ -17,6 +17,8 @@
                 <i class="fas fa-envelope-open mr-3"></i>Administrar Usuarios</a>
             <a href="/adminMensajes" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-headset mr-3"></i>Mensajes</a>
+            <a href="/llavesEnMano" class="list-group-item list-group-item-action waves-effect ">
+                <i class="far fa-handshake mr-3"></i>Llaves en Mano</a>
             <a href="/adminCuenta" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-user mr-3"></i>Mi Cuenta</a>
             <a href="/logout" class="list-group-item list-group-item-action waves-effect">
@@ -50,7 +52,8 @@
                     <td>{{PROV_NOMBRE}}</td>
                     <td>
                         <center>
-                            <a href="/cantones/{{PROV_ID}}" type="button" class="btn btn-secondary btn-sm ">Gestionar</a>
+                            <a href="/cantones/{{PROV_ID}}" type="button"
+                                class="btn btn-secondary btn-sm ">Gestionar</a>
                             <button type="button" class="btn btn-info btn-sm " data-toggle="modal"
                                 data-target="#modal_edit_provincia{{PROV_ID}}">Editar</button>
                             <button type="button" class="btn btn-warning btn-sm " data-toggle="modal"

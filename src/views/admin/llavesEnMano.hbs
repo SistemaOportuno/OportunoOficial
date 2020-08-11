@@ -1,0 +1,135 @@
+<div class="container">
+    <div class="sidebar rounded-lg">
+        <div class="header  elegant-color p-1">
+            <h5 class="h5 text-white text-center">Panel Administracion</h5>
+        </div>
+        <div class="list-group list-group-flush pl-2 pr-2 pt-5 pb-5">
+            <a href="/adminPanel" class="list-group-item list-group-item-action waves-effect ">
+                <i class="fas fa-home mr-3"></i>Inicio
+            </a>
+            <a href="/componentes" class="list-group-item list-group-item-action waves-effect ">
+                <i class="fas fa-plus-circle mr-3"></i>Administar Componentes
+            </a>
+            <a href="/adminAnuncios" class="list-group-item list-group-item-action waves-effect ">
+                <i class="fas fa-briefcase mr-3"></i>Administrar Anuncios
+            </a>
+            <a href="/adminUsuarios" class="list-group-item list-group-item-action waves-effect">
+                <i class="fas fa-envelope-open mr-3"></i>Administrar Usuarios</a>
+            <a href="/adminMensajes" class="list-group-item list-group-item-action waves-effect">
+                <i class="fas fa-headset mr-3"></i>Mensajes</a>
+            <a href="/llavesEnMano" class="list-group-item list-group-item-action waves-effect active">
+                <i class="far fa-handshake mr-3"></i>Llaves en Mano</a>
+            <a href="/adminCuenta" class="list-group-item list-group-item-action waves-effect">
+                <i class="fas fa-user mr-3"></i>Mi Cuenta</a>
+            <a href="/logout" class="list-group-item list-group-item-action waves-effect">
+                <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión</a>
+        </div>
+    </div>
+    <div class="content white rounded-lg mb-5 pl-3 pr-3 ">
+        <div class="header pt-5">
+            <h2 class="font-weight-normal font-italic text-center">Llaves en Mano</h2>
+        </div>
+        <h5 class="font-weight-normal font-italic pl-2 pr-2 text-center">Mire los mensajes de los
+            interesados en el servicio de Llaves en Mano</h5>
+        <table id="example" class="hover">
+            <thead>
+                <tr>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each mensajes}}
+                <tr>
+                    <td>
+                        <div class="container border rounded border-dark p-3">
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <p><b>Anuncio: </b> {{ANUN_TITULO}}</p>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <p><b>Fecha: </b> {{ANMSG_FECHA}}</p>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <p><b>Asunto: </b> {{ANMSG_ASUNTO}}</p>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <p><b>Nombre: </b> {{ANMSG_NOMBRE}}</p>
+                                        </div>
+                                        {{#if ANMSG_CORREO}}
+                                        <div class="col-sm-6">
+                                            <p><b>Correo: </b> {{ANMSG_CORREO}}</p>
+                                        </div>
+                                        {{/if}}
+                                        <div class="col-sm-6">
+                                            <p><b>Teléfono: </b> {{ANMSG_TELEFONO}}</p>
+                                        </div>
+                                        {{#if ANMSG_FECHA_VISITA}}
+                                        <div class="col-sm-6">
+                                            <p><b>Fecha Visita: </b> {{ANMSG_FECHA_VISITA}}</p>
+                                        </div>
+                                        {{/if}}
+                                        {{#if ANMSG_MENSAJE}}
+                                        <div class="col-sm-12">
+                                            <p><b>Mensaje: </b></p>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <p> {{ANMSG_MENSAJE}}</p>
+                                        </div>
+                                        {{/if}}
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <a href="/anuncio/{{ANUN_ID}}" class="btn btn-md btn-elegant btn-block rnd"
+                                        type="button"><i class="far fa-eye pr-3"></i>Ver Anuncio</a>
+                                    <br>
+                                    <br>
+                                    <a href="https://api.whatsapp.com/send?phone=593{{ANMSG_TELEFONO}}"
+                                        class="btn btn-md btn-success  btn-block rnd" type="button"><i
+                                            class="fab fa-whatsapp pr-3"></i>Contactar</a>
+                                    <br>
+                                    <br>
+
+                                    <button class="btn btn-md btn-danger btn-block rnd" type="button"
+                                        data-toggle="modal" data-target="#eliminarLlavesModal{{ANMSG_ID}}"><i
+                                            class="fas fa-trash pr-3"></i>Eliminar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <!-- Central Modal Small -->
+                <div class="modal fade" id="eliminarLlavesModal{{ANMSG_ID}}" tabindex="-1" role="dialog"
+                    aria-labelledby="myModalLabel" aria-hidden="true">
+                    <!-- Change class.modal-sm to change the size of the modal -->
+                    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                        <form method="POST" action="/eliminarMensajeLlaves">
+                            <div class="modal-content">
+                                <div class="modal-header danger-color">
+                                    <h4 class="modal-title text-white ">Eliminar Mensaje</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Esta seguro de eliminar el mensaje...?</p>
+                                    <p>Esta acción es irreversible</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-light btn-sm"
+                                        data-dismiss="modal">Cancelar</button>
+                                    <input type="hidden" class="form-control" name="ANMSG_ID" value="{{ANMSG_ID}}">
+                                    <button type="button submit" class="btn btn-danger btn-sm">Borrar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- Central Modal Small -->
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>

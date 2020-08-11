@@ -43,7 +43,7 @@ router.post('/busqueda', async (req, res) => {
     var id_provincia = '';
     var id_canton = '';
     var id_zona = '';
-    var query = "SELECT * FROM anuncios WHERE anun_estado='ACTIVO'";
+    var query = "SELECT *, DATE_FORMAT(ANUN_FECHA,'%Y-%m-%d') as FECHA FROM anuncios WHERE anun_estado='ACTIVO'";
     //transaccion on=arrendar, off=comprar
     if (req.body.transaccion) {
         transaccion.ischeck = true;
@@ -130,7 +130,7 @@ router.post('/busqueda', async (req, res) => {
             query += " AND tipinm_id in (" + in_states + ")"
         }
     }
-    const anuncios = await db.query(query + " AND anun_estado='ACTIVO'");
+    const anuncios = await db.query(query + " AND anun_estado='ACTIVO' ORDER BY anun_tipo DESC");
     anuncios.forEach(async element => {
         element.IMAGES = await db.query('SELECT * FROM imagenes WHERE anun_id=?', element.ANUN_ID);
         element.IMAGES.forEach(function (i, idx, array) {
@@ -158,7 +158,7 @@ router.post('/modifylist', async (req, res) => {
     var id_provincia = '';
     var id_canton = '';
     var id_zona = '';
-    var query = "SELECT * FROM anuncios WHERE anun_estado='ACTIVO'";
+    var query = "SELECT *, DATE_FORMAT(ANUN_FECHA,'%Y-%m-%d') as FECHA FROM anuncios WHERE anun_estado='ACTIVO'";
     if (req.body.transaccion) {
         transaccion.ischeck = true;
         query += " AND anun_transaccion='ARRIENDO'";
@@ -283,8 +283,7 @@ router.post('/modifylist', async (req, res) => {
             query += " AND anun_estacionamiento <=" + btn.garajes;
         }
     }
-    console.log(query)
-    const anuncios = await db.query(query + " AND anun_estado='ACTIVO'");
+    const anuncios = await db.query(query + " AND anun_estado='ACTIVO' ORDER BY anun_tipo DESC");
     anuncios.forEach(async element => {
         element.IMAGES = await db.query('SELECT * FROM imagenes WHERE anun_id=?', element.ANUN_ID);
         element.IMAGES.forEach(function (i, idx, array) {
@@ -335,7 +334,6 @@ router.post('/addMensajeCliente', isNotLoggedIn, async (req, res) => {
         ANMSG_MENSAJE: req.body.ANMSG_MENSAJE,
         ANMSG_ESTADO: 'ACTIVO'
     }
-    console.log(req.body);
     await db.query('INSERT INTO anuncios_mensajes SET ?', [new_mensaje]);
     req.flash('success', 'Mensaje enviado correctamente, muy pronto el anunciante se contactará con usted');
     res.redirect('/anuncio/' + req.body.ANUN_ID);

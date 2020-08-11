@@ -234,32 +234,39 @@
 	</div>
 	<!-- Content -->
 	<div class="content white border rounded pt-5 pl-2 pr-2 mb-5">
-		 <h5 class="font-weight-normal font-italic pl-2 pr-2 text-center">Búsqueda de Inmuebles</h5>
+		<h5 class="font-weight-normal font-italic pl-2 pr-2 text-center">Búsqueda de Inmuebles</h5>
 		<div class="row border rounded-lg p-2 ml-1 mr-1 mb-4">
 			<div class="col-sm-6">
-				<h6 class="font-weight-normal"><i class=" fas fa-shopping-cart"></i><b> Transacción: </b>{{filtro.transaccion}}</h6>
+				<h6 class="font-weight-normal"><i class=" fas fa-shopping-cart"></i><b> Transacción:
+					</b>{{filtro.transaccion}}</h6>
 			</div>
 			<div class="col-sm-6">
-				<h6 class="font-weight-normal"><i class="fas fa-list-ul"></i><b> Tipo de Inmueble: </b>{{filtro.tipo}}</h6>
+				<h6 class="font-weight-normal"><i class="fas fa-list-ul"></i><b> Tipo de Inmueble: </b>{{filtro.tipo}}
+				</h6>
 			</div>
 			<div class="col-sm-6">
-				<h6 class="font-weight-normal"><i class=" fas fa-hand-holding-usd"></i><b> Precio: </b> (min {{filtro.costo_min}}) - (max {{filtro.costo_max}})</h6>
+				<h6 class="font-weight-normal"><i class=" fas fa-hand-holding-usd"></i><b> Precio: </b> (min
+					{{filtro.costo_min}}) - (max {{filtro.costo_max}})</h6>
 			</div>
 			<div class="col-sm-6">
-				<h6 class="font-weight-normal "><i class=" fas fa-expand-arrows-alt"></i><b> Área (m&sup2):</b> (min {{filtro.area_min}}) - (max {{filtro.area_max}})</h6>
+				<h6 class="font-weight-normal "><i class=" fas fa-expand-arrows-alt"></i><b> Área (m&sup2):</b> (min
+					{{filtro.area_min}}) - (max {{filtro.area_max}})</h6>
 			</div>
 			<div class="col-sm-4">
-				<h6 class="font-weight-normal"><i class="fas fa-map-marked-alt"></i><b> Provincia: </b>{{filtro.provincia}}</h6>
+				<h6 class="font-weight-normal"><i class="fas fa-map-marked-alt"></i><b> Provincia:
+					</b>{{filtro.provincia}}</h6>
 			</div>
 			<div class="col-sm-4">
-				<h6 class="font-weight-normal"><i class="fas fa-map-marked-alt"></i><b> Cantón: </b>{{filtro.canton}}</h6>
+				<h6 class="font-weight-normal"><i class="fas fa-map-marked-alt"></i><b> Cantón: </b>{{filtro.canton}}
+				</h6>
 			</div>
 			<div class="col-sm-4">
 				<h6 class="font-weight-normal"><i class="fas fa-map-marked-alt"></i><b> Zona: </b>{{filtro.zona}}</h6>
 			</div>
-			
+
 			<div class="col-sm-4">
-				<h6 class="font-weight-bolder"><i class=" fas fa-bed"></i><b> Habitaciones: </b>{{filtro.habitaciones}}</h6>
+				<h6 class="font-weight-bolder"><i class=" fas fa-bed"></i><b> Habitaciones: </b>{{filtro.habitaciones}}
+				</h6>
 			</div>
 			<div class="col-sm-4">
 				<h6 class="font-weight-bolder"><i class=" fas fa-bath"></i><b> Baños: </b>{{filtro.banos}}</h6>
@@ -268,7 +275,7 @@
 				<h6 class="font-weight-bolder"><i class=" fas fa-car"></i><b> Garajes: </b>{{filtro.garajes}}</h6>
 			</div>
 		</div>
-		<table id="example">
+		<table id="table_list">
 			<thead>
 				<tr>
 					<th></th>
@@ -278,74 +285,83 @@
 				{{#each anuncios}}
 				<tr>
 					<td>
-						<div class="card">
+						<div
+							class="card {{#ifEquals ANUN_TIPO 'RECOMENDADO'}}deep-purple lighten-4 border-secondary{{/ifEquals}}  {{#ifEquals ANUN_TIPO 'PRINCIPAL'}}deep-purple lighten-4 border-secondary{{/ifEquals}}">
 							<div class="row">
 								<div class="col-sm-5">
-									 <!--Carousel Wrapper-->
-                                    <div id="carousel{{ANUN_ID}}" class="carousel slide carousel-fade elegant-color"
-                                        data-ride="carousel">
-                                        <!--Indicators-->
-                                        <ol class="carousel-indicators">
-                                            {{#each IMAGES}}
-                                            <li data-target="#carousel{{../ANUN_ID}}" data-slide-to="{{POS}}"
-                                                {{#ifEquals POS 0}} class="active" {{/ifEquals}}></li>
-                                            {{/each}}
-                                        </ol>
-                                        <!--/.Indicators-->
-                                        <!--Slides-->
-                                        <div class="carousel-inner" role="listbox">
-                                            {{#each IMAGES}}
-                                            <div class="carousel-item {{#ifEquals POS 0}} active {{/ifEquals}}">
-                                                <img class="d-block  mx-auto img-fluid"
-                                                    src="/anuncio_images/{{IMG_NOMBRE}}" style="height: 150px">
-                                            </div>
-                                            {{/each}}
-                                        </div>
-                                        <!--/.Slides-->
-                                        <!--Controls-->
-                                        <a class="carousel-control-prev" href="#carousel{{ANUN_ID}}" role="button"
-                                            data-slide="prev">
-                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                            <span class="sr-only">Previous</span>
-                                        </a>
-                                        <a class="carousel-control-next" href="#carousel{{ANUN_ID}}" role="button"
-                                            data-slide="next">
-                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                            <span class="sr-only">Next</span>
-                                        </a>
-                                        <!--/.Controls-->
-                                    </div>
-                                    <!--/.Carousel Wrapper-->
+									<!--Carousel Wrapper-->
+									<div id="carousel{{ANUN_ID}}" class="carousel slide carousel-fade elegant-color"
+										data-ride="carousel">
+										<!--Indicators-->
+										<ol class="carousel-indicators">
+											{{#each IMAGES}}
+											<li data-target="#carousel{{../ANUN_ID}}" data-slide-to="{{POS}}"
+												{{#ifEquals POS 0}} class="active" {{/ifEquals}}></li>
+											{{/each}}
+										</ol>
+										<!--/.Indicators-->
+										<!--Slides-->
+										<div class="carousel-inner" role="listbox">
+											{{#each IMAGES}}
+											<div class="carousel-item {{#ifEquals POS 0}} active {{/ifEquals}}">
+												<img class="d-block  mx-auto img-fluid"
+													src="/anuncio_images/{{IMG_NOMBRE}}" style="height: 150px">
+											</div>
+											{{/each}}
+										</div>
+										<!--/.Slides-->
+										<!--Controls-->
+										<a class="carousel-control-prev" href="#carousel{{ANUN_ID}}" role="button"
+											data-slide="prev">
+											<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+											<span class="sr-only">Previous</span>
+										</a>
+										<a class="carousel-control-next" href="#carousel{{ANUN_ID}}" role="button"
+											data-slide="next">
+											<span class="carousel-control-next-icon" aria-hidden="true"></span>
+											<span class="sr-only">Next</span>
+										</a>
+										<!--/.Controls-->
+									</div>
+									<!--/.Carousel Wrapper-->
 									<div class="d-flex justify-content-between m-3">
 										<span class="font-weight-bolder">
 											<i class="deep-purple-text fas fa-expand-arrows-alt"></i>
-											 {{ANUN_TAMANO_TOTAL}} (m&sup2)
+											{{ANUN_TAMANO_TOTAL}} (m&sup2)
 										</span>
 										<span class="font-weight-bolder">
 											<i class="light-green-text fas fa-bed"></i>
-											 {{ANUN_HABITACIONES}}
+											{{ANUN_HABITACIONES}}
 										</span>
 										<span class="font-weight-bolder">
 											<i class="light-blue-text fas fa-bath"></i>
-											 {{ANUN_BANOS}}
+											{{ANUN_BANOS}}
 										</span>
 										<span class="font-weight-bolder">
 											<i class="pink-text fas fa-car"></i>
-											  {{ANUN_ESTACIONAMIENTO}}
+											{{ANUN_ESTACIONAMIENTO}}
 										</span>
 									</div>
+									{{#ifEquals ANUN_TIPO 'RECOMENDADO'}}
+									<p class="font-italic pl-2">RECOMENDADO</p>
+									{{/ifEquals}}
+									{{#ifEquals ANUN_TIPO 'PRINCIPAL'}}
+									<p class="font-italic pl-2">RECOMENDADO</p>
+									{{/ifEquals}}
 								</div>
 								<div class="col-sm-7">
 									<div class="container-flex m-2">
 										<a href="/anuncio/{{ANUN_ID}}" class="font-weight-bolder">{{ANUN_TITULO}}</a>
 										<h3 class="font-weight-normal">USD {{ANUN_PRECIO}}</h3>
 										<p class="font-weight-light"><i
-												class="deep-orange-text fas fa-map-marker-alt"></i> {{ANUN_DIRECCION}}</p>
+												class="deep-orange-text fas fa-map-marker-alt"></i> {{ANUN_DIRECCION}}
+										</p>
 										<p class="font-weight-lighter description">{{ANUN_DESCRIPCION}} </p>
 										<div class="d-flex justify-content-between">
 											<p class="font-weight-light"><i
-													class="blue-grey-text far fa-calendar-alt"></i>  {{FECHA}}</p>
-											<a  href="/anuncio/{{ANUN_ID}}" type="button" class="btn btn-elegant btn-sm">Contactar</a>
+													class="blue-grey-text far fa-calendar-alt"></i> {{FECHA}}</p>
+											<a href="/anuncio/{{ANUN_ID}}" type="button"
+												class="btn btn-elegant btn-sm">Contactar</a>
 										</div>
 									</div>
 								</div>

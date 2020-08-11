@@ -177,6 +177,28 @@ $(document).ready(function () {
             },
         },
     });
+    $('#table_list').DataTable({
+        lengthMenu: [[5, 10, 25, -1], [5, 10, 25, "All"]],
+        language: {
+            "lengthMenu": "Mostrando   _MENU_   elementos",
+            "zeroRecords": "Ningun registro",
+            "info": "Página _PAGE_ de _PAGES_",
+            "infoEmpty": "No existen registros",
+            "infoFiltered": "(filtered from _MAX_ total records)",
+            "sSearch": "Buscar:",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+        },
+        order: []
+    });
+
+
+
+
     $('#example2').DataTable({
         lengthMenu: [[5, 10, 25, -1], [5, 10, 25, "All"]],
         language: {

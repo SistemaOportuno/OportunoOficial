@@ -38,16 +38,18 @@
                             <div class="col-md-5">
                                 <div class="md-form input-with-pre-icon">
                                     <i class="fas fa-map-marker-alt input-prefix"></i>
-                                    <input type="search" class="form-control" id="search_input" name="search_input" placeholder="Lugar..." required/>
+                                    <input type="search" class="form-control" id="search_input" name="search_input"
+                                        placeholder="Lugar..." required />
                                     <label for="search_input">Lugar</label>
                                 </div>
                             </div>
-                           
+
                             <div class="col-md-2">
                                 <!-- Material input -->
                                 <div class="md-form input-with-pre-icon">
                                     <i class="fas fa-dollar-sign input-prefix"></i>
-                                    <input type="number" id="costo_min" name="costo_min" class="form-control" min="0" required>
+                                    <input type="number" id="costo_min" name="costo_min" class="form-control" min="0"
+                                        required>
                                     <label for="costo_min">Min</label>
                                 </div>
                             </div>
@@ -55,7 +57,8 @@
                                 <!-- Material input -->
                                 <div class="md-form input-with-pre-icon">
                                     <i class="fas fa-dollar-sign input-prefix"></i>
-                                    <input type="number" id="costo_max" name="costo_max" class="form-control" min="1" required>
+                                    <input type="number" id="costo_max" name="costo_max" class="form-control" min="1"
+                                        required>
                                     <label for="costo_max">Max</label>
                                 </div>
                             </div>
@@ -69,21 +72,23 @@
                                         for="checks{{TIPINM_ID}}">{{TIPINM_DESCRIPCION}}</label>
                                 </div>
                                 {{/each}}
-                                
+
                             </div>
                         </div>
                     </div>
-                    <input type="hidden" class="form-control" name="street_number" id="street_number" >
-                    <input type="hidden" class="form-control" name="route" id="route" >
-                    <input type="hidden" class="form-control" name="locality" id="locality" >
-                    <input type="hidden" class="form-control" name="administrative_area_level_1" id="administrative_area_level_1" >
-                    <input type="hidden" class="form-control" name="country" id="country" >
-                    <input type="hidden" class="form-control" name="postal_code" id="postal_code" >
-                    <input type="hidden" class="form-control" name="latitude" id="latitude" >
-                    <input type="hidden" class="form-control" name="longitude" id="longitude" >
-                    <input type="hidden" class="form-control" name="administrative_area_level_2" id="administrative_area_level_2" >
-                    <input type="hidden" class="form-control" name="sublocality_level_1" id="sublocality_level_1" >
-                    <input type="hidden" class="form-control" name="sublocality" id="sublocality" >
+                    <input type="hidden" class="form-control" name="street_number" id="street_number">
+                    <input type="hidden" class="form-control" name="route" id="route">
+                    <input type="hidden" class="form-control" name="locality" id="locality">
+                    <input type="hidden" class="form-control" name="administrative_area_level_1"
+                        id="administrative_area_level_1">
+                    <input type="hidden" class="form-control" name="country" id="country">
+                    <input type="hidden" class="form-control" name="postal_code" id="postal_code">
+                    <input type="hidden" class="form-control" name="latitude" id="latitude">
+                    <input type="hidden" class="form-control" name="longitude" id="longitude">
+                    <input type="hidden" class="form-control" name="administrative_area_level_2"
+                        id="administrative_area_level_2">
+                    <input type="hidden" class="form-control" name="sublocality_level_1" id="sublocality_level_1">
+                    <input type="hidden" class="form-control" name="sublocality" id="sublocality">
 
                     <div class="col-md-2 mt-4 text-center">
                         <button type="button submit" class="btn btn-elegant rnd "><i class="fas fa-search"></i>
@@ -95,6 +100,84 @@
     </div>
     <!--Main layout-->
     <main>
+        <div class="container-fluid">
+            <!--Carousel Wrapper-->
+            <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
+                <h3 class="mt-5 h3 text-center">Nuestros Anuncios Principales</h3>
+                <!--Controls-->
+                <div class="text-center">
+                    <a class="btn btn-dark rnd" href="#multi-item-example" data-slide="prev"><i
+                            class="fas fa-chevron-left"></i></a>
+                    <a class="btn btn-dark rnd" href="#multi-item-example" data-slide="next"><i
+                            class="fas fa-chevron-right"></i></a>
+                </div>
+                <!--/.Controls-->
+
+
+                <!--Slides-->
+                <div class="carousel-inner" role="listbox">
+                    {{#each paginas}}
+                    <!--First slide-->
+                    <div class="carousel-item  {{#ifEquals NUM 0}} active {{/ifEquals}} ">
+                        {{#each ANUNCIOS}}
+                        <div class="col-sm-3" style="float:left">
+                            <div class="card pt-2">
+                                {{#each IMAGES}}
+                                {{#ifEquals POS 0}}
+                                <img class=" d-block  mx-auto img-fluid" src="/anuncio_images/{{../IMG_NOMBRE}}"
+                                    style="height: 130px">
+                                {{/ifEquals}}
+                                {{/each}}
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                        <h3 class="font-weight-normal">USD {{ANUN_PRECIO}}</h3>
+                                       <p class="font-weight-light"><i
+													class="blue-grey-text far fa-calendar-alt"></i> {{FECHA}}</p>
+
+                                    </div>
+                                    <a href="/anuncio/{{ANUN_ID}}" class="font-weight-bolder">{{ANUN_TITULO}}</a>
+                                    <div class="d-flex justify-content-between pl-5 pr-5 pb-2">
+                                        <span class="font-weight-bolder">
+                                            <i class="deep-purple-text fas fa-expand-arrows-alt"></i>
+                                            {{ANUN_TAMANO_TOTAL}} (m&sup2)
+                                        </span>
+                                        <span class="font-weight-bolder">
+                                            <i class="light-green-text fas fa-bed"></i>
+                                            {{ANUN_HABITACIONES}}
+                                        </span>
+                                        <span class="font-weight-bolder">
+                                            <i class="light-blue-text fas fa-bath"></i>
+                                            {{ANUN_BANOS}}
+                                        </span>
+                                        <span class="font-weight-bolder">
+                                            <i class="pink-text fas fa-car"></i>
+                                            {{ANUN_ESTACIONAMIENTO}}
+                                        </span>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <p class="font-weight-light"><i
+                                                class="deep-orange-text fas fa-map-marker-alt"></i> {{ANUN_DIRECCION}}
+                                        </p>
+
+                                    </div>
+
+                                    <p class="card-text description">{{ANUN_DESCRIPCION}}</p>
+                                   	<a href="/anuncio/{{ANUN_ID}}" type="button"
+												class="btn btn-elegant btn-sm">Ver</a>
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+                    {{/each}}
+                    <!--/.First slide-->
+
+                </div>
+                <!--/.Slides-->
+
+            </div>
+            <!--/.Carousel Wrapper-->
+        </div>
         <div class="container">
             <h3 class="m-5 h3 text-center">Empiece a publicar sus Imuebles facilmente</h3>
             <h6 class="m-5 text-center">Cree su perfil acorde a sus necesidades y publique sus imuebles de forma facil y

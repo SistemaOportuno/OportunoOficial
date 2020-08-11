@@ -274,7 +274,7 @@ router.post('/eliminarAnuncio',isUserLog, async (req, res) => {
     res.redirect('/listAnuncios');
 });
 router.get('/listMensajes', isUserLog,async (req, res) => {
-    const mensajes = await db.query('SELECT a.ANUN_ID, a.ANUN_TITULO, am.ANMSG_ID , am.ANUN_ID ,am.ANMSG_NOMBRE, am.ANMSG_CORREO, am.ANMSG_TELEFONO, am.ANMSG_ASUNTO, am.ANMSG_MENSAJE, am.ANMSG_ESTADO, DATE_FORMAT(am.ANMSG_FECHA_VISITA,"%Y-%m-%d") as ANMSG_FECHA_VISITA, DATE_FORMAT(am.ANMSG_FECHA,"%Y-%m-%d") as ANMSG_FECHA  FROM anuncios_mensajes am, anuncios a WHERE am.anun_id= a.anun_id AND am.anmsg_estado="ACTIVO" AND a.usu_id=?', req.user.USU_ID);
+    const mensajes = await db.query('SELECT a.ANUN_ID, a.ANUN_TITULO, am.ANMSG_ID , am.ANUN_ID ,am.ANMSG_NOMBRE, am.ANMSG_CORREO, am.ANMSG_TELEFONO, am.ANMSG_ASUNTO, am.ANMSG_MENSAJE, am.ANMSG_ESTADO, DATE_FORMAT(am.ANMSG_FECHA_VISITA,"%Y-%m-%d") as ANMSG_FECHA_VISITA, DATE_FORMAT(am.ANMSG_FECHA,"%Y-%m-%d") as ANMSG_FECHA  FROM anuncios_mensajes am, anuncios a WHERE am.anun_id= a.anun_id AND am.anmsg_estado="ACTIVO" AND am.anmsg_asunto!="LLAVES EN MANO" AND a.usu_id=?', req.user.USU_ID);
     
     res.render('user/listMensajes',{mensajes});
 });
