@@ -34,7 +34,6 @@ router.get('/', async (req, res) => {
         }
         paginas.push(pagina);
     }
-    console.log(paginas[0].ANUNCIOS[0]);
 
 
     res.render('public/inicio', { tipos_inmuebles, paginas});

@@ -170,7 +170,7 @@ passport.serializeUser((new_usuario, done) => {
 });
 passport.deserializeUser(async (new_usuario, done) => {
     if (new_usuario.USU_TIPO) {
-        const rows = await db.query('SELECT * FROM usuarios WHERE usu_estado = "ACTIVO" AND usu_id = ? ', [new_usuario.USU_ID]);
+        const rows = await db.query('SELECT * FROM usuarios WHERE usu_estado = "ACTIVO" AND usu_correo = ? ', [new_usuario.USU_CORREO]);
         done(null, rows[0]);
     }
     else{

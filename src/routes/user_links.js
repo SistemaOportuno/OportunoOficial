@@ -53,7 +53,6 @@ router.get('/panel', isUserLog, (req, res) => {
 router.get('/addAnuncio', isUserLog, async (req, res) => {
     const row= await db.query("SELECT count(USU_ID) as n FROM anuncios WHERE usu_id=?",req.user.USU_ID);
     const count=row[0].n;
-    console.log(count)
     if(req.user.USU_HABILITADO || count<1){
         const provincias = await db.query("SELECT * FROM provincias WHERE prov_estado='ACTIVO'");
         const tipos_inmuebles = await db.query("SELECT * FROM tipos_inmuebles WHERE tipinm_estado='ACTIVO'");
@@ -113,7 +112,6 @@ router.post('/addAnuncio', update_image, async (req, res) => {
             await db.query('INSERT INTO anuncio_caracteristica SET ? ', new_cract);
         });
     } else if (req.body.CARACT_ID != undefined) {
-        console.log(req.body.CARACT_ID)
         const new_cract = {
             ANUN_ID: result.insertId,
             CARACT_ID: req.body.CARACT_ID

@@ -416,7 +416,6 @@ router.post('/bloquearAnuncioAdmin', isAdminLog, async (req, res) => {
         ANUN_ESTADO: 'BLOQUEADO'
     }
     await db.query('UPDATE anuncios SET ? WHERE anun_id=?', [update_anuncio, req.body.ANUN_ID]);
-    console.log(req.body);
     res.redirect('/adminAnuncios');
 });
 router.post('/eliminarAnuncioAdmin', isAdminLog, async (req, res) => {
@@ -539,7 +538,6 @@ router.post('/editarAdminCuenta', isAdminLog, async (req, res) => {
         ADMIN_APELLIDO: req.body.ADMIN_APELLIDO,
         ADMIN_USUARIO: req.body.ADMIN_USUARIO
     }
-    console.log(req.body);
     await db.query('UPDATE administrador SET ? WHERE admin_id=?', [update_admin, req.user.ADMIN_ID]);
     req.flash('success', 'Datos modificados correctamente');
     res.redirect('/adminCuenta');
