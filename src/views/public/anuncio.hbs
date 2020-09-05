@@ -7,13 +7,10 @@
 <!--CONTAINER GENERAL-->
 <div class="container-fluid pt-5 pb-5">
     <br>
-    <!--FILA GENERAL-->
     <div class="row wow fadeIn ml-1 mr-1">
-
-        <!--COLUMNA IZUIERDA-->
-        <div class="col-sm-9 ">
+        <div class="col-sm-12 ">
             <!--Carousel Wrapper-->
-            <div id="carousel" class="carousel slide carousel-fade elegant-color" data-ride="carousel">
+            <div id="carousel" class="carousel slide carousel-fade mdb-color lighten-5" data-ride="carousel">
                 <!--Indicators-->
                 <ol class="carousel-indicators">
                     {{#each anuncio.IMAGES}}
@@ -43,96 +40,102 @@
                 <!--/.Controls-->
             </div>
             <!--/.Carousel Wrapper-->
+        </div>
+    </div>
+    <!--FILA GENERAL-->
+    <div class="row wow fadeIn ml-1 mr-1">
+        <!--COLUMNA IZUIERDA-->
+        <div class="col-sm-9 pr-5">
             <hr>
             <div class="row">
                 <div class="col-sm-3">
-                    <button type="button" class="rnd btn btn-elegant btn-block mb-2" data-toggle="modal"
+                    <button type="button" class="rnd btn btn-sm btn-light-green btn-block mb-2" data-toggle="modal"
                         data-target="#modal_llamar"><i class="fas fa-phone pr-2"></i>
                         Quiero que me llamen</button>
                 </div>
                 <div class="col-sm-3">
-                    <button type="button" class="rnd btn btn-elegant btn-block mb-2" data-toggle="modal"
+                    <button type="button" class="rnd btn btn-sm btn-light-green btn-block mb-2" data-toggle="modal"
                         data-target="#modal_visita"><i class="fas fa-route pr-2"></i>
                         Planificar visita</button>
                 </div>
                 <div class="col-sm-3">
-                    <button type="button" class="rnd btn btn-elegant btn-block mb-2" data-toggle="modal"
+                    <button type="button" class="rnd btn btn-sm btn-light-green btn-block mb-2" data-toggle="modal"
                         data-target="#modal_consulta"><i class="fas fa-question pr-2"></i>Consultar</button>
                 </div>
                 <div class="col-sm-3">
-                    <button type="button" class="rnd btn btn-elegant btn-block mb-2" data-toggle="modal"
+                    <button type="button" class="rnd btn btn-sm btn-light-green btn-block mb-2" data-toggle="modal"
                         data-target="#modal_llaves"><i class="far fa-handshake pr-2"></i>LLaves en Mano</button>
                 </div>
             </div>
             <hr>
             <div class="row white rounded ">
                 <div class="col-sm-9 pt-3 ">
-                    <h3 class="font-weight-bolder">{{anuncio.ANUN_TITULO}}</h3>
+                    <h5 class="font-weight-bolder">{{anuncio.ANUN_TITULO}}</h5>
                 </div>
                 <div class="col-sm-3 pt-3">
                     <h4 class="font-weight-bolder">${{anuncio.ANUN_PRECIO}} </h4>
                 </div>
                 <div class="col-sm-12">
                     <br>
-                    <h4 class="font-weight-bolder text-white elegant-color rounded p-2"><i
-                            class="fas fa-info-circle pr-2"></i>Información</h4>
-                    <div class="container">
+                    <h6 class="font-weight-bolder mdb-color lighten-5 h6 rounded p-2"><i
+                            class="fas fa-info-circle pr-2"></i>Información</h6>
+                    <div class="container text-small">
                         <div class="row border rounded-lg p-2 mb-2">
                             <div class="col-sm-3">
-                                <h5>Transacción:</h5>
+                                <span>Transacción:</span>
                                 <ul>
                                     <li>{{anuncio.ANUN_TRANSACCION}}</li>
                                 </ul>
                             </div>
                             <div class="col-sm-3">
-                                <h5>Inmueble:</h5>
+                                <span>Inmueble:</span>
                                 <ul>
                                     <li>{{anuncio.TIPINM_DESCRIPCION}}</li>
                                 </ul>
                             </div>
                             <div class="col-sm-3">
-                                <h5>Fecha:</h5>
+                                <span>Fecha:</span>
                                 <ul>
                                     <li>{{anuncio.FECHA}}</li>
                                 </ul>
                             </div>
                             <div class="col-sm-3">
-                                <h5>Alicuota:</h5>
+                                <span>Alicuota:</span>
                                 <ul>
                                     <li>{{anuncio.ANUN_ALICUITA}}</li>
                                 </ul>
                             </div>
                             <div class="col-sm-12">
                                 {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "Terreno"}}
-                                <h5>Estado de Inmueble:</h5>
+                                <span>Estado de Inmueble:</span>
                                 <div class="progress">
                                     <div class="progress-bar" role="progressbar" style="width: 10%">
                                         {{../anuncio.ANUN_ESTADO_CONSTR}}</div>
                                 </div>
                                 {{/ifEquals}}
                                 {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "En planos"}}
-                                <h5>Estado de Inmueble:</h5>
+                                <span>Estado de Inmueble:</span>
                                 <div class="progress">
                                     <div class="progress-bar" role="progressbar" style="width: 25%">
                                         {{../anuncio.ANUN_ESTADO_CONSTR}}</div>
                                 </div>
                                 {{/ifEquals}}
                                 {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "En construcción"}}
-                                <h5>Estado de Inmueble:</h5>
+                                <span>Estado de Inmueble:</span>
                                 <div class="progress">
                                     <div class="progress-bar" role="progressbar" style="width: 50%">
                                         {{../anuncio.ANUN_ESTADO_CONSTR}}</div>
                                 </div>
                                 {{/ifEquals}}
                                 {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "Pre-venta"}}
-                                <h5>Estado de Inmueble:</h5>
+                                <span>Estado de Inmueble:</span>
                                 <div class="progress">
                                     <div class="progress-bar" role="progressbar" style="width: 75%">
                                         {{../anuncio.ANUN_ESTADO_CONSTR}}</div>
                                 </div>
                                 {{/ifEquals}}
                                 {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "Venta"}}
-                                <h5>Estado de Inmueble:</h5>
+                                <span>Estado de Inmueble:</span>
                                 <div class="progress">
                                     <div class="progress-bar" role="progressbar" style="width: 100%">
                                         {{../anuncio.ANUN_ESTADO_CONSTR}}</div>
@@ -146,53 +149,65 @@
                 </div>
                 <div class="col-sm-12">
                     <br>
-                    <h4 class="font-weight-bolder text-white elegant-color rounded p-2"><i
-                            class="fas fa-file-alt pr-2"></i>Descipción</h4>
+                    <h6 class="font-weight-bolder  mdb-color lighten-5 h6 rounded p-2"><i
+                            class="fas fa-file-alt pr-2"></i>Descipción</h6>
                     <div class="row ml-5 mt-2 mb-3">
-                        <span class="large-description">{{anuncio.ANUN_DESCRIPCION}}</span>
+                        <span class="large-description text-small">{{anuncio.ANUN_DESCRIPCION}}</span>
 
                     </div>
                 </div>
                 <div class="col-sm-12">
-                    <h4 class="font-weight-bolder text-white elegant-color rounded p-2 "><i
-                            class="fas fa-list pr-2"></i>Características</h4>
+                    <h6 class="font-weight-bolder  mdb-color lighten-5 h6 rounded p-2 "><i
+                            class="fas fa-list pr-2"></i>Características</h6>
                     <div class="container">
-                        <div class="row text-center border rounded-lg p-2">
+                        <div class="row text-center border rounded-lg p-2 text-small">
                             <div class="col-sm-2">
                                 <i class="grey text-white rounded-circle p-3 mb-1 fas fa-expand-arrows-alt fa-2x"></i>
-                                <h6>{{anuncio.ANUN_TAMANO_TOTAL}} (m&sup2)</h6>
+                                <br>
+                                <span>{{anuncio.ANUN_TAMANO_TOTAL}} (m&sup2)</span>
+                                <br>
                                 <b>Área</b>
                             </div>
                             <div class="col-sm-2">
                                 <i class="grey text-white rounded-circle p-3 mb-1 fas fa-bed fa-2x"></i>
-                                <h6>{{anuncio.ANUN_HABITACIONES}}</h6>
+                                <br>
+                                <span>{{anuncio.ANUN_HABITACIONES}}</span>
+                                <br>
                                 <b>Habitaciones</b>
                             </div>
                             <div class="col-sm-2">
                                 <i class="grey text-white rounded-circle p-3 mb-1 fas fa-bath fa-2x"></i>
-                                <h6>{{anuncio.ANUN_BANOS}}</h6>
+                                <br>
+                                <span>{{anuncio.ANUN_BANOS}}</span>
+                                <br>
                                 <b>Baños</b>
                             </div>
                             <div class="col-sm-2">
                                 <i class="grey text-white rounded-circle p-3 mb-1 fas fa-toilet fa-2x"></i>
-                                <h6>{{anuncio.ANUN_M_BANOS}}</h6>
+                                <br>
+                                <span>{{anuncio.ANUN_M_BANOS}}</span>
+                                <br>
                                 <b>1/2 Baños</b>
                             </div>
                             <div class="col-sm-2">
                                 <i class="grey text-white rounded-circle p-3 mb-1 fas fa-car fa-2x"></i>
-                                <h6>{{anuncio.ANUN_ESTACIONAMIENTO}}</h6>
+                                <br>
+                                <span>{{anuncio.ANUN_ESTACIONAMIENTO}}</span>
+                                <br>
                                 <b>Estacionamientos</b>
                             </div>
                             <div class="col-sm-2">
                                 <i class="grey text-white rounded-circle p-3 mb-1 fas fa-history fa-2x"></i>
-                                <h6>{{anuncio.ANUN_ANTIGUEDAD}}</h6>
+                                <br>
+                                <span>{{anuncio.ANUN_ANTIGUEDAD}}</span>
+                                <br>
                                 <b>Antiguedad</b>
                             </div>
                         </div>
                         <br>
-                        <div class="row border rounded-lg p-2 mb-2">
+                        <div class="row border rounded-lg p-2 mb-2 text-small">
                             <div class="col-sm-12">
-                                <h5>Otros</h5>
+                                <span>Otros</span>
                                 <ul>
                                     {{#each anuncio.CARACTERISTICAS}}
                                     <li>{{CARACT_DESCRIPCION}}</li>
@@ -203,32 +218,32 @@
                     </div>
                 </div>
                 <div class="col-sm-12 mb-2">
-                    <h4 class="font-weight-bolder text-white elegant-color rounded p-2"><i
-                            class="fas fa-map-marker pr-2"></i>Ubicación</h4>
+                    <h6 class="font-weight-bolder  mdb-color lighten-5 h6 rounded p-2"><i
+                            class="fas fa-map-marker pr-2"></i>Ubicación</h6>
 
 
-                    <div class="container">
+                    <div class="container  text-small">
                         <div class="row border rounded-lg p-2 mb-2">
                             <div class="col-sm-4">
-                                <h5>Provincia:</h5>
+                                <span>Provincia:</span>
                                 <ul>
                                     <li>{{anuncio.PROVINCIA}}</li>
                                 </ul>
                             </div>
                             <div class="col-sm-4">
-                                <h5>Cantón:</h5>
+                                <span>Cantón:</span>
                                 <ul>
                                     <li>{{anuncio.CANTON}}</li>
                                 </ul>
                             </div>
                             <div class="col-sm-4">
-                                <h5>Zona:</h5>
+                                <span>Zona:</span>
                                 <ul>
                                     <li>{{anuncio.ZONA}}</li>
                                 </ul>
                             </div>
                             <div class="col-sm-12">
-                                <h5>Dirección:</h5>
+                                <span>Dirección:</span>
                                 <ul>
                                     <li>{{anuncio.ANUN_DIRECCION}}</li>
                                 </ul>
@@ -237,15 +252,15 @@
                             <input type="hidden" name="lon" id="lon" value="{{anuncio.ANUN_LONGITUD}}">
 
                             <div class="col-sm-12">
-                                <h5>Mapa:</h5>
+                                <span>Mapa:</span>
                                 <div id="map-anuncio"></div>
                             </div>
                         </div>
                     </div>
                     {{#if anuncio.ANUN_EMBEBED}}
                     <div class="col-sm-12 mb-2">
-                        <h4 class="font-weight-bolder text-white elegant-color rounded p-2"><i
-                                class="fab fa-youtube pr-2"></i>Video</h4>
+                        <h6 class="font-weight-bolder  mdb-color lighten-5 h6 rounded p-2"><i
+                                class="fab fa-youtube pr-2"></i>Video</h6>
                         <center>
                             <iframe width="727" height="409"
                                 src="https://www.youtube.com/embed/{{anuncio.ANUN_EMBEBED}}" frameborder="0"
@@ -261,39 +276,40 @@
         <!--COLUMNA IZUIERDA-->
         <!--COLUMNA DERECHA-->
         <div class="col-sm-3">
+            <br>
             <!--Form with header-->
             <div class="card rounded-lg">
                 <!--Header-->
-                <div class="header  elegant-color p-1">
+                <div class="header light-green p-1">
                     <div class="row  justify-content-center">
-                        <h5 class="h5 text-white">Contactar con el Anunciante</h5>
+                        <h6 class="h6 text-white">Contactar con el Anunciante</h6>
                     </div>
                 </div>
                 <!--Header-->
                 <form method="POST" action="/addMensajeCliente">
-                    <div class="card-body mx-4">
-                        <div class="md-form">
+                    <div class="card-body">
+                        <div class="md-form md-outline form-sm">
                             <i class="fas fa-user prefix grey-text"></i>
-                            <input type="text" id="ANMSG_NOMBRE" name="ANMSG_NOMBRE" class="form-control" required>
+                            <input type="text" id="ANMSG_NOMBRE" name="ANMSG_NOMBRE" class="form-control form-control-sm" required>
                             <label for="ANMSG_NOMBRE">Nombre</label>
                         </div>
 
-                        <div class="md-form">
+                        <div class="md-form md-outline form-sm">
                             <i class="fas fa-envelope prefix grey-text"></i>
-                            <input type="email" id="ANMSG_CORREO" name="ANMSG_CORREO" class="form-control" required>
+                            <input type="email" id="ANMSG_CORREO" name="ANMSG_CORREO" class="form-control form-control-sm" required>
                             <label for="ANMSG_CORREO">Correo</label>
                         </div>
 
-                        <div class="md-form">
+                        <div class="md-form md-outline form-sm">
                             <i class="fas fa-phone prefix grey-text"></i>
-                            <input type="tel" id="ANMSG_TELEFONO" name="ANMSG_TELEFONO" class="form-control" required
+                            <input type="tel" id="ANMSG_TELEFONO" name="ANMSG_TELEFONO" class="form-control form-control-sm" required
                                 pattern="[0-9]{7,10}" title="Solo números telefónicos">
                             <label for="ANMSG_TELEFONO">Teléfono</label>
                         </div>
 
-                        <div class="md-form">
+                        <div class="md-form md-outline form-sm">
                             <i class="fas fa-pencil-alt prefix grey-text"></i>
-                            <textarea id="ANMSG_MENSAJE" name="ANMSG_MENSAJE" class="md-textarea form-control" rows="5"
+                            <textarea id="ANMSG_MENSAJE" name="ANMSG_MENSAJE" class="md-textarea form-control form-control-sm" rows="5"
                                 required></textarea>
                             <label for="ANMSG_MENSAJE">Mensaje</label>
                         </div>
@@ -305,7 +321,7 @@
                             <!--Grid column-->
                             <div class="col-md-12">
                                 <div class="text-center">
-                                    <button type="button submit" class="btn btn-elegant rnd">Contactar</button>
+                                    <button type="button submit" class="btn btn-sm btn-light-green rnd">Contactar</button>
                                 </div>
                             </div>
                             <!--Grid column-->
@@ -328,23 +344,23 @@
     <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header elegant-color  justify-content-center">
-                <h5 class="modal-title text-white"><i class="fas fa-phone pr-2"></i>QUIERO QUE ME LLAMEN</h5>
+            <div class="modal-header mdb-color darken-3">
+                <h6 class="modal-title text-white h6"><i class="fas fa-phone pr-2"></i>QUIERO QUE ME LLAMEN</h6>
                 <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <form method="POST" action="/addMensajeCliente">
                 <div class="modal-body">
-                    <div class="md-form">
+                    <div class="md-form md-outline form-sm">
                         <i class="fas fa-user prefix grey-text"></i>
-                        <input type="text" id="ANMSG_NOMBRE" name="ANMSG_NOMBRE" class="form-control" required>
+                        <input type="text" id="ANMSG_NOMBRE" name="ANMSG_NOMBRE" class="form-control form-control-sm" required>
                         <label for="ANMSG_NOMBRE">Nombre</label>
                     </div>
 
-                    <div class="md-form">
+                    <div class="md-form md-outline form-sm">
                         <i class="fas fa-phone prefix grey-text"></i>
-                        <input type="tel" id="ANMSG_TELEFONO" name="ANMSG_TELEFONO" class="form-control" required
+                        <input type="tel" id="ANMSG_TELEFONO" name="ANMSG_TELEFONO" class="form-control form-control-sm" required
                             pattern="[0-9]{7,10}" title="Solo números telefónicos">
                         <label for="ANMSG_TELEFONO">Teléfono</label>
                     </div>
@@ -352,7 +368,7 @@
                 <input type="hidden" class="form-control" name="ANUN_ID" value="{{anuncio.ANUN_ID}}" required>
                 <input type="hidden" class="form-control" name="ANMSG_ASUNTO" value="LLAMDA" required>
                 <div class="modal-footer justify-content-center">
-                    <button type="button submit" class="btn btn-elegant rnd">Enviar</button>
+                    <button type="button submit" class="btn btn-sm btn-light-green rnd">Enviar</button>
                 </div>
             </form>
         </div>
@@ -365,8 +381,8 @@
     <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header elegant-color  justify-content-center">
-                <h5 class="modal-title text-white"><i class="fas fa-route pr-2"></i>PLANIFICAR VISITA</h5>
+            <div class="modal-header mdb-color darken-3">
+                <h6 class="modal-title h6 text-white"><i class="fas fa-route pr-2"></i>PLANIFICAR VISITA</h6>
                 <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -374,27 +390,27 @@
             <form method="POST" action="/addMensajeCliente">
 
                 <div class="modal-body">
-                    <div class="md-form">
+                    <div class="md-form md-outline form-sm">
                         <i class="fas fa-user prefix grey-text"></i>
-                        <input type="text" id="ANMSG_NOMBRE" name="ANMSG_NOMBRE" class="form-control"> required
+                        <input type="text" id="ANMSG_NOMBRE" name="ANMSG_NOMBRE" class="form-control form-control-sm" required> 
                         <label for="ANMSG_NOMBRE">Nombre</label>
                     </div>
 
-                    <div class="md-form">
+                    <div class="md-form md-outline form-sm">
                         <i class="fas fa-envelope prefix grey-text"></i>
-                        <input type="email" id="ANMSG_CORREO" name="ANMSG_CORREO" class="form-control" required>
+                        <input type="email" id="ANMSG_CORREO" name="ANMSG_CORREO" class="form-control form-control-sm" required>
                         <label for="ANMSG_CORREO">Correo</label>
                     </div>
 
-                    <div class="md-form">
+                    <div class="md-form md-outline form-sm">
                         <i class="fas fa-phone prefix grey-text"></i>
-                        <input type="tel" id="ANMSG_TELEFONO" name="ANMSG_TELEFONO" class="form-control"
+                        <input type="tel" id="ANMSG_TELEFONO" name="ANMSG_TELEFONO" class="form-control form-control-sm"
                             pattern="[0-9]{7,10}" title="Solo números telefónicos">
                         <label for="ANMSG_TELEFONO">Teléfono</label>
                     </div>
-                    <div class="md-form">
+                    <div class="md-form md-outline form-sm">
                         <i class="fas fa-calendar-day prefix grey-text"></i>
-                        <input type="date" id="ANMSG_FECHA_VISITA" name="ANMSG_FECHA_VISITA" class="form-control"
+                        <input type="date" id="ANMSG_FECHA_VISITA" name="ANMSG_FECHA_VISITA" class="form-control form-control-sm"
                             required>
                         <label for="ANMSG_FECHA_VISITA">En qué fecha desea visitar?</label>
                     </div>
@@ -402,7 +418,7 @@
                 <input type="hidden" class="form-control" name="ANUN_ID" value="{{anuncio.ANUN_ID}}" required>
                 <input type="hidden" class="form-control" name="ANMSG_ASUNTO" value="VISITA" required>
                 <div class="modal-footer justify-content-center">
-                    <button type="button submit" class="btn btn-elegant rnd">Enviar</button>
+                    <button type="button submit" class="btn btn-sm btn-light-green rnd">Enviar</button>
                 </div>
             </form>
         </div>
@@ -415,8 +431,8 @@
     <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header elegant-color  justify-content-center">
-                <h5 class="modal-title text-white"><i class="fas fa-question pr-2"></i>CONSULTAR</h5>
+            <div class="modal-header mdb-color darken-3">
+                <h6 class="modal-title text-white h6"><i class="fas fa-question pr-2"></i>CONSULTAR</h6>
                 <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -424,28 +440,28 @@
             <form method="POST" action="/addMensajeCliente">
 
                 <div class="modal-body">
-                    <div class="md-form">
+                    <div class="md-form md-outline form-sm">
                         <i class="fas fa-user prefix grey-text"></i>
-                        <input type="text" id="ANMSG_NOMBRE" name="ANMSG_NOMBRE" class="form-control" required>
+                        <input type="text" id="ANMSG_NOMBRE" name="ANMSG_NOMBRE" class="form-control form-control-sm" required>
                         <label for="ANMSG_NOMBRE">Nombre</label>
                     </div>
 
-                    <div class="md-form">
+                    <div class="md-form md-outline form-sm">
                         <i class="fas fa-envelope prefix grey-text"></i>
-                        <input type="email" id="ANMSG_CORREO" name="ANMSG_CORREO" class="form-control" required>
+                        <input type="email" id="ANMSG_CORREO" name="ANMSG_CORREO" class="form-control form-control-sm" required>
                         <label for="ANMSG_CORREO">Correo</label>
                     </div>
 
-                    <div class="md-form">
+                    <div class="md-form md-outline form-sm">
                         <i class="fas fa-phone prefix grey-text"></i>
-                        <input type="tel" id="ANMSG_TELEFONO" name="ANMSG_TELEFONO" class="form-control" required
+                        <input type="tel" id="ANMSG_TELEFONO" name="ANMSG_TELEFONO" class="form-control form-control-sm" required
                             pattern="[0-9]{7,10}" title="Solo números telefónicos">
                         <label for="ANMSG_TELEFONO">Teléfono</label>
                     </div>
 
-                    <div class="md-form">
+                    <div class="md-form md-outline form-sm">
                         <i class="fas fa-pencil-alt prefix grey-text"></i>
-                        <textarea id="ANMSG_MENSAJE" name="ANMSG_MENSAJE" class="md-textarea form-control" rows="5"
+                        <textarea id="ANMSG_MENSAJE" name="ANMSG_MENSAJE" class="md-textarea form-control form-control-sm" rows="5"
                             required></textarea>
                         <label for="ANMSG_MENSAJE">Mensaje</label>
                     </div>
@@ -453,7 +469,7 @@
                 <input type="hidden" class="form-control" name="ANUN_ID" value="{{anuncio.ANUN_ID}}" required>
                 <input type="hidden" class="form-control" name="ANMSG_ASUNTO" value="CONSULTA" required>
                 <div class="modal-footer justify-content-center">
-                    <button type="button submit" class="btn btn-elegant rnd">Enviar</button>
+                    <button type="button submit" class="btn btn-sm btn-light-green rnd">Enviar</button>
                 </div>
             </form>
         </div>
@@ -467,8 +483,8 @@
     <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-header elegant-color  justify-content-center">
-                <h5 class="modal-title text-white"><i class="far fa-handshake pr-2"></i>Llaves en mano</h5>
+            <div class="modal-header mdb-color darken-3">
+                <h6 class="modal-title text-white h6"><i class="far fa-handshake pr-2"></i>Llaves en mano</h6>
                 <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -477,49 +493,53 @@
 
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-6 text-small">
                             <div class="text-center">
-                                <i class="grey text-white rounded-circle p-3 mb-1 far fa-handshake fa-4x"></i>
-                                <h4 class="card-title pricing-card-title mb-4">Llaves en mano</h4>
+                                <i class="grey text-white rounded-circle p-3 mb-1 far fa-handshake fa-3x"></i>
+                                <h5 class="card-title pricing-card-title mb-4 ">Llaves en mano</h5>
                             </div>
                             <ol class="list-unstyled m-4">
-                                <li class="justify"> <i class="fas fa-check green-text mr-2"></i>No se preocupe por trámites y papeleo
+                                <li class="justify"> <i class="fas fa-check green-text mr-2"></i>No se preocupe por
+                                    trámites y papeleo
                                 </li>
                                 <hr>
-                                <li class="justify"><i class="fas fa-check green-text mr-2"></i>Nosotros coordinamos el arriendo o compra del inmueble en el que esta interesado
+                                <li class="justify"><i class="fas fa-check green-text mr-2"></i>Nosotros coordinamos el
+                                    arriendo o compra del inmueble en el que esta interesado
                                 </li>
                                 <hr>
-                                <li class="justify"><i class="fas fa-check green-text mr-2"></i>Envíe su información y nos contactaremos con usted para brindarle información y facilitar los trámites
+                                <li class="justify"><i class="fas fa-check green-text mr-2"></i>Envíe su información y
+                                    nos contactaremos con usted para brindarle información y facilitar los trámites
                                 </li>
                                 <hr>
-                                <li class="justify"><i class="fas fa-check green-text mr-2"></i>Su nuevo inmueble esta a un clic de distancia
+                                <li class="justify"><i class="fas fa-check green-text mr-2"></i>Su nuevo inmueble esta a
+                                    un clic de distancia
                                 </li>
                             </ol>
 
                         </div>
                         <div class="col-sm-6">
-                            <div class="md-form">
+                            <div class="md-form md-outline form-sm">
                                 <i class="fas fa-user prefix grey-text"></i>
-                                <input type="text" id="ANMSG_NOMBRE" name="ANMSG_NOMBRE" class="form-control" required>
+                                <input type="text" id="ANMSG_NOMBRE" name="ANMSG_NOMBRE" class="form-control form-control-sm" required>
                                 <label for="ANMSG_NOMBRE">Nombre</label>
                             </div>
 
-                            <div class="md-form">
+                            <div class="md-form md-outline form-sm">
                                 <i class="fas fa-envelope prefix grey-text"></i>
-                                <input type="email" id="ANMSG_CORREO" name="ANMSG_CORREO" class="form-control" required>
+                                <input type="email" id="ANMSG_CORREO" name="ANMSG_CORREO" class="form-control form-control-sm" required>
                                 <label for="ANMSG_CORREO">Correo</label>
                             </div>
 
-                            <div class="md-form">
+                            <div class="md-form md-outline form-sm">
                                 <i class="fas fa-phone prefix grey-text"></i>
-                                <input type="tel" id="ANMSG_TELEFONO" name="ANMSG_TELEFONO" class="form-control"
+                                <input type="tel" id="ANMSG_TELEFONO" name="ANMSG_TELEFONO" class="form-control form-control-sm"
                                     required pattern="[0-9]{7,10}" title="Solo números telefónicos">
                                 <label for="ANMSG_TELEFONO">Teléfono</label>
                             </div>
 
-                            <div class="md-form">
+                            <div class="md-form md-outline form-sm">
                                 <i class="fas fa-pencil-alt prefix grey-text"></i>
-                                <textarea id="ANMSG_MENSAJE" name="ANMSG_MENSAJE" class="md-textarea form-control"
+                                <textarea id="ANMSG_MENSAJE" name="ANMSG_MENSAJE" class="md-textarea form-control form-control-sm"
                                     rows="5" required></textarea>
                                 <label for="ANMSG_MENSAJE">Mensaje</label>
                             </div>
@@ -531,7 +551,7 @@
                 <input type="hidden" class="form-control" name="ANUN_ID" value="{{anuncio.ANUN_ID}}" required>
                 <input type="hidden" class="form-control" name="ANMSG_ASUNTO" value="LLAVES EN MANO" required>
                 <div class="modal-footer justify-content-center">
-                    <button type="button submit" class="btn btn-elegant rnd">Enviar</button>
+                    <button type="button submit" class="btn btn-sm btn-light-green rnd">Enviar</button>
                 </div>
             </form>
         </div>

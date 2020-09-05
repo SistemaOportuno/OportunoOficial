@@ -2,28 +2,28 @@
     <br>
     <div class="row pt-3 pl-5 pr-5 mb-5 white rounded-sm">
         <div class="col-sm-4">
-            <a type="button" href="addPropietario" class=" btn btn-elegant btn-block mb-2"> <i
+            <a type="button" href="addPropietario" class=" btn  btn-light-green btn-block mb-2 rnd btn-sm"> <i
                     class="fas fa-home pr-2"></i>
                 Crear perfil de Propietario</a>
         </div>
         <div class="col-sm-4">
-            <a type="button" href="addAgente" class=" btn btn-elegant btn-block mb-2" disabled><i
+            <a type="button" href="addAgente" class=" btn  btn-light-green btn-block mb-2 rnd btn-sm" disabled><i
                     class="fas fa-briefcase pr-2"></i>
                 Crear perfil de Agente</a>
         </div>
         <div class="col-sm-4">
             <button type="button" class="
-                     btn btn-elegant btn-block mb-2" disabled><i class="fas fa-city pr-2"></i>Crear perfil de
+                     btn  btn-light-green btn-block mb-2 rnd btn-sm" disabled><i class="fas fa-city pr-2"></i>Crear perfil de
                 Inmobiliaria/Constructora</button>
         </div>
         <hr>
         <div class="col-sm-12">
-            <h3 class="mt-3 h3 text-center">Crear perfil de
+            <h3 class="mt-3 h4 text-center">Crear perfil de
                 Inmobiliaria/Constructora</h3>
 
         </div>
         <hr>
-        <div class="col-sm-6">
+        <div class="col-sm-6 text-small">
             <ol class="list-unstyled">
                 <li class="justify"> <i class="fas fa-check green-text mr-2"></i>Publique anuncios de sus proyectos con
                     su propio logo
@@ -40,7 +40,7 @@
             </ol>
         </div>
         <div class="col-sm-6 text-center">
-            <i class="grey text-white rounded-circle p-4 mb-1 fas fa-city fa-7x"></i>
+            <i class="indigo lighten-2 text-white rounded-circle p-4 mb-1 fas fa-city fa-4x"></i>
         </div>
         <div class="col-sm-12">
             <h5 class="mt-2 ml-5">Formulario de datos</h5>
@@ -48,82 +48,87 @@
         <form method="POST" action="/addInmo" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-sm-6">
-                    <div class="md-form">
+                    <div class="md-form  md-outline form-sm">
                         <i class="fas fa-envelope prefix grey-text"></i>
                         <input type="text" id="inmo_empresa" name="inmo_empresa" class="form-control" required>
                         <label for="inmo_empresa">Nombre Empresa</label>
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <div class="md-form">
+                    <div class="md-form  md-outline form-sm">
                         <i class="fas fa-envelope prefix grey-text"></i>
-                        <input type="email" id="inmo_correo_empresa" name="inmo_correo_empresa" class="form-control" required> 
+                        <input type="email" id="inmo_correo_empresa" name="inmo_correo_empresa" class="form-control"
+                            required>
                         <label for="inmo_correo_empresa">Correo Empresa</label>
                     </div>
                 </div>
-                <div class="col-sm-6 pt-4">
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="logo" name="logo" accept="image/x-png, image/gif, image/jpeg, image/jpg" required>
+                <div class="col-sm-6">
+                    <div class=" md-form  md-outline form-sm">
+                        <input type="file" class="custom-file-input" id="logo" name="logo"
+                            accept="image/x-png, image/gif, image/jpeg, image/jpg" required>
                         <label class="custom-file-label" for="logo" data-browse="Seleccionar">Logo de la
                             Empresa</label>
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <div class="md-form">
+                    <div class="md-form  md-outline form-sm">
                         <i class="fas fa-phone prefix grey-text"></i>
-                        <input type="tel" id="inmo_telefono_empresa" name="inmo_telefono_empresa" class="form-control" required pattern="[0-9]{7,10}"
-                  title="Solo números telefónicos">
+                        <input type="tel" id="inmo_telefono_empresa" name="inmo_telefono_empresa" class="form-control"
+                            required pattern="[0-9]{7,10}" title="Solo números telefónicos">
                         <label for="inmo_telefono_empresa">Teléfono Empresa</label>
                     </div>
                 </div>
                 <div class="col-sm-3">
-                    <div class="md-form">
+                    <div class="md-form  md-outline form-sm">
                         <i class="fas fa-signature prefix grey-text"></i>
                         <input type="text" id="inmo_nombre" name="inmo_nombre" class="form-control" required>
                         <label for="inmo_nombre">Representante Nombre</label>
                     </div>
                 </div>
                 <div class="col-sm-3">
-                    <div class="md-form">
+                    <div class="md-form  md-outline form-sm">
                         <i class="fas fa-signature prefix grey-text"></i>
                         <input type="text" id="inmo_apellido" name="inmo_apellido" class="form-control" required>
                         <label for="inmo_apellido">Representante Apellido</label>
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <div class="md-form">
+                    <div class="md-form  md-outline form-sm">
                         <i class="fas fa-envelope prefix grey-text"></i>
                         <input type="email" id="inmo_correo" name="inmo_correo" class="form-control" required>
                         <label for="inmo_correo">Correo Representante</label>
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <div class="md-form">
+                    <div class="md-form  md-outline form-sm">
                         <i class="fas fa-key prefix grey-text"></i>
-                        <input type="password" id="inmo_contrasena" name="inmo_contrasena" class="form-control" required>
+                        <input type="password" id="inmo_contrasena" name="inmo_contrasena" class="form-control"
+                            required>
                         <label for="inmo_contrasena">Contraseña</label>
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <div class="md-form">
+                    <div class="md-form  md-outline form-sm">
                         <i class="fas fa-key prefix grey-text"></i>
-                        <input type="password" id="inmo_contrasena_n" name="inmo_contrasena_n" class="form-control" required>
+                        <input type="password" id="inmo_contrasena_n" name="inmo_contrasena_n" class="form-control"
+                            required>
                         <label for="inmo_contrasena_n">Repetir Contraseña</label>
                     </div>
                 </div>
                 <div class="col-sm-3">
-                    <div class="md-form">
+                    <div class="md-form  md-outline form-sm">
                         <i class="fas fa-phone prefix grey-text"></i>
-                        <input type="tel" id="inmo_telefono" name="inmo_telefono" class="form-control" required pattern="[0-9]{7,10}"
-                  title="Solo números telefónicos">
+                        <input type="tel" id="inmo_telefono" name="inmo_telefono" class="form-control" required
+                            pattern="[0-9]{7,10}" title="Solo números telefónicos">
                         <label for="inmo_telefono">Teléfono Representante</label>
                     </div>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-3  md-outline form-sm">
                     <div class="md-form">
                         <i class="fas fa-city prefix grey-text"></i>
-                        <select multiple class="selectpicker form-control ml-5 pr-5" id="inmo_cobertura" name="inmo_cobertura"
-                            data-container="body" data-live-search="true" title="Ciudades" data-actions-box="true" required>
+                        <select multiple class="selectpicker form-control ml-5 pr-5" id="inmo_cobertura"
+                            name="inmo_cobertura" data-container="body" data-live-search="true" title="Ciudades"
+                            data-actions-box="true" required>
                             {{#each provincias}}
                             <option value="{{PROV_ID}}">{{PROV_NOMBRE}}</option>
                             {{/each}}
@@ -132,7 +137,7 @@
                 </div>
 
                 <div class="col-sm-6 text-center pt-3">
-                    <button type="button submit" class=" btn btn-elegant rnd"> <i class="fas fa-city pr-2"></i>
+                    <button type="button submit" class=" btn  btn-light-green rnd btn-sm"> <i class="fas fa-city pr-2"></i>
                         Crear</button>
                 </div>
             </div>

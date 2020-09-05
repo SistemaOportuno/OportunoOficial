@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
             anuncios_principales[i].IMAGES[j].POS=j;
         }
         aux.push(anuncios_principales[i]);
-        if(aux.length==4){
+        if(aux.length==3){
             var pagina={
                 NUM:num_pag,
                 ANUNCIOS:aux
@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
             num_pag++;
         }
     }
-    if (aux.length < 4) {
+    if (aux.length < 3) {
         var pagina={
             NUM:num_pag,
             ANUNCIOS:aux

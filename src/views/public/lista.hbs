@@ -1,9 +1,9 @@
 <div class="container">
-	<div class="sidebar  rounded-lg">
+	<div class="sidebar  rounded-lg mdb-color lighten-5 text-small">
 		<form method="POST" action="/modifylist" id="formlist">
 			<div class="white m-2 p-2 rounded-lg">
 				<span class="font-weight-bolder">
-					<i class=" fas fa-shopping-cart"></i>
+					<i class="indigo-text fas fa-shopping-cart"></i>
 					Transacción
 				</span>
 				<div class="d-flex justify-content-between">
@@ -22,7 +22,7 @@
 
 			<div class="white m-2 p-2 rounded-lg ">
 				<span class="font-weight-bolder">
-					<i class=" fas fa-map-marked-alt "></i>
+					<i class="indigo-text fas fa-map-marked-alt "></i>
 					Provincia
 				</span>
 				<input type="hidden" id="id_provincia" name="id_provincia" class="form-control">
@@ -47,7 +47,7 @@
 
 			<div class="white m-2 p-2 rounded-lg">
 				<span class="font-weight-bolder">
-					<i class=" fas fa-map-marker-alt"></i>
+					<i class="indigo-text fas fa-map-marker-alt"></i>
 					Cantón
 				</span>
 				<input type="hidden" id="id_canton" name="id_canton" class="form-control">
@@ -71,7 +71,7 @@
 			</div>
 			<div class="white m-2 p-2 rounded-lg">
 				<span class="font-weight-bolder">
-					<i class=" fas fa-map-marker-alt"></i>
+					<i class="indigo-text fas fa-map-marker-alt"></i>
 					Zona
 				</span>
 				<input type="hidden" id="id_zona" name="id_zona" class="form-control">
@@ -96,7 +96,7 @@
 
 			<div class="white m-2 p-2 rounded-lg">
 				<span class="font-weight-bolder">
-					<i class="fas fa-list-ul"></i>
+					<i class="indigo-text fas fa-list-ul"></i>
 					Tipo de Inmueble
 				</span>
 				<input type="hidden" id="id_tipo" name="id_tipo" class="form-control">
@@ -123,7 +123,7 @@
 
 			<div class="white m-2 p-2 rounded-lg">
 				<span class="font-weight-bolder">
-					<i class=" fas fa-hand-holding-usd"></i>
+					<i class="indigo-text fas fa-hand-holding-usd"></i>
 					Precio
 				</span>
 				<div class="d-flex justify-content-between ">
@@ -145,7 +145,7 @@
 
 			<div class="white m-2 p-2 rounded-lg">
 				<span class="font-weight-bolder">
-					<i class=" fas fa-expand-arrows-alt"></i>
+					<i class="indigo-text fas fa-expand-arrows-alt"></i>
 					Área (m&sup2)
 				</span>
 				<div class="d-flex justify-content-between ">
@@ -167,7 +167,7 @@
 
 			<div class="white m-2 p-2 rounded-lg">
 				<span class="font-weight-bolder">
-					<i class=" fas fa-bed"></i>
+					<i class="indigo-text fas fa-bed"></i>
 					Habitaciones
 				</span>
 				<div class="btn-toolbar justify-content-center" role="toolbar">
@@ -186,7 +186,7 @@
 
 			<div class="white m-2 p-2 rounded-lg">
 				<span class="font-weight-bolder">
-					<i class=" fas fa-bath"></i>
+					<i class="indigo-text fas fa-bath"></i>
 					Baños
 				</span>
 				<div class="btn-toolbar justify-content-center" role="toolbar">
@@ -205,7 +205,7 @@
 
 			<div class="white m-2 p-2 rounded-lg">
 				<span class="font-weight-bolder">
-					<i class=" fas fa-car"></i>
+					<i class="indigo-text fas fa-car"></i>
 					Garajes
 				</span>
 				<div class="btn-toolbar justify-content-center" role="toolbar">
@@ -233,46 +233,46 @@
 		</form>
 	</div>
 	<!-- Content -->
-	<div class="content white border rounded pt-5 pl-2 pr-2 mb-5">
+	<div class="content white border rounded pt-5 pl-2 pr-2 mb-5 ">
 		<h5 class="font-weight-normal font-italic pl-2 pr-2 text-center">Búsqueda de Inmuebles</h5>
-		<div class="row border rounded-lg p-2 ml-1 mr-1 mb-4">
+		<div class="row border rounded-lg p-2 ml-1 mr-1 mb-4 text-small">
 			<div class="col-sm-6">
-				<h6 class="font-weight-normal"><i class=" fas fa-shopping-cart"></i><b> Transacción:
-					</b>{{filtro.transaccion}}</h6>
+				<span class="font-weight-normal"><i class=" fas fa-shopping-cart"></i><b> Transacción:
+					</b>{{filtro.transaccion}}</span>
 			</div>
 			<div class="col-sm-6">
-				<h6 class="font-weight-normal"><i class="fas fa-list-ul"></i><b> Tipo de Inmueble: </b>{{filtro.tipo}}
-				</h6>
+				<span class="font-weight-normal"><i class="fas fa-list-ul"></i><b> Tipo de Inmueble: </b>{{filtro.tipo}}
+				</span>
 			</div>
 			<div class="col-sm-6">
-				<h6 class="font-weight-normal"><i class=" fas fa-hand-holding-usd"></i><b> Precio: </b> (min
-					{{filtro.costo_min}}) - (max {{filtro.costo_max}})</h6>
+				<span class="font-weight-normal"><i class=" fas fa-hand-holding-usd"></i><b> Precio: </b> (min
+					{{filtro.costo_min}}) - (max {{filtro.costo_max}})</span>
 			</div>
 			<div class="col-sm-6">
-				<h6 class="font-weight-normal "><i class=" fas fa-expand-arrows-alt"></i><b> Área (m&sup2):</b> (min
-					{{filtro.area_min}}) - (max {{filtro.area_max}})</h6>
+				<span class="font-weight-normal "><i class=" fas fa-expand-arrows-alt"></i><b> Área (m&sup2):</b> (min
+					{{filtro.area_min}}) - (max {{filtro.area_max}})</span>
 			</div>
 			<div class="col-sm-4">
-				<h6 class="font-weight-normal"><i class="fas fa-map-marked-alt"></i><b> Provincia:
-					</b>{{filtro.provincia}}</h6>
+				<span class="font-weight-normal"><i class="fas fa-map-marked-alt"></i><b> Provincia:
+					</b>{{filtro.provincia}}</span>
 			</div>
 			<div class="col-sm-4">
-				<h6 class="font-weight-normal"><i class="fas fa-map-marked-alt"></i><b> Cantón: </b>{{filtro.canton}}
-				</h6>
+				<span class="font-weight-normal"><i class="fas fa-map-marked-alt"></i><b> Cantón: </b>{{filtro.canton}}
+				</span>
 			</div>
 			<div class="col-sm-4">
-				<h6 class="font-weight-normal"><i class="fas fa-map-marked-alt"></i><b> Zona: </b>{{filtro.zona}}</h6>
+				<span class="font-weight-normal"><i class="fas fa-map-marked-alt"></i><b> Zona: </b>{{filtro.zona}}</span>
 			</div>
 
 			<div class="col-sm-4">
-				<h6 class="font-weight-bolder"><i class=" fas fa-bed"></i><b> Habitaciones: </b>{{filtro.habitaciones}}
-				</h6>
+				<span class="font-weight-bolder"><i class=" fas fa-bed"></i><b> Habitaciones: </b>{{filtro.habitaciones}}
+				</span>
 			</div>
 			<div class="col-sm-4">
-				<h6 class="font-weight-bolder"><i class=" fas fa-bath"></i><b> Baños: </b>{{filtro.banos}}</h6>
+				<span class="font-weight-bolder"><i class=" fas fa-bath"></i><b> Baños: </b>{{filtro.banos}}</span>
 			</div>
 			<div class="col-sm-4">
-				<h6 class="font-weight-bolder"><i class=" fas fa-car"></i><b> Garajes: </b>{{filtro.garajes}}</h6>
+				<span class="font-weight-bolder"><i class=" fas fa-car"></i><b> Garajes: </b>{{filtro.garajes}}</span>
 			</div>
 		</div>
 		<table id="table_list">
@@ -286,10 +286,10 @@
 				<tr>
 					<td>
 						<div
-							class="card {{#ifEquals ANUN_TIPO 'RECOMENDADO'}}deep-purple lighten-4 border-secondary{{/ifEquals}}  {{#ifEquals ANUN_TIPO 'PRINCIPAL'}}deep-purple lighten-4 border-secondary{{/ifEquals}}">
+							class="card border-bottom {{#ifEquals ANUN_TIPO 'RECOMENDADO'}}border border-primary light-green accent-1{{/ifEquals}}  {{#ifEquals ANUN_TIPO 'PRINCIPAL'}}yellow lighten-3 {{/ifEquals}}">
 							<div class="row">
 								<div class="col-sm-5">
-									<!--Carousel Wrapper-->
+									<!--Carousel Wrapper--> 
 									<div id="carousel{{ANUN_ID}}" class="carousel slide carousel-fade elegant-color"
 										data-ride="carousel">
 										<!--Indicators-->
@@ -361,7 +361,7 @@
 											<p class="font-weight-light"><i
 													class="blue-grey-text far fa-calendar-alt"></i> {{FECHA}}</p>
 											<a href="/anuncio/{{ANUN_ID}}" type="button"
-												class="btn btn-elegant btn-sm">Contactar</a>
+												class="btn btn-light-green rnd btn-sm">Contactar</a>
 										</div>
 									</div>
 								</div>

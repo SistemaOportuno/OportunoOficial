@@ -5,110 +5,117 @@
 
 </script>
 
-<div class=" container-felx ">
-    <!-- Full Page Intro -->
-    <div class="view" style="height: 65vh; position: sticky;">
+<!-- Background image -->
+<div id="intro" class="bg-image shadow-1-strong" style="height: 100vh;">
+    <img class="w-100" style="min-height: 100%;" src="/imagenes/back_01.jpg">
+    </img>
+    <div class="mask">
+        <div class="container-fluid d-flex align-items-center justify-content-center text-center h-100">
+            <div class="card card-op text-white">
+                <!-- Card content -->
+                <div class="card-body card-body-cascade img-gradient-overlay ">
+                    <h4 class="card-title text-center ">Bienvenido a <b>Inmokraft!</b></h4>
+                    <p class="text-center font-italic">El mejor lugar para comprar, vender o arrendar inmuebles en
+                        Ecuador</p>
+                    <hr class="hr">
+                    <form method="POST" action="/busqueda">
+                        <div class="row white rounded-lg text-body pb-3 ml-3 mr-3 text-small">
+                            <div class="col-md-10">
+                                <div class="row">
+                                    <div class="col-md-3 mt-4">
+                                        <p class="custom-control-inline">Comprar</p>
+                                        <label class="switch">
+                                            <input type="checkbox" class="form-control" id="transaccion"
+                                                name="transaccion">
+                                            <span class="slider round"></span>
+                                        </label>
+                                        <p class="custom-control-inline">Arrendar</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="md-form input-with-pre-icon">
+                                            <i class="fas fa-map-marker-alt input-prefix"></i>
+                                            <input type="search" class="form-control" id="search_input"
+                                                name="search_input" placeholder="Lugar..." required />
+                                            <label for="search_input indigo-lighter-hove">Lugar</label>
+                                        </div>
+                                    </div>
 
-        <!--Video source-->
-        <video class="video-intro" autoplay loop muted>
-            <source src="/videos/presentacion.mp4" type="video/mp4">
-        </video>
-        <!--Video source-->
-    </div>
-    <!-- Card Narrower -->
+                                    <div class="col-md-2">
+                                        <!-- Material input -->
+                                        <div class="md-form input-with-pre-icon">
+                                            <i class="fas fa-dollar-sign input-prefix"></i>
+                                            <input type="number" id="costo_min" name="costo_min" class="form-control"
+                                                min="0" required>
+                                            <label for="costo_min">Min</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <!-- Material input -->
+                                        <div class="md-form input-with-pre-icon">
+                                            <i class="fas fa-dollar-sign input-prefix"></i>
+                                            <input type="number" id="costo_max" name="costo_max" class="form-control"
+                                                min="1" required>
+                                            <label for="costo_max">Max</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 text-center">
+                                        {{#each tipos_inmuebles}}
+                                        <!--Default inline-->
+                                        <div class="custom-control custom-checkbox custom-control-inline">
+                                            <input type="checkbox" class="custom-control-input form-control"
+                                                id="checks{{TIPINM_ID}}" name="checks" value="{{TIPINM_ID}}">
+                                            <label class="custom-control-label"
+                                                for="checks{{TIPINM_ID}}">{{TIPINM_DESCRIPCION}}</label>
+                                        </div>
+                                        {{/each}}
 
-    <div class="card card-cascade narrower ml-5 mr-5 mt-5 ">
-        <!-- Card content -->
-        <div class="card-body card-body-cascade ">
-            <h4 class="card-title text-center ">Bienvenido a <b>Inmuebles YA!</b></h4>
-            <p class="text-center">El mejor lugar para comprar, vender o arrendar inmuebles en Ecuador</p>
-            <hr class="hr">
-            <form method="POST" action="/busqueda">
-                <div class="row">
-                    <div class="col-md-10">
-                        <div class="row">
-                            <div class="col-md-3 mt-4">
-                                <p class="custom-control-inline">Comprar</p>
-                                <label class="switch">
-                                    <input type="checkbox" class="form-control" id="transaccion" name="transaccion">
-                                    <span class="slider round"></span>
-                                </label>
-                                <p class="custom-control-inline">Arrendar</p>
-                            </div>
-                            <div class="col-md-5">
-                                <div class="md-form input-with-pre-icon">
-                                    <i class="fas fa-map-marker-alt input-prefix"></i>
-                                    <input type="search" class="form-control" id="search_input" name="search_input"
-                                        placeholder="Lugar..." required />
-                                    <label for="search_input">Lugar</label>
+                                    </div>
                                 </div>
                             </div>
+                            <input type="hidden" class="form-control" name="street_number" id="street_number">
+                            <input type="hidden" class="form-control" name="route" id="route">
+                            <input type="hidden" class="form-control" name="locality" id="locality">
+                            <input type="hidden" class="form-control" name="administrative_area_level_1"
+                                id="administrative_area_level_1">
+                            <input type="hidden" class="form-control" name="country" id="country">
+                            <input type="hidden" class="form-control" name="postal_code" id="postal_code">
+                            <input type="hidden" class="form-control" name="latitude" id="latitude">
+                            <input type="hidden" class="form-control" name="longitude" id="longitude">
+                            <input type="hidden" class="form-control" name="administrative_area_level_2"
+                                id="administrative_area_level_2">
+                            <input type="hidden" class="form-control" name="sublocality_level_1"
+                                id="sublocality_level_1">
+                            <input type="hidden" class="form-control" name="sublocality" id="sublocality">
 
-                            <div class="col-md-2">
-                                <!-- Material input -->
-                                <div class="md-form input-with-pre-icon">
-                                    <i class="fas fa-dollar-sign input-prefix"></i>
-                                    <input type="number" id="costo_min" name="costo_min" class="form-control" min="0"
-                                        required>
-                                    <label for="costo_min">Min</label>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <!-- Material input -->
-                                <div class="md-form input-with-pre-icon">
-                                    <i class="fas fa-dollar-sign input-prefix"></i>
-                                    <input type="number" id="costo_max" name="costo_max" class="form-control" min="1"
-                                        required>
-                                    <label for="costo_max">Max</label>
-                                </div>
-                            </div>
-                            <div class="col-md-12 text-center">
-                                {{#each tipos_inmuebles}}
-                                <!--Default inline-->
-                                <div class="custom-control custom-checkbox custom-control-inline">
-                                    <input type="checkbox" class="custom-control-input form-control"
-                                        id="checks{{TIPINM_ID}}" name="checks" value="{{TIPINM_ID}}">
-                                    <label class="custom-control-label"
-                                        for="checks{{TIPINM_ID}}">{{TIPINM_DESCRIPCION}}</label>
-                                </div>
-                                {{/each}}
-
+                            <div class="col-md-2 mt-4 text-center">
+                                <button type="button submit" class="btn btn-light-green rnd "><i
+                                        class="fas fa-search"></i>
+                                    Buscar</button>
                             </div>
                         </div>
-                    </div>
-                    <input type="hidden" class="form-control" name="street_number" id="street_number">
-                    <input type="hidden" class="form-control" name="route" id="route">
-                    <input type="hidden" class="form-control" name="locality" id="locality">
-                    <input type="hidden" class="form-control" name="administrative_area_level_1"
-                        id="administrative_area_level_1">
-                    <input type="hidden" class="form-control" name="country" id="country">
-                    <input type="hidden" class="form-control" name="postal_code" id="postal_code">
-                    <input type="hidden" class="form-control" name="latitude" id="latitude">
-                    <input type="hidden" class="form-control" name="longitude" id="longitude">
-                    <input type="hidden" class="form-control" name="administrative_area_level_2"
-                        id="administrative_area_level_2">
-                    <input type="hidden" class="form-control" name="sublocality_level_1" id="sublocality_level_1">
-                    <input type="hidden" class="form-control" name="sublocality" id="sublocality">
-
-                    <div class="col-md-2 mt-4 text-center">
-                        <button type="button submit" class="btn btn-elegant rnd "><i class="fas fa-search"></i>
-                            Buscar</button>
-                    </div>
+                    </form>
                 </div>
-            </form>
+            </div>
+
         </div>
     </div>
+</div>
+<!-- Background image -->
+<div class=" container ">
+    <!-- Card Narrower -->
+
+
     <!--Main layout-->
     <main>
-        <div class="container-fluid">
+        <div class="container-fluid pt-5">
             <!--Carousel Wrapper-->
             <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
-                <h3 class="mt-5 h3 text-center">Nuestros Anuncios Principales</h3>
+                <h3 class="mt-5 h4 text-center font-weight-normal">Nuestros Anuncios Principales</h3>
                 <!--Controls-->
-                <div class="text-center">
-                    <a class="btn btn-dark rnd" href="#multi-item-example" data-slide="prev"><i
+                <div class="text-center mb-3">
+                    <a class="btn btn-light-green rnd" href="#multi-item-example" data-slide="prev"><i
                             class="fas fa-chevron-left"></i></a>
-                    <a class="btn btn-dark rnd" href="#multi-item-example" data-slide="next"><i
+                    <a class="btn btn-light-green rnd" href="#multi-item-example" data-slide="next"><i
                             class="fas fa-chevron-right"></i></a>
                 </div>
                 <!--/.Controls-->
@@ -120,50 +127,58 @@
                     <!--First slide-->
                     <div class="carousel-item  {{#ifEquals NUM 0}} active {{/ifEquals}} ">
                         {{#each ANUNCIOS}}
-                        <div class="col-sm-3" style="float:left">
-                            <div class="card pt-2">
-                                {{#each IMAGES}}
-                                {{#ifEquals POS 0}}
-                                <img class=" d-block  mx-auto img-fluid" src="/anuncio_images/{{../IMG_NOMBRE}}"
-                                    style="height: 130px">
-                                {{/ifEquals}}
-                                {{/each}}
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between">
-                                        <h3 class="font-weight-normal">USD {{ANUN_PRECIO}}</h3>
-                                       <p class="font-weight-light"><i
-													class="blue-grey-text far fa-calendar-alt"></i> {{FECHA}}</p>
+                        <div class="col-sm-4" style="float:left">
+                            <div class="card ">
+                                <div id="intro" class="bg-image ">
+                                    {{#each IMAGES}}
+                                    {{#ifEquals POS 0}}
+                                    <img class="img-fluid mx-auto d-block" src="/anuncio_images/{{../IMG_NOMBRE}}"
+                                        style="height: 300px">
+                                    {{/ifEquals}}
+                                    {{/each}}
+                                    <div class="mask">
+                                        <div class="container">
+                                            <div class="row ">
+                                                <div class="col rounded-lg" style="background:  #123b61!important ;">
+                                                    <span class="font-weight-normal text-white text-center">USD
+                                                        {{ANUN_PRECIO}}</span>
+                                                </div>
+                                                <div class="col"></div>
+                                                <div class="col"></div>
+                                            </div>
+                                        </div>
 
                                     </div>
-                                    <a href="/anuncio/{{ANUN_ID}}" class="font-weight-bolder">{{ANUN_TITULO}}</a>
-                                    <div class="d-flex justify-content-between pl-5 pr-5 pb-2">
+                                </div>
+
+                                <div class="card-body">
+                                    <span class="font-weight-bolder">{{ANUN_TITULO}}</span>
+                                    <div class="d-flex justify-content-between pl-2 pr-2 pb-1 text-small">
                                         <span class="font-weight-bolder">
-                                            <i class="deep-purple-text fas fa-expand-arrows-alt"></i>
                                             {{ANUN_TAMANO_TOTAL}} (m&sup2)
                                         </span>
                                         <span class="font-weight-bolder">
-                                            <i class="light-green-text fas fa-bed"></i>
+                                            <i class=" fas fa-bed"></i>
                                             {{ANUN_HABITACIONES}}
                                         </span>
                                         <span class="font-weight-bolder">
-                                            <i class="light-blue-text fas fa-bath"></i>
+                                            <i class=" fas fa-bath"></i>
                                             {{ANUN_BANOS}}
                                         </span>
                                         <span class="font-weight-bolder">
-                                            <i class="pink-text fas fa-car"></i>
+                                            <i class="fas fa-car"></i>
                                             {{ANUN_ESTACIONAMIENTO}}
                                         </span>
                                     </div>
                                     <div class="d-flex justify-content-between">
-                                        <p class="font-weight-light"><i
+                                        <span class="font-weight-light text-small"><i
                                                 class="deep-orange-text fas fa-map-marker-alt"></i> {{ANUN_DIRECCION}}
-                                        </p>
-
+                                        </span>
                                     </div>
-
-                                    <p class="card-text description">{{ANUN_DESCRIPCION}}</p>
-                                   	<a href="/anuncio/{{ANUN_ID}}" type="button"
-												class="btn btn-elegant btn-sm">Ver</a>
+                                    <div class="float-right"><a href="/anuncio/{{ANUN_ID}}" type="button"
+                                        class="btn btn-light-green btn-sm rnd">Ver</a></div>
+                        
+                                    
                                 </div>
                             </div>
                         </div>
@@ -178,8 +193,8 @@
             </div>
             <!--/.Carousel Wrapper-->
         </div>
-        <div class="container">
-            <h3 class="m-5 h3 text-center">Empiece a publicar sus Imuebles facilmente</h3>
+        <div class="container text-small">
+            <h3 class="m-5 h4 font-weight-normal text-center">Empiece a publicar sus Imuebles facilmente</h3>
             <h6 class="m-5 text-center">Cree su perfil acorde a sus necesidades y publique sus imuebles de forma facil y
                 rápida</h6>
             <!--Grid row-->
@@ -215,7 +230,8 @@
                                 </li>
                             </ol>
                             <hr>
-                            <a type="button" href="addPropietario" class="btn rnd btn-block btn-elegant">Crear perfil de
+                            <a type="button" href="/addPropietario" class="btn rnd btn-block  btn-light-green">Crear
+                                perfil de
                                 Propietario</a>
                         </div>
                     </div>
@@ -253,7 +269,8 @@
                                 </li>
                             </ol>
                             <hr>
-                            <a type="button" href="addAgente" class="btn rnd btn-block btn-elegant">Crear perfil de
+                            <a type="button" href="/addAgente" class="btn rnd btn-block  btn-light-green">Crear perfil
+                                de
                                 Agente</a>
                         </div>
                     </div>
@@ -292,7 +309,7 @@
                                 </li>
                             </ol>
 
-                            <a type="button" href="addInmo" class="btn rnd btn-block btn-elegant">Crear perfil de
+                            <a type="button" href="/addInmo" class="btn rnd btn-block  btn-light-green">Crear perfil de
                                 Inmobiliaria/Constructora</a>
                         </div>
                     </div>

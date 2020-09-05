@@ -2,25 +2,25 @@
     <br>
     <div class="row pt-3 pl-5 pr-5 mb-5 white rounded-sm">
         <div class="col-sm-4">
-            <a type="button" href="addPropietario" class=" btn btn-elegant btn-block mb-2"> <i
+            <a type="button" href="addPropietario" class=" btn  btn-light-green btn-block mb-2 rnd btn-sm"> <i
                     class="fas fa-home pr-2"></i>
                 Crear perfil de Propietario</a>
         </div>
         <div class="col-sm-4">
-            <button type="button" class=" btn btn-elegant btn-block mb-2" disabled><i class="fas fa-briefcase pr-2"></i>
+            <button type="button" class=" btn  btn-light-green btn-block mb-2 rnd btn-sm" disabled><i class="fas fa-briefcase pr-2"></i>
                 Crear perfil de Agente</button>
         </div>
         <div class="col-sm-4">
-            <a type="button" href="addInmo" class="btn btn-elegant btn-block mb-2"><i class="fas fa-city pr-2"></i>Crear
+            <a type="button" href="addInmo" class="btn  btn-light-green btn-block mb-2 rnd btn-sm"><i class="fas fa-city pr-2"></i>Crear
                 perfil de Inmobiliaria/Constructora</a>
         </div>
         <hr>
         <div class="col-sm-12">
-            <h3 class="mt-3 h3 text-center">Crear perfil de Agente</h3>
+            <h3 class="mt-3 h4 text-center">Crear perfil de Agente</h3>
 
         </div>
         <hr>
-        <div class="col-sm-6">
+        <div class="col-sm-6 text-small">
             <ol class="list-unstyled">
                 <li class="justify"> <i class="fas fa-check green-text mr-2"></i>Publique todos los anuncios que
                     promociona
@@ -36,7 +36,7 @@
             </ol>
         </div>
         <div class="col-sm-6 text-center">
-            <i class="grey text-white rounded-circle p-4 mb-1 fas fa-briefcase fa-8x"></i>
+            <i class="indigo lighten-2 text-white rounded-circle p-4 mb-1 fas fa-briefcase fa-4x"></i>
         </div>
         <div class="col-sm-12">
             <h5 class="mt-2 ml-5">Formulario de datos</h5>
@@ -44,53 +44,56 @@
         <form method="POST" action="/addAgente">
             <div class="row">
                 <div class="col-sm-3">
-                    <div class="md-form">
+                    <div class="md-form  md-outline form-sm" >
                         <i class="fas fa-signature prefix grey-text"></i>
                         <input type="text" id="agente_nombre" name="agente_nombre" class="form-control" required>
                         <label for="agente_nombre">Nombre</label>
                     </div>
                 </div>
                 <div class="col-sm-3">
-                    <div class="md-form">
+                    <div class="md-form  md-outline form-sm">
                         <i class="fas fa-signature prefix grey-text"></i>
                         <input type="text" id="agente_apellido" name="agente_apellido" class="form-control" required>
                         <label for="agente_apellido">Apellido</label>
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <div class="md-form">
+                    <div class="md-form  md-outline form-sm">
                         <i class="fas fa-envelope prefix grey-text"></i>
                         <input type="email" id="agente_correo" name="agente_correo" class="form-control" required>
                         <label for="agente_correo">Correo</label>
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <div class="md-form">
+                    <div class="md-form  md-outline form-sm">
                         <i class="fas fa-key prefix grey-text"></i>
-                        <input type="password" id="agente_contrasena" name="agente_contrasena" class="form-control" required>
+                        <input type="password" id="agente_contrasena" name="agente_contrasena" class="form-control"
+                            required>
                         <label for="agente_contrasena">Contraseña</label>
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <div class="md-form">
+                    <div class="md-form  md-outline form-sm">
                         <i class="fas fa-key prefix grey-text"></i>
-                        <input type="password" id="agente_contrasena_n" name="agente_contrasena_n" class="form-control" required>
+                        <input type="password" id="agente_contrasena_n" name="agente_contrasena_n" class="form-control"
+                            required>
                         <label for="agente_contrasena_n">Repetir Contraseña</label>
                     </div>
                 </div>
                 <div class="col-sm-3">
-                    <div class="md-form">
+                    <div class="md-form  md-outline form-sm">
                         <i class="fas fa-phone prefix grey-text"></i>
-                        <input type="tel" id="agente_telefono" name="agente_telefono" class="form-control" required pattern="[0-9]{7,10}"
-                  title="Solo números telefónicos">
+                        <input type="tel" id="agente_telefono" name="agente_telefono" class="form-control" required
+                            pattern="[0-9]{7,10}" title="Solo números telefónicos">
                         <label for="agente_telefono">Teléfono</label>
                     </div>
                 </div>
                 <div class="col-sm-3">
-                    <div class="md-form">
+                    <div class="md-form  md-outline form-sm">
                         <i class="fas fa-city prefix grey-text"></i>
-                        <select multiple class="selectpicker form-control ml-5 pr-5" id="agente_cobertura" name="agente_cobertura"
-                            data-container="body" data-live-search="true" title="Ciudades" data-actions-box="true" required>
+                        <select multiple class="selectpicker form-control ml-5 pr-5" id="agente_cobertura"
+                            name="agente_cobertura" data-container="body" data-live-search="true" title="Ciudades"
+                            data-actions-box="true" required>
                             {{#each provincias}}
                             <option value="{{PROV_ID}}">{{PROV_NOMBRE}}</option>
                             {{/each}}
@@ -99,7 +102,7 @@
                 </div>
 
                 <div class="col-sm-6 text-center pt-3">
-                    <button type="button submit" class=" btn btn-elegant rnd"> <i class="fas fa-briefcase pr-2"></i>
+                    <button type="button submit" class=" btn  btn-light-green btn-sm rnd"> <i class="fas fa-briefcase pr-2"></i>
                         Crear</button>
                 </div>
             </div>

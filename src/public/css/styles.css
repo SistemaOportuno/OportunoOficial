@@ -32,6 +32,9 @@
   height: 60px;
   font-size: small;
 }
+.text-small{
+  font-size: small;
+}
 p {
   text-align: justify;
   text-justify: inter-word;
@@ -43,7 +46,7 @@ p {
   /*sidebar*/
   
   .sidebar {
-    width: 300px;
+    width: 275px;
     background-color: #fafafa  ;
     position: absolute;
     overflow: auto;
@@ -52,7 +55,7 @@ p {
   div.content {
     margin-left: 310px;
     margin-top: 80px;
-    height: 300vh;
+    height:275vh;
   }
   div.content-panel  {
     margin-left: 310px;
@@ -121,18 +124,18 @@ p {
 /*nav*/
 @media (min-width: 800px) and (max-width: 850px) {
   .navbar:not(.top-nav-collapse) {
-      background: rgb(130, 134, 143)!important;
+      background: #123b61!important;
   }
   
 }
 
 .navbar{
-  background-color:rgba(62, 69, 81, 0.7)
+  background-color:rgba(62, 69, 81, 0.2)
 }       
 .page-footer,.top-nav-collapse{
-  background-color:#2E2E2E
+  background-color:#123b61
 }
-@media only screen and (max-width:768px){.navbar{background-color:#1C2331}}
+@media only screen and (max-width:768px){.navbar{background-color:#123b61}}
  
   /*the container must be positioned relative:*/
   .autocomplete {
@@ -190,7 +193,7 @@ p {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #2E2E2E;
+  background-color: #80c922;
   -webkit-transition: .4s;
   transition: .4s;
 }
@@ -208,11 +211,11 @@ p {
 }
 
 input:checked + .slider {
-  background-color: #2E2E2E;
+  background-color: #80c922;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2E2E2E;
+  box-shadow: 0 0 1px #80c922;
 }
 
 input:checked + .slider:before {
@@ -251,7 +254,7 @@ input:checked + .slider:before {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #2E2E2E 
+  background-color: #80c922 
   ;
   -webkit-transition: .4s;
   transition: .4s;
@@ -272,11 +275,11 @@ input:checked + .slider:before {
 }
 
 input:checked + .slider-long {
-  background-color:  #2E2E2E
+  background-color:  #80c922
 }
 
 input:focus + .slider-long {
-  box-shadow: 0 0 1px  #2E2E2E
+  box-shadow: 0 0 1px  #80c922
 }
 
 input:checked + .slider-long:before {
@@ -285,8 +288,8 @@ input:checked + .slider-long:before {
   transform: translateX(50px);
 }
 
-
-
-
+.card-op {
+  background-color: rgba(0, 0, 0, 0.4) !important;
+}
 
  
