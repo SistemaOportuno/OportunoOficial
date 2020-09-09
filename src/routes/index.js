@@ -35,6 +35,40 @@ router.get('/', async (req, res) => {
         paginas.push(pagina);
     }
 
+    /*
+      for (let i in ecuador) {
+        console.log(i,ecuador[i].provincia);
+        const newProv={
+            PROV_ID:i,
+            PROV_NOMBRE:ecuador[i].provincia,
+            PROV_ESTADO:"ACTIVO"
+        }
+        //await db.query("INSERT INTO provincias SET ?",[newProv]);
+        for (let j in ecuador[i].cantones) {
+            console.log("      ",j, ecuador[i].cantones[j].canton );
+            const newCant={
+                CANT_ID:j,
+                PROV_ID:i,
+                CANT_NOMBRE:ecuador[i].cantones[j].canton,
+                CANT_ESTADO:"ACTIVO"
+            }
+            //await db.query("INSERT INTO cantones SET ?",[newCant]);
+
+            for (let k in ecuador[i].cantones[j].parroquias) {
+                console.log("      ","       ", k, ecuador[i].cantones[j].parroquias[k]);
+                const newZon={
+                    ZON_ID:k,
+                    CANT_ID:j,
+                    ZON_NOMBRE:ecuador[i].cantones[j].parroquias[k],
+                    ZON_ESTADO:"ACTIVO"
+                }
+                await db.query("INSERT INTO zonas SET ?",[newZon]);
+                
+            }
+        }
+      }
+      
+*/
 
     res.render('public/inicio', { tipos_inmuebles, paginas});
 });
