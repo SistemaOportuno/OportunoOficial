@@ -1,0 +1,93 @@
+<div class="container-fluid p-5">
+    <div class="card-deck mt-5 ">
+        {{#each anuncios_principales}}
+        <div class="col-sm-4 pb-4">
+            <div class="card ">
+                <div id="intro" class="bg-image ">
+
+                    <!--Carousel Wrapper-->
+                    <div id="carousel{{ANUN_ID}}" class="carousel slide carousel-fade elegant-color"
+                        data-ride="carousel">
+                        <!--Indicators-->
+                        <ol class="carousel-indicators">
+                            {{#each IMAGES}}
+                            <li data-target="#carousel{{../ANUN_ID}}" data-slide-to="{{POS}}" {{#ifEquals POS 0}}
+                                class="active" {{/ifEquals}}></li>
+                            {{/each}}
+                        </ol>
+                        <!--/.Indicators-->
+                        <!--Slides-->
+                        <div class="carousel-inner" role="listbox">
+                            {{#each IMAGES}}
+
+                            <div class="carousel-item overlay zoom {{#ifEquals POS 0}} active {{/ifEquals}}">
+                                <div class="mask">
+                                    <div class="container">
+                                        <div class="row ">
+                                            <div class="col rounded-lg" style="background:  #123b61!important ;">
+                                                <span class="font-weight-normal text-white text-center">USD
+                                                    {{../ANUN_PRECIO}}</span>
+                                            </div>
+                                            <div class="col"></div>
+                                            <div class="col"></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <img class="img-fluid mx-auto d-block" src="/anuncio_images/{{IMG_NOMBRE}}"
+                                    style="height: 300px">
+                            </div>
+                            {{/each}}
+                        </div>
+                        <!--/.Slides-->
+                        <!--Controls-->
+                        <a class="carousel-control-prev" href="#carousel{{ANUN_ID}}" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon border rounded-lg" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carousel{{ANUN_ID}}" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon border rounded-lg" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                        <!--/.Controls-->
+                    </div>
+                    <!--/.Carousel Wrapper-->
+
+                </div>
+
+                <div class="card-body">
+                    <span class="font-weight-bolder">{{ANUN_TITULO}}</span>
+                    <div class="d-flex justify-content-between pl-2 pr-2 pb-1 text-small">
+                        <span class="font-weight-bolder">
+                            {{ANUN_TAMANO_TOTAL}} (m&sup2)
+                        </span>
+                        <span class="font-weight-bolder">
+                            <i class=" fas fa-bed"></i>
+                            {{ANUN_HABITACIONES}}
+                        </span>
+                        <span class="font-weight-bolder">
+                            <i class=" fas fa-bath"></i>
+                            {{ANUN_BANOS}}
+                        </span>
+                        <span class="font-weight-bolder">
+                            <i class="fas fa-car"></i>
+                            {{ANUN_ESTACIONAMIENTO}}
+                        </span>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span class="font-weight-light text-small"><i
+                                class="deep-orange-text fas fa-map-marker-alt"></i>
+                            {{ANUN_DIRECCION}}
+                        </span>
+                    </div>
+                    <div class="float-right"><a href="/anuncio/{{ANUN_ID}}" type="button"
+                            class="btn btn-light-green btn-sm rnd">Ver</a></div>
+
+
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+
+</div>

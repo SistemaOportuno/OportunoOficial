@@ -7,11 +7,13 @@
                 Crear perfil de Propietario</a>
         </div>
         <div class="col-sm-4">
-            <button type="button" class=" btn  btn-light-green btn-block mb-2 rnd btn-sm" disabled><i class="fas fa-briefcase pr-2"></i>
+            <button type="button" class=" btn  btn-light-green btn-block mb-2 rnd btn-sm" disabled><i
+                    class="fas fa-briefcase pr-2"></i>
                 Crear perfil de Agente</button>
         </div>
         <div class="col-sm-4">
-            <a type="button" href="addInmo" class="btn  btn-light-green btn-block mb-2 rnd btn-sm"><i class="fas fa-city pr-2"></i>Crear
+            <a type="button" href="addInmo" class="btn  btn-light-green btn-block mb-2 rnd btn-sm"><i
+                    class="fas fa-city pr-2"></i>Crear
                 perfil de Inmobiliaria/Constructora</a>
         </div>
         <hr>
@@ -44,7 +46,7 @@
         <form method="POST" action="/addAgente">
             <div class="row">
                 <div class="col-sm-3">
-                    <div class="md-form  md-outline form-sm" >
+                    <div class="md-form  md-outline form-sm">
                         <i class="fas fa-signature prefix grey-text"></i>
                         <input type="text" id="agente_nombre" name="agente_nombre" class="form-control" required>
                         <label for="agente_nombre">Nombre</label>
@@ -102,7 +104,15 @@
                 </div>
 
                 <div class="col-sm-6 text-center pt-3">
-                    <button type="button submit" class=" btn  btn-light-green btn-sm rnd"> <i class="fas fa-briefcase pr-2"></i>
+                    <!-- Default unchecked -->
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="tycCheck" required
+                            oninvalid="this.setCustomValidity('Debe aceptar los Términos y Condiciones')">
+                        <label class="custom-control-label" for="tycCheck">Acepta los <a
+                                href="/terminosYcondiciones">Términos y Condiciones</a></label>
+                    </div>
+                    <button type="button submit" class=" btn  btn-light-green btn-sm rnd"> <i
+                            class="fas fa-briefcase pr-2"></i>
                         Crear</button>
                 </div>
             </div>

@@ -101,13 +101,13 @@
     </div>
 </div>
 <!-- Background image -->
-<div class=" container ">
+<div class=" container-fluid ">
     <!-- Card Narrower -->
 
 
     <!--Main layout-->
     <main>
-        <div class="container-fluid pt-5">
+        <div class="container-fluid p-5 ">
             <!--Carousel Wrapper-->
             <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
                 <h3 class="mt-5 h4 text-center font-weight-normal">Nuestros Anuncios Principales</h3>
@@ -127,9 +127,9 @@
                     <!--First slide-->
                     <div class="carousel-item  {{#ifEquals NUM 0}} active {{/ifEquals}} ">
                         {{#each ANUNCIOS}}
-                        <div class="col-sm-4" style="float:left">
+                        <div class="col-sm-4 pb-4" style="float:left">
                             <div class="card ">
-                                <div id="intro" class="bg-image ">
+                                <div id="intro" class="bg-image overlay zoom">
                                     {{#each IMAGES}}
                                     {{#ifEquals POS 0}}
                                     <img class="img-fluid mx-auto d-block" src="/anuncio_images/{{../IMG_NOMBRE}}"
@@ -176,9 +176,9 @@
                                         </span>
                                     </div>
                                     <div class="float-right"><a href="/anuncio/{{ANUN_ID}}" type="button"
-                                        class="btn btn-light-green btn-sm rnd">Ver</a></div>
-                        
-                                    
+                                            class="btn btn-light-green btn-sm rnd">Ver</a></div>
+
+
                                 </div>
                             </div>
                         </div>
@@ -192,6 +192,10 @@
 
             </div>
             <!--/.Carousel Wrapper-->
+            <div class="container d-flex justify-content-center">
+                <a type="button" href="/allProyects" class="btn rnd btn-light-green">Ver mas
+                    Proyectos</a>
+            </div>
         </div>
         <div class="container text-small">
             <h3 class="m-5 h4 font-weight-normal text-center">Empiece a publicar sus Imuebles facilmente</h3>
@@ -206,7 +210,7 @@
                         <!--Card content-->
                         <div class="card-body">
                             <div class="text-center">
-                                <i class="grey text-white rounded-circle p-3 mb-1 fas fa-home fa-4x"></i>
+                                <i class="mdb-color darken-1 text-white rounded-circle p-3 mb-1 fas fa-home fa-4x"></i>
                                 <h4 class="card-title pricing-card-title mb-4">Propietario</h4>
                             </div>
                             <ol class="list-unstyled m-4">
@@ -245,7 +249,8 @@
                         <!--Card content-->
                         <div class="card-body">
                             <div class="text-center">
-                                <i class="grey text-white rounded-circle p-3 mb-1 fas fa-briefcase fa-4x"></i>
+                                <i
+                                    class="rgba-lime-strong text-white rounded-circle p-3 mb-1 fas fa-briefcase fa-4x"></i>
                                 <h4 class="card-title pricing-card-title mb-4">Agente</h4>
                             </div>
                             <ol class="list-unstyled m-4">
@@ -284,7 +289,8 @@
                         <!--Card content-->
                         <div class="card-body">
                             <div class="text-center">
-                                <i class="grey text-white rounded-circle p-3 mb-1 fas fa-city fa-4x"></i>
+                                <i
+                                    class="light-green darken-1 text-white rounded-circle p-3 mb-1 fas fa-city fa-4x"></i>
                                 <h4 class="card-title pricing-card-title mb-4">Inmobiliaria/Constructora</h4>
                             </div>
                             <ol class="list-unstyled m-4">

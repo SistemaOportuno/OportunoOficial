@@ -346,4 +346,10 @@ router.get('/misionYvision', async (req, res) => {
     res.render('public/misionYvision');
     
 });
+router.get('/terminosYcondiciones', async (req, res) => {
+    res.render('public/terminosycondiciones');
+    
+});
+
+
 module.exports = router;

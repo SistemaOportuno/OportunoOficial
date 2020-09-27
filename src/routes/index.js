@@ -2,6 +2,24 @@ const express = require('express');
 const router = express.Router();
 const db = require('../database');
 
+/*
+var nodemailer = require('nodemailer');
+
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'consorcioinmmokraft@gmail.com',
+    pass: 'Inmmokraft644'
+  }
+});
+
+var mailOptions = {
+  from: 'consorcioinmmokraft@gmail.com',
+  to: 'cuascota442@gmail.com',
+  subject: 'Sending Email using Node.js',
+  text: 'That was easy!'
+};
+*/
 
 router.get('/', async (req, res) => {
     var tipos_inmuebles = await db.query("SELECT * FROM tipos_inmuebles WHERE tipinm_estado='ACTIVO';");
@@ -17,7 +35,7 @@ router.get('/', async (req, res) => {
             anuncios_principales[i].IMAGES[j].POS=j;
         }
         aux.push(anuncios_principales[i]);
-        if(aux.length==3){
+        if(aux.length==6){
             var pagina={
                 NUM:num_pag,
                 ANUNCIOS:aux
@@ -27,7 +45,7 @@ router.get('/', async (req, res) => {
             num_pag++;
         }
     }
-    if (aux.length < 3) {
+    if (aux.length < 6) {
         var pagina={
             NUM:num_pag,
             ANUNCIOS:aux
@@ -72,6 +90,30 @@ router.get('/', async (req, res) => {
 
     res.render('public/inicio', { tipos_inmuebles, paginas});
 });
+
+router.get('/allProyects', async (req, res) => {
+    var anuncios_principales = await db.query("SELECT *, DATE_FORMAT(ANUN_FECHA,'%Y-%m-%d') as FECHA FROM anuncios WHERE anun_estado='ACTIVO' AND anun_tipo='PRINCIPAL';");
+
+    for(var i=0;i<anuncios_principales.length;i++){
+        anuncios_principales[i].IMAGES = await db.query('SELECT * FROM imagenes WHERE anun_id=?', anuncios_principales[i].ANUN_ID);
+        for(var j=0;j<anuncios_principales[i].IMAGES.length;j++){
+            anuncios_principales[i].IMAGES[j].POS=j;
+        }
+    }
+    /*
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
+      */
+    res.render('public/allProyects', { anuncios_principales});
+});
+
+
+
 
 
 module.exports = router;
