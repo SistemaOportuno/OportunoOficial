@@ -1,32 +1,27 @@
 <div class="container mt-5 pt-5  pb-4 pl-5 pr-5 align-middle ">
     <div class="card m-5 ">
         <!-- Default form login -->
-        <form class="text-center border border-light p-5" action="/login" method="POST">
+        <form class="text-center border border-light p-5" action="/recuperar" method="POST">
             <img src="/logo_empresa/{{empresa.EMP_LOGO}}" class="rounded mx-auto" style="width: 200px;">
 
-            <p class="h5 mb-4">Iniciar Sesión</p>
+            <p class="h5 mb-4">Recuperar Contraseña</p>
 
             <!-- Email -->
             <input type="email" id="usuario_correo" name="usuario_correo" class="form-control form-control-sm mb-4"
-                placeholder="Correo" required>
-
-            <!-- Password -->
-            <input type="password" id="usuario_contrasena" name="usuario_contrasena"
-                class="form-control form-control-sm mb-4" placeholder="Contraseña" required>
-
+                placeholder="Ingerse el correo de su cuenta para obtener clave temporal" required>
             <div class="d-flex justify-content-around">
                 <div>
                     <!-- Forgot password -->
-                    <a href="/recuperar">Olvido su contraseña?</a>
+                    <a href="/login">Iniciar Sesión</a>
                 </div>
             </div>
 
             <!-- Sign in button -->
-            <button class="btn btn-light-green btn-block my-4 rnd" type="submit">Sign in</button>
+            <button class="btn btn-light-green btn-block my-4 rnd" type="submit">Resetear y Enviar contraseña Temporal</button>
 
         </form>
         <!-- Default form login -->
     </div>
-    <div class="container"></div>
+    <div class="container pt-4"></div>
 
 </div>

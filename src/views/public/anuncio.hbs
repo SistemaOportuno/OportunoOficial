@@ -8,43 +8,43 @@
 
 <br>
 <div class="container-fluid mdb-color darken-3">
-<div class="row mt-5">
-    <div class="col-sm-12 ">
-        <!--Carousel Wrapper-->
-        <div id="carousel" class="carousel slide carousel-fade " data-ride="carousel">
-            <!--Indicators-->
-            <ol class="carousel-indicators">
-                {{#each anuncio.IMAGES}}
-                <li data-target="#carousel" data-slide-to="{{POS}}" {{#ifEquals POS 0}} class="active" {{/ifEquals}}>
-                </li>
-                {{/each}}
-            </ol>
-            <!--/.Indicators-->
-            <!--Slides-->
-            <div class="carousel-inner" role="listbox">
-                {{#each anuncio.IMAGES}}
-                <div class="carousel-item overlay zoom {{#ifEquals POS 0}} active {{/ifEquals}}">
-                    <img class="d-block mx-auto" src="/anuncio_images/{{IMG_NOMBRE}}" style="height: 75vh;">
+    <div class="row mt-5">
+        <div class="col-sm-12 ">
+            <!--Carousel Wrapper-->
+            <div id="carousel" class="carousel slide carousel-fade " data-ride="carousel">
+                <!--Indicators-->
+                <ol class="carousel-indicators">
+                    {{#each anuncio.IMAGES}}
+                    <li data-target="#carousel" data-slide-to="{{POS}}" {{#ifEquals POS 0}} class="active"
+                        {{/ifEquals}}>
+                    </li>
+                    {{/each}}
+                </ol>
+                <!--/.Indicators-->
+                <!--Slides-->
+                <div class="carousel-inner" role="listbox">
+                    {{#each anuncio.IMAGES}}
+                    <div class="carousel-item overlay zoom {{#ifEquals POS 0}} active {{/ifEquals}}">
+                        <img class="d-block mx-auto" src="/anuncio_images/{{IMG_NOMBRE}}" style="height: 75vh;">
+                    </div>
+                    {{/each}}
                 </div>
-                {{/each}}
+                <!--/.Slides-->
+                <!--Controls-->
+                <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon rounded-lg border" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon rounded-lg border" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+                <!--/.Controls-->
             </div>
-            <!--/.Slides-->
-            <!--Controls-->
-            <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon rounded-lg border" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
-                <span class="carousel-control-next-icon rounded-lg border" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-            <!--/.Controls-->
+            <!--/.Carousel Wrapper-->
         </div>
-        <!--/.Carousel Wrapper-->
     </div>
 </div>
-</div>
-
 <div class="container-fluid pb-5">
     <!--FILA GENERAL-->
     <div class="row wow fadeIn ">
@@ -52,228 +52,211 @@
         <div class="col-sm-9">
             <hr>
             <div class="row">
-                <div class="col-sm-3">
-                    <button type="button" class="rnd btn btn-sm btn-light-green btn-block mb-2" data-toggle="modal"
-                        data-target="#modal_llamar"><i class="fas fa-phone pr-2"></i>
-                        Quiero que me llamen</button>
-                </div>
-                <div class="col-sm-3">
-                    <button type="button" class="rnd btn btn-sm btn-light-green btn-block mb-2" data-toggle="modal"
-                        data-target="#modal_visita"><i class="fas fa-route pr-2"></i>
-                        Planificar visita</button>
-                </div>
-                <div class="col-sm-3">
-                    <button type="button" class="rnd btn btn-sm btn-light-green btn-block mb-2" data-toggle="modal"
-                        data-target="#modal_consulta"><i class="fas fa-question pr-2"></i>Consultar</button>
-                </div>
-                <div class="col-sm-3">
-                    <button type="button" class="rnd btn btn-sm btn-light-green btn-block mb-2" data-toggle="modal"
-                        data-target="#modal_llaves"><i class="far fa-handshake pr-2"></i>LLaves en Mano</button>
-                </div>
-            </div>
-            <hr>
-            <div class="row white rounded ">
-                <div class="col-sm-9 pt-3 ">
+                <div class="col-sm-7 pt-3 ">
                     <h5 class="font-weight-bolder">{{anuncio.ANUN_TITULO}}</h5>
                 </div>
                 <div class="col-sm-3 pt-3">
                     <h4 class="font-weight-bolder">${{anuncio.ANUN_PRECIO}} </h4>
                 </div>
-                <div class="col-sm-12">
+                <div class="col-sm-1 pt-3">
+                    <a href="https://api.whatsapp.com/send?text={{anuncio.TEXTO_COMPARTIR}}"><i
+                            class="fab fa-whatsapp fa-3x"></i></a>
+                </div>
+                <div class="col-sm-1 pt-3">
+                    <a data-toggle="modal" data-target="#modal_llamar"><i class="far fa-envelope fa-3x"></i></a>
+
+                </div>
+            </div>
+            <div class="row border rounded-lg m-2 p-2">
+                <div class="col-sm-3">
+                    <span>Transacción:</span>
+                    <ul>
+                        <li>{{anuncio.ANUN_TRANSACCION}}</li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <span>Inmueble:</span>
+                    <ul>
+                        <li>{{anuncio.TIPINM_DESCRIPCION}}</li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <span>Fecha:</span>
+                    <ul>
+                        <li>{{anuncio.FECHA}}</li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <span>Alicuota:</span>
+                    <ul>
+                        <li>{{anuncio.ANUN_ALICUITA}}</li>
+                    </ul>
+                </div>
+                <div class="col-sm-12 mb-3">
+                    {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "Terreno"}}
+                    <span>Estado de Inmueble:</span>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 10%">
+                            {{../anuncio.ANUN_ESTADO_CONSTR}}</div>
+                    </div>
+                    {{/ifEquals}}
+                    {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "En planos"}}
+                    <span>Estado de Inmueble:</span>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 25%">
+                            {{../anuncio.ANUN_ESTADO_CONSTR}}</div>
+                    </div>
+                    {{/ifEquals}}
+                    {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "En construcción"}}
+                    <span>Estado de Inmueble:</span>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 50%">
+                            {{../anuncio.ANUN_ESTADO_CONSTR}}</div>
+                    </div>
+                    {{/ifEquals}}
+                    {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "Pre-venta"}}
+                    <span>Estado de Inmueble:</span>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 75%">
+                            {{../anuncio.ANUN_ESTADO_CONSTR}}</div>
+                    </div>
+                    {{/ifEquals}}
+                    {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "Venta"}}
+                    <span>Estado de Inmueble:</span>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 100%">
+                            {{../anuncio.ANUN_ESTADO_CONSTR}}</div>
+                    </div>
+                    {{/ifEquals}}
+                </div>
+                <div class="col-sm-2 text-center">
+                    <i class="mdb-color text-white rounded-circle p-3 mb-1 fas fa-expand-arrows-alt fa-1x"></i>
                     <br>
-                    <h6 class="font-weight-bolder mdb-color lighten-5 h6 rounded p-2"><i
-                            class="fas fa-info-circle pr-2"></i>Información</h6>
-                    <div class="container text-small">
-                        <div class="row border rounded-lg p-2 mb-2">
-                            <div class="col-sm-3">
-                                <span>Transacción:</span>
-                                <ul>
-                                    <li>{{anuncio.ANUN_TRANSACCION}}</li>
-                                </ul>
-                            </div>
-                            <div class="col-sm-3">
-                                <span>Inmueble:</span>
-                                <ul>
-                                    <li>{{anuncio.TIPINM_DESCRIPCION}}</li>
-                                </ul>
-                            </div>
-                            <div class="col-sm-3">
-                                <span>Fecha:</span>
-                                <ul>
-                                    <li>{{anuncio.FECHA}}</li>
-                                </ul>
-                            </div>
-                            <div class="col-sm-3">
-                                <span>Alicuota:</span>
-                                <ul>
-                                    <li>{{anuncio.ANUN_ALICUITA}}</li>
-                                </ul>
-                            </div>
-                            <div class="col-sm-12">
-                                {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "Terreno"}}
-                                <span>Estado de Inmueble:</span>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 10%">
-                                        {{../anuncio.ANUN_ESTADO_CONSTR}}</div>
-                                </div>
-                                {{/ifEquals}}
-                                {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "En planos"}}
-                                <span>Estado de Inmueble:</span>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 25%">
-                                        {{../anuncio.ANUN_ESTADO_CONSTR}}</div>
-                                </div>
-                                {{/ifEquals}}
-                                {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "En construcción"}}
-                                <span>Estado de Inmueble:</span>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 50%">
-                                        {{../anuncio.ANUN_ESTADO_CONSTR}}</div>
-                                </div>
-                                {{/ifEquals}}
-                                {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "Pre-venta"}}
-                                <span>Estado de Inmueble:</span>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 75%">
-                                        {{../anuncio.ANUN_ESTADO_CONSTR}}</div>
-                                </div>
-                                {{/ifEquals}}
-                                {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "Venta"}}
-                                <span>Estado de Inmueble:</span>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 100%">
-                                        {{../anuncio.ANUN_ESTADO_CONSTR}}</div>
-                                </div>
-                                {{/ifEquals}}
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12">
+                    <span>{{anuncio.ANUN_TAMANO_TOTAL}} (m&sup2)</span>
                     <br>
-                    <h6 class="font-weight-bolder  mdb-color lighten-5 h6 rounded p-2"><i
-                            class="fas fa-file-alt pr-2"></i>Descipción</h6>
-                    <div class="row ml-5 mt-2 mb-3">
-                        <span class="large-description text-small">{{anuncio.ANUN_DESCRIPCION}}</span>
+                    <b>Área</b>
+                </div>
+                <div class="col-sm-2 text-center">
+                    <i class="mdb-color text-white rounded-circle p-3 mb-1 fas fa-bed fa-1x"></i>
+                    <br>
+                    <span>{{anuncio.ANUN_HABITACIONES}}</span>
+                    <br>
+                    <b>Habitaciones</b>
+                </div>
+                <div class="col-sm-2 text-center">
+                    <i class="mdb-color text-white rounded-circle p-3 mb-1 fas fa-bath fa-1x"></i>
+                    <br>
+                    <span>{{anuncio.ANUN_BANOS}}</span>
+                    <br>
+                    <b>Baños</b>
+                </div>
+                <div class="col-sm-2 text-center">
+                    <i class="mdb-color text-white rounded-circle p-3 mb-1 fas fa-toilet fa-1x"></i>
+                    <br>
+                    <span>{{anuncio.ANUN_M_BANOS}}</span>
+                    <br>
+                    <b>1/2 Baños</b>
+                </div>
+                <div class="col-sm-2 text-center">
+                    <i class="mdb-color text-white rounded-circle p-3 mb-1 fas fa-car fa-1x"></i>
+                    <br>
+                    <span>{{anuncio.ANUN_ESTACIONAMIENTO}}</span>
+                    <br>
+                    <b>Estacionamientos</b>
+                </div>
+                <div class="col-sm-2 text-center">
+                    <i class="mdb-color text-white rounded-circle p-3 mb-1 fas fa-history fa-1x"></i>
+                    <br>
+                    <span>{{anuncio.ANUN_ANTIGUEDAD}}</span>
+                    <br>
+                    <b>Antiguedad</b>
+                </div>
 
-                    </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 pt-3">
+                    <button type="button" class="rnd btn btn-sm btn-light-green btn-block mb-2" data-toggle="modal"
+                        data-target="#modal_llamar"><i class="fas fa-phone pr-2"></i>
+                        Quiero que me llamen</button>
                 </div>
-                <div class="col-sm-12">
-                    <h6 class="font-weight-bolder  mdb-color lighten-5 h6 rounded p-2 "><i
-                            class="fas fa-list pr-2"></i>Características</h6>
-                    <div class="container">
-                        <div class="row text-center border rounded-lg p-2 text-small">
-                            <div class="col-sm-2">
-                                <i class="grey text-white rounded-circle p-3 mb-1 fas fa-expand-arrows-alt fa-2x"></i>
-                                <br>
-                                <span>{{anuncio.ANUN_TAMANO_TOTAL}} (m&sup2)</span>
-                                <br>
-                                <b>Área</b>
-                            </div>
-                            <div class="col-sm-2">
-                                <i class="grey text-white rounded-circle p-3 mb-1 fas fa-bed fa-2x"></i>
-                                <br>
-                                <span>{{anuncio.ANUN_HABITACIONES}}</span>
-                                <br>
-                                <b>Habitaciones</b>
-                            </div>
-                            <div class="col-sm-2">
-                                <i class="grey text-white rounded-circle p-3 mb-1 fas fa-bath fa-2x"></i>
-                                <br>
-                                <span>{{anuncio.ANUN_BANOS}}</span>
-                                <br>
-                                <b>Baños</b>
-                            </div>
-                            <div class="col-sm-2">
-                                <i class="grey text-white rounded-circle p-3 mb-1 fas fa-toilet fa-2x"></i>
-                                <br>
-                                <span>{{anuncio.ANUN_M_BANOS}}</span>
-                                <br>
-                                <b>1/2 Baños</b>
-                            </div>
-                            <div class="col-sm-2">
-                                <i class="grey text-white rounded-circle p-3 mb-1 fas fa-car fa-2x"></i>
-                                <br>
-                                <span>{{anuncio.ANUN_ESTACIONAMIENTO}}</span>
-                                <br>
-                                <b>Estacionamientos</b>
-                            </div>
-                            <div class="col-sm-2">
-                                <i class="grey text-white rounded-circle p-3 mb-1 fas fa-history fa-2x"></i>
-                                <br>
-                                <span>{{anuncio.ANUN_ANTIGUEDAD}}</span>
-                                <br>
-                                <b>Antiguedad</b>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row border rounded-lg p-2 mb-2 text-small">
-                            <div class="col-sm-12">
-                                <span>Otros</span>
-                                <ul>
-                                    {{#each anuncio.CARACTERISTICAS}}
-                                    <li>{{CARACT_DESCRIPCION}}</li>
-                                    {{/each}}
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-sm-3 pt-3">
+                    <button type="button" class="rnd btn btn-sm btn-light-green btn-block mb-2" data-toggle="modal"
+                        data-target="#modal_visita"><i class="fas fa-route pr-2"></i>
+                        Planificar visita</button>
                 </div>
-                <div class="col-sm-12 mb-2">
-                    <h6 class="font-weight-bolder  mdb-color lighten-5 h6 rounded p-2"><i
+                <div class="col-sm-3 pt-3">
+                    <button type="button" class="rnd btn btn-sm btn-light-green btn-block mb-2" data-toggle="modal"
+                        data-target="#modal_consulta"><i class="fas fa-question pr-2"></i>Consultar</button>
+                </div>
+                <div class="col-sm-3 pt-3">
+                    <button type="button" class="rnd btn btn-sm btn-light-green btn-block mb-2" data-toggle="modal"
+                        data-target="#modal_llaves"><i class="far fa-handshake pr-2"></i>LLaves en Mano</button>
+                </div>
+            </div>
+            <hr>
+            <h6 class="font-weight-bolder  mdb-color text-white h6 rounded p-2"><i
+                    class="fas fa-file-alt pr-2"></i>Descipción</h6>
+            <div class="row border rounded-lg m-2 ">
+                <div class="col-sm-12 pl-5 pr-5 mt-2 mb-3">
+                    <span class="large-description text-small">{{anuncio.ANUN_DESCRIPCION}}</span>
+                </div>
+                <div class="col-sm-4 text-small">
+                    <h6 class="font-weight-bolder  lime lighten-4 h6 rounded ml-4 mr-4 p-2 "><i
+                            class="fas fa-list pr-2"></i>Otras Características</h6>
+                    <ul>
+                        {{#each anuncio.CARACTERISTICAS}}
+                        <li>{{CARACT_DESCRIPCION}}</li>
+                        {{/each}}
+                    </ul>
+                </div>
+                <div class="col-sm-8 text-small">
+                    <h6 class="font-weight-bolder  lime lighten-4 h6 rounded  mr-4 p-2"><i
                             class="fas fa-map-marker pr-2"></i>Ubicación</h6>
-
-
-                    <div class="container  text-small">
-                        <div class="row border rounded-lg p-2 mb-2">
-                            <div class="col-sm-4">
-                                <span>Provincia:</span>
-                                <ul>
-                                    <li>{{anuncio.PROVINCIA}}</li>
-                                </ul>
-                            </div>
-                            <div class="col-sm-4">
-                                <span>Cantón:</span>
-                                <ul>
-                                    <li>{{anuncio.CANTON}}</li>
-                                </ul>
-                            </div>
-                            <div class="col-sm-4">
-                                <span>Zona:</span>
-                                <ul>
-                                    <li>{{anuncio.ZONA}}</li>
-                                </ul>
-                            </div>
-                            <div class="col-sm-12">
-                                <span>Dirección:</span>
-                                <ul>
-                                    <li>{{anuncio.ANUN_DIRECCION}}</li>
-                                </ul>
-                            </div>
-                            <input type="hidden" name="lat" id="lat" value="{{anuncio.ANUN_LATITUD}}">
-                            <input type="hidden" name="lon" id="lon" value="{{anuncio.ANUN_LONGITUD}}">
-
-                            <div class="col-sm-12">
-                                <span>Mapa:</span>
-                                <div id="map-anuncio"></div>
-                            </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <span>Provincia:</span>
+                            <ul>
+                                <li>{{anuncio.PROVINCIA}}</li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-4">
+                            <span>Cantón:</span>
+                            <ul>
+                                <li>{{anuncio.CANTON}}</li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-4">
+                            <span>Zona:</span>
+                            <ul>
+                                <li>{{anuncio.ZONA}}</li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-12">
+                            <span>Dirección:</span>
+                            <ul>
+                                <li>{{anuncio.ANUN_DIRECCION}}</li>
+                            </ul>
+                        </div>
+                        <input type="hidden" name="lat" id="lat" value="{{anuncio.ANUN_LATITUD}}">
+                        <input type="hidden" name="lon" id="lon" value="{{anuncio.ANUN_LONGITUD}}">
+                        <div class="col-sm-12 pr-5">
+                            <span>Mapa:</span>
+                            <div id="map-anuncio"></div>
                         </div>
                     </div>
-                    {{#if anuncio.ANUN_EMBEBED}}
-                    <div class="col-sm-12 mb-2">
-                        <h6 class="font-weight-bolder  mdb-color lighten-5 h6 rounded p-2"><i
-                                class="fab fa-youtube pr-2"></i>Video</h6>
-                        <center>
-                            <iframe width="727" height="409"
-                                src="https://www.youtube.com/embed/{{anuncio.ANUN_EMBEBED}}" frameborder="0"
-                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
-                        </center>
-                    </div>
-                    {{/if}}
                 </div>
+                {{#if anuncio.ANUN_EMBEBED}}
+                <div class="col-sm-12  mt-2">
+                    <h6 class="font-weight-bolder  lime lighten-4 h6 rounded  mr-4 p-2"><i
+                            class="fab fa-youtube pr-2"></i>Video</h6>
+                    <center>
+                        <iframe width="727" height="409" src="https://www.youtube.com/embed/{{anuncio.ANUN_EMBEBED}}"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </center>
+                </div>
+                {{/if}}
 
             </div>
         </div>
@@ -442,7 +425,7 @@
                 </div>
                 <input type="hidden" class="form-control" name="ANUN_ID" value="{{anuncio.ANUN_ID}}" required>
                 <input type="hidden" class="form-control" name="ANMSG_ASUNTO" value="VISITA" required>
-                 <!-- Default unchecked -->
+                <!-- Default unchecked -->
                 <div class="custom-control custom-checkbox ml-3">
                     <input type="checkbox" class="custom-control-input" id="tycCheck" required
                         oninvalid="this.setCustomValidity('Debe aceptar los Términos y Condiciones')">
@@ -502,7 +485,7 @@
                 </div>
                 <input type="hidden" class="form-control" name="ANUN_ID" value="{{anuncio.ANUN_ID}}" required>
                 <input type="hidden" class="form-control" name="ANMSG_ASUNTO" value="CONSULTA" required>
-                 <!-- Default unchecked -->
+                <!-- Default unchecked -->
                 <div class="custom-control custom-checkbox ml-3">
                     <input type="checkbox" class="custom-control-input" id="tycCheck" required
                         oninvalid="this.setCustomValidity('Debe aceptar los Términos y Condiciones')">
@@ -594,7 +577,7 @@
                 </div>
                 <input type="hidden" class="form-control" name="ANUN_ID" value="{{anuncio.ANUN_ID}}" required>
                 <input type="hidden" class="form-control" name="ANMSG_ASUNTO" value="LLAVES EN MANO" required>
-                 <!-- Default unchecked -->
+                <!-- Default unchecked -->
                 <div class="custom-control custom-checkbox ml-3">
                     <input type="checkbox" class="custom-control-input" id="tycCheck" required
                         oninvalid="this.setCustomValidity('Debe aceptar los Términos y Condiciones')">

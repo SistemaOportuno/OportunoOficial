@@ -315,7 +315,7 @@ router.get('/anuncio/:ANUN_ID', async (req, res) => {
         anuncio.ZONA = aux[0].zon_nombre;
         aux = await db.query('SELECT tipinm_descripcion FROM tipos_inmuebles WHERE tipinm_id=?', anuncio.TIPINM_ID);
         anuncio.TIPINM_DESCRIPCION = aux[0].tipinm_descripcion;
-
+        anuncio.TEXTO_COMPARTIR="Inmmokraft presenta y comparte "+helpers.getUrl()+"/anuncio/"+ANUN_ID;
         anuncio.CARACTERISTICAS = await db.query('SELECT * FROM anuncio_caracteristica ac, caracteristicas c WHERE anun_id=? AND c.CARACT_ID=ac.CARACT_ID', anuncio.ANUN_ID);
         res.render('public/anuncio', { anuncio });
     } else {

@@ -2,24 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../database');
 
-/*
-var nodemailer = require('nodemailer');
 
-var transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: 'consorcioinmmokraft@gmail.com',
-    pass: 'Inmmokraft644'
-  }
-});
-
-var mailOptions = {
-  from: 'consorcioinmmokraft@gmail.com',
-  to: 'cuascota442@gmail.com',
-  subject: 'Sending Email using Node.js',
-  text: 'That was easy!'
-};
-*/
 
 router.get('/', async (req, res) => {
     var tipos_inmuebles = await db.query("SELECT * FROM tipos_inmuebles WHERE tipinm_estado='ACTIVO';");
@@ -100,15 +83,6 @@ router.get('/allProyects', async (req, res) => {
             anuncios_principales[i].IMAGES[j].POS=j;
         }
     }
-    /*
-    transporter.sendMail(mailOptions, function(error, info){
-        if (error) {
-          console.log(error);
-        } else {
-          console.log('Email sent: ' + info.response);
-        }
-      });
-      */
     res.render('public/allProyects', { anuncios_principales});
 });
 

@@ -1,17 +1,13 @@
-const express=require('express');
-const router=express.Router();
+const express = require('express');
+const router = express.Router();
 const db = require('../database');
-
-const passport= require('passport');
-const {isLoggedIn,isNotLoggedIn}=require('../lib/auth');
-
+const passport = require('passport');
+const { isLoggedIn, isNotLoggedIn } = require('../lib/auth');
 const uuid = require('uuid');
 const multer = require('multer');
-
-
 const path = require('path');
 const fs = require('fs');
-
+const helpers = require('../lib/helpers');
 const storage_image = multer.diskStorage({
     destination: path.join(__dirname, '../public/inmo_logo'),
     filename: (req, file, cb) => {
@@ -33,55 +29,77 @@ const update_image = multer({
 
 
 
-router.get('/addPropietario',isNotLoggedIn, async (req, res) => {
+router.get('/addPropietario', isNotLoggedIn, async (req, res) => {
     const provincias = await db.query("SELECT * FROM provincias WHERE prov_estado='ACTIVO'");
     res.render('public/addPropietario', { provincias });
 });
-router.post('/addPropietario',isNotLoggedIn, passport.authenticate('local.addPropietario', {
+router.post('/addPropietario', isNotLoggedIn, passport.authenticate('local.addPropietario', {
     successRedirect: 'panel',
     failureRedirect: '/addPropietario',
     failureFlash: true
 }));
-router.get('/addAgente',isNotLoggedIn,async (req, res) => {
+router.get('/addAgente', isNotLoggedIn, async (req, res) => {
     const provincias = await db.query("SELECT * FROM provincias WHERE prov_estado='ACTIVO'");
     res.render('public/addAgente', { provincias });
 });
-router.post('/addAgente',isNotLoggedIn, passport.authenticate('local.addAgente', {
+router.post('/addAgente', isNotLoggedIn, passport.authenticate('local.addAgente', {
     successRedirect: 'panel',
     failureRedirect: '/addAgente',
     failureFlash: true
 }));
-router.get('/addInmo',isNotLoggedIn, async (req, res) => {
+router.get('/addInmo', isNotLoggedIn, async (req, res) => {
     const provincias = await db.query("SELECT * FROM provincias WHERE prov_estado='ACTIVO'");
-    res.render('public/addInmo',{ provincias });
+    res.render('public/addInmo', { provincias });
 });
-router.post('/addInmo',isNotLoggedIn,update_image, passport.authenticate('local.addInmo', {
+router.post('/addInmo', isNotLoggedIn, update_image, passport.authenticate('local.addInmo', {
     successRedirect: 'panel',
     failureRedirect: '/addInmo',
     failureFlash: true
 }));
-router.get('/login',isNotLoggedIn, async (req, res) => {
+router.get('/login', isNotLoggedIn, async (req, res) => {
     res.render('auth/login');
 });
-router.get('/adminLogin',isNotLoggedIn, async (req, res) => {
+router.get('/adminLogin', isNotLoggedIn, async (req, res) => {
     res.render('auth/AdminLogin');
 });
-router.post('/login',isNotLoggedIn,(req,res,next)=>{
-    passport.authenticate('local.login',{
-        successRedirect:'/panel',
-        failureRedirect:'/login',
-        failureFlash:true
-    })(req,res,next);
+router.post('/login', isNotLoggedIn, (req, res, next) => {
+    passport.authenticate('local.login', {
+        successRedirect: '/panel',
+        failureRedirect: '/login',
+        failureFlash: true
+    })(req, res, next);
 });
-router.post('/admnLogin',isNotLoggedIn,(req,res,next)=>{
-    passport.authenticate('local.adminLogin',{
-        successRedirect:'/adminPanel',
-        failureRedirect:'/adminLogin',
-        failureFlash:true
-    })(req,res,next);
+router.post('/admnLogin', isNotLoggedIn, (req, res, next) => {
+    passport.authenticate('local.adminLogin', {
+        successRedirect: '/adminPanel',
+        failureRedirect: '/adminLogin',
+        failureFlash: true
+    })(req, res, next);
 });
-router.get('/logout',isLoggedIn,(req, res)=>{
+router.get('/logout', isLoggedIn, (req, res) => {
     req.logOut();
     res.redirect('/');
 });
-module.exports=router;
+router.get('/recuperar', isNotLoggedIn, async (req, res) => {
+    res.render('auth/recuperar');
+});
+
+router.post('/recuperar', isNotLoggedIn, async (req, res) => {
+    const newPassword = helpers.randomString();
+    const update_user = {
+        USU_CONTRASENA: helpers.encriptar(newPassword)
+    }
+    await db.query('UPDATE usuarios SET ? WHERE usu_correo=?', [update_user, req.body.usuario_correo]);
+
+    var mailOptions = {
+        from: 'consorcioinmmokraft@gmail.com',
+        to: req.body.usuario_correo,
+        subject: 'Recuperacion de Contraseña',
+        text: 'Su clave temporal para acceder al sistema es:' + newPassword
+    };
+    helpers.enviarCOrreo(mailOptions);
+    req.flash('success', 'Su contraseña temporal fue enviada al correo');
+
+    res.redirect('/login');
+});
+module.exports = router;

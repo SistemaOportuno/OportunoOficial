@@ -1,6 +1,27 @@
 const md5=require('md5');
 const helpers={};
 
+var nodemailer = require('nodemailer');
+
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'consorcioinmmokraft@gmail.com',
+    pass: 'Inmmokraft644'
+  }
+});
+
+
+helpers.enviarCOrreo=(mailOptions)=>{
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
+};
+
 helpers.encriptar=(contrasena)=>{
     return md5(contrasena);
 };
@@ -46,5 +67,18 @@ helpers.fecha_actual=()=> {
     return hoy;
 }
 
+helpers.randomString=()=> {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < 8; i++ ) {
+       result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+ }
+
+ helpers.getUrl=()=>{
+     return "http://localhost:4000";
+ }
 
 module.exports=helpers;
