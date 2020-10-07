@@ -19,6 +19,8 @@
                 <i class="fas fa-headset mr-3"></i>Mensajes</a>
             <a href="/llavesEnMano" class="list-group-item list-group-item-action waves-effect ">
                 <i class="far fa-handshake mr-3"></i>Llaves en Mano</a>
+            <a href="/denuncias" class="list-group-item list-group-item-action waves-effect ">
+                <i class="fas fa-exclamation-triangle mr-3"></i>Denuncias</a>
             <a href="/adminCuenta" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-user mr-3"></i>Mi Cuenta</a>
             <a href="/logout" class="list-group-item list-group-item-action waves-effect">
@@ -27,7 +29,8 @@
     </div>
     <div class="content-panel white rounded-lg mb-5">
         <div class="header pt-5">
-            <h2 class="font-weight-normal font-italic text-center">Bienvenido {{usuario.ADMIN_NOMBRE}} {{usuario.ADMIN_APELLIDO}}</h2>
+            <h2 class="font-weight-normal font-italic text-center">Bienvenido {{usuario.ADMIN_NOMBRE}}
+                {{usuario.ADMIN_APELLIDO}}</h2>
         </div>
         <h5 class="font-weight-normal font-italic text-center">Este es el panel de Administración de <b>Inmobiliaria
                 Ya</b>,
@@ -139,6 +142,62 @@
                         <!-- Link -->
                         <a href="/adminMensajes" class="white-text d-flex justify-content-end">
                             <h5>Contactar <i class="fas fa-angle-double-right"></i></h5>
+                        </a>
+                    </div>
+                </div>
+                <!-- Card Dark -->
+            </div>
+            <div class="col-sm-6">
+                <!-- Card Dark -->
+                <div class="card m-3">
+                    <!-- Card image -->
+                    <div class="view overlay">
+                        <img class="card-img-top"
+                            src="https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2821%29.jpg"
+                            alt="Card image cap">
+                        <a>
+                            <div class="mask rgba-white-slight"></div>
+                        </a>
+                    </div>
+                    <!-- Card content -->
+                    <div class="card-body elegant-color white-text rounded-bottom">
+                        <!-- Title -->
+                        <h4 class="card-title">Llaves en Mano</h4>
+                        <hr class="hr-light">
+                        <!-- Text -->
+                        <p class="card-text white-text mb-4">Vea los mensajes de los clientes que desean el servicio de
+                            "Llaves en maano"</p>
+                        <!-- Link -->
+                        <a href="/llavesEnMano" class="white-text d-flex justify-content-end">
+                            <h5>Verificar <i class="fas fa-angle-double-right"></i></h5>
+                        </a>
+                    </div>
+                </div>
+                <!-- Card Dark -->
+            </div>
+            <div class="col-sm-6">
+                <!-- Card Dark -->
+                <div class="card m-3">
+                    <!-- Card image -->
+                    <div class="view overlay">
+                        <img class="card-img-top"
+                            src="https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2821%29.jpg"
+                            alt="Card image cap">
+                        <a>
+                            <div class="mask rgba-white-slight"></div>
+                        </a>
+                    </div>
+                    <!-- Card content -->
+                    <div class="card-body elegant-color white-text rounded-bottom">
+                        <!-- Title -->
+                        <h4 class="card-title">Denuncias</h4>
+                        <hr class="hr-light">
+                        <!-- Text -->
+                        <p class="card-text white-text mb-4">Vea los mensajes de los usuarios que relizaron una denuncia
+                            a un anuncio</p>
+                        <!-- Link -->
+                        <a href="/denuncias" class="white-text d-flex justify-content-end">
+                            <h5>Ver <i class="fas fa-angle-double-right"></i></h5>
                         </a>
                     </div>
                 </div>

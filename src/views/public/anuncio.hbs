@@ -45,6 +45,8 @@
         </div>
     </div>
 </div>
+<span class="font-weight-bolder  mdb-color text-white h5 rounded ml-3 p-2"><i
+        class="fas fa-images pr-2"></i>{{anuncio.COUNT_IMAGES}} Fotos</span>
 <div class="container-fluid pb-5">
     <!--FILA GENERAL-->
     <div class="row wow fadeIn ">
@@ -59,11 +61,10 @@
                     <h4 class="font-weight-bolder">${{anuncio.ANUN_PRECIO}} </h4>
                 </div>
                 <div class="col-sm-1 pt-3">
-                    <a href="https://api.whatsapp.com/send?text={{anuncio.TEXTO_COMPARTIR}}"><i
-                            class="fab fa-whatsapp fa-3x"></i></a>
+                    <a data-toggle="modal" data-target="#modal_whatsapp"><i class="fab fa-whatsapp fa-3x"></i></a>
                 </div>
                 <div class="col-sm-1 pt-3">
-                    <a data-toggle="modal" data-target="#modal_llamar"><i class="far fa-envelope fa-3x"></i></a>
+                    <a data-toggle="modal" data-target="#modal_correo"><i class="far fa-envelope fa-3x"></i></a>
 
                 </div>
             </div>
@@ -96,35 +97,35 @@
                     {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "Terreno"}}
                     <span>Estado de Inmueble:</span>
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 10%">
+                        <div class="progress-bar mdb-color" role="progressbar" style="width: 10%">
                             {{../anuncio.ANUN_ESTADO_CONSTR}}</div>
                     </div>
                     {{/ifEquals}}
                     {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "En planos"}}
                     <span>Estado de Inmueble:</span>
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 25%">
+                        <div class="progress-bar mdb-color" role="progressbar" style="width: 25%">
                             {{../anuncio.ANUN_ESTADO_CONSTR}}</div>
                     </div>
                     {{/ifEquals}}
                     {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "En construcción"}}
                     <span>Estado de Inmueble:</span>
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 50%">
+                        <div class="progress-bar mdb-color" role="progressbar" style="width: 50%">
                             {{../anuncio.ANUN_ESTADO_CONSTR}}</div>
                     </div>
                     {{/ifEquals}}
                     {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "Pre-venta"}}
                     <span>Estado de Inmueble:</span>
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 75%">
+                        <div class="progress-bar mdb-color" role="progressbar" style="width: 75%">
                             {{../anuncio.ANUN_ESTADO_CONSTR}}</div>
                     </div>
                     {{/ifEquals}}
                     {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "Venta"}}
                     <span>Estado de Inmueble:</span>
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 100%">
+                        <div class="progress-bar mdb-color" role="progressbar" style="width: 100%">
                             {{../anuncio.ANUN_ESTADO_CONSTR}}</div>
                     </div>
                     {{/ifEquals}}
@@ -312,10 +313,10 @@
                             <div class="col-md-12">
                                 <!-- Default unchecked -->
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="tycCheck" required
-                                        oninvalid="this.setCustomValidity('Debe aceptar los Términos y Condiciones')">
-                                    <label class="custom-control-label" for="tycCheck">Acepta los <a
-                                            href="/terminosYcondiciones">Términos y Condiciones</a></label>
+                                    <input type="checkbox" class="custom-control-input" id="tycCheck1" required>
+                                    <label class="custom-control-label" for="tycCheck1">Acepta los <a
+                                            href="/terminosYcondiciones" target="_blank">Términos y
+                                            Condiciones</a></label>
                                 </div>
                                 <div class="text-center">
                                     <button type="button submit"
@@ -329,6 +330,13 @@
                 </form>
             </div>
             <!--/Form with header-->
+            <br>
+            <div class="text-center">
+                <button type="button submit" class="btn btn-sm mdb-color text-white btn-block rnd" data-toggle="modal"
+                    data-target="#modal_denunciar"><i class="fas fa-exclamation-triangle"></i> Denunciar
+                    Anuncio</button>
+            </div>
+
         </div>
         <!--COLUMNA DERECHA-->
     </div>
@@ -368,10 +376,9 @@
                 <input type="hidden" class="form-control" name="ANMSG_ASUNTO" value="LLAMDA" required>
                 <!-- Default unchecked -->
                 <div class="custom-control custom-checkbox ml-3">
-                    <input type="checkbox" class="custom-control-input" id="tycCheck" required
-                        oninvalid="this.setCustomValidity('Debe aceptar los Términos y Condiciones')">
-                    <label class="custom-control-label" for="tycCheck">Acepta los <a
-                            href="/terminosYcondiciones">Términos y Condiciones</a></label>
+                    <input type="checkbox" class="custom-control-input" id="tycCheck2" required>
+                    <label class="custom-control-label" for="tycCheck2">Acepta los <a href="/terminosYcondiciones"
+                            target="_blank">Términos y Condiciones</a></label>
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button submit" class="btn btn-sm btn-light-green rnd">Enviar</button>
@@ -427,10 +434,9 @@
                 <input type="hidden" class="form-control" name="ANMSG_ASUNTO" value="VISITA" required>
                 <!-- Default unchecked -->
                 <div class="custom-control custom-checkbox ml-3">
-                    <input type="checkbox" class="custom-control-input" id="tycCheck" required
-                        oninvalid="this.setCustomValidity('Debe aceptar los Términos y Condiciones')">
-                    <label class="custom-control-label" for="tycCheck">Acepta los <a
-                            href="/terminosYcondiciones">Términos y Condiciones</a></label>
+                    <input type="checkbox" class="custom-control-input" id="tycCheck3" required>
+                    <label class="custom-control-label" for="tycCheck3">Acepta los <a href="/terminosYcondiciones"
+                            target="_blank">Términos y Condiciones</a></label>
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button submit" class="btn btn-sm btn-light-green rnd">Enviar</button>
@@ -487,10 +493,9 @@
                 <input type="hidden" class="form-control" name="ANMSG_ASUNTO" value="CONSULTA" required>
                 <!-- Default unchecked -->
                 <div class="custom-control custom-checkbox ml-3">
-                    <input type="checkbox" class="custom-control-input" id="tycCheck" required
-                        oninvalid="this.setCustomValidity('Debe aceptar los Términos y Condiciones')">
-                    <label class="custom-control-label" for="tycCheck">Acepta los <a
-                            href="/terminosYcondiciones">Términos y Condiciones</a></label>
+                    <input type="checkbox" class="custom-control-input" id="tycCheck4" required>
+                    <label class="custom-control-label" for="tycCheck4">Acepta los <a href="/terminosYcondiciones"
+                            target="_blank">Términos y Condiciones</a></label>
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button submit" class="btn btn-sm btn-light-green rnd">Enviar</button>
@@ -579,15 +584,208 @@
                 <input type="hidden" class="form-control" name="ANMSG_ASUNTO" value="LLAVES EN MANO" required>
                 <!-- Default unchecked -->
                 <div class="custom-control custom-checkbox ml-3">
-                    <input type="checkbox" class="custom-control-input" id="tycCheck" required
-                        oninvalid="this.setCustomValidity('Debe aceptar los Términos y Condiciones')">
-                    <label class="custom-control-label" for="tycCheck">Acepta los <a
-                            href="/terminosYcondiciones">Términos y Condiciones</a></label>
+                    <input type="checkbox" class="custom-control-input" id="tycCheck5" required>
+                    <label class="custom-control-label" for="tycCheck5">Acepta los <a href="/terminosYcondiciones"
+                            target="_blank">Términos y Condiciones</a></label>
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button submit" class="btn btn-sm btn-light-green rnd">Enviar</button>
                 </div>
             </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modal_whatsapp" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header mdb-color darken-3">
+                <h6 class="modal-title text-white h6"><i class="fab fa-whatsapp  pr-2"></i>Enviar por WhatsApp</h6>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <i class="lime accent-4 text-white rounded-circle p-3 mb-1 fab fa-whatsapp fa-3x"></i>
+                    <h5 class="card-title pricing-card-title mb-4 ">WhatsApp</h5>
+                </div>
+                <ol class="list-unstyled m-4">
+                    <li class="justify"> <i class="fas fa-check green-text mr-2"></i>Comparte este anuncio con tus
+                        amigos.
+                    </li>
+                </ol>
+
+            </div>
+            <div class="modal-footer justify-content-center">
+                <a type="button" class="btn btn-sm btn-light-green rnd"
+                    href="https://api.whatsapp.com/send?text={{anuncio.TEXTO_COMPARTIR}}" target="_blank">Enviar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal_correo" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header mdb-color darken-3">
+                <h6 class="modal-title text-white h6"><i class="far fa-envelope  pr-2"></i>Enviar por Correo</h6>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+
+            <form method="POST" action="/compartirCorreo">
+
+                <div class="modal-body">
+                    <div class="text-center">
+                        <i class="red text-white rounded-circle p-3 mb-1 far fa-envelope fa-3x"></i>
+                        <h5 class="card-title pricing-card-title mb-4 ">Correo Electónico</h5>
+                    </div>
+                    <ol class="list-unstyled m-4">
+                        <li class="justify"> <i class="fas fa-check green-text mr-2"></i>Envía este anuncio por correo
+                        </li>
+                    </ol>
+                    <div class="md-form md-outline form-sm">
+                        <i class="fas fa-user prefix grey-text"></i>
+                        <input type="text" id="CORREO_NOMBRE" name="CORREO_NOMBRE" class="form-control form-control-sm"
+                            required>
+                        <label for="CORREO_NOMBRE">Su Nombre</label>
+                    </div>
+                    <div class="md-form md-outline form-sm">
+                        <i class="fas fa-envelope prefix grey-text"></i>
+                        <input type="email" id="CORREO_CORREO_EMI" name="CORREO_CORREO_EMI"
+                            class="form-control form-control-sm" required>
+                        <label for="CORREO_CORREO_EMI">Su Correo</label>
+                    </div>
+                    <div class="md-form md-outline form-sm">
+                        <i class="fas fa-envelope prefix grey-text"></i>
+                        <input type="email" id="CORREO_CORREO" name="CORREO_CORREO" class="form-control form-control-sm"
+                            required>
+                        <label for="CORREO_CORREO">Correo Destinatario</label>
+                    </div>
+                    <div class="md-form md-outline form-sm">
+                        <i class="fas fa-pencil-alt prefix grey-text"></i>
+                        <textarea id="CORREO_MENSAJE" name="CORREO_MENSAJE"
+                            class="md-textarea form-control form-control-sm" rows="5" required></textarea>
+                        <label for="CORREO_MENSAJE">Mensaje</label>
+                    </div>
+                </div>
+                <input type="hidden" class="form-control" name="ANUN_ID" value="{{anuncio.ANUN_ID}}" required>
+                <!-- Default unchecked -->
+                <div class="custom-control custom-checkbox ml-3">
+                    <input type="checkbox" class="custom-control-input" id="tycCheck6" name="tycCheck6" required>
+                    <label class="custom-control-label" for="tycCheck6">Acepta los <a href="/terminosYcondiciones"
+                            target="_blank">Términos y Condiciones</a></label>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button submit" class="btn btn-sm btn-light-green rnd">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal_denunciar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header mdb-color darken-3">
+                <h6 class="modal-title text-white h6"><i class="fas fa-exclamation-triangle  pr-2"></i>Denunciar Anuncio
+                </h6>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" action="/denunciar">
+                <div class="modal-body">
+                    <div class="text-center">
+                        <i
+                            class="warning-color text-white rounded-circle p-3 mb-1 fas fa-exclamation-triangle fa-3x"></i>
+                        <h5 class="card-title pricing-card-title mb-4 ">Denunciar</h5>
+                    </div>
+                    <ol class="list-unstyled m-4">
+                        <li class="justify"> <i class="fas fa-exclamation-triangle text-warning mr-2"></i>Coméntanos que
+                            problema existe en el anuncio
+                        </li>
+                    </ol>
+
+                    <div class="custom-control custom-radio ml-4 mt-2">
+                        <input type="radio" class="custom-control-input" id="check1" name="check" required
+                            value="La dirección está mal">
+                        <label class="custom-control-label" for="check1">La dirección está mal</label>
+                    </div>
+                    <div class="custom-control custom-radio ml-4 mt-2">
+                        <input type="radio" class="custom-control-input" id="check2" name="check" required
+                            value="El precio no es correcto">
+                        <label class="custom-control-label" for="check2">El precio no es correcto</label>
+                    </div>
+                    <div class="custom-control custom-radio ml-4 mt-2">
+                        <input type="radio" class="custom-control-input" id="check3" name="check" required
+                            value="Es una posible estafa">
+                        <label class="custom-control-label" for="check3">Es una posible estafa</label>
+                    </div>
+                    <div class="custom-control custom-radio ml-4 mt-2">
+                        <input type="radio" class="custom-control-input" id="check4" name="check" required
+                            value="Comentarios discriminatorios y/u ofensivos">
+                        <label class="custom-control-label" for="check4">Comentarios discriminatorios y/u
+                            ofensivos</label>
+                    </div>
+                    <div class="custom-control custom-radio ml-4 mt-2">
+                        <input type="radio" class="custom-control-input" id="check5" name="check" required
+                            value="Error en las fotos">
+                        <label class="custom-control-label" for="check5">Error en las fotos</label>
+                    </div>
+                    <div class="custom-control custom-radio ml-4 mt-2">
+                        <input type="radio" class="custom-control-input" id="check6" name="check" required
+                            value="El teléfono es erróneo o no contesta">
+                        <label class="custom-control-label" for="check6">El teléfono es erróneo o no contesta</label>
+                    </div>
+                    <div class="custom-control custom-radio ml-4 mt-2">
+                        <input type="radio" class="custom-control-input" id="check7" name="check" required
+                            value="El email es erróneo o el anunciante no responde">
+                        <label class="custom-control-label" for="check7">El email es erróneo o el anunciante no
+                            responde</label>
+                    </div>
+                    <div class="custom-control custom-radio ml-4 mt-2">
+                        <input type="radio" class="custom-control-input" id="check8" name="check" required
+                            value="Ya está vendido">
+                        <label class="custom-control-label" for="check8">Ya está vendido</label>
+                    </div>
+                    <div class="custom-control custom-radio ml-4 mt-2">
+                        <input type="radio" class="custom-control-input" id="check9" name="check" required
+                            value="Otro motivo">
+                        <label class="custom-control-label" for="check9">Otro motivo</label>
+                    </div>
+                    <div class="md-form md-outline form-sm ml-4 mt-2">
+                        <input type="text" id="DENUN_DESC" name="DENUN_DESC" class="form-control form-control-sm"
+                            required>
+                        <label for="DENUN_DESC">Comentario sobre la denuncia</label>
+                    </div>
+                </div>
+                <input type="hidden" class="form-control" name="ANUN_ID" value="{{anuncio.ANUN_ID}}" required>
+                <!-- Default unchecked -->
+                <div class="custom-control custom-checkbox ml-4">
+                    <input type="checkbox" class="custom-control-input" id="tycCheck7" name="tycCheck7" required>
+                    <label class="custom-control-label" for="tycCheck7">Acepta los <a href="/terminosYcondiciones"
+                            target="_blank">Términos y Condiciones</a></label>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button submit" class="btn btn-sm btn-light-green rnd">Enviar Denuncia</button>
+                </div>
+            </form>
+
+
         </div>
     </div>
 </div>

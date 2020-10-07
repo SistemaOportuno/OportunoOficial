@@ -307,6 +307,7 @@ router.get('/anuncio/:ANUN_ID', async (req, res) => {
         anuncio.IMAGES.forEach(function (i, idx, array) {
             i.POS = idx;
         });
+        anuncio.COUNT_IMAGES=anuncio.IMAGES.length;
         var aux = await db.query('SELECT prov_nombre FROM provincias WHERE prov_id=?', anuncio.PROV_ID);
         anuncio.PROVINCIA = aux[0].prov_nombre;
         aux = await db.query('SELECT cant_nombre FROM cantones WHERE cant_id=?', anuncio.CANT_ID);
@@ -315,7 +316,7 @@ router.get('/anuncio/:ANUN_ID', async (req, res) => {
         anuncio.ZONA = aux[0].zon_nombre;
         aux = await db.query('SELECT tipinm_descripcion FROM tipos_inmuebles WHERE tipinm_id=?', anuncio.TIPINM_ID);
         anuncio.TIPINM_DESCRIPCION = aux[0].tipinm_descripcion;
-        anuncio.TEXTO_COMPARTIR="Inmmokraft presenta y comparte "+helpers.getUrl()+"/anuncio/"+ANUN_ID;
+        anuncio.TEXTO_COMPARTIR="Inmmokraft te comparte "+helpers.getUrl()+"/anuncio/"+ANUN_ID;
         anuncio.CARACTERISTICAS = await db.query('SELECT * FROM anuncio_caracteristica ac, caracteristicas c WHERE anun_id=? AND c.CARACT_ID=ac.CARACT_ID', anuncio.ANUN_ID);
         res.render('public/anuncio', { anuncio });
     } else {
@@ -350,6 +351,30 @@ router.get('/terminosYcondiciones', async (req, res) => {
     res.render('public/terminosycondiciones');
     
 });
+router.post('/compartirCorreo', isNotLoggedIn, async (req, res) => {
+    var mailOptions = {
+        from: 'consorcioinmmokraft@gmail.com',
+        to: req.body.CORREO_CORREO,
+        cc:req.body.CORREO_CORREO_EMI,
+        subject: req.body.CORREO_NOMBRE+' le invita a ver un Inmueble ',
+        text: req.body.CORREO_MENSAJE+ '\nlink:'+helpers.getUrl()+"/anuncio/"+req.body.ANUN_ID+'\nEmisor: '+req.body.CORREO_CORREO_EMI
+    };
+    helpers.enviarCOrreo(mailOptions);
+    req.flash('success', 'Este Inmueble fue compartido exitosamente');
+    res.redirect('/anuncio/' + req.body.ANUN_ID);
+});
 
+router.post('/denunciar', isNotLoggedIn, async (req, res) => {
+    var newDenuncia = {
+        DENUN_ANUN: req.body.ANUN_ID,
+        DENUN_TIPO:req.body.check,
+        DENUN_DESC: req.body.DENUN_DESC,
+        DENUN_ESTADO: 'ACTIVO'
+    };
+    console.log(newDenuncia);
+    await db.query('INSERT INTO denuncias SET ?',newDenuncia);
+    req.flash('success', 'Denuncia Enviada Correctamente');
+    res.redirect('/anuncio/' + req.body.ANUN_ID);
+});
 
 module.exports = router;

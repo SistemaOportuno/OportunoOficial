@@ -574,6 +574,20 @@ router.post('/eliminarMensajeLlaves',isAdminLog, async (req, res) => {
     res.redirect('/llavesEnMano');
 });
 //----------------------LLAVES EN MANO----------------------------
+//----------------------Denuncias----------------------------
+router.get('/denuncias', isAdminLog,async (req, res) => {
+    const denuncias = await db.query('SELECT * FROM denuncias d, anuncios a, usuarios u WHERE d.denun_anun=a.anun_id AND u.usu_id=a.usu_id AND  d.denun_estado="ACTIVO"');
+    
+    res.render('admin/denuncias',{denuncias});
+});
+router.post('/eliminarDenuncia',isAdminLog, async (req, res) => {
+    const update_denuncia = {
+        DENUN_ESTADO: 'ELIMINADO'
+    }
+    await db.query('UPDATE denuncias SET ? WHERE DENUN_ID =?', [update_denuncia, req.body.DENUN_ID]);
+    res.redirect('/denuncias');
+});
+//----------------------Denuncias----------------------------
 
 
 
