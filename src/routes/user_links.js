@@ -28,7 +28,10 @@ const update_image = multer({
         }
         cb("Error: Solo son permitidos los archivos de tipo imagen:  - " + filetypes);
     },
-}).array('anuncio_images');
+}).fields([{ name: "anuncio_images" }, { name: "anuncio_planos" }]);//.array('anuncio_images');
+
+
+
 const storage_logo = multer.diskStorage({
     destination: path.join(__dirname, '../public/inmo_logo'),
     filename: (req, file, cb) => {
@@ -51,9 +54,9 @@ router.get('/panel', isUserLog, (req, res) => {
     res.render('user/panel');
 });
 router.get('/addAnuncio', isUserLog, async (req, res) => {
-    const row= await db.query("SELECT count(USU_ID) as n FROM anuncios WHERE usu_id=?",req.user.USU_ID);
-    const count=row[0].n;
-    if(req.user.USU_HABILITADO || count<1){
+    //const row= await db.query("SELECT count(USU_ID) as n FROM anuncios WHERE usu_id=?",req.user.USU_ID);
+    //const count=row[0].n;
+    if (req.user.USU_HABILITADO /*|| count<1*/) {
         const provincias = await db.query("SELECT * FROM provincias WHERE prov_estado='ACTIVO'");
         const tipos_inmuebles = await db.query("SELECT * FROM tipos_inmuebles WHERE tipinm_estado='ACTIVO'");
         const grupos_caracteristicas = await db.query("SELECT * FROM grupos_caracteristicas WHERE grup_estado='ACTIVO'");
@@ -61,11 +64,11 @@ router.get('/addAnuncio', isUserLog, async (req, res) => {
             element.caracteristicas = await db.query("SELECT * FROM caracteristicas WHERE caract_estado='ACTIVO' AND grup_id=?", [element.GRUP_ID]);
         });
         res.render('user/addAnuncio', { tipos_inmuebles, grupos_caracteristicas, provincias });
-    }else{
+    } else {
         req.flash('success', 'Póngase en contacto con nosotros para gestionar la habilitación de publicación mas anuncios');
         res.redirect('/contactar');
     }
-    
+
 });
 router.post('/addAnuncio', update_image, async (req, res) => {
     const new_anuncio = {
@@ -96,10 +99,19 @@ router.post('/addAnuncio', update_image, async (req, res) => {
         ANUN_ESTADO: "ACTIVO"
     }
     const result = await db.query('INSERT INTO anuncios SET ? ', new_anuncio);
-    req.files.forEach(async element => {
+    req.files.anuncio_images.forEach(async element => {
         const new_image = {
             ANUN_ID: result.insertId,
-            IMG_NOMBRE: element.filename
+            IMG_NOMBRE: element.filename,
+            IMG_TIPO: 'FOTO'
+        }
+        await db.query('INSERT INTO imagenes SET ? ', new_image);
+    });
+    req.files.anuncio_planos.forEach(async element => {
+        const new_image = {
+            ANUN_ID: result.insertId,
+            IMG_NOMBRE: element.filename,
+            IMG_TIPO: 'PLANO'
         }
         await db.query('INSERT INTO imagenes SET ? ', new_image);
     });
@@ -122,17 +134,17 @@ router.post('/addAnuncio', update_image, async (req, res) => {
 
     res.redirect('/listAnuncios');
 });
-router.get('/getCantones/:PROV_ID',isUserLog, async (req, res, next) => {
+router.get('/getCantones/:PROV_ID', isUserLog, async (req, res, next) => {
     const { PROV_ID } = req.params;
     const cantones = await db.query("SELECT * FROM cantones WHERE cant_estado='ACTIVO' AND prov_id=?", PROV_ID);
     res.send(cantones);
 });
-router.get('/getZonas/:CANT_ID',isUserLog, async (req, res, next) => {
+router.get('/getZonas/:CANT_ID', isUserLog, async (req, res, next) => {
     const { CANT_ID } = req.params;
     const zonas = await db.query("SELECT * FROM zonas WHERE zon_estado='ACTIVO' AND cant_id=?", CANT_ID);
     res.send(zonas);
 });
-router.get('/deleteImage/:IMG_ID/:IMG_NOMBRE',isUserLog, async (req, res, next) => {
+router.get('/deleteImage/:IMG_ID/:IMG_NOMBRE', isUserLog, async (req, res, next) => {
     const { IMG_ID } = req.params;
     const { IMG_NOMBRE } = req.params;
     await db.query("DELETE FROM imagenes WHERE img_id=?", IMG_ID);
@@ -162,7 +174,9 @@ router.get('/editAnuncio/:ANUN_ID', isUserLog, async (req, res) => {
     const tipos_inmuebles = await db.query("SELECT * FROM tipos_inmuebles WHERE tipinm_estado='ACTIVO'");
     const rows = await db.query('SELECT * FROM anuncios WHERE anun_estado!="ELIMINADO" AND usu_id=? AND anun_id=?', [req.user.USU_ID, ANUN_ID]);
     const anuncio = rows[0];
-    anuncio.IMAGES = await db.query('SELECT * FROM imagenes WHERE anun_id=?', anuncio.ANUN_ID);
+    anuncio.IMAGES = await db.query('SELECT * FROM imagenes WHERE anun_id=? and img_tipo="FOTO"', anuncio.ANUN_ID);
+    anuncio.PLANOS = await db.query('SELECT * FROM imagenes WHERE anun_id=? and img_tipo="PLANO"', anuncio.ANUN_ID);
+
     anuncio.CARACTERISTICAS = await db.query('SELECT * FROM anuncio_caracteristica ac, caracteristicas c WHERE anun_id=? AND c.CARACT_ID=ac.CARACT_ID', anuncio.ANUN_ID);
     const grupos_caracteristicas = await db.query("SELECT * FROM grupos_caracteristicas WHERE grup_estado='ACTIVO'");
     grupos_caracteristicas.forEach(async (element) => {
@@ -208,11 +222,24 @@ router.post('/editAnuncio', update_image, async (req, res) => {
         ANUN_ESTADO_CONSTR: req.body.ANUN_ESTADO_CONSTR,
     }
     await db.query('UPDATE anuncios SET ? WHERE anun_id=? ', [editAnuncio, req.body.ANUN_ID]);
-    if (req.files.length > 0) {
-        req.files.forEach(async element => {
+    if (req.files.anuncio_images) {
+        req.files.anuncio_images.forEach(async element => {
             const new_image = {
                 ANUN_ID: req.body.ANUN_ID,
-                IMG_NOMBRE: element.filename
+                IMG_NOMBRE: element.filename,
+                IMG_TIPO: 'FOTO'
+
+            }
+            await db.query('INSERT INTO imagenes SET ? ', new_image);
+        });
+    }
+    if (req.files.anuncio_planos) {
+        req.files.anuncio_planos.forEach(async element => {
+            const new_image = {
+                ANUN_ID: req.body.ANUN_ID,
+                IMG_NOMBRE: element.filename,
+                IMG_TIPO: 'PLANO'
+
             }
             await db.query('INSERT INTO imagenes SET ? ', new_image);
         });
@@ -241,10 +268,16 @@ router.get('/verAnuncio/:ANUN_ID', isUserLog, async (req, res) => {
     const { ANUN_ID } = req.params;
     const rows = await db.query('SELECT *, DATE_FORMAT(ANUN_FECHA,"%Y-%m-%d") as FECHA FROM anuncios WHERE anun_estado!="ELIMINADO" AND usu_id=? AND anun_id=?', [req.user.USU_ID, ANUN_ID]);
     const anuncio = rows[0];
-    anuncio.IMAGES = await db.query('SELECT * FROM imagenes WHERE anun_id=?', anuncio.ANUN_ID);
+    anuncio.IMAGES = await db.query('SELECT * FROM imagenes WHERE anun_id=? AND IMG_TIPO="FOTO"', anuncio.ANUN_ID);
     anuncio.IMAGES.forEach(function (i, idx, array) {
         i.POS = idx;
     });
+    anuncio.COUNT_IMAGES=anuncio.IMAGES.length;
+    anuncio.PLANOS = await db.query('SELECT * FROM imagenes WHERE anun_id=? AND IMG_TIPO="PLANO"', anuncio.ANUN_ID);
+    anuncio.PLANOS.forEach(function (i, idx, array) {
+        i.POS = idx;
+    });
+    anuncio.COUNT_PLANOS=anuncio.PLANOS.length;
     var aux = await db.query('SELECT prov_nombre FROM provincias WHERE prov_id=?', anuncio.PROV_ID);
     anuncio.PROVINCIA = aux[0].prov_nombre;
     aux = await db.query('SELECT cant_nombre FROM cantones WHERE cant_id=?', anuncio.CANT_ID);
@@ -257,33 +290,33 @@ router.get('/verAnuncio/:ANUN_ID', isUserLog, async (req, res) => {
     anuncio.CARACTERISTICAS = await db.query('SELECT * FROM anuncio_caracteristica ac, caracteristicas c WHERE anun_id=? AND c.CARACT_ID=ac.CARACT_ID', anuncio.ANUN_ID);
     res.render('user/verAnuncio', { anuncio });
 });
-router.post('/bloquearAnuncio',isUserLog, async (req, res) => {
+router.post('/bloquearAnuncio', isUserLog, async (req, res) => {
     const update_anuncio = {
         ANUN_ESTADO: 'BLOQUEADO'
     }
     await db.query('UPDATE anuncios SET ? WHERE anun_id=?', [update_anuncio, req.body.ANUN_ID]);
     res.redirect('/listAnuncios');
 });
-router.post('/eliminarAnuncio',isUserLog, async (req, res) => {
+router.post('/eliminarAnuncio', isUserLog, async (req, res) => {
     const update_anuncio = {
         ANUN_ESTADO: 'ELIMINADO'
     }
     await db.query('UPDATE anuncios SET ? WHERE anun_id=?', [update_anuncio, req.body.ANUN_ID]);
     res.redirect('/listAnuncios');
 });
-router.get('/listMensajes', isUserLog,async (req, res) => {
+router.get('/listMensajes', isUserLog, async (req, res) => {
     const mensajes = await db.query('SELECT a.ANUN_ID, a.ANUN_TITULO, am.ANMSG_ID , am.ANUN_ID ,am.ANMSG_NOMBRE, am.ANMSG_CORREO, am.ANMSG_TELEFONO, am.ANMSG_ASUNTO, am.ANMSG_MENSAJE, am.ANMSG_ESTADO, DATE_FORMAT(am.ANMSG_FECHA_VISITA,"%Y-%m-%d") as ANMSG_FECHA_VISITA, DATE_FORMAT(am.ANMSG_FECHA,"%Y-%m-%d") as ANMSG_FECHA  FROM anuncios_mensajes am, anuncios a WHERE am.anun_id= a.anun_id AND am.anmsg_estado="ACTIVO" AND am.anmsg_asunto!="LLAVES EN MANO" AND a.usu_id=?', req.user.USU_ID);
-    
-    res.render('user/listMensajes',{mensajes});
+
+    res.render('user/listMensajes', { mensajes });
 });
-router.post('/eliminarMensajeAnuncio',isUserLog, async (req, res) => {
+router.post('/eliminarMensajeAnuncio', isUserLog, async (req, res) => {
     const update_mensaje = {
         ANMSG_ESTADO: 'ELIMINADO'
     }
     await db.query('UPDATE anuncios_mensajes SET ? WHERE ANMSG_ID =?', [update_mensaje, req.body.ANMSG_ID]);
     res.redirect('/listMensajes');
 });
-router.post('/desbloquearAnuncio',isUserLog, async (req, res) => {
+router.post('/desbloquearAnuncio', isUserLog, async (req, res) => {
     const update_anuncio = {
         ANUN_ESTADO: 'ACTIVO'
     }
@@ -298,7 +331,7 @@ router.get('/contactar', isUserLog, async (req, res) => {
 
     res.render('user/contactar', { preguntas, correos, telefonos, direcciones });
 });
-router.post('/newUsuarioMensaje',isUserLog, async (req, res) => {
+router.post('/newUsuarioMensaje', isUserLog, async (req, res) => {
     new_usuario_mensaje = {
         USU_ID: req.user.USU_ID,
         PREG_ID: req.body.PREG_ID,
@@ -394,7 +427,5 @@ router.post('/editarContrasena', isUserLog, async (req, res) => {
     }
     res.redirect('/editarContrasena');
 });
-
-
 
 module.exports = router;

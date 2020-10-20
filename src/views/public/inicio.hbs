@@ -11,7 +11,38 @@
     </img>
     <div class="mask">
         <div class="container-fluid d-flex align-items-center justify-content-center text-center h-100">
-            <div class="card card-op text-white">
+            <div class="container-fluid position-fixed  d-flex justify-content-end pr-0">
+                <div class="div">
+                    <div class="  rounded-lg mdb-color">
+                        <span class="text-white text-small font-italic pl-1 pr-2">Síguenos</span>
+                        <br> <!-- Facebook -->
+                        <a class="fb-ic" href="#">
+                            <i class="fab fa-facebook-f fa-lg blue-text  fa-2x pt-3 pl-1 pr-1"> </i>
+                        </a>
+                        <br>
+                        <!--Instagram-->
+                        <a class="ins-ic" href="#">
+                            <i class="fab fa-instagram fa-lg pink-text  fa-2x pt-3 pl-1 pr-1"> </i>
+                        </a>
+                        <br>
+                        <!--youtube-->
+                        <a class="ins-ic" href="#">
+                            <i class="fab fa-youtube fa-lg red-text   fa-2x pt-3 pb-3 pl-1 pr-1"> </i>
+                        </a>
+                    </div>
+                    <br>
+                    <div class="  rounded-lg mdb-color">
+                        <span class="text-white text-small font-italic pl-1 pr-1">Consultas</span>
+                        <br> <!-- Facebook -->
+                        <a class="fb-ic" data-toggle="modal"
+                        data-target="#modal_consulta">
+                            <i class="fas fa-question fa-lg light-green-text  fa-2x pt-3 pl-1 pr-1 pb-3"> </i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="card card-op text-white ml-5 mr-5">
                 <!-- Card content -->
                 <div class="card-body card-body-cascade img-gradient-overlay ">
                     <h4 class="card-title text-center ">Bienvenido a <b>Inmokraft!</b></h4>
@@ -45,7 +76,7 @@
                                         <div class="md-form input-with-pre-icon">
                                             <i class="fas fa-dollar-sign input-prefix"></i>
                                             <input type="number" id="costo_min" name="costo_min" class="form-control"
-                                                min="0" required>
+                                                min="0">
                                             <label for="costo_min">Min</label>
                                         </div>
                                     </div>
@@ -54,7 +85,7 @@
                                         <div class="md-form input-with-pre-icon">
                                             <i class="fas fa-dollar-sign input-prefix"></i>
                                             <input type="number" id="costo_max" name="costo_max" class="form-control"
-                                                min="1" required>
+                                                min="1">
                                             <label for="costo_max">Max</label>
                                         </div>
                                     </div>
@@ -88,7 +119,7 @@
                             <input type="hidden" class="form-control" name="sublocality" id="sublocality">
 
                             <div class="col-md-2 mt-4 text-center">
-                                <button type="button submit" class="btn btn-light-green rnd "><i
+                                <button type="button submit" class="btn btn-light-green rnd btn-sm"><i
                                         class="fas fa-search"></i>
                                     Buscar</button>
                             </div>
@@ -96,7 +127,6 @@
                     </form>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
@@ -113,9 +143,9 @@
                 <h3 class="mt-5 h4 text-center font-weight-normal">Nuestros Anuncios Principales</h3>
                 <!--Controls-->
                 <div class="text-center mb-3">
-                    <a class="btn btn-light-green rnd" href="#multi-item-example" data-slide="prev"><i
+                    <a class="btn btn-sm btn-light-green rnd" href="#multi-item-example" data-slide="prev"><i
                             class="fas fa-chevron-left"></i></a>
-                    <a class="btn btn-light-green rnd" href="#multi-item-example" data-slide="next"><i
+                    <a class="btn btn-sm btn-light-green rnd" href="#multi-item-example" data-slide="next"><i
                             class="fas fa-chevron-right"></i></a>
                 </div>
                 <!--/.Controls-->
@@ -128,7 +158,7 @@
                     <div class="carousel-item  {{#ifEquals NUM 0}} active {{/ifEquals}} ">
                         {{#each ANUNCIOS}}
                         <div class="col-sm-4 pb-4" style="float:left">
-                            <div class="card ">
+                            <div class="card border">
                                 <div id="intro" class="bg-image overlay zoom">
                                     {{#each IMAGES}}
                                     {{#ifEquals POS 0}}
@@ -136,19 +166,22 @@
                                         style="height: 300px">
                                     {{/ifEquals}}
                                     {{/each}}
-                                    <div class="mask">
-                                        <div class="container">
-                                            <div class="row ">
-                                                <div class="col rounded-lg" style="background:  #123b61!important ;">
-                                                    <span class="font-weight-normal text-white text-center">USD
-                                                        {{ANUN_PRECIO}}</span>
+                                    <a href="/anuncio/{{ANUN_ID}}">
+                                        <div class="mask">
+                                            <div class="container">
+                                                <div class="row ">
+                                                    <div class="col rounded-lg"
+                                                        style="background:  #123b61!important ;">
+                                                        <span class="font-weight-normal text-white text-center">USD
+                                                            {{ANUN_PRECIO}}</span>
+                                                    </div>
+                                                    <div class="col"></div>
+                                                    <div class="col"></div>
                                                 </div>
-                                                <div class="col"></div>
-                                                <div class="col"></div>
                                             </div>
-                                        </div>
 
-                                    </div>
+                                        </div>
+                                    </a>
                                 </div>
 
                                 <div class="card-body">
@@ -158,15 +191,15 @@
                                             {{ANUN_TAMANO_TOTAL}} (m&sup2)
                                         </span>
                                         <span class="font-weight-bolder">
-                                            <i class=" fas fa-bed"></i>
+                                            <i class="blue-grey-text fas fa-bed"></i>
                                             {{ANUN_HABITACIONES}}
                                         </span>
                                         <span class="font-weight-bolder">
-                                            <i class=" fas fa-bath"></i>
+                                            <i class="blue-grey-text fas fa-bath"></i>
                                             {{ANUN_BANOS}}
                                         </span>
                                         <span class="font-weight-bolder">
-                                            <i class="fas fa-car"></i>
+                                            <i class="blue-grey-text fas fa-car"></i>
                                             {{ANUN_ESTACIONAMIENTO}}
                                         </span>
                                     </div>
@@ -193,7 +226,7 @@
             </div>
             <!--/.Carousel Wrapper-->
             <div class="container d-flex justify-content-center">
-                <a type="button" href="/allProyects" class="btn rnd btn-light-green">Ver mas
+                <a type="button" href="/allProyects" class="btn rnd btn-light-green btn-sm">Ver mas
                     Proyectos</a>
             </div>
         </div>
@@ -204,9 +237,9 @@
             <!--Grid row-->
             <div class="row  wow fadeIn">
                 <!--Grid column-->
-                <div class="col-md-4 mb-4">
+                <div class="col-md-4 mb-4 pr-5" >
                     <!--Card-->
-                    <div class="card">
+                    <div class="card border" >
                         <!--Card content-->
                         <div class="card-body">
                             <div class="text-center">
@@ -214,10 +247,7 @@
                                 <h4 class="card-title pricing-card-title mb-4">Propietario</h4>
                             </div>
                             <ol class="list-unstyled m-4">
-                                <li class="justify"> <i class="fas fa-check green-text mr-2"></i>Publique 1 anuncio
-                                    gratis con todos los
-                                    beneficios
-                                </li>
+
                                 <hr>
                                 <li class="justify"><i class="fas fa-check green-text mr-2"></i>Reciba toda la
                                     informacion de los
@@ -234,7 +264,9 @@
                                 </li>
                             </ol>
                             <hr>
-                            <a type="button" href="/addPropietario" class="btn rnd btn-block  btn-light-green">Crear
+                            <br>
+                            <br>
+                            <a type="button" href="/addPropietario" class="btn btn-sm rnd btn-block  btn-light-green">Crear
                                 perfil de
                                 Propietario</a>
                         </div>
@@ -243,14 +275,13 @@
                 </div>
                 <!--Grid column-->
                 <!--Grid column-->
-                <div class="col-md-4 mb-4">
+                <div class="col-md-4 mb-4 pr-5">
                     <!--Card-->
-                    <div class="card">
+                    <div class="card border">
                         <!--Card content-->
                         <div class="card-body">
                             <div class="text-center">
-                                <i
-                                    class="mdb-color text-white rounded-circle p-3 mb-1 fas fa-briefcase fa-4x"></i>
+                                <i class="mdb-color text-white rounded-circle p-3 mb-1 fas fa-briefcase fa-4x"></i>
                                 <h4 class="card-title pricing-card-title mb-4">Agente</h4>
                             </div>
                             <ol class="list-unstyled m-4">
@@ -274,7 +305,7 @@
                                 </li>
                             </ol>
                             <hr>
-                            <a type="button" href="/addAgente" class="btn rnd btn-block  btn-light-green">Crear perfil
+                            <a type="button" href="/addAgente" class="btn btn-sm rnd btn-block  btn-light-green">Crear perfil
                                 de
                                 Agente</a>
                         </div>
@@ -283,14 +314,13 @@
                 </div>
                 <!--Grid column-->
                 <!--Grid column-->
-                <div class="col-md-4 mb-4">
+                <div class="col-md-4 mb-4 pr-5">
                     <!--Card-->
-                    <div class="card">
+                    <div class="card border">
                         <!--Card content-->
                         <div class="card-body">
                             <div class="text-center">
-                                <i
-                                    class="mdb-color darken-1 text-white rounded-circle p-3 mb-1 fas fa-city fa-4x"></i>
+                                <i class="mdb-color darken-1 text-white rounded-circle p-3 mb-1 fas fa-city fa-4x"></i>
                                 <h4 class="card-title pricing-card-title mb-4">Inmobiliaria/Constructora</h4>
                             </div>
                             <ol class="list-unstyled m-4">
@@ -315,7 +345,7 @@
                                 </li>
                             </ol>
 
-                            <a type="button" href="/addInmo" class="btn rnd btn-block  btn-light-green">Crear perfil de
+                            <a type="button" href="/addInmo" class="btn btn-sm rnd btn-block  btn-light-green">Crear perfil de
                                 Inmobiliaria/Constructora</a>
                         </div>
                     </div>
@@ -332,4 +362,91 @@
 
 
 
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modal_consulta" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header mdb-color darken-3">
+                <h6 class="modal-title text-white h6"><i class="fas fa-question light-green-text pr-2"></i>Consultar con Administración</h6>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" action="/addConsulta">
+
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6 text-small">
+                            <div class="text-center">
+                                <i class=" text-white rounded-circle p-3 mb-1 fas fa-question light-green-text fa-3x"></i>
+                                <h5 class="card-title pricing-card-title mb-4 ">Consultar</h5>
+                            </div>
+                            <ol class="list-unstyled m-4">
+                                <li class="justify"> <i class="fas fa-check green-text mr-2"></i>Asesoria directa
+                                </li>
+                                <hr>
+                                <li class="justify"><i class="fas fa-check green-text mr-2"></i>Cualquier consulta sobre inmuebles
+                                </li>
+                                <hr>
+                                <li class="justify"><i class="fas fa-check green-text mr-2"></i>Existe algun error con el sistema?
+                                </li>
+                                <hr>
+                                <li class="justify"><i class="fas fa-check green-text mr-2"></i>Estamos prestos a solventar sus consultas
+                                </li>
+                            </ol>
+
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="md-form md-outline form-sm">
+                                <i class="fas fa-user prefix grey-text"></i>
+                                <input type="text" id="ANMSG_NOMBRE" name="ANMSG_NOMBRE"
+                                    class="form-control form-control-sm" required>
+                                <label for="ANMSG_NOMBRE">Nombre</label>
+                            </div>
+
+                            <div class="md-form md-outline form-sm">
+                                <i class="fas fa-envelope prefix grey-text"></i>
+                                <input type="email" id="ANMSG_CORREO" name="ANMSG_CORREO"
+                                    class="form-control form-control-sm" required>
+                                <label for="ANMSG_CORREO">Correo</label>
+                            </div>
+
+                            <div class="md-form md-outline form-sm">
+                                <i class="fas fa-phone prefix grey-text"></i>
+                                <input type="tel" id="ANMSG_TELEFONO" name="ANMSG_TELEFONO"
+                                    class="form-control form-control-sm" required pattern="[0-9]{7,10}"
+                                    title="Solo números telefónicos">
+                                <label for="ANMSG_TELEFONO">Teléfono</label>
+                            </div>
+
+                            <div class="md-form md-outline form-sm">
+                                <i class="fas fa-pencil-alt prefix grey-text"></i>
+                                <textarea id="ANMSG_MENSAJE" name="ANMSG_MENSAJE"
+                                    class="md-textarea form-control form-control-sm" rows="5" required></textarea>
+                                <label for="ANMSG_MENSAJE">Mensaje</label>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <input type="hidden" class="form-control" name="ANUN_ID" value="{{anuncio.ANUN_ID}}" required>
+                <input type="hidden" class="form-control" name="ANMSG_ASUNTO" value="CONSULTAS" required>
+                <!-- Default unchecked -->
+                <div class="custom-control custom-checkbox ml-3">
+                    <input type="checkbox" class="custom-control-input" id="tycCheck5" required>
+                    <label class="custom-control-label text-small" for="tycCheck5">Acepta los <a
+                            href="/terminosYcondiciones" target="_blank">Términos y Condiciones</a></label>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button submit" class="btn btn-sm btn-light-green rnd">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>

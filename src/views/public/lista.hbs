@@ -286,11 +286,11 @@
 				<tr>
 					<td>
 						<div
-							class="card border-bottom {{#ifEquals ANUN_TIPO 'RECOMENDADO'}}border border-primary light-green accent-1{{/ifEquals}}  {{#ifEquals ANUN_TIPO 'PRINCIPAL'}}yellow lighten-3 {{/ifEquals}}">
+							class="card border {{#ifEquals ANUN_TIPO 'RECOMENDADO'}} back-principal{{/ifEquals}}  {{#ifEquals ANUN_TIPO 'PRINCIPAL'}}back-recomendado {{/ifEquals}}">
 							<div class="row">
 								<div class="col-sm-5">
 									<!--Carousel Wrapper--> 
-									<div id="carousel{{ANUN_ID}}" class="carousel slide carousel-fade elegant-color"
+									<div id="carousel{{ANUN_ID}}" class="carousel slide carousel-fade mdb-color darken-3"
 										data-ride="carousel">
 										<!--Indicators-->
 										<ol class="carousel-indicators">
@@ -343,10 +343,10 @@
 										</span>
 									</div>
 									{{#ifEquals ANUN_TIPO 'RECOMENDADO'}}
-									<p class="font-italic pl-2">RECOMENDADO</p>
+									<span class="font-italic pl-2 pr-2 red text-white rounded-lg">PRINCIPAL</span>
 									{{/ifEquals}}
 									{{#ifEquals ANUN_TIPO 'PRINCIPAL'}}
-									<p class="font-italic pl-2">RECOMENDADO</p>
+									<span class="font-italic pl-2 pr-2 red text-white rounded-lg">RECOMENDADO</span>
 									{{/ifEquals}}
 								</div>
 								<div class="col-sm-7">

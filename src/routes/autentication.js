@@ -83,7 +83,6 @@ router.get('/logout', isLoggedIn, (req, res) => {
 router.get('/recuperar', isNotLoggedIn, async (req, res) => {
     res.render('auth/recuperar');
 });
-
 router.post('/recuperar', isNotLoggedIn, async (req, res) => {
     const newPassword = helpers.randomString();
     const update_user = {

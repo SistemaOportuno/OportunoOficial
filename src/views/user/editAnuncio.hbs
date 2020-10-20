@@ -116,8 +116,8 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text md-addon"> <i class=" fas fa-expand-arrows-alt"></i></span>
                         </div>
-                        <input type="number" class="form-control" placeholder="Total" name="ANUN_TAMANO_TOTAL" min="0" required
-                            value="{{anuncio.ANUN_TAMANO_TOTAL}}">
+                        <input type="number" class="form-control" placeholder="Total" name="ANUN_TAMANO_TOTAL" min="0"
+                            required value="{{anuncio.ANUN_TAMANO_TOTAL}}">
                         <div class="input-group-prepend">
                             <span class="input-group-text md-addon">m&sup2</span>
                         </div>
@@ -152,8 +152,8 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text md-addon"> <i class=" fas fa-money-bill-alt"></i></span>
                         </div>
-                        <input type="number" class="form-control" name="ANUN_ALICUOTA"
-                            value="{{anuncio.ANUN_ALICUOTA}}" min="0">
+                        <input type="number" class="form-control" name="ANUN_ALICUOTA" value="{{anuncio.ANUN_ALICUOTA}}"
+                            min="0">
                     </div>
                 </div>
             </div>
@@ -235,7 +235,8 @@
                 </div>
                 <div class="col-sm-4">
                     <p class="text-center">Zona</p>
-                    <select class="browser-default custom-select form-control" name="ZON_ID" id="anuncio_zona" onchange="select_zona()" required>
+                    <select class="browser-default custom-select form-control" name="ZON_ID" id="anuncio_zona"
+                        onchange="select_zona()" required>
                         {{#each zonas}}
                         <option value="{{ZON_ID}}" {{#ifEquals ../anuncio.ZON_ID ZON_ID}} selected {{/ifEquals}}>
                             {{ZON_NOMBRE}}</option>
@@ -275,7 +276,7 @@
                                 <div class="card-body">
                                     <img src="/anuncio_images/{{IMG_NOMBRE}}" class="img-fluid" style="height: 150px">
                                     <button type="button" class="btn btn-danger btn-sm rnd" data-toggle="modal"
-                                data-target="#modal_delete_image{{IMG_ID}}">Borrar</button>
+                                        data-target="#modal_delete_image{{IMG_ID}}">Borrar</button>
                                 </div>
                             </div>
                             <input type="hidden" id="{{IMG_ID}}" value="{{IMG_NOMBRE}}">
@@ -297,8 +298,58 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-light btn-sm"
                                                 data-dismiss="modal">Cancelar</button>
-                                            <a class="btn btn-danger btn-sm rnd"
-                                                onclick="deleteImg({{IMG_ID}})" data-dismiss="modal">Borrar</a>
+                                            <a class="btn btn-danger btn-sm rnd" onclick="deleteImg({{IMG_ID}})"
+                                                data-dismiss="modal">Borrar</a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Central Modal Small -->
+                            {{/each}}
+                        </div>
+                    </div>
+                    <br>
+                    <h5>Planos de su Inmueble</h5>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input form-control" id="anuncio_planos"
+                            name="anuncio_planos" accept="image/x-png, image/gif, image/jpeg, image/jpg" multiple>
+                        <label class="custom-file-label" for="anuncio_images" data-browse="Seleccionar">Seleccione
+                            uno o
+                            más archivos de imagen</label>
+
+                    </div>
+                    <div class="row">
+                        <div class="card-columns">
+                            {{#each anuncio.PLANOS}}
+                            <div class="card text-center m-2" id="card{{IMG_ID}}">
+                                <div class="card-body">
+                                    <img src="/anuncio_images/{{IMG_NOMBRE}}" class="img-fluid" style="height: 150px">
+                                    <button type="button" class="btn btn-danger btn-sm rnd" data-toggle="modal"
+                                        data-target="#modal_delete_plano{{IMG_ID}}">Borrar</button>
+                                </div>
+                            </div>
+                            <input type="hidden" id="{{IMG_ID}}" value="{{IMG_NOMBRE}}">
+                            <!-- Central Modal Small -->
+                            <div class="modal fade" id="modal_delete_plano{{IMG_ID}}" tabindex="-1" role="dialog"
+                                aria-labelledby="myModalLabel" aria-hidden="true">
+                                <!-- Change class.modal-sm to change the size of the modal -->
+                                <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header danger-color">
+                                            <h4 class="modal-title text-white ">Eliminar</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Esta seguro de eliminar este plano?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-light btn-sm"
+                                                data-dismiss="modal">Cancelar</button>
+                                            <a class="btn btn-danger btn-sm rnd" onclick="deleteImg({{IMG_ID}})"
+                                                data-dismiss="modal">Borrar</a>
 
                                         </div>
                                     </div>
@@ -309,9 +360,8 @@
                         </div>
                     </div>
 
-
                     <hr>
-                    <h5>Subir Video de Youtube</h5>
+                    <h5>Video de Youtube</h5>
                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
                         data-target="#modal_subir">Cómo?</button>
                     <input type="text" class="form-control" placeholder="ID video" name="ANUN_EMBEBED"
@@ -335,7 +385,8 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header elegant-color  justify-content-center">
-                <h5 class="modal-title text-white"><i class="fas fa-question pr-2"></i>Cómo subiir video de youtube?</h5>
+                <h5 class="modal-title text-white"><i class="fas fa-question pr-2"></i>Cómo subiir video de youtube?
+                </h5>
                 <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -348,10 +399,10 @@
                 <h6>3. Pegue el código en el campo indicado</h6>
                 <img src="/imagenes/in_3.png" class="img-fluid">
 
-               
-            <div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-elegant rnd" data-dismiss="modal">Cerrar</button>
+
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-elegant rnd" data-dismiss="modal">Cerrar</button>
+                </div>
             </div>
         </div>
     </div>
-</div>

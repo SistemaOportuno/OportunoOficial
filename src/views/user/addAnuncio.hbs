@@ -29,8 +29,8 @@
                 <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión</a>
         </div>
     </div>
-    <div class="content-panel white rounded-lg mb-5 pb-3 pl-3 pr-3">
-        <div class="row d-flex justify-content-center">
+    <div class="content-panel white border rounded-lg mb-5 pb-3 pl-3 pr-3">
+        <div class="row d-flex text-center">
             <div class="header pt-5">
                 <h2 class="font-weight-normal font-italic">Agregar Anuncio</h2>
             </div>
@@ -242,14 +242,24 @@
 
                     </div>
                     <hr>
+                    <h5>Planos de su Inmueble (Opcional)</h5>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input form-control" id="anuncio_planos"
+                            name="anuncio_planos" accept="image/x-png, image/gif, image/jpeg, image/jpg" multiple>
+                        <label class="custom-file-label" for="anuncio_images" data-browse="Seleccionar">Seleccione
+                            uno o
+                            más archivos de imagen</label>
+
+                    </div>
+                    <hr>
                     <h5>Subir Video de Youtube</h5>
-                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                    <button type="button" class="btn btn-info btn-sm rnd" data-toggle="modal"
                         data-target="#modal_subir">Cómo?</button>
                     <input type="text" class="form-control" placeholder="ID Video" name="ANUN_EMBEBED">
                 </div>
             </div>
             <div class="row d-flex justify-content-center">
-                <button type="button submit" class="btn btn-elegant rnd btn-lg">Publicar</button>
+                <button type="button submit" class="btn btn-sm btn-light-green rnd ">Publicar</button>
             </div>
         </form>
     </div>
@@ -261,7 +271,7 @@
     <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header elegant-color  justify-content-center">
+            <div class="modal-header mdb-color darken-3  justify-content-center">
                 <h5 class="modal-title text-white"><i class="fas fa-question pr-2"></i>Cómo subir video de youtube?</h5>
                 <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -270,14 +280,18 @@
             <div class="modal-body">
                 <h6>1. Diríjase al navegador en la url del video</h6>
                 <img src="/imagenes/in_1.png" class="img-fluid">
+                <br>
+                <br>
                 <h6>2. Copie el código del video que esta a la derecha del "="</h6>
                 <img src="/imagenes/in_2.png" class="img-fluid">
+                <br>
+                <br>
                 <h6>3. Pegue el código en el campo indicado</h6>
                 <img src="/imagenes/in_3.png" class="img-fluid">
-
+<hr>
                
             <div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-elegant rnd" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-light-green btn-sm rnd" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>

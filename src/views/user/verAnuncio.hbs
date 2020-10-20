@@ -5,10 +5,10 @@
 </script>
 
 <!--CONTAINER GENERAL-->
-<div class="container-fluid pt-5 pb-5">
+<div class="container-fluid pt-5">
     <br>
     <div class=" white rounded-lg mb-3 ml-3 mr-3">
-        <a type="button" class="btn btn-elegant rnd mt-3" href="/listAnuncios">Regresar</a>
+        <a type="button" class="btn btn-light-green rnd mt-3" href="/listAnuncios">Regresar</a>
         <div class="justify-content-center">
             <div class="header">
                 <h2 class="font-weight-normal font-italic text-center pt-1">Ver Anuncio</h2>
@@ -18,313 +18,414 @@
                 anuncio veran la informacion del inmueble</h5>
         </div>
     </div>
-    <!--FILA GENERAL-->
-    <div class="row wow fadeIn ml-1 mr-1">
+</div><!--CONTAINER GENERAL-->
+<div class="tab-content mdb-color darken-3" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-fotos" role="tabpanel" aria-labelledby="pills-fotos-tab">
+        <!--Carousel Wrapper-->
+        <div id="carousel" class="carousel slide carousel-fade " data-ride="carousel">
+            <!--Indicators-->
+            <ol class="carousel-indicators">
+                {{#each anuncio.IMAGES}}
+                <li data-target="#carousel" data-slide-to="{{POS}}" {{#ifEquals POS 0}} class="active" {{/ifEquals}}>
+                </li>
+                {{/each}}
+            </ol>
+            <!--/.Indicators-->
+            <!--Slides-->
+            <div class="carousel-inner" role="listbox">
+                {{#each anuncio.IMAGES}}
+                <div class="carousel-item overlay zoom {{#ifEquals POS 0}} active {{/ifEquals}}">
+                    <img class="d-block mx-auto" src="/anuncio_images/{{IMG_NOMBRE}}" style="height: 75vh;">
+                </div>
+                {{/each}}
+            </div>
+            <!--/.Slides-->
+            <!--Controls-->
+            <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon rounded-lg border" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon rounded-lg border" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+            <!--/.Controls-->
+        </div>
+        <!--/.Carousel Wrapper-->
+    </div>
+    {{#if anuncio.PLANOS}}
+    <div class="tab-pane fade" id="pills-planos" role="tabpanel" aria-labelledby="pills-planos-tab">
+        <!--Carousel Wrapper-->
+        <div id="carousel2" class="carousel slide carousel-fade " data-ride="carousel">
+            <!--Indicators-->
+            <ol class="carousel-indicators">
+                {{#each anuncio.PLANOS}}
+                <li data-target="#carousel2" data-slide-to="{{POS}}" {{#ifEquals POS 0}} class="active" {{/ifEquals}}>
+                </li>
+                {{/each}}
+            </ol>
+            <!--/.Indicators-->
+            <!--Slides-->
+            <div class="carousel-inner" role="listbox">
+                {{#each anuncio.PLANOS}}
+                <div class="carousel-item overlay zoom {{#ifEquals POS 0}} active {{/ifEquals}}">
+                    <img class="d-block mx-auto" src="/anuncio_images/{{IMG_NOMBRE}}" style="height: 75vh;">
+                </div>
+                {{/each}}
+            </div>
+            <!--/.Slides-->
+            <!--Controls-->
+            <a class="carousel-control-prev" href="#carousel2" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon rounded-lg border" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel2" role="button" data-slide="next">
+                <span class="carousel-control-next-icon rounded-lg border" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+            <!--/.Controls-->
+        </div>
+        <!--/.Carousel Wrapper-->
 
+    </div>
+    {{/if}}
+</div>
+<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link font-weight-bolder ml-3 p-2 active" id="pills-fotos-tab" data-toggle="pill" href="#pills-fotos" role="tab"
+            aria-controls="pills-fotos" aria-selected="true"><i class="fas fa-images pr-2"></i>{{anuncio.COUNT_IMAGES}}
+            Fotos</a>
+    </li>
+    {{#if anuncio.PLANOS}}
+    <li class="nav-item pl-2">
+        <a class="nav-link font-weight-bolder p-2" id="pills-planos-tab" data-toggle="pill" href="#pills-planos" role="tab"
+            aria-controls="pills-planos" aria-selected="false"><i class="fas fa-map pr-2"></i>{{anuncio.COUNT_PLANOS}} Planos</a>
+    </li>
+    {{/if}}
+</ul>
+<div class="container-fluid pb-5">
+    <!--FILA GENERAL-->
+    <div class="row wow fadeIn ">
         <!--COLUMNA IZUIERDA-->
-        <div class="col-sm-9 ">
-            <!--Carousel Wrapper-->
-            <div id="carousel" class="carousel slide carousel-fade elegant-color" data-ride="carousel">
-                <!--Indicators-->
-                <ol class="carousel-indicators">
-                    {{#each anuncio.IMAGES}}
-                    <li data-target="#carousel" data-slide-to="{{POS}}" {{#ifEquals POS 0}} class="active"
-                        {{/ifEquals}}></li>
-                    {{/each}}
-                </ol>
-                <!--/.Indicators-->
-                <!--Slides-->
-                <div class="carousel-inner" role="listbox">
-                    {{#each anuncio.IMAGES}}
-                    <div class="carousel-item {{#ifEquals POS 0}} active {{/ifEquals}}">
-                        <img class="d-block mx-auto" src="/anuncio_images/{{IMG_NOMBRE}}" style="height: 600px;">
-                    </div>
-                    {{/each}}
-                </div>
-                <!--/.Slides-->
-                <!--Controls-->
-                <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-                <!--/.Controls-->
-            </div>
-            <!--/.Carousel Wrapper-->
-            <hr>
-            <div class="row">
-                <div class="col-sm-3">
-                    <button type="button" class="rnd btn btn-elegant btn-block mb-2" data-toggle="modal"
-                        data-target="#modal_llamar"><i class="fas fa-phone pr-2"></i>
-                        Quiero que me llamen</button>
-                </div>
-                <div class="col-sm-3">
-                    <button type="button" class="rnd btn btn-elegant btn-block mb-2" data-toggle="modal"
-                        data-target="#modal_visita"><i class="fas fa-route pr-2"></i>
-                        Planificar visita</button>
-                </div>
-                <div class="col-sm-3">
-                    <button type="button" class="rnd btn btn-elegant btn-block mb-2" data-toggle="modal"
-                        data-target="#modal_consulta"><i class="fas fa-question pr-2"></i>Consultar</button>
-                </div>
-                <div class="col-sm-3">
-                    <button type="button" class="rnd btn btn-elegant btn-block mb-2" data-toggle="modal"
-                        data-target="#modal_consulta"><i class="far fa-handshake pr-2"></i>LLaves en Mano</button>
-                </div>
-            </div>
-            <hr>
-            <div class="row white rounded ">
-                <div class="col-sm-9 pt-3 ">
-                    <h3 class="font-weight-bolder">{{anuncio.ANUN_TITULO}}</h3>
+        <div class="col-sm-9">
+            <div class="row  m-2 p-2">
+                <div class="col-sm-7 pt-3 ">
+                    <h5 class="font-weight-bolder">{{anuncio.ANUN_TITULO}}</h5>
                 </div>
                 <div class="col-sm-3 pt-3">
                     <h4 class="font-weight-bolder">${{anuncio.ANUN_PRECIO}} </h4>
                 </div>
-                <div class="col-sm-12">
+                <div class="col-sm-2 pt-3 border">
+                    <div class="row text-center pb-3">
+                        <div class="col-sm-12">
+                            <span>Compartir</span>
+                        </div>
+                        <div class="col-sm-6">
+                            <a data-toggle="modal" data-target="#modal_whatsapp"><i
+                                    class="fab fa-whatsapp fa-3x"></i></a>
+
+                        </div>
+                        <div class="col-sm-6">
+                            <a data-toggle="modal" data-target="#modal_correo"><i class="far fa-envelope fa-3x"></i></a>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="row border rounded-lg m-2 p-2">
+                <div class="col-sm-3">
+                    <span>Transacción:</span>
+                    <ul>
+                        <li>{{anuncio.ANUN_TRANSACCION}}</li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <span>Inmueble:</span>
+                    <ul>
+                        <li>{{anuncio.TIPINM_DESCRIPCION}}</li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <span>Fecha:</span>
+                    <ul>
+                        <li>{{anuncio.FECHA}}</li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <span>Alicuota:</span>
+                    <ul>
+                        <li>{{anuncio.ANUN_ALICUITA}}</li>
+                    </ul>
+                </div>
+                <div class="col-sm-12 mb-3">
+                    {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "Terreno"}}
+                    <span>Estado de Inmueble:</span>
+                    <div class="progress">
+                        <div class="progress-bar mdb-color" role="progressbar" style="width: 10%">
+                            {{../anuncio.ANUN_ESTADO_CONSTR}}</div>
+                    </div>
+                    {{/ifEquals}}
+                    {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "En planos"}}
+                    <span>Estado de Inmueble:</span>
+                    <div class="progress">
+                        <div class="progress-bar mdb-color" role="progressbar" style="width: 25%">
+                            {{../anuncio.ANUN_ESTADO_CONSTR}}</div>
+                    </div>
+                    {{/ifEquals}}
+                    {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "En construcción"}}
+                    <span>Estado de Inmueble:</span>
+                    <div class="progress">
+                        <div class="progress-bar mdb-color" role="progressbar" style="width: 50%">
+                            {{../anuncio.ANUN_ESTADO_CONSTR}}</div>
+                    </div>
+                    {{/ifEquals}}
+                    {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "Pre-venta"}}
+                    <span>Estado de Inmueble:</span>
+                    <div class="progress">
+                        <div class="progress-bar mdb-color" role="progressbar" style="width: 75%">
+                            {{../anuncio.ANUN_ESTADO_CONSTR}}</div>
+                    </div>
+                    {{/ifEquals}}
+                    {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "Venta"}}
+                    <span>Estado de Inmueble:</span>
+                    <div class="progress">
+                        <div class="progress-bar mdb-color" role="progressbar" style="width: 100%">
+                            {{../anuncio.ANUN_ESTADO_CONSTR}}</div>
+                    </div>
+                    {{/ifEquals}}
+                </div>
+                <div class="col-sm-2 text-center">
+                    <i class="mdb-color text-white rounded-circle p-3 mb-1 fas fa-expand-arrows-alt fa-1x"></i>
                     <br>
-                    <h4 class="font-weight-bolder text-white elegant-color rounded p-2"><i
-                            class="fas fa-info-circle pr-2"></i>Información</h4>
-                    <div class="container">
-                        <div class="row border rounded-lg p-2 mb-2">
-                            <div class="col-sm-3">
-                                <h5>Transacción:</h5>
-                                <ul>
-                                    <li>{{anuncio.ANUN_TRANSACCION}}</li>
-                                </ul>
-                            </div>
-                            <div class="col-sm-3">
-                                <h5>Inmueble:</h5>
-                                <ul>
-                                    <li>{{anuncio.TIPINM_DESCRIPCION}}</li>
-                                </ul>
-                            </div>
-                            <div class="col-sm-3">
-                                <h5>Fecha:</h5>
-                                <ul>
-                                    <li>{{anuncio.FECHA}}</li>
-                                </ul>
-                            </div>
-                            <div class="col-sm-3">
-                                <h5>Alicuota:</h5>
-                                <ul>
-                                    <li>{{anuncio.ANUN_ALICUITA}}</li>
-                                </ul>
-                            </div>
-                            <div class="col-sm-12">
-                                {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "Terreno"}}
-                                <h5>Estado de Inmueble:</h5>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 10%">
-                                        {{../anuncio.ANUN_ESTADO_CONSTR}}</div>
-                                </div>
-                                {{/ifEquals}}
-                                {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "En planos"}}
-                                <h5>Estado de Inmueble:</h5>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 25%">
-                                        {{../anuncio.ANUN_ESTADO_CONSTR}}</div>
-                                </div>
-                                {{/ifEquals}}
-                                {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "En construcción"}}
-                                <h5>Estado de Inmueble:</h5>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 50%">
-                                        {{../anuncio.ANUN_ESTADO_CONSTR}}</div>
-                                </div>
-                                {{/ifEquals}}
-                                {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "Pre-venta"}}
-                                <h5>Estado de Inmueble:</h5>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 75%">
-                                        {{../anuncio.ANUN_ESTADO_CONSTR}}</div>
-                                </div>
-                                {{/ifEquals}}
-                                {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "Venta"}}
-                                <h5>Estado de Inmueble:</h5>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 100%">
-                                        {{../anuncio.ANUN_ESTADO_CONSTR}}</div>
-                                </div>
-                                {{/ifEquals}}
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12">
+                    <span>{{anuncio.ANUN_TAMANO_TOTAL}} (m&sup2)</span>
                     <br>
-                    <h4 class="font-weight-bolder text-white elegant-color rounded p-2"><i
-                            class="fas fa-file-alt pr-2"></i>Descipción</h4>
-                    <div class="row ml-5 mt-2 mb-3">
-                        <span class="large-description">{{anuncio.ANUN_DESCRIPCION}}</span>
+                    <b>Área</b>
+                </div>
+                <div class="col-sm-2 text-center">
+                    <i class="mdb-color text-white rounded-circle p-3 mb-1 fas fa-bed fa-1x"></i>
+                    <br>
+                    <span>{{anuncio.ANUN_HABITACIONES}}</span>
+                    <br>
+                    <b>Habitaciones</b>
+                </div>
+                <div class="col-sm-2 text-center">
+                    <i class="mdb-color text-white rounded-circle p-3 mb-1 fas fa-bath fa-1x"></i>
+                    <br>
+                    <span>{{anuncio.ANUN_BANOS}}</span>
+                    <br>
+                    <b>Baños</b>
+                </div>
+                <div class="col-sm-2 text-center">
+                    <i class="mdb-color text-white rounded-circle p-3 mb-1 fas fa-toilet fa-1x"></i>
+                    <br>
+                    <span>{{anuncio.ANUN_M_BANOS}}</span>
+                    <br>
+                    <b>1/2 Baños</b>
+                </div>
+                <div class="col-sm-2 text-center">
+                    <i class="mdb-color text-white rounded-circle p-3 mb-1 fas fa-car fa-1x"></i>
+                    <br>
+                    <span>{{anuncio.ANUN_ESTACIONAMIENTO}}</span>
+                    <br>
+                    <b>Estacionamientos</b>
+                </div>
+                <div class="col-sm-2 text-center">
+                    <i class="mdb-color text-white rounded-circle p-3 mb-1 fas fa-history fa-1x"></i>
+                    <br>
+                    <span>{{anuncio.ANUN_ANTIGUEDAD}}</span>
+                    <br>
+                    <b>Antiguedad</b>
+                </div>
 
+            </div>
+            <div class="row">
+                <div class="col-sm-3 pt-3">
+                    <button type="button" class="rnd btn btn-sm btn-light-green btn-block mb-2" data-toggle="modal"
+                        data-target="#modal_llamar"><i class="fas fa-phone pr-2"></i>
+                        Quiero que me llamen</button>
+                </div>
+                <div class="col-sm-3 pt-3">
+                    <button type="button" class="rnd btn btn-sm btn-light-green btn-block mb-2" data-toggle="modal"
+                        data-target="#modal_visita"><i class="fas fa-route pr-2"></i>
+                        Planificar visita</button>
+                </div>
+                <div class="col-sm-3 pt-3">
+                    <button type="button" class="rnd btn btn-sm btn-light-green btn-block mb-2" data-toggle="modal"
+                        data-target="#modal_consulta"><i class="fas fa-question pr-2"></i>Consultar</button>
+                </div>
+                <div class="col-sm-3 pt-3">
+                    <button type="button" class="rnd btn btn-sm btn-light-green btn-block mb-2" data-toggle="modal"
+                        data-target="#modal_llaves"><i class="far fa-handshake pr-2"></i>LLaves en Mano</button>
+                </div>
+            </div>
+            <hr>
+            <h6 class="font-weight-bolder  mdb-color text-white h6 rounded p-2"><i
+                    class="fas fa-file-alt pr-2"></i>Descipción</h6>
+            <div class="row border rounded-lg m-2 ">
+                <div class="col-sm-12 pl-5 pr-5 mt-2 mb-3">
+                    <span class="large-description text-small">{{anuncio.ANUN_DESCRIPCION}}</span>
+                </div>
+                <div class="col-sm-4 text-small">
+                    <h6 class="font-weight-bolder  lime lighten-4 h6 rounded ml-4 mr-4 p-2 "><i
+                            class="fas fa-list pr-2"></i>Otras Características</h6>
+                    <ul>
+                        {{#each anuncio.CARACTERISTICAS}}
+                        <li>{{CARACT_DESCRIPCION}}</li>
+                        {{/each}}
+                    </ul>
+                </div>
+                <div class="col-sm-8 text-small">
+                    <h6 class="font-weight-bolder  lime lighten-4 h6 rounded  mr-4 p-2"><i
+                            class="fas fa-map-marker pr-2"></i>Ubicación</h6>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <span>Provincia:</span>
+                            <ul>
+                                <li>{{anuncio.PROVINCIA}}</li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-4">
+                            <span>Cantón:</span>
+                            <ul>
+                                <li>{{anuncio.CANTON}}</li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-4">
+                            <span>Zona:</span>
+                            <ul>
+                                <li>{{anuncio.ZONA}}</li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-12">
+                            <span>Dirección:</span>
+                            <ul>
+                                <li>{{anuncio.ANUN_DIRECCION}}</li>
+                            </ul>
+                        </div>
+                        <input type="hidden" name="lat" id="lat" value="{{anuncio.ANUN_LATITUD}}">
+                        <input type="hidden" name="lon" id="lon" value="{{anuncio.ANUN_LONGITUD}}">
+                        <div class="col-sm-12 pr-5">
+                            <span>Mapa:</span>
+                            <div id="map-anuncio"></div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-sm-12">
-                    <h4 class="font-weight-bolder text-white elegant-color rounded p-2 "><i
-                            class="fas fa-list pr-2"></i>Características</h4>
-                    <div class="container">
-                        <div class="row text-center border rounded-lg p-2">
-                            <div class="col-sm-2">
-                                <i class="grey text-white rounded-circle p-3 mb-1 fas fa-expand-arrows-alt fa-2x"></i>
-                                <h6>{{anuncio.ANUN_TAMANO_TOTAL}} (m&sup2)</h6>
-                                <b>Área</b>
-                            </div>
-                            <div class="col-sm-2">
-                                <i class="grey text-white rounded-circle p-3 mb-1 fas fa-bed fa-2x"></i>
-                                <h6>{{anuncio.ANUN_HABITACIONES}}</h6>
-                                <b>Habitaciones</b>
-                            </div>
-                            <div class="col-sm-2">
-                                <i class="grey text-white rounded-circle p-3 mb-1 fas fa-bath fa-2x"></i>
-                                <h6>{{anuncio.ANUN_BANOS}}</h6>
-                                <b>Baños</b>
-                            </div>
-                            <div class="col-sm-2">
-                                <i class="grey text-white rounded-circle p-3 mb-1 fas fa-toilet fa-2x"></i>
-                                <h6>{{anuncio.ANUN_M_BANOS}}</h6>
-                                <b>1/2 Baños</b>
-                            </div>
-                            <div class="col-sm-2">
-                                <i class="grey text-white rounded-circle p-3 mb-1 fas fa-car fa-2x"></i>
-                                <h6>{{anuncio.ANUN_ESTACIONAMIENTO}}</h6>
-                                <b>Estacionamientos</b>
-                            </div>
-                            <div class="col-sm-2">
-                                <i class="grey text-white rounded-circle p-3 mb-1 fas fa-history fa-2x"></i>
-                                <h6>{{anuncio.ANUN_ANTIGUEDAD}}</h6>
-                                <b>Antiguedad</b>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row border rounded-lg p-2 mb-2">
-                            <div class="col-sm-12">
-                                <h5>Otros</h5>
-                                <ul>
-                                    {{#each anuncio.CARACTERISTICAS}}
-                                    <li>{{CARACT_DESCRIPCION}}</li>
-                                    {{/each}}
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                {{#if anuncio.ANUN_EMBEBED}}
+                <div class="col-sm-12  mt-2">
+                    <h6 class="font-weight-bolder  lime lighten-4 h6 rounded  mr-4 p-2"><i
+                            class="fab fa-youtube pr-2"></i>Video</h6>
+                    <center>
+                        <iframe width="727" height="409" src="https://www.youtube.com/embed/{{anuncio.ANUN_EMBEBED}}"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </center>
                 </div>
-                <div class="col-sm-12 mb-2">
-                    <h4 class="font-weight-bolder text-white elegant-color rounded p-2"><i
-                            class="fas fa-map-marker pr-2"></i>Ubicación</h4>
-
-
-                    <div class="container">
-                        <div class="row border rounded-lg p-2 mb-2">
-                            <div class="col-sm-4">
-                                <h5>Provincia:</h5>
-                                <ul>
-                                    <li>{{anuncio.PROVINCIA}}</li>
-                                </ul>
-                            </div>
-                            <div class="col-sm-4">
-                                <h5>Cantón:</h5>
-                                <ul>
-                                    <li>{{anuncio.CANTON}}</li>
-                                </ul>
-                            </div>
-                            <div class="col-sm-4">
-                                <h5>Zona:</h5>
-                                <ul>
-                                    <li>{{anuncio.ZONA}}</li>
-                                </ul>
-                            </div>
-                            <div class="col-sm-12">
-                                <h5>Dirección:</h5>
-                                <ul>
-                                    <li>{{anuncio.ANUN_DIRECCION}}</li>
-                                </ul>
-                            </div>
-                            <input type="hidden" name="lat" id="lat" value="{{anuncio.ANUN_LATITUD}}">
-                            <input type="hidden" name="lon" id="lon" value="{{anuncio.ANUN_LONGITUD}}">
-
-                            <div class="col-sm-12">
-                                <h5>Mapa:</h5>
-                                <div id="map-anuncio"></div>
-                            </div>
-                        </div>
-                    </div>
-                    {{#if anuncio.ANUN_EMBEBED}}
-                    <div class="col-sm-12 mb-2">
-                        <h4 class="font-weight-bolder text-white elegant-color rounded p-2"><i
-                                class="fab fa-youtube pr-2"></i>Video</h4>
-                        <center>
-                            <iframe width="727" height="409"
-                                src="https://www.youtube.com/embed/{{anuncio.ANUN_EMBEBED}}" frameborder="0"
-                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
-                        </center>
-                    </div>
-                    {{/if}}
-                </div>
+                {{/if}}
 
             </div>
         </div>
         <!--COLUMNA IZUIERDA-->
         <!--COLUMNA DERECHA-->
         <div class="col-sm-3">
+            {{#if anuncio.INMO}}
+            <br>
+            <div class="card rounded-lg">
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <img class="img-fluid mx-auto d-block" src="/inmo_logo/{{anuncio.INMO.usu_empresa_logo}}"
+                                style="height: 80px">
+                        </div>
+                        <div class="col-sm-8">
+                            <span class="text-small font-weight-bolder">{{anuncio.INMO.usu_empresa}}</span>
+                            <br>
+                            <span class="text-small">{{anuncio.INMO.usu_empresa_correo}}</span>
+                            <br>
+                            <span class="text-small font-italic">{{anuncio.INMO.usu_empresa_telefono}}</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            {{/if}}
+            <!--/Form with header-->
+            <br>
             <!--Form with header-->
             <div class="card rounded-lg">
                 <!--Header-->
-                <div class="header  elegant-color p-1">
+                <div class="header light-green p-1">
                     <div class="row  justify-content-center">
-                        <h5 class="h5 text-white">Contactar con el Anunciante</h5>
+                        <h6 class="h6 text-white">Contactar con el Anunciante</h6>
                     </div>
                 </div>
                 <!--Header-->
-                <div class="card-body mx-4">
-
-                    <div class="md-form">
-                        <i class="fas fa-user prefix grey-text"></i>
-                        <input type="text" id="contacto_nombre" class="form-control">
-                        <label for="contacto_nombre">Nombre</label>
-                    </div>
-
-                    <div class="md-form">
-                        <i class="fas fa-envelope prefix grey-text"></i>
-                        <input type="email" id="contacto_correo" class="form-control">
-                        <label for="contacto_correo">Correo</label>
-                    </div>
-
-                    <div class="md-form">
-                        <i class="fas fa-phone prefix grey-text"></i>
-                        <input type="tel" id="contacto_telefono" class="form-control">
-                        <label for="contacto_telefono">Teléfono</label>
-                    </div>
-
-                    <div class="md-form">
-                        <i class="fas fa-pencil-alt prefix grey-text"></i>
-                        <textarea id="contacto_mensaje" class="md-textarea form-control" rows="5"></textarea>
-                        <label for="contacto_mensaje">Mensaje</label>
-                    </div>
-
-
-                    <!--Grid row-->
-                    <div class="row d-flex align-items-center mb-3 mt-4">
-
-                        <!--Grid column-->
-                        <div class="col-md-12">
-                            <div class="text-center">
-                                <button type="button" class="btn btn-elegant rnd">Contactar</button>
-                            </div>
+                <form >
+                    <div class="card-body">
+                        <div class="md-form md-outline form-sm">
+                            <i class="fas fa-user prefix grey-text"></i>
+                            <input type="text" id="ANMSG_NOMBRE" name="ANMSG_NOMBRE"
+                                class="form-control form-control-sm" required>
+                            <label for="ANMSG_NOMBRE">Nombre</label>
                         </div>
-                        <!--Grid column-->
 
+                        <div class="md-form md-outline form-sm">
+                            <i class="fas fa-envelope prefix grey-text"></i>
+                            <input type="email" id="ANMSG_CORREO" name="ANMSG_CORREO"
+                                class="form-control form-control-sm" required>
+                            <label for="ANMSG_CORREO">Correo</label>
+                        </div>
+
+                        <div class="md-form md-outline form-sm">
+                            <i class="fas fa-phone prefix grey-text"></i>
+                            <input type="tel" id="ANMSG_TELEFONO" name="ANMSG_TELEFONO"
+                                class="form-control form-control-sm" required pattern="[0-9]{7,10}"
+                                title="Solo números telefónicos">
+                            <label for="ANMSG_TELEFONO">Teléfono</label>
+                        </div>
+
+                        <div class="md-form md-outline form-sm">
+                            <i class="fas fa-pencil-alt prefix grey-text"></i>
+                            <textarea id="ANMSG_MENSAJE" name="ANMSG_MENSAJE"
+                                class="md-textarea form-control form-control-sm" rows="5" required></textarea>
+                            <label for="ANMSG_MENSAJE">Mensaje</label>
+                        </div>
+                        <input type="hidden" class="form-control" name="ANUN_ID" value="{{anuncio.ANUN_ID}}" required>
+                        <input type="hidden" class="form-control" name="ANMSG_ASUNTO" value="CONTACTARSE" required>
+                        <!--Grid row-->
+                        <div class="row d-flex align-items-center mb-3 mt-4">
+
+                            <!--Grid column-->
+                            <div class="col-md-12">
+                                <!-- Default unchecked -->
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="tycCheck1" required>
+                                    <label class="custom-control-label text-small" for="tycCheck1">Acepta los <a
+                                           >Términos y
+                                            Condiciones</a></label>
+                                </div>
+                                <div class="text-center">
+                                    <button type="button submit"
+                                        class="btn btn-sm btn-light-green rnd">Contactar</button>
+                                </div>
+                            </div>
+                            <!--Grid column-->
+                        </div>
+                        <!--Grid row-->
                     </div>
-                    <!--Grid row-->
-                </div>
-
+                </form>
             </div>
             <!--/Form with header-->
+            <br>
+            <div class="text-center">
+                <button type="button submit" class="btn btn-sm mdb-color text-white btn-block rnd" data-toggle="modal"
+                    data-target="#modal_denunciar"><i class="fas fa-exclamation-triangle"></i> Algún error en el
+                    Anuncio?</button>
+            </div>
+
         </div>
         <!--COLUMNA DERECHA-->
     </div>
@@ -338,34 +439,40 @@
     <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header elegant-color  justify-content-center">
-                <h5 class="modal-title text-white"><i class="fas fa-phone pr-2"></i>QUIERO QUE ME LLAMEN</h5>
+            <div class="modal-header mdb-color darken-3">
+                <h6 class="modal-title text-white h6"><i class="fas fa-phone pr-2"></i>QUIERO QUE ME LLAMEN</h6>
                 <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <div class="md-form">
-                    <i class="fas fa-user prefix grey-text"></i>
-                    <input type="text" id="llamada_nombre" class="form-control">
-                    <label for="llamada_nombre">Nombre</label>
-                </div>
+            <form >
+                <div class="modal-body">
+                    <div class="md-form md-outline form-sm">
+                        <i class="fas fa-user prefix grey-text"></i>
+                        <input type="text" id="ANMSG_NOMBRE" name="ANMSG_NOMBRE" class="form-control form-control-sm"
+                            required>
+                        <label for="ANMSG_NOMBRE">Nombre</label>
+                    </div>
 
-                <div class="md-form">
-                    <i class="fas fa-envelope prefix grey-text"></i>
-                    <input type="email" id="llamada_correo" class="form-control">
-                    <label for="llamada_correo">Correo</label>
+                    <div class="md-form md-outline form-sm">
+                        <i class="fas fa-phone prefix grey-text"></i>
+                        <input type="tel" id="ANMSG_TELEFONO" name="ANMSG_TELEFONO" class="form-control form-control-sm"
+                            required pattern="[0-9]{7,10}" title="Solo números telefónicos">
+                        <label for="ANMSG_TELEFONO">Teléfono</label>
+                    </div>
                 </div>
-
-                <div class="md-form">
-                    <i class="fas fa-phone prefix grey-text"></i>
-                    <input type="tel" id="llamada_teléfono" class="form-control">
-                    <label for="llamada_teléfono">Teléfono</label>
+                <input type="hidden" class="form-control" name="ANUN_ID" value="{{anuncio.ANUN_ID}}" required>
+                <input type="hidden" class="form-control" name="ANMSG_ASUNTO" value="LLAMDA" required>
+                <!-- Default unchecked -->
+                <div class="custom-control custom-checkbox ml-3">
+                    <input type="checkbox" class="custom-control-input" id="tycCheck2" required>
+                    <label class="custom-control-label text-small" for="tycCheck2">Acepta los <a
+                           >Términos y Condiciones</a></label>
                 </div>
-            </div>
-            <div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-elegant rnd">Enviar</button>
-            </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button submit" class="btn btn-sm btn-light-green rnd">Enviar</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -376,39 +483,54 @@
     <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header elegant-color  justify-content-center">
-                <h5 class="modal-title text-white"><i class="fas fa-route pr-2"></i>PLANIFICAR VISITA</h5>
+            <div class="modal-header mdb-color darken-3">
+                <h6 class="modal-title h6 text-white"><i class="fas fa-route pr-2"></i>PLANIFICAR VISITA</h6>
                 <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <div class="md-form">
-                    <i class="fas fa-user prefix grey-text"></i>
-                    <input type="text" id="planificar_nombre" class="form-control">
-                    <label for="planificar_nombre">Nombre</label>
-                </div>
+            <form>
 
-                <div class="md-form">
-                    <i class="fas fa-envelope prefix grey-text"></i>
-                    <input type="email" id="planificar_correo" class="form-control">
-                    <label for="planificar_correo">Correo</label>
-                </div>
+                <div class="modal-body">
+                    <div class="md-form md-outline form-sm">
+                        <i class="fas fa-user prefix grey-text"></i>
+                        <input type="text" id="ANMSG_NOMBRE" name="ANMSG_NOMBRE" class="form-control form-control-sm"
+                            required>
+                        <label for="ANMSG_NOMBRE">Nombre</label>
+                    </div>
 
-                <div class="md-form">
-                    <i class="fas fa-phone prefix grey-text"></i>
-                    <input type="tel" id="planificar_telefono" class="form-control">
-                    <label for="planificar_telefono">Teléfono</label>
+                    <div class="md-form md-outline form-sm">
+                        <i class="fas fa-envelope prefix grey-text"></i>
+                        <input type="email" id="ANMSG_CORREO" name="ANMSG_CORREO" class="form-control form-control-sm"
+                            required>
+                        <label for="ANMSG_CORREO">Correo</label>
+                    </div>
+
+                    <div class="md-form md-outline form-sm">
+                        <i class="fas fa-phone prefix grey-text"></i>
+                        <input type="tel" id="ANMSG_TELEFONO" name="ANMSG_TELEFONO" class="form-control form-control-sm"
+                            pattern="[0-9]{7,10}" title="Solo números telefónicos">
+                        <label for="ANMSG_TELEFONO">Teléfono</label>
+                    </div>
+                    <div class="md-form md-outline form-sm">
+                        <i class="fas fa-calendar-day prefix grey-text"></i>
+                        <input type="date" id="ANMSG_FECHA_VISITA" name="ANMSG_FECHA_VISITA"
+                            class="form-control form-control-sm" required>
+                        <label for="ANMSG_FECHA_VISITA">En qué fecha desea visitar?</label>
+                    </div>
                 </div>
-                <div class="md-form">
-                    <i class="fas fa-calendar-day prefix grey-text"></i>
-                    <input type="date" id="planificar_fecha" class="form-control">
-                    <label for="planificar_fecha">En qué fecha desea visitar?</label>
+                <input type="hidden" class="form-control" name="ANUN_ID" value="{{anuncio.ANUN_ID}}" required>
+                <input type="hidden" class="form-control" name="ANMSG_ASUNTO" value="VISITA" required>
+                <!-- Default unchecked -->
+                <div class="custom-control custom-checkbox ml-3">
+                    <input type="checkbox" class="custom-control-input" id="tycCheck3" required>
+                    <label class="custom-control-label text-small" for="tycCheck3">Acepta los <a
+                            >Términos y Condiciones</a></label>
                 </div>
-            </div>
-            <div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-elegant rnd">Enviar</button>
-            </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button submit" class="btn btn-sm btn-light-green rnd">Enviar</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -419,40 +541,340 @@
     <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header elegant-color  justify-content-center">
-                <h5 class="modal-title text-white"><i class="fas fa-question pr-2"></i>CONSULTAR</h5>
+            <div class="modal-header mdb-color darken-3">
+                <h6 class="modal-title text-white h6"><i class="fas fa-question pr-2"></i>CONSULTAR</h6>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form>
+
+                <div class="modal-body">
+                    <div class="md-form md-outline form-sm">
+                        <i class="fas fa-user prefix grey-text"></i>
+                        <input type="text" id="ANMSG_NOMBRE" name="ANMSG_NOMBRE" class="form-control form-control-sm"
+                            required>
+                        <label for="ANMSG_NOMBRE">Nombre</label>
+                    </div>
+
+                    <div class="md-form md-outline form-sm">
+                        <i class="fas fa-envelope prefix grey-text"></i>
+                        <input type="email" id="ANMSG_CORREO" name="ANMSG_CORREO" class="form-control form-control-sm"
+                            required>
+                        <label for="ANMSG_CORREO">Correo</label>
+                    </div>
+
+                    <div class="md-form md-outline form-sm">
+                        <i class="fas fa-phone prefix grey-text"></i>
+                        <input type="tel" id="ANMSG_TELEFONO" name="ANMSG_TELEFONO" class="form-control form-control-sm"
+                            required pattern="[0-9]{7,10}" title="Solo números telefónicos">
+                        <label for="ANMSG_TELEFONO">Teléfono</label>
+                    </div>
+
+                    <div class="md-form md-outline form-sm">
+                        <i class="fas fa-pencil-alt prefix grey-text"></i>
+                        <textarea id="ANMSG_MENSAJE" name="ANMSG_MENSAJE"
+                            class="md-textarea form-control form-control-sm" rows="5" required></textarea>
+                        <label for="ANMSG_MENSAJE">Mensaje</label>
+                    </div>
+                </div>
+                <input type="hidden" class="form-control" name="ANUN_ID" value="{{anuncio.ANUN_ID}}" required>
+                <input type="hidden" class="form-control" name="ANMSG_ASUNTO" value="CONSULTA" required>
+                <!-- Default unchecked -->
+                <div class="custom-control custom-checkbox ml-3">
+                    <input type="checkbox" class="custom-control-input" id="tycCheck4" required>
+                    <label class="custom-control-label text-small" for="tycCheck4">Acepta los <a
+                            >Términos y Condiciones</a></label>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button submit" class="btn btn-sm btn-light-green rnd">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modal_llaves" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header mdb-color darken-3">
+                <h6 class="modal-title text-white h6"><i class="far fa-handshake pr-2"></i>Llaves en mano</h6>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form >
+
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6 text-small">
+                            <div class="text-center">
+                                <i class="grey text-white rounded-circle p-3 mb-1 far fa-handshake fa-3x"></i>
+                                <h5 class="card-title pricing-card-title mb-4 ">Llaves en mano</h5>
+                            </div>
+                            <ol class="list-unstyled m-4">
+                                <li class="justify"> <i class="fas fa-check green-text mr-2"></i>No se preocupe por
+                                    trámites y papeleo
+                                </li>
+                                <hr>
+                                <li class="justify"><i class="fas fa-check green-text mr-2"></i>Nosotros coordinamos el
+                                    arriendo o compra del inmueble en el que esta interesado
+                                </li>
+                                <hr>
+                                <li class="justify"><i class="fas fa-check green-text mr-2"></i>Envíe su información y
+                                    nos contactaremos con usted para brindarle información y facilitar los trámites
+                                </li>
+                                <hr>
+                                <li class="justify"><i class="fas fa-check green-text mr-2"></i>Su nuevo inmueble esta a
+                                    un clic de distancia
+                                </li>
+                            </ol>
+
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="md-form md-outline form-sm">
+                                <i class="fas fa-user prefix grey-text"></i>
+                                <input type="text" id="ANMSG_NOMBRE" name="ANMSG_NOMBRE"
+                                    class="form-control form-control-sm" required>
+                                <label for="ANMSG_NOMBRE">Nombre</label>
+                            </div>
+
+                            <div class="md-form md-outline form-sm">
+                                <i class="fas fa-envelope prefix grey-text"></i>
+                                <input type="email" id="ANMSG_CORREO" name="ANMSG_CORREO"
+                                    class="form-control form-control-sm" required>
+                                <label for="ANMSG_CORREO">Correo</label>
+                            </div>
+
+                            <div class="md-form md-outline form-sm">
+                                <i class="fas fa-phone prefix grey-text"></i>
+                                <input type="tel" id="ANMSG_TELEFONO" name="ANMSG_TELEFONO"
+                                    class="form-control form-control-sm" required pattern="[0-9]{7,10}"
+                                    title="Solo números telefónicos">
+                                <label for="ANMSG_TELEFONO">Teléfono</label>
+                            </div>
+
+                            <div class="md-form md-outline form-sm">
+                                <i class="fas fa-pencil-alt prefix grey-text"></i>
+                                <textarea id="ANMSG_MENSAJE" name="ANMSG_MENSAJE"
+                                    class="md-textarea form-control form-control-sm" rows="5" required></textarea>
+                                <label for="ANMSG_MENSAJE">Mensaje</label>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <input type="hidden" class="form-control" name="ANUN_ID" value="{{anuncio.ANUN_ID}}" required>
+                <input type="hidden" class="form-control" name="ANMSG_ASUNTO" value="LLAVES EN MANO" required>
+                <!-- Default unchecked -->
+                <div class="custom-control custom-checkbox ml-3">
+                    <input type="checkbox" class="custom-control-input" id="tycCheck5" required>
+                    <label class="custom-control-label text-small" for="tycCheck5">Acepta los <a
+                            >Términos y Condiciones</a></label>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button submit" class="btn btn-sm btn-light-green rnd">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modal_whatsapp" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header mdb-color darken-3">
+                <h6 class="modal-title text-white h6"><i class="fab fa-whatsapp  pr-2"></i>Enviar por WhatsApp</h6>
                 <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class="md-form">
-                    <i class="fas fa-user prefix grey-text"></i>
-                    <input type="text" id="consultar_nombre" class="form-control">
-                    <label for="consultar_nombre">Nombre</label>
+                <div class="text-center">
+                    <i class="lime accent-4 text-white rounded-circle p-3 mb-1 fab fa-whatsapp fa-3x"></i>
+                    <h5 class="card-title pricing-card-title mb-4 ">WhatsApp</h5>
                 </div>
+                <ol class="list-unstyled m-4">
+                    <li class="justify"> <i class="fas fa-check green-text mr-2"></i>Comparte este anuncio con tus
+                        amigos.
+                    </li>
+                </ol>
 
-                <div class="md-form">
-                    <i class="fas fa-envelope prefix grey-text"></i>
-                    <input type="email" id="consultar_apellido" class="form-control">
-                    <label for="consultar_apellido">Correo</label>
-                </div>
-
-                <div class="md-form">
-                    <i class="fas fa-phone prefix grey-text"></i>
-                    <input type="tel" id="consultar_telefono" class="form-control">
-                    <label for="consultar_telefono">Teléfono</label>
-                </div>
-
-                <div class="md-form">
-                    <i class="fas fa-pencil-alt prefix grey-text"></i>
-                    <textarea id="consultar__mensaje" class="md-textarea form-control" rows="5"></textarea>
-                    <label for="consultar__mensaje">Mensaje</label>
-                </div>
             </div>
             <div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-elegant rnd">Enviar</button>
+                <a type="button" class="btn btn-sm btn-light-green rnd"
+                    >Enviar</a>
             </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal_correo" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header mdb-color darken-3">
+                <h6 class="modal-title text-white h6"><i class="far fa-envelope  pr-2"></i>Enviar por Correo</h6>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+
+            <form>
+
+                <div class="modal-body">
+                    <div class="text-center">
+                        <i class="red text-white rounded-circle p-3 mb-1 far fa-envelope fa-3x"></i>
+                        <h5 class="card-title pricing-card-title mb-4 ">Correo Electónico</h5>
+                    </div>
+                    <ol class="list-unstyled m-4">
+                        <li class="justify"> <i class="fas fa-check green-text mr-2"></i>Envía este anuncio por correo
+                        </li>
+                    </ol>
+                    <div class="md-form md-outline form-sm">
+                        <i class="fas fa-user prefix grey-text"></i>
+                        <input type="text" id="CORREO_NOMBRE" name="CORREO_NOMBRE" class="form-control form-control-sm"
+                            required>
+                        <label for="CORREO_NOMBRE">Su Nombre</label>
+                    </div>
+                    <div class="md-form md-outline form-sm">
+                        <i class="fas fa-envelope prefix grey-text"></i>
+                        <input type="email" id="CORREO_CORREO_EMI" name="CORREO_CORREO_EMI"
+                            class="form-control form-control-sm" required>
+                        <label for="CORREO_CORREO_EMI">Su Correo</label>
+                    </div>
+                    <div class="md-form md-outline form-sm">
+                        <i class="fas fa-envelope prefix grey-text"></i>
+                        <input type="email" id="CORREO_CORREO" name="CORREO_CORREO" class="form-control form-control-sm"
+                            required>
+                        <label for="CORREO_CORREO">Correo Destinatario</label>
+                    </div>
+                    <div class="md-form md-outline form-sm">
+                        <i class="fas fa-pencil-alt prefix grey-text"></i>
+                        <textarea id="CORREO_MENSAJE" name="CORREO_MENSAJE"
+                            class="md-textarea form-control form-control-sm" rows="5" required></textarea>
+                        <label for="CORREO_MENSAJE">Mensaje</label>
+                    </div>
+                </div>
+                <input type="hidden" class="form-control" name="ANUN_ID" value="{{anuncio.ANUN_ID}}" required>
+                <!-- Default unchecked -->
+                <div class="custom-control custom-checkbox ml-3">
+                    <input type="checkbox" class="custom-control-input" id="tycCheck6" name="tycCheck6" required>
+                    <label class="custom-control-label text-small" for="tycCheck6">Acepta los <a
+                           >Términos y Condiciones</a></label>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button submit" class="btn btn-sm btn-light-green rnd">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal_denunciar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header mdb-color darken-3">
+                <h6 class="modal-title text-white h6"><i class="fas fa-exclamation-triangle  pr-2"></i>El Anuncio tiene
+                    algún error?
+                </h6>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form >
+                <div class="modal-body">
+                    <div class="text-center">
+                        <i
+                            class="warning-color text-white rounded-circle p-3 mb-1 fas fa-exclamation-triangle fa-3x"></i>
+                    </div>
+                    <ol class="list-unstyled m-4">
+                        <li class="justify"> <i class="fas fa-exclamation-triangle text-warning mr-2"></i>Coméntanos que
+                            problema existe en el anuncio
+                        </li>
+                    </ol>
+
+                    <div class="custom-control custom-radio ml-4 mt-2">
+                        <input type="radio" class="custom-control-input" id="check1" name="check" required
+                            value="La dirección está mal">
+                        <label class="custom-control-label" for="check1">La dirección está mal</label>
+                    </div>
+                    <div class="custom-control custom-radio ml-4 mt-2">
+                        <input type="radio" class="custom-control-input" id="check2" name="check" required
+                            value="El precio no es correcto">
+                        <label class="custom-control-label" for="check2">El precio no es correcto</label>
+                    </div>
+                    <div class="custom-control custom-radio ml-4 mt-2">
+                        <input type="radio" class="custom-control-input" id="check3" name="check" required
+                            value="Es una posible estafa">
+                        <label class="custom-control-label" for="check3">Es una posible estafa</label>
+                    </div>
+                    <div class="custom-control custom-radio ml-4 mt-2">
+                        <input type="radio" class="custom-control-input" id="check4" name="check" required
+                            value="Comentarios discriminatorios y/u ofensivos">
+                        <label class="custom-control-label" for="check4">Comentarios discriminatorios y/u
+                            ofensivos</label>
+                    </div>
+                    <div class="custom-control custom-radio ml-4 mt-2">
+                        <input type="radio" class="custom-control-input" id="check5" name="check" required
+                            value="Error en las fotos">
+                        <label class="custom-control-label" for="check5">Error en las fotos</label>
+                    </div>
+                    <div class="custom-control custom-radio ml-4 mt-2">
+                        <input type="radio" class="custom-control-input" id="check6" name="check" required
+                            value="El teléfono es erróneo o no contesta">
+                        <label class="custom-control-label" for="check6">El teléfono es erróneo o no contesta</label>
+                    </div>
+                    <div class="custom-control custom-radio ml-4 mt-2">
+                        <input type="radio" class="custom-control-input" id="check7" name="check" required
+                            value="El email es erróneo o el anunciante no responde">
+                        <label class="custom-control-label" for="check7">El email es erróneo o el anunciante no
+                            responde</label>
+                    </div>
+                    <div class="custom-control custom-radio ml-4 mt-2">
+                        <input type="radio" class="custom-control-input" id="check8" name="check" required
+                            value="Ya está vendido">
+                        <label class="custom-control-label" for="check8">Ya está vendido</label>
+                    </div>
+                    <div class="custom-control custom-radio ml-4 mt-2">
+                        <input type="radio" class="custom-control-input" id="check9" name="check" required
+                            value="Otro motivo">
+                        <label class="custom-control-label" for="check9">Otro motivo</label>
+                    </div>
+                    <div class="md-form md-outline form-sm ml-4 mt-2">
+                        <input type="text" id="DENUN_DESC" name="DENUN_DESC" class="form-control form-control-sm"
+                            required>
+                        <label for="DENUN_DESC">Comentario sobre el error</label>
+                    </div>
+                </div>
+                <input type="hidden" class="form-control" name="ANUN_ID" value="{{anuncio.ANUN_ID}}" required>
+                <!-- Default unchecked -->
+                <div class="custom-control custom-checkbox ml-4">
+                    <input type="checkbox" class="custom-control-input" id="tycCheck7" name="tycCheck7" required>
+                    <label class="custom-control-label text-small" for="tycCheck7">Acepta los <a
+                            >Términos y Condiciones</a></label>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button submit" class="btn btn-sm btn-light-green rnd">Enviar </button>
+                </div>
+            </form>
+
+
         </div>
     </div>
 </div>

@@ -16,9 +16,9 @@
             <a href="/adminUsuarios" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-envelope-open mr-3"></i>Administrar Usuarios</a>
             <a href="/adminMensajes" class="list-group-item list-group-item-action waves-effect">
-                <i class="fas fa-headset mr-3"></i>Mensajes</a>
+                <i class="fas fa-headset mr-3"></i>Mensajes Usuarios</a>
             <a href="/llavesEnMano" class="list-group-item list-group-item-action waves-effect active">
-                <i class="far fa-handshake mr-3"></i>Llaves en Mano</a>
+                <i class="far fa-handshake mr-3"></i>Asesoria y Consultas</a>
             <a href="/denuncias" class="list-group-item list-group-item-action waves-effect ">
                 <i class="fas fa-exclamation-triangle mr-3"></i>Denuncias</a>
             <a href="/adminCuenta" class="list-group-item list-group-item-action waves-effect">
@@ -29,9 +29,9 @@
     </div>
     <div class="content white rounded-lg mb-5 pl-3 pr-3 ">
         <div class="header pt-5">
-            <h2 class="font-weight-normal font-italic text-center">Llaves en Mano</h2>
+            <h2 class="font-weight-normal font-italic text-center">Asesoria y Consultas</h2>
         </div>
-        <h5 class="font-weight-normal font-italic pl-2 pr-2 text-center">Mire los mensajes de los
+        <h5 class="font-weight-normal font-italic pl-2 pr-2 text-center">Mire las consultas de los clientes y también los
             interesados en el servicio de Llaves en Mano</h5>
         <table id="example" class="hover">
             <thead>
@@ -47,9 +47,11 @@
                             <div class="row">
                                 <div class="col-sm-9">
                                     <div class="row">
+                                        {{#if ANUN_TITULO}}
                                         <div class="col-sm-12">
                                             <p><b>Anuncio: </b> {{ANUN_TITULO}}</p>
                                         </div>
+                                        {{/if}}
                                         <div class="col-sm-6">
                                             <p><b>Fecha: </b> {{ANMSG_FECHA}}</p>
                                         </div>
@@ -84,10 +86,12 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
+                                     {{#if ANUN_TITULO}}
                                     <a href="/anuncio/{{ANUN_ID}}" class="btn btn-md btn-elegant btn-block rnd"
                                         type="button"><i class="far fa-eye pr-3"></i>Ver Anuncio</a>
                                     <br>
                                     <br>
+                                    {{/if}}
                                     <a href="https://api.whatsapp.com/send?phone=593{{ANMSG_TELEFONO}}"
                                         class="btn btn-md btn-success  btn-block rnd" type="button"><i
                                             class="fab fa-whatsapp pr-3"></i>Contactar</a>

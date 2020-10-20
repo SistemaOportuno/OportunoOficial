@@ -50,12 +50,20 @@ p {
     background-color: #fafafa  ;
     position: absolute;
     overflow: auto;
+    border: solid;
+    border-width: 1px;
+    border-color: #c0c0c0;
   }
   
   div.content {
     margin-left: 310px;
     margin-top: 80px;
-    height:275vh;
+    height:1600px;
+  }
+  div.content-ls {
+    margin-left: 310px;
+    margin-top: 80px;
+    height:1750px;
   }
   div.content-panel  {
     margin-left: 310px;
@@ -291,5 +299,47 @@ input:checked + .slider-long:before {
 .card-op {
   background-color: rgba(0, 0, 0, 0.4) !important;
 }
+.back-principal{
+  background: rgb(98,112,255);
+  background: linear-gradient(90deg, rgba(98,112,255,0.6278886554621849) 0%, rgba(164,163,236,0.26094187675070024) 49%, rgba(154,198,255,0.7035189075630253) 100%);
+}
+.back-recomendado{
+  background: rgb(126,247,95);
+background: linear-gradient(90deg, rgba(126,247,95,0.6278886554621849) 0%, rgba(174,236,163,0.26094187675070024) 49%, rgba(227,255,154,1) 100%);
+}
+.nav-pills .nav-item .active {
+  background-color: #8bc34a    !important;
+  color: white;
+  transform: translate(0,-5px)
+}
 
- 
+.nav-pills .nav-item a {
+  color: rgb(43, 43, 43);
+  border: #8bc34a ;
+  background-color: white;
+  border-style: solid;
+  border-width: 1px;
+  transform: translate(0,-5px)
+}
+
+.list-group .list-group-item.active{
+  background-color: #8bc34a;
+  border: #8bc34a;
+  border-style: solid;
+}
+
+.sidebar.rounded-lg .header{
+  background-color: #123b61 !important;
+}
+
+.card.m-3 .card-body.elegant-color.white-text.rounded-bottom{
+  background-color: #123b61 !important;
+}
+
+.font-weight-bolder.text-white.elegant-color.rounded.p-2{
+  background-color: #123b61 !important;
+}
+
+.grey.text-white.rounded-circle.p-3{
+  background-color: #8bc34a !important;
+}

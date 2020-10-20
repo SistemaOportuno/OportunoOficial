@@ -23,8 +23,8 @@
                 <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión</a>
         </div>
     </div>
-    <div class="content white rounded-lg mb-5  pl-2 pr-2">
-        <div class="row d-flex justify-content-center">
+    <div class="content-ls white rounded-lg mb-5  pl-2 pr-2 border">
+        <div class="row d-flex text-center">
             <div class="header pt-5">
                 <h2 class="font-weight-normal font-italic">Administrar Anuncios</h2>
             </div>
@@ -41,7 +41,7 @@
                 {{#each anuncios}}
                 <tr>
                     <td>
-                        <div class="card">
+                        <div class="card border">
                             <div class="row">
                                 <div class="col-sm-5">
                                     <!--Carousel Wrapper-->
@@ -130,26 +130,26 @@
                                         {{FECHA}}</p>
                                 </div>
                                 <div class="col-sm-2 ">
-                                    <a type="button" class="btn btn-info btn-sm" href="/verAnuncio/{{ANUN_ID}}">Ver</a>
+                                    <a type="button" class="btn btn-info btn-sm rnd" href="/verAnuncio/{{ANUN_ID}}">Ver</a>
                                 </div>
                                 <div class="col-sm-2 ">
-                                    <a type="button" class="btn btn-light btn-sm "
+                                    <a type="button" class="btn btn-light btn-sm  rnd"
                                         href="/editAnuncio/{{ANUN_ID}}">Editar</a>
                                 </div>
                                 {{#ifEquals ANUN_ESTADO "ACTIVO"}}
                                 <div class="col-sm-2 ">
-                                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
+                                    <button type="button" class="btn btn-warning btn-sm rnd" data-toggle="modal"
                                         data-target="#bloquearModal{{../ANUN_ID}}">Bloquear</button>
                                 </div>
                                  {{/ifEquals}}
                                  {{#ifEquals ANUN_ESTADO "BLOQUEADO"}}
                                 <div class="col-sm-2 ">
-                                    <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal"
+                                    <button type="button" class="btn btn-secondary btn-sm rnd" data-toggle="modal"
                                         data-target="#activarModal{{../ANUN_ID}}">Activar</button>
                                 </div>
                                  {{/ifEquals}}
                                 <div class="col-sm-2">
-                                    <button type="button" class="btn btn-danger btn-sm " data-toggle="modal"
+                                    <button type="button" class="btn btn-danger btn-sm  rnd" data-toggle="modal"
                                         data-target="#eliminarModal{{ANUN_ID}}">Eliminar</button>
                                 </div>
                             </div>

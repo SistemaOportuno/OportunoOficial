@@ -97,7 +97,14 @@ router.post('/busqueda', async (req, res) => {
     const costo_max = req.body.costo_max;
     filtro.costo_min = costo_min;
     filtro.costo_max = costo_max;
-    query += " AND anun_precio >=" + costo_min + " AND anun_precio<=" + costo_max;
+    if(costo_min){
+        query += " AND anun_precio >=" + costo_min;
+
+    }
+    if(costo_max){
+        query += " AND anun_precio<=" + costo_max;
+
+    }
 
     //tipos inmmuebles
     const tipos_inmuebles = await db.query("SELECT * FROM tipos_inmuebles WHERE tipinm_estado='ACTIVO'");
@@ -297,17 +304,27 @@ router.get('/anuncio/:ANUN_ID', async (req, res) => {
     const rows = await db.query('SELECT *, DATE_FORMAT(ANUN_FECHA,"%Y-%m-%d") as FECHA FROM anuncios WHERE anun_estado="ACTIVO" AND anun_id=?', [ANUN_ID]);
     const anuncio = rows[0];
     if (anuncio != undefined) {
+        const tipo_usuario=await db.query('SELECT usu_tipo from usuarios where usu_id=?', anuncio.USU_ID);
+        if(tipo_usuario[0].usu_tipo=='INMOBILIARIA'){
+            const inmo_q=await db.query('select usu_empresa, usu_empresa_correo, usu_empresa_telefono, usu_empresa_logo from usuarios where usu_id=?', anuncio.USU_ID);
+            anuncio.INMO=inmo_q[0];
+        }
         if (req.user==undefined || req.user.USU_ID != anuncio.USU_ID) {
             update_anuncio = {
                 ANUN_VISTAS: anuncio.ANUN_VISTAS += 1
             }
             await db.query('UPDATE anuncios SET ? WHERE anun_id=?', [update_anuncio, anuncio.ANUN_ID]);
         }
-        anuncio.IMAGES = await db.query('SELECT * FROM imagenes WHERE anun_id=?', anuncio.ANUN_ID);
+        anuncio.IMAGES = await db.query('SELECT * FROM imagenes WHERE anun_id=? AND IMG_TIPO="FOTO"', anuncio.ANUN_ID);
         anuncio.IMAGES.forEach(function (i, idx, array) {
             i.POS = idx;
         });
         anuncio.COUNT_IMAGES=anuncio.IMAGES.length;
+        anuncio.PLANOS = await db.query('SELECT * FROM imagenes WHERE anun_id=? AND IMG_TIPO="PLANO"', anuncio.ANUN_ID);
+        anuncio.PLANOS.forEach(function (i, idx, array) {
+            i.POS = idx;
+        });
+        anuncio.COUNT_PLANOS=anuncio.PLANOS.length;
         var aux = await db.query('SELECT prov_nombre FROM provincias WHERE prov_id=?', anuncio.PROV_ID);
         anuncio.PROVINCIA = aux[0].prov_nombre;
         aux = await db.query('SELECT cant_nombre FROM cantones WHERE cant_id=?', anuncio.CANT_ID);
@@ -336,8 +353,24 @@ router.post('/addMensajeCliente', isNotLoggedIn, async (req, res) => {
         ANMSG_ESTADO: 'ACTIVO'
     }
     await db.query('INSERT INTO anuncios_mensajes SET ?', [new_mensaje]);
-    req.flash('success', 'Mensaje enviado correctamente, muy pronto el anunciante se contactará con usted');
+    req.flash('success', 'Mensaje enviado correctamente');
     res.redirect('/anuncio/' + req.body.ANUN_ID);
+});
+router.post('/addConsulta', async (req, res) => {
+    new_mensaje = {
+        ANUN_ID: req.body.ANUN_ID,
+        ANMSG_NOMBRE: req.body.ANMSG_NOMBRE,
+        ANMSG_CORREO: req.body.ANMSG_CORREO,
+        ANMSG_TELEFONO: req.body.ANMSG_TELEFONO,
+        ANMSG_FECHA_VISITA: req.body.ANMSG_FECHA_VISITA,
+        ANMSG_FECHA: helpers.fecha_actual(),
+        ANMSG_ASUNTO: req.body.ANMSG_ASUNTO,
+        ANMSG_MENSAJE: req.body.ANMSG_MENSAJE,
+        ANMSG_ESTADO: 'ACTIVO'
+    }
+    await db.query('INSERT INTO anuncios_mensajes SET ?', [new_mensaje]);
+    req.flash('success', 'Mensaje enviado correctamente');
+    res.redirect('/');
 });
 router.get('/empresa', async (req, res) => {
     res.render('public/empresa');
@@ -363,7 +396,6 @@ router.post('/compartirCorreo', isNotLoggedIn, async (req, res) => {
     req.flash('success', 'Este Inmueble fue compartido exitosamente');
     res.redirect('/anuncio/' + req.body.ANUN_ID);
 });
-
 router.post('/denunciar', isNotLoggedIn, async (req, res) => {
     var newDenuncia = {
         DENUN_ANUN: req.body.ANUN_ID,

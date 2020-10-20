@@ -19,8 +19,8 @@
                         <!--Slides-->
                         <div class="carousel-inner" role="listbox">
                             {{#each IMAGES}}
-
-                            <div class="carousel-item overlay zoom {{#ifEquals POS 0}} active {{/ifEquals}}">
+                            <div class="carousel-item overlay  {{#ifEquals POS 0}} active {{/ifEquals}}">
+                                <a href="/anuncio/{{ANUN_ID}}">
                                 <div class="mask">
                                     <div class="container">
                                         <div class="row ">
@@ -32,8 +32,8 @@
                                             <div class="col"></div>
                                         </div>
                                     </div>
-
                                 </div>
+                                </a>
                                 <img class="img-fluid mx-auto d-block" src="/anuncio_images/{{IMG_NOMBRE}}"
                                     style="height: 300px">
                             </div>
