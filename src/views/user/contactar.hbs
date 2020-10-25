@@ -23,7 +23,7 @@
                 <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión</a>
         </div>
     </div>
-    <div class="content-panel white rounded-lg mb-5 pl-3 pr-3 ">
+    <div class="content-panel white rounded-lg mb-5 pl-3 pr-3 border">
         <div class="header pt-5">
             <h2 class="font-weight-normal font-italic text-center">Contáctese con Nosotros</h2>
         </div>
@@ -32,13 +32,13 @@
         <div class="container pb-5">
             <div class="row border rounded-lg mt-5 pl-2 pr-2 mb-5 pb-2">
 
-                <div class="col-sm-12">
+                <div class="col-sm-12 text-small">
                     <form method="POST" action="/newUsuarioMensaje">
                         <div class="md-form input-group">
                             <div class="input-group-prepend pr-2">
                                 <p class=" md-addon">Asunto </p>
                             </div>
-                            <select class="browser-default custom-select form-control" name="PREG_ID" required>
+                            <select class="browser-default custom-select form-control text-small" name="PREG_ID" required>
                                 <option value="" selected>Seleccione el asunto</option>
                                 {{#each preguntas}}
                                 <option value="{{PREG_ID}}">{{PREG_DESCRIPCION}}</option>
@@ -53,15 +53,15 @@
                                 required></textarea>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <button type="button submit" class="btn btn-elegant">Enviar</button>
+                            <button type="button submit" class="btn btn-light-green btn-sm rnd">Enviar</button>
                         </div>
                     </form>
                 </div>
 
             </div>
-            <div class="row border rounded-lg pl-2 ">
+            <div class="row border rounded-lg pl-2 text-small">
                 <div class="col-sm-12">
-                    <h3>Contactos</h3>
+                    <h5>Contactos</h5>
                 </div>
                 <div class="col-sm-3">
                     <h6 class="font-weight-bolder  ">Teléfono:</h6>

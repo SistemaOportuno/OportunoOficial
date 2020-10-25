@@ -23,22 +23,22 @@
                 <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión</a>
         </div>
     </div>
-    <div class="content-panel white rounded-lg mb-5 pl-2 pr-2 ">
-        <a type="button" class="btn btn-elegant rnd mt-3" href="/cuenta">Regresar</a>
+    <div class="content-panel white rounded-lg mb-5 pl-2 pr-2 border">
+        <a type="button" class="btn btn-light-green btn-sm rnd mt-3" href="/cuenta">Regresar</a>
 
         <div class="header pt-5">
             <h2 class="font-weight-normal font-italic text-center">Editar Cuenta</h2>
         </div>
         <form method="POST" action="/editarCuenta" enctype="multipart/form-data">
             <div class="container pb-5">
-                <div class="row border rounded pl-2 pr-2 pt-3 pb-2 mb-3">
+                <div class="row border rounded pl-2 pr-2 pt-3 pb-2 mb-3 text-small">
                     <div class="col-sm-12">
-                        <h3>Información Basica</h3>
+                        <h5>Información Basica</h5>
                     </div>
                     <div class="col-sm-6">
                         <div class="md-form">
                             <i class="fas fa-signature prefix grey-text"></i>
-                            <input type="text" id="USU_NOMBRE" name="USU_NOMBRE" class="form-control"
+                            <input type="text" id="USU_NOMBRE" name="USU_NOMBRE" class="form-control text-small"
                                 value="{{usuario.USU_NOMBRE}}" required>
                             <label for="USU_NOMBRE">Nombre</label>
                         </div>
@@ -46,7 +46,7 @@
                     <div class="col-sm-6">
                         <div class="md-form">
                             <i class="fas fa-signature prefix grey-text"></i>
-                            <input type="text" id="USU_APELLIDO" name="USU_APELLIDO" class="form-control"
+                            <input type="text" id="USU_APELLIDO" name="USU_APELLIDO" class="form-control text-small"
                                 value="{{usuario.USU_APELLIDO}}" required>
                             <label for="USU_APELLIDO">Apellido</label>
                         </div>
@@ -54,7 +54,7 @@
                     <div class="col-sm-6">
                         <div class="md-form">
                             <i class="fas fa-envelope prefix grey-text"></i>
-                            <input type="email" id="USU_CORREO" name="USU_CORREO" class="form-control"
+                            <input type="email" id="USU_CORREO" name="USU_CORREO" class="form-control text-small"
                                 value="{{usuario.USU_CORREO}}" required>
                             <label for="USU_CORREO">Correo</label>
                         </div>
@@ -63,7 +63,7 @@
                     <div class="col-sm-6">
                         <div class="md-form">
                             <i class="fas fa-phone prefix grey-text"></i>
-                            <input type="tel" id="USU_TELEFONO" name="USU_TELEFONO" class="form-control"
+                            <input type="tel" id="USU_TELEFONO" name="USU_TELEFONO" class="form-control text-small"
                                 value="{{usuario.USU_TELEFONO}}" required>
                             <label for="USU_TELEFONO">Teléfono</label>
                         </div>
@@ -71,14 +71,14 @@
 
                 </div>
                 {{#ifEquals usuario.USU_TIPO "INMOBILIARIA"}}
-                <div class="row border rounded pl-2 pr-2 pt-3 pb-2 mb-3">
+                <div class="row border rounded pl-2 pr-2 pt-3 pb-2 mb-3 text-small">
                     <div class="col-sm-12">
-                        <h3>Información Empresa</h3>
+                        <h5>Información Empresa</h5>
                     </div>
                     <div class="col-sm-6">
                         <div class="md-form">
                             <i class="fas fa-envelope prefix grey-text"></i>
-                            <input type="Text" id="USU_EMPRESA" name="USU_EMPRESA" class="form-control"
+                            <input type="Text" id="USU_EMPRESA" name="USU_EMPRESA" class="form-control text-small"
                                 value="{{../usuario.USU_EMPRESA}}" required>
                             <label for="USU_EMPRESA">Nombre Empresa</label>
                         </div>
@@ -86,7 +86,7 @@
                     <div class="col-sm-6">
                         <div class="md-form">
                             <i class="fas fa-envelope prefix grey-text"></i>
-                            <input type="email" id="USU_EMPRESA_CORREO" name="USU_EMPRESA_CORREO" class="form-control"
+                            <input type="email" id="USU_EMPRESA_CORREO" name="USU_EMPRESA_CORREO" class="form-control text-small"
                                 value="{{../usuario.USU_EMPRESA_CORREO}}" required>
                             <label for="USU_EMPRESA_CORREO">Correo Empresa</label>
                         </div>
@@ -94,14 +94,14 @@
                     <div class="col-sm-6">
                         <div class="md-form">
                             <i class="fas fa-envelope prefix grey-text"></i>
-                            <input type="tel" id="USU_EMPRESA_TELEFONO" name="USU_EMPRESA_TELEFONO" class="form-control"
+                            <input type="tel" id="USU_EMPRESA_TELEFONO" name="USU_EMPRESA_TELEFONO" class="form-control text-small"
                                 value="{{../usuario.USU_EMPRESA_TELEFONO}}" required>
                             <label for="USU_EMPRESA_TELEFONO">Teléfono Empresa</label>
                         </div>
                     </div>
                     <div class="col-sm-6 pt-4">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="logo" name="logo"
+                            <input type="file" class="custom-file-input text-small" id="logo" name="logo"
                                 accept="image/x-png, image/gif, image/jpeg, image/jpg">
                             <label class="custom-file-label" for="logo" data-browse="Seleccionar">Logo de la
                                 Empresa</label>
@@ -116,7 +116,7 @@
                 {{/ifEquals}}
                 <div class="row border rounded-lg p-2 mb-2">
                     <div class="col-sm-12">
-                        <h3>Cobertura</h3>
+                        <h5>Cobertura</h5>
                     </div>
                     <div class="col-sm-12">
 
@@ -126,28 +126,28 @@
                             
                                 {{#ifEquals ../usuario.USU_TIPO "PROPIETARIO"}}
                                 <div class="custom-control  custom-radio">
-                                    <input type="radio" class="custom-control-input form-control"
+                                    <input type="radio" class="custom-control-input form-control text-small"
                                         id="checks_provincias{{../PROV_ID}}" name="PROV_ID" value="{{../PROV_ID}}"
                                         {{#if ../CHECK}} checked {{/if}}>
-                                    <label class="custom-control-label"
+                                    <label class="custom-control-label text-small"
                                         for="checks_provincias{{../PROV_ID}}">{{../PROV_NOMBRE}}</label>
                                 </div>
                                 {{/ifEquals}}
                                 {{#ifEquals ../usuario.USU_TIPO "AGENTE"}}
                                 <div class="custom-control  custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input form-control"
+                                    <input type="checkbox" class="custom-control-input form-control text-small"
                                         id="checks_provincias{{../PROV_ID}}" name="PROV_ID" value="{{../PROV_ID}}"
                                         {{#if ../CHECK }} checked {{/if}}>
-                                    <label class="custom-control-label"
+                                    <label class="custom-control-label text-small"
                                         for="checks_provincias{{../PROV_ID}}">{{../PROV_NOMBRE}}</label>
                                 </div>
                                 {{/ifEquals}}
                                 {{#ifEquals ../usuario.USU_TIPO "INMOBILIARIA"}}
                                 <div class="custom-control  custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input form-control"
+                                    <input type="checkbox" class="custom-control-input form-control text-small"
                                         id="checks_provincias{{../PROV_ID}}" name="PROV_ID" value="{{../PROV_ID}}"
                                         {{#if ../CHECK}} checked {{/if}}>
-                                    <label class="custom-control-label"
+                                    <label class="custom-control-label text-small"
                                         for="checks_provincias{{../PROV_ID}}">{{../PROV_NOMBRE}}</label>
                                 </div>
                                 {{/ifEquals}}
@@ -160,7 +160,7 @@
                 <div class="row border rounded-lg p-2 m-5">
                     <div class="col-sm-12">
                         <div class="d-flex justify-content-around">
-                            <button type="button submit" class="rnd btn btn-elegant mb-2">Editar</button>
+                            <button type="button submit" class="rnd btn btn-blue-grey btn-sm mb-2">Editar</button>
                         </div>
                     </div>
                 </div>

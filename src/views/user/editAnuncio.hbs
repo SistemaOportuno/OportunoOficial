@@ -29,8 +29,8 @@
                 <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión</a>
         </div>
     </div>
-    <div class="content-panel white rounded-lg mb-5 pb-3 pl-3 pr-3">
-        <a type="button" class="btn btn-elegant rnd mt-3" href="/listAnuncios">Regresar</a>
+    <div class="content-panel white rounded-lg mb-5 pb-3 pl-3 pr-3 border">
+        <a type="button" class="btn btn-light-green btn-sm rnd mt-3" href="/listAnuncios">Regresar</a>
 
         <div class="row d-flex justify-content-center">
             <div class="header pt-2">
@@ -41,24 +41,24 @@
                 que sea actualizada en nuestra página web</h5>
         </div>
         <form method="POST" action="/editAnuncio" enctype="multipart/form-data">
-            <h5 class="font-weight-bolder text-white elegant-color rounded p-2">Informacion general</h5>
-            <div class="row border rounded-lg p-2 m-1">
+            <h6 class="font-weight-bolder text-white elegant-color rounded p-2">Informacion general</h6>
+            <div class="row border rounded-lg p-2 m-1 text-small">
                 <div class="md-form input-group">
                     <div class="input-group-prepend">
                         <p class=" md-addon">Título del Anuncio</p>
                     </div>
-                    <input type="text" class="form-control" name="ANUN_TITULO" required value="{{anuncio.ANUN_TITULO}}">
+                    <input type="text" class="form-control text-small" name="ANUN_TITULO" required value="{{anuncio.ANUN_TITULO}}">
                 </div>
                 <div class="md-form input-group">
                     <div class="input-group-prepend">
                         <p class=" md-addon">Descripción</p>
                     </div>
-                    <textarea class="md-textarea form-control" rows="5" name="ANUN_DESCRIPCION"
+                    <textarea class="md-textarea form-control text-small" rows="5" name="ANUN_DESCRIPCION"
                         required>{{anuncio.ANUN_DESCRIPCION}}</textarea>
                 </div>
             </div>
-            <h5 class="font-weight-bolder text-white elegant-color rounded p-2">Datos del Inmueble</h5>
-            <div class="row border rounded-lg p-2 m-1">
+            <h6 class="font-weight-bolder text-white elegant-color rounded p-2">Datos del Inmueble</h6>
+            <div class="row border rounded-lg p-2 m-1 text-small">
                 <div class="col-sm-8">
                     <div class="row">
                         <div class="col-md-6 pl-5 pr-5 pt-2">
@@ -80,7 +80,7 @@
                         </div>
                         <div class="col-md-6 pt-2">
                             <p class="text-center">Tipo de nmueble</p>
-                            <select class="browser-default custom-select form-control" id="TIPINM_ID " name="TIPINM_ID"
+                            <select class="browser-default custom-select form-control text-small" id="TIPINM_ID " name="TIPINM_ID"
                                 required>
                                 {{#each tipos_inmuebles}}
                                 <option value="{{TIPINM_ID}}" {{#ifEquals ../anuncio.TIPINM_ID TIPINM_ID}} selected
@@ -90,7 +90,7 @@
                         </div>
                         <div class="col-sm-12">
                             <p class="text-center">Estado del Inmueble</p>
-                            <select class="browser-default custom-select form-control" id="ANUN_ESTADO_CONSTR"
+                            <select class="browser-default custom-select form-control text-small" id="ANUN_ESTADO_CONSTR"
                                 name="ANUN_ESTADO_CONSTR">
                                 {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "" }} <option selected value="">Seleccione el
                                     estado de Inmueble</option>{{/ifEquals}}
@@ -116,7 +116,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text md-addon"> <i class=" fas fa-expand-arrows-alt"></i></span>
                         </div>
-                        <input type="number" class="form-control" placeholder="Total" name="ANUN_TAMANO_TOTAL" min="0"
+                        <input type="number" class="form-control text-small" placeholder="Total" name="ANUN_TAMANO_TOTAL" min="0"
                             required value="{{anuncio.ANUN_TAMANO_TOTAL}}">
                         <div class="input-group-prepend">
                             <span class="input-group-text md-addon">m&sup2</span>
@@ -126,7 +126,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text md-addon"> <i class=" fas fa-expand-arrows-alt"></i></span>
                         </div>
-                        <input type="number" class="form-control" placeholder="Construcción"
+                        <input type="number" class="form-control text-small" placeholder="Construcción"
                             name="ANUN_TAMANO_CONSTRUCCION" value="{{anuncio.ANUN_TAMANO_CONSTRUCCION}}" min="0">
                         <div class="input-group-prepend">
                             <span class="input-group-text md-addon">m&sup2</span>
@@ -134,15 +134,15 @@
                     </div>
                 </div>
             </div>
-            <h5 class="font-weight-bolder text-white elegant-color rounded p-2">Costos</h5>
-            <div class="row border rounded-lg p-2 m-1">
+            <h6 class="font-weight-bolder text-white elegant-color rounded p-2">Costos</h6>
+            <div class="row border rounded-lg p-2 m-1 text-small">
                 <div class="col-md-6 pl-5 pr-5">
                     <p class=" text-center">Precio</p>
                     <div class="md-form input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text md-addon"> <i class=" fas fa-money-bill-alt"></i></span>
                         </div>
-                        <input type="number" class="form-control" name="ANUN_PRECIO" required
+                        <input type="number" class="form-control text-small" name="ANUN_PRECIO" required
                             value="{{anuncio.ANUN_PRECIO}}" min="0">
                     </div>
                 </div>
@@ -152,13 +152,13 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text md-addon"> <i class=" fas fa-money-bill-alt"></i></span>
                         </div>
-                        <input type="number" class="form-control" name="ANUN_ALICUOTA" value="{{anuncio.ANUN_ALICUOTA}}"
+                        <input type="number" class="form-control text-small" name="ANUN_ALICUOTA" value="{{anuncio.ANUN_ALICUOTA}}"
                             min="0">
                     </div>
                 </div>
             </div>
-            <h5 class="font-weight-bolder text-white elegant-color rounded p-2">Características</h5>
-            <div class="row  border rounded-lg p-2 m-1 text-center">
+            <h6 class="font-weight-bolder text-white elegant-color rounded p-2">Características</h6>
+            <div class="row  border rounded-lg p-2 m-1 text-center text-small">
                 <div class="col-sm-4">
                     <i class="grey text-white rounded-circle p-3 mb-1 fas fa-bed fa-2x"></i>
                     <input type="number" class="form-control w-50 mx-auto" min="0" step="1" name="ANUN_HABITACIONES"
@@ -190,9 +190,9 @@
                     <b>Antiguedad (Años)</b>
                 </div>
             </div>
-            <div class="row border rounded-lg p-2 m-1">
+            <div class="row border rounded-lg p-2 m-1 text-small">
                 <div class="col-sm-12">
-                    <h5>Otros</h5>
+                    <h6>Otros</h6>
                     {{#each grupos_caracteristicas}}
                     <h6>{{GRUP_DESCRIPCION}}</h6>
                     {{#each caracteristicas}}
@@ -211,11 +211,11 @@
 
                 </div>
             </div>
-            <h5 class="font-weight-bolder text-white elegant-color rounded p-2">Ubicación</h5>
-            <div class="row border rounded-lg p-2 m-1">
+            <h6 class="font-weight-bolder text-white elegant-color rounded p-2">Ubicación</h6>
+            <div class="row border rounded-lg p-2 m-1 text-small">
                 <div class="col-sm-4">
                     <p class="text-center">Provincia</p>
-                    <select class="browser-default custom-select form-control" name="PROV_ID" id="anuncio_provincia"
+                    <select class="browser-default custom-select form-control text-small" name="PROV_ID" id="anuncio_provincia"
                         onchange="select_provincia()" required>
                         {{#each provincias}}
                         <option value="{{PROV_ID}}" {{#ifEquals ../anuncio.PROV_ID PROV_ID}} selected {{/ifEquals}}>
@@ -225,7 +225,7 @@
                 </div>
                 <div class="col-sm-4">
                     <p class="text-center">Cantón</p>
-                    <select class="browser-default custom-select form-control" name="CANT_ID" id="anuncio_canton"
+                    <select class="browser-default custom-select form-control text-small" name="CANT_ID" id="anuncio_canton"
                         onchange="select_canton()" required>
                         {{#each cantones}}
                         <option value="{{CANT_ID}}" {{#ifEquals ../anuncio.CANT_ID CANT_ID}} selected {{/ifEquals}}>
@@ -235,7 +235,7 @@
                 </div>
                 <div class="col-sm-4">
                     <p class="text-center">Zona</p>
-                    <select class="browser-default custom-select form-control" name="ZON_ID" id="anuncio_zona"
+                    <select class="browser-default custom-select form-control text-small" name="ZON_ID" id="anuncio_zona"
                         onchange="select_zona()" required>
                         {{#each zonas}}
                         <option value="{{ZON_ID}}" {{#ifEquals ../anuncio.ZON_ID ZON_ID}} selected {{/ifEquals}}>
@@ -245,7 +245,7 @@
                 </div>
                 <div class="col-sm-12 pt-2">
                     <p class="">Dirección</p>
-                    <input type="text" class="form-control" name="ANUN_DIRECCION" required
+                    <input type="text" class="form-control text-small" name="ANUN_DIRECCION" required
                         value="{{anuncio.ANUN_DIRECCION}}">
                     <p class="pt-2">Localiza tu Inmueble en el mapa</p>
                     <div id="map-registro">
@@ -257,10 +257,10 @@
                 <input type="hidden" class="form-control" name="ANUN_LONGITUD" id="anuncio_longitud"
                     value="{{anuncio.ANUN_LONGITUD}}">
             </div>
-            <h5 class="font-weight-bolder text-white elegant-color rounded p-2">Multimedia</h5>
-            <div class="row border rounded-lg p-2 m-1">
+            <h6 class="font-weight-bolder text-white elegant-color rounded p-2">Multimedia</h6>
+            <div class="row border rounded-lg p-2 m-1 text-small">
                 <div class="col-sm-12">
-                    <h5>Imágenes de su Inmueble</h5>
+                    <h6>Imágenes de su Inmueble</h6>
                     <div class="custom-file">
                         <input type="file" class="custom-file-input form-control" id="anuncio_images"
                             name="anuncio_images" accept="image/x-png, image/gif, image/jpeg, image/jpg" multiple>
@@ -310,7 +310,7 @@
                         </div>
                     </div>
                     <br>
-                    <h5>Planos de su Inmueble</h5>
+                    <h6>Planos de su Inmueble</h6>
                     <div class="custom-file">
                         <input type="file" class="custom-file-input form-control" id="anuncio_planos"
                             name="anuncio_planos" accept="image/x-png, image/gif, image/jpeg, image/jpg" multiple>
@@ -361,19 +361,18 @@
                     </div>
 
                     <hr>
-                    <h5>Video de Youtube</h5>
-                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                    <h6>Video de Youtube</h6>
+                    <button type="button" class="btn btn-info btn-sm rnd" data-toggle="modal"
                         data-target="#modal_subir">Cómo?</button>
-                    <input type="text" class="form-control" placeholder="ID video" name="ANUN_EMBEBED"
+                    <input type="text" class="form-control text-small" placeholder="ID video" name="ANUN_EMBEBED"
                         value="{{anuncio.ANUN_EMBEBED}}">
                 </div>
             </div>
             <input type="hidden" class="form-control" name="ANUN_ID" value="{{anuncio.ANUN_ID}}">
             <div class="row d-flex justify-content-center">
-                <button type="button submit" class="btn btn-elegant rnd  btn-lg">Editar</button>
+                <button type="button submit" class="btn btn-sm btn-light-green rnd">Editar</button>
             </div>
         </form>
-
     </div>
 </div>
 
@@ -406,3 +405,4 @@
             </div>
         </div>
     </div>
+</div>
