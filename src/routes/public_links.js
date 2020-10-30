@@ -340,7 +340,7 @@ router.get('/anuncio/:ANUN_ID', async (req, res) => {
         res.redirect('/');
     }
 });
-router.post('/addMensajeCliente', isNotLoggedIn, async (req, res) => {
+router.post('/addMensajeCliente', async (req, res) => {
     new_mensaje = {
         ANUN_ID: req.body.ANUN_ID,
         ANMSG_NOMBRE: req.body.ANMSG_NOMBRE,
@@ -352,6 +352,7 @@ router.post('/addMensajeCliente', isNotLoggedIn, async (req, res) => {
         ANMSG_MENSAJE: req.body.ANMSG_MENSAJE,
         ANMSG_ESTADO: 'ACTIVO'
     }
+    console.log(new_mensaje)
     await db.query('INSERT INTO anuncios_mensajes SET ?', [new_mensaje]);
     req.flash('success', 'Mensaje enviado correctamente');
     res.redirect('/anuncio/' + req.body.ANUN_ID);
@@ -384,7 +385,7 @@ router.get('/terminosYcondiciones', async (req, res) => {
     res.render('public/terminosycondiciones');
     
 });
-router.post('/compartirCorreo', isNotLoggedIn, async (req, res) => {
+router.post('/compartirCorreo', async (req, res) => {
     var mailOptions = {
         from: 'consorcioinmmokraft@gmail.com',
         to: req.body.CORREO_CORREO,
@@ -396,7 +397,7 @@ router.post('/compartirCorreo', isNotLoggedIn, async (req, res) => {
     req.flash('success', 'Este Inmueble fue compartido exitosamente');
     res.redirect('/anuncio/' + req.body.ANUN_ID);
 });
-router.post('/denunciar', isNotLoggedIn, async (req, res) => {
+router.post('/denunciar', async (req, res) => {
     var newDenuncia = {
         DENUN_ANUN: req.body.ANUN_ID,
         DENUN_TIPO:req.body.check,

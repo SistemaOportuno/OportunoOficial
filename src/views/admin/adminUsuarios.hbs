@@ -27,7 +27,7 @@
                 <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión</a>
         </div>
     </div>
-    <div class="content-panel white rounded-lg p-3 mb-5">
+    <div class="content-panel white rounded-lg pt-3 mb-5 border">
         <div class="header pt-5">
             <h2 class="font-weight-normal font-italic text-center">Usuarios del Sistema</h2>
         </div>
@@ -60,20 +60,20 @@
                     <td>
                         <center>
                             <a href="/usuarioAnuncios/{{USU_ID}}" type="button"
-                                class="btn btn-info btn-sm rnd ">Anuncios</a>
+                                class="btn btn-blue-grey btn-sm rnd ">Anuncios</a>
                             {{#ifEquals USU_ESTADO "ACTIVO" }}
                             <button type="button" class="btn btn-warning btn-sm rnd" data-toggle="modal"
                                 data-target="#bloquearModal{{../USU_ID}}">Bloquear</button>
                             {{/ifEquals}}
                             {{#ifEquals USU_ESTADO "BLOQUEADO" }}
-                            <button type="button" class="btn btn-elegant btn-sm rnd" data-toggle="modal"
+                            <button type="button" class="btn btn-elegan text-dark btn-sm rnd" data-toggle="modal"
                                 data-target="#desbloquearModal{{../USU_ID}}">Desbloquear</button>
                             {{/ifEquals}}
                             {{#if USU_HABILITADO }}
-                            <button type="button" class="btn btn-danger btn-sm rnd" data-toggle="modal"
+                            <button type="button" class="btn btn-indigo btn-sm rnd" data-toggle="modal"
                                 data-target="#deshabilitarPublicacionModal{{USU_ID}}">Dehabilitar publicación</button>
                             {{else}}
-                            <button type="button" class="btn btn-secondary btn-sm rnd" data-toggle="modal"
+                            <button type="button" class="btn btn-light-green btn-sm rnd" data-toggle="modal"
                                 data-target="#habilitarPublicacionModal{{USU_ID}}">Habilitar publicación</button>
                             {{/if}}
                         </center>

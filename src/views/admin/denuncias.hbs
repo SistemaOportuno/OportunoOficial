@@ -27,7 +27,7 @@
                 <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión</a>
         </div>
     </div>
-    <div class="content white rounded-lg mb-5 pl-3 pr-3 ">
+    <div class="content-ls white rounded-lg mb-5 pl-3 pr-3 border">
         <div class="header pt-5">
             <h2 class="font-weight-normal font-italic text-center">Mensajes</h2>
         </div>
@@ -43,9 +43,9 @@
                 {{#each denuncias}}
                 <tr>
                     <td>
-                        <div class="container border rounded border-dark p-3">
+                        <div class="container border rounded  p-3">
                             <div class="row">
-                                <div class="col-sm-9">
+                                <div class="col-sm-8">
                                     <div class="row">
                                         <div class="col-sm-3">
                                             <h6 class="font-weight-bolder  ">Auncio:</h6>
@@ -85,24 +85,24 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-3">
-                                    <a href="/anuncio/{{ANUN_ID}}" class="btn btn-md btn-elegant btn-block rnd"
+                                <div class="col-sm-4">
+                                    <a href="/anuncio/{{ANUN_ID}}" class="btn btn-sm btn-blue-grey btn-block rnd"
                                         type="button" target="_blank"><i class="fas fa-envelope pr-3"></i>Ver
                                         Anuncio</a>
                                     <br>
                                     <br>
                                     <a href="https://api.whatsapp.com/send?phone=593{{USU_TELEFONO}}"
-                                        class="btn btn-md btn-success  btn-block rnd" type="button"><i
+                                        class="btn btn-sm btn-success  btn-block rnd" type="button"><i
                                             class="fab fa-whatsapp pr-3"></i>Contactar Anunciante</a>
                                     <br>
                                     <br>
 
-                                    <button type="button" class="btn btn-md btn-warning btn-block rnd" type="button"
+                                    <button type="button" class="btn btn-sm btn-warning btn-block rnd" type="button"
                                         data-toggle="modal" data-target="#eliminarModal{{DENUN_ID}}"><i
                                             class="fas fa-trash pr-3"></i>Eliminar Denuncia</button>
                                     <br>
                                     <br>
-                                    <button type="button" class="btn btn-md btn-danger btn-block rnd" type="button"
+                                    <button type="button" class="btn btn-sm btn-danger btn-block rnd" type="button"
                                         data-toggle="modal" data-target="#eliminarModalAdmin{{ANUN_ID}}"><i
                                             class="fas fa-trash pr-3"></i>Eliminar Anuncio</button>
                                 </div>

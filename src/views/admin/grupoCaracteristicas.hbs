@@ -27,14 +27,14 @@
                 <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión</a>
         </div>
     </div>
-    <div class="{{#if success}} content-ntop{{else}}content-top{{/if}} white rounded-lg p-3 mb-5">
-        <a type="button" class="btn btn-elegant rnd mt-3" href="/componentes">Regresar</a>
+    <div class="content-p1 white rounded-lg pt-3 mb-5 border">
+        <a type="button" class="btn btn-light-green btn-sm rnd mt-3" href="/componentes">Regresar</a>
 
         <div class="header pt-5">
             <h2 class="font-weight-normal font-italic text-center">Grupos de características de Inmuebles</h2>
         </div>
         <div class="d-flex justify-content-end mb-3">
-            <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
+            <button type="button" class="btn  btn-indigo rnd btn-sm" data-toggle="modal"
                 data-target="#modal_add_grupo_caracteristicas">Agregar</button>
 
         </div>
@@ -55,11 +55,11 @@
                     <td>
                         <center>
                             <a href="/caracteristicas/{{GRUP_ID}}" type="button"
-                                class="btn btn-secondary btn-sm ">Gestionar</a>
-                            <button type="button" class="btn btn-info btn-sm " data-toggle="modal"
-                                data-target="#modal_edit_grupo_caracteristicas{{GRUP_ID}}">Editar</button>
-                            <button type="button" class="btn btn-warning btn-sm " data-toggle="modal"
-                                data-target="#modal_delete_grupo_caracteristicas{{GRUP_ID}}">Eliminar</button>
+                                class="btn btn-light-green btn-sm rnd">Gestionar</a>
+                            <a type="button" class="btn btn-blue-grey btn-sm rnd" data-toggle="modal"
+                                data-target="#modal_edit_grupo_caracteristicas{{GRUP_ID}}">Editar</a>
+                            <a type="button" class="btn btn-danger btn-sm  rnd" data-toggle="modal"
+                                data-target="#modal_delete_grupo_caracteristicas{{GRUP_ID}}">Eliminar</a>
                         </center>
                     </td>
                 </tr>
@@ -80,13 +80,13 @@
                                 <div class="modal-body">
                                     <div class="md-form">
                                         <input type="text" id="GRUP_DESCRIPCION" name="GRUP_DESCRIPCION"
-                                            class="form-control" value="{{GRUP_DESCRIPCION}}">
+                                            class="form-control" value="{{GRUP_DESCRIPCION}}" required>
                                         <label for="GRUP_DESCRIPCION">Nombre</label>
                                     </div>
                                     <input type="hidden" class="form-control" name="GRUP_ID" value="{{GRUP_ID}}">
                                 </div>
                                 <div class="modal-footer justify-content-center">
-                                    <button type="button submit" class="btn btn-elegant rnd">Editar</button>
+                                    <button type="button submit" class="btn btn-light-green btn-sm rnd">Editar</button>
                                 </div>
                             </div>
                         </form>
@@ -131,24 +131,26 @@
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <form method="POST" action="/add_grupo_caracteristicas">
-            <div class="modal-content">
-                <div class="modal-header elegant-color  justify-content-center">
-                    <h5 class="modal-title text-white">Agregar Grupo de Características</h5>
-                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+        <div class="modal-content">
+            <div class="modal-header elegant-color  justify-content-center">
+                <h5 class="modal-title text-white">Agregar Grupo de Características</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" action="/add_grupo_caracteristicas">
+
                 <div class="modal-body">
                     <div class="md-form">
-                        <input type="text" id="GRUP_DESCRIPCION" name="GRUP_DESCRIPCION" class="form-control">
+                        <input type="text" id="GRUP_DESCRIPCION" name="GRUP_DESCRIPCION" class="form-control" required>
                         <label for="GRUP_DESCRIPCION">Nombre</label>
                     </div>
                 </div>
                 <div class="modal-footer justify-content-center">
-                    <button type="button submit" class="btn btn-elegant rnd">Agregar</button>
+                    <button type="button submit" class="btn btn-light-green btn-sm rnd">Agregar</button>
                 </div>
-            </div>
-        </form>
+            </form>
+
+        </div>
     </div>
 </div>

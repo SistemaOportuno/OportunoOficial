@@ -27,8 +27,8 @@
                 <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión</a>
         </div>
     </div>
-    <div class="content-top white rounded-lg mb-5 pl-2 pr-2 ">
-        <a type="button" class="btn btn-elegant rnd mt-3" href="/adminCuenta">Regresar</a>
+    <div class="content-top white rounded-lg mb-5 pl-2 pr-2 border">
+        <a type="button" class="btn btn-light-green btn-sm rnd mt-3" href="/adminCuenta">Regresar</a>
 
         <div class="header pt-5">
             <h2 class="font-weight-normal font-italic text-center">Editar Cuenta</h2>
@@ -37,12 +37,12 @@
             <div class="container pb-5">
                 <div class="row border rounded pl-2 pr-2 pt-3 pb-2 mb-3">
                     <div class="col-sm-12">
-                        <h3>Información Basica</h3>
+                        <h5>Información Basica</h5>
                     </div>
                     <div class="col-sm-6">
                         <div class="md-form">
                             <i class="fas fa-signature prefix grey-text"></i>
-                            <input type="text" id="ADMIN_NOMBRE" name="ADMIN_NOMBRE" class="form-control"
+                            <input type="text" id="ADMIN_NOMBRE" name="ADMIN_NOMBRE" class="form-control text-small"
                                 value="{{usuario.ADMIN_NOMBRE}}" required>
                             <label for="ADMIN_NOMBRE">Nombre</label>
                         </div>
@@ -50,7 +50,7 @@
                     <div class="col-sm-6">
                         <div class="md-form">
                             <i class="fas fa-signature prefix grey-text"></i>
-                            <input type="text" id="ADMIN_APELLIDO" name="ADMIN_APELLIDO" class="form-control"
+                            <input type="text" id="ADMIN_APELLIDO" name="ADMIN_APELLIDO" class="form-control text-small"
                                 value="{{usuario.ADMIN_APELLIDO}}" required>
                             <label for="ADMIN_APELLIDO">Apellido</label>
                         </div>
@@ -58,7 +58,7 @@
                     <div class="col-sm-6">
                         <div class="md-form">
                             <i class="fas fa-user prefix grey-text"></i>
-                            <input type="text" id="ADMIN_USUARIO" name="ADMIN_USUARIO" class="form-control"
+                            <input type="text" id="ADMIN_USUARIO" name="ADMIN_USUARIO" class="form-control text-small"
                                 value="{{usuario.ADMIN_USUARIO}}" required>
                             <label for="ADMIN_USUARIO">Usuario</label>
                         </div>
@@ -69,7 +69,7 @@
                 <div class="row border rounded-lg p-2 m-5">
                     <div class="col-sm-12">
                         <div class="d-flex justify-content-around">
-                            <button type="button submit" class="rnd btn btn-elegant mb-2">Editar</button>
+                            <button type="button submit" class="rnd btn btn-indigo btn-sm mb-2">Editar</button>
                         </div>
                     </div>
                 </div>

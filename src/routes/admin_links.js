@@ -563,6 +563,7 @@ router.post('/editarAdminContrasena', isAdminLog, async(req, res) => {
 //----------------------LLAVES EN MANO----------------------------
 router.get('/llavesEnMano', isAdminLog,async (req, res) => {
     const mensajes1 = await db.query('SELECT a.ANUN_ID, a.ANUN_TITULO, am.ANMSG_ID , am.ANUN_ID ,am.ANMSG_NOMBRE, am.ANMSG_CORREO, am.ANMSG_TELEFONO, am.ANMSG_ASUNTO, am.ANMSG_MENSAJE, am.ANMSG_ESTADO, DATE_FORMAT(am.ANMSG_FECHA_VISITA,"%Y-%m-%d") as ANMSG_FECHA_VISITA, DATE_FORMAT(am.ANMSG_FECHA,"%Y-%m-%d") as ANMSG_FECHA  FROM anuncios_mensajes am, anuncios a WHERE am.anun_id= a.anun_id AND am.anmsg_estado="ACTIVO" AND am.anmsg_asunto="LLAVES EN MANO"');
+    console.log(mensajes1);
     const mensajes2 = await db.query('SELECT am.ANMSG_ID ,am.ANMSG_NOMBRE, am.ANMSG_CORREO, am.ANMSG_TELEFONO, am.ANMSG_ASUNTO, am.ANMSG_MENSAJE, am.ANMSG_ESTADO, DATE_FORMAT(am.ANMSG_FECHA_VISITA,"%Y-%m-%d") as ANMSG_FECHA_VISITA, DATE_FORMAT(am.ANMSG_FECHA,"%Y-%m-%d") as ANMSG_FECHA  FROM anuncios_mensajes am WHERE am.anmsg_estado="ACTIVO" AND am.anmsg_asunto="CONSULTAS"');
     const mensajes = mensajes1.concat(mensajes2);
     res.render('admin/llavesEnMano',{mensajes});

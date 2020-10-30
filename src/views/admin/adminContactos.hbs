@@ -27,14 +27,14 @@
                 <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión</a>
         </div>
     </div>
-    <div class="content-panel white rounded-lg p-5 mb-5">
-        <a type="button" class="btn btn-elegant rnd mt-3" href="/componentes">Regresar</a>
+    <div class="content-panel white rounded-lg pt-5 mb-5 border">
+        <a type="button" class="btn btn-light-green rnd mt-3 btn-sm" href="/componentes">Regresar</a>
         <div class="header pt-5">
             <h2 class="font-weight-normal font-italic text-center">Contactos de la Empresa</h2>
         </div>
-        <h5 class="font-weight-bolder text-white elegant-color rounded p-2">Teléfonos</h5>
+        <h6 class="font-weight-bolder text-white elegant-color rounded p-2">Teléfonos</h6>
         <div class="d-flex justify-content-end mb-3">
-            <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
+            <button type="button" class="btn btn-indigo rnd btn-sm" data-toggle="modal"
                 data-target="#modal_add_telefono">Agregar</button>
 
         </div>
@@ -54,9 +54,9 @@
                     <td>{{TEL_NUM}}</td>
                     <td>
                         <center>
-                            <button type="button" class="btn btn-info btn-sm " data-toggle="modal"
+                            <button type="button" class="btn btn-blue-grey btn-sm rnd" data-toggle="modal"
                                 data-target="#modal_edit_telefono{{TEL_ID}}">Editar</button>
-                            <button type="button" class="btn btn-warning btn-sm " data-toggle="modal"
+                            <button type="button" class="btn btn-danger btn-sm rnd" data-toggle="modal"
                                 data-target="#modal_delete_telefono{{TEL_ID}}">Eliminar</button>
                         </center>
                     </td>
@@ -78,13 +78,12 @@
                                 <div class="modal-body">
                                     <div class="md-form">
                                         <input type="tel" id="TEL_NUM" name="TEL_NUM" class="form-control"
-                                            value="{{TEL_NUM}}">
-                                        <label for="TEL_NUM">Teléfono</label>
+                                            value="{{TEL_NUM}}" required <label for="TEL_NUM">Teléfono</label>
                                     </div>
                                     <input type="hidden" class="form-control" name="TEL_ID" value="{{TEL_ID}}">
                                 </div>
                                 <div class="modal-footer justify-content-center">
-                                    <button type="button submit" class="btn btn-elegant rnd">Editar</button>
+                                    <button type="button submit" class="btn btn-light-green btn-sm rnd">Editar</button>
                                 </div>
                             </div>
                         </form>
@@ -121,9 +120,9 @@
                 {{/each}}
             </tbody>
         </table>
-        <h5 class="font-weight-bolder text-white elegant-color rounded p-2 mt-5">Correos</h5>
+        <h6 class="font-weight-bolder text-white elegant-color rounded p-2 mt-5">Correos</h6>
         <div class="d-flex justify-content-end mb-3">
-            <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
+            <button type="button" class="btn btn-indigo rnd btn-sm" data-toggle="modal"
                 data-target="#modal_add_correo">Agregar</button>
 
         </div>
@@ -143,9 +142,9 @@
                     <td>{{CORR_DIRECCION}}</td>
                     <td>
                         <center>
-                            <button type="button" class="btn btn-info btn-sm " data-toggle="modal"
+                            <button type="button" class="btn btn-blue-grey btn-sm rnd" data-toggle="modal"
                                 data-target="#modal_edit_correo{{CORR_ID}}">Editar</button>
-                            <button type="button" class="btn btn-warning btn-sm " data-toggle="modal"
+                            <button type="button" class="btn btn-danger btn-sm rnd" data-toggle="modal"
                                 data-target="#modal_delete_correo{{CORR_ID}}">Eliminar</button>
                         </center>
                     </td>
@@ -167,13 +166,13 @@
                                 <div class="modal-body">
                                     <div class="md-form">
                                         <input type="email" id="CORR_DIRECCION" name="CORR_DIRECCION"
-                                            class="form-control" value="{{CORR_DIRECCION}}">
+                                            class="form-control" value="{{CORR_DIRECCION}}" required>
                                         <label for="CORR_DIRECCION">Correo</label>
                                     </div>
                                     <input type="hidden" class="form-control" name="CORR_ID" value="{{CORR_ID}}">
                                 </div>
                                 <div class="modal-footer justify-content-center">
-                                    <button type="button submit" class="btn btn-elegant rnd">Editar</button>
+                                    <button type="button submit" class="btn btn-light-green btn-sm rnd">Editar</button>
                                 </div>
                             </div>
                         </form>
@@ -210,10 +209,10 @@
                 {{/each}}
             </tbody>
         </table>
-        <h5 class="font-weight-bolder text-white elegant-color rounded p-2 mt-5">Direcciones</h5>
+        <h6 class="font-weight-bolder text-white elegant-color rounded p-2 mt-5">Direcciones</h6>
 
         <div class="d-flex justify-content-end mb-3">
-            <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
+            <button type="button" class="btn btn-indigo rnd btn-sm" data-toggle="modal"
                 data-target="#modal_add_direccion">Agregar</button>
 
         </div>
@@ -233,9 +232,9 @@
                     <td>{{DIR_DESCRIPCION}}</td>
                     <td>
                         <center>
-                            <button type="button" class="btn btn-info btn-sm " data-toggle="modal"
+                            <button type="button" class="btn btn-blue-grey btn-sm rnd" data-toggle="modal"
                                 data-target="#modal_edit_direccion{{DIR_ID}}">Editar</button>
-                            <button type="button" class="btn btn-warning btn-sm " data-toggle="modal"
+                            <button type="button" class="btn btn-danger btn-sm rnd" data-toggle="modal"
                                 data-target="#modal_delete_direccion{{DIR_ID}}">Eliminar</button>
                         </center>
                     </td>
@@ -263,7 +262,7 @@
                                     <input type="hidden" class="form-control" name="DIR_ID" value="{{DIR_ID}}">
                                 </div>
                                 <div class="modal-footer justify-content-center">
-                                    <button type="button submit" class="btn btn-elegant rnd">Editar</button>
+                                    <button type="button submit" class="btn btn-light-green btn-sm rnd">Editar</button>
                                 </div>
                             </div>
                         </form>
@@ -309,25 +308,27 @@
     aria-hidden="true">
     <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <form action="/add_telefono" method="POST">
-            <div class="modal-content">
-                <div class="modal-header elegant-color  justify-content-center">
-                    <h5 class="modal-title text-white">Agregar Teléfono</h5>
-                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+        <div class="modal-content">
+            <div class="modal-header elegant-color  justify-content-center">
+                <h5 class="modal-title text-white">Agregar Teléfono</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/add_telefono" method="POST">
+
                 <div class="modal-body">
                     <div class="md-form">
-                        <input type="tel" id="TEL_NUM" name="TEL_NUM" class="form-control">
+                        <input type="tel" id="TEL_NUM" name="TEL_NUM" class="form-control" required>
                         <label for="TEL_NUM">Teléfono</label>
                     </div>
                 </div>
                 <div class="modal-footer justify-content-center">
-                    <button type="button submit" class="btn btn-elegant rnd">Agregar</button>
+                    <button type="button submit" class="btn btn-light-green btn-sm rnd">Agregar</button>
                 </div>
-            </div>
-        </form>
+            </form>
+
+        </div>
     </div>
 </div>
 <!-- Modal -->
@@ -335,25 +336,27 @@
     aria-hidden="true">
     <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <form action="/add_correo" method="POST">
-            <div class="modal-content">
-                <div class="modal-header elegant-color  justify-content-center">
-                    <h5 class="modal-title text-white">Agregar Correo</h5>
-                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+        <div class="modal-content">
+            <div class="modal-header elegant-color  justify-content-center">
+                <h5 class="modal-title text-white">Agregar Correo</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/add_correo" method="POST">
+
                 <div class="modal-body">
                     <div class="md-form">
-                        <input type="email" id="CORR_DIRECCION" name="CORR_DIRECCION" class="form-control">
+                        <input type="email" id="CORR_DIRECCION" name="CORR_DIRECCION" class="form-control" required>
                         <label for="CORR_DIRECCION">Correo</label>
                     </div>
                 </div>
                 <div class="modal-footer justify-content-center">
-                    <button type="button submit" class="btn btn-elegant rnd">Agregar</button>
+                    <button type="button submit" class="btn btn-light-green btn-sm rnd">Agregar</button>
                 </div>
-            </div>
-        </form>
+            </form>
+
+        </div>
     </div>
 </div>
 <!-- Modal -->
@@ -372,12 +375,12 @@
             <form action="/add_direccion" method="POST">
                 <div class="modal-body">
                     <div class="md-form">
-                        <input type="text" id="DIR_DESCRIPCION" name="DIR_DESCRIPCION" class="form-control">
+                        <input type="text" id="DIR_DESCRIPCION" name="DIR_DESCRIPCION" class="form-control" required>
                         <label for="DIR_DESCRIPCION">Dirección</label>
                     </div>
                 </div>
                 <div class="modal-footer justify-content-center">
-                    <button type="button submit" class="btn btn-elegant rnd">Agregar</button>
+                    <button type="button submit" class="btn btn-light-green btn-sm rnd">Agregar</button>
                 </div>
             </form>
         </div>
