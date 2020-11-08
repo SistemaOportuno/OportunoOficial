@@ -332,3 +332,7 @@ function init_map_anuncio() {
         marker.setMap(map_anuncio);
     }
 }
+
+function goBack() {
+    window.history.back();
+}

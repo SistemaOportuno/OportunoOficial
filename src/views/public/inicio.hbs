@@ -12,34 +12,30 @@
     <div class="mask">
         <div class="container-fluid d-flex align-items-center justify-content-center text-center h-100">
             <div class="container-fluid position-fixed  d-flex justify-content-end pr-0">
-                <div class="div">
-                    <div class="  rounded-lg mdb-color">
-                        <span class="text-white text-small font-italic pl-1 pr-2">Síguenos</span>
-                        <br> <!-- Facebook -->
-                        <a class="fb-ic" href="#">
-                            <i class="fab fa-facebook-f fa-lg blue-text  fa-2x pt-3 pl-1 pr-1"> </i>
-                        </a>
-                        <br>
-                        <!--Instagram-->
-                        <a class="ins-ic" href="#">
-                            <i class="fab fa-instagram fa-lg pink-text  fa-2x pt-3 pl-1 pr-1"> </i>
-                        </a>
-                        <br>
-                        <!--youtube-->
-                        <a class="ins-ic" href="#">
-                            <i class="fab fa-youtube fa-lg red-text   fa-2x pt-3 pb-3 pl-1 pr-1"> </i>
-                        </a>
-                    </div>
+                <div class="mr-1">
+                    <!-- Facebook -->
+                    <a class="circle-icon pt-2" href="#">
+                        <i class="fab fa-facebook-f fa-2x" style="color: #123b61 !important;"> </i>
+                    </a>
                     <br>
-                    <div class="  rounded-lg mdb-color">
-                        <span class="text-white text-small font-italic pl-1 pr-1">Consultas</span>
-                        <br> <!-- Facebook -->
-                        <a class="fb-ic" data-toggle="modal"
-                        data-target="#modal_consulta">
-                            <i class="fas fa-question fa-lg light-green-text  fa-2x pt-3 pl-1 pr-1 pb-3"> </i>
-                        </a>
-                    </div>
+                    <!--Instagram-->
+                    <a class="circle-icon pt-2 mt-2" href="#">
+                        <i class="fab fa-instagram fa-2x " style="color: #123b61 !important;"> </i>
+                    </a>
+                    <br>
+                    <!--youtube-->
+                    <a class="circle-icon pt-2 mt-2" href="#">
+                        <i class="fab fa-youtube fa-2x" style="color: #123b61 !important;"> </i>
+                    </a>
+                    <br>
+
+                    <span class="rounded-lg mdb-color text-white text-small font-italic pl-1 pr-1 mr-1">Ayuda</span>
+                    <br>
+                    <a class="circle-icon pt-2" href="#" data-toggle="modal" data-target="#modal_consulta">
+                        <i class="fas fa-question fa-lg fa-2x" style="color: #123b61 !important;"> </i>
+                    </a>
                 </div>
+
 
             </div>
             <div class="card card-op text-white  mr-5">
@@ -237,9 +233,9 @@
             <!--Grid row-->
             <div class="row  wow fadeIn">
                 <!--Grid column-->
-                <div class="col-md-4 mb-4 pr-5" >
+                <div class="col-md-4 mb-4 pr-5">
                     <!--Card-->
-                    <div class="card border" >
+                    <div class="card border">
                         <!--Card content-->
                         <div class="card-body">
                             <div class="text-center">
@@ -266,7 +262,8 @@
                             <hr>
                             <br>
                             <br>
-                            <a type="button" href="/addPropietario" class="btn btn-sm rnd btn-block  btn-light-green">Crear
+                            <a type="button" href="/addPropietario"
+                                class="btn btn-sm rnd btn-block  btn-light-green">Crear
                                 perfil de
                                 Propietario</a>
                         </div>
@@ -305,7 +302,8 @@
                                 </li>
                             </ol>
                             <hr>
-                            <a type="button" href="/addAgente" class="btn btn-sm rnd btn-block  btn-light-green">Crear perfil
+                            <a type="button" href="/addAgente" class="btn btn-sm rnd btn-block  btn-light-green">Crear
+                                perfil
                                 de
                                 Agente</a>
                         </div>
@@ -345,7 +343,8 @@
                                 </li>
                             </ol>
 
-                            <a type="button" href="/addInmo" class="btn btn-sm rnd btn-block  btn-light-green">Crear perfil de
+                            <a type="button" href="/addInmo" class="btn btn-sm rnd btn-block  btn-light-green">Crear
+                                perfil de
                                 Inmobiliaria/Constructora</a>
                         </div>
                     </div>
@@ -372,7 +371,8 @@
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header mdb-color darken-3">
-                <h6 class="modal-title text-white h6"><i class="fas fa-question light-green-text pr-2"></i>Consultar con Administración</h6>
+                <h6 class="modal-title text-white h6"><i class="fas fa-question light-green-text pr-2"></i>¿Cómo te
+                    podemos ayudar?</h6>
                 <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -383,22 +383,46 @@
                     <div class="row">
                         <div class="col-sm-6 text-small">
                             <div class="text-center">
-                                <i class=" text-white rounded-circle p-3 mb-1 fas fa-question light-green-text fa-3x"></i>
-                                <h5 class="card-title pricing-card-title mb-4 ">Consultar</h5>
+                                <div class="pt-3" style="background-color: #8bc34a !important;height: 50px;width: 50px;border-radius: 50%;display: inline-block;">
+                                    <i class="fas fa-question fa-lg fa-2x" style="color: #ffffff !important;"> </i>
+                                </div>
                             </div>
-                            <ol class="list-unstyled m-4">
-                                <li class="justify"> <i class="fas fa-check green-text mr-2"></i>Asesoria directa
-                                </li>
-                                <hr>
-                                <li class="justify"><i class="fas fa-check green-text mr-2"></i>Cualquier consulta sobre inmuebles
-                                </li>
-                                <hr>
-                                <li class="justify"><i class="fas fa-check green-text mr-2"></i>Existe algun error con el sistema?
-                                </li>
-                                <hr>
-                                <li class="justify"><i class="fas fa-check green-text mr-2"></i>Estamos prestos a solventar sus consultas
-                                </li>
-                            </ol>
+                            <div class="row m-3">
+                                <div class="col-sm-1"> <i class="fas fa-check green-text mr-2"></i>
+                                </div>
+                                <div class="justify col-sm-11">
+                                    <span>¿Tiene inconvenientes al registrarse?</span>
+                                </div>
+
+                                <br>
+                                <div class="col-sm-1"> <i class="fas fa-check green-text mr-2"></i>
+                                </div>
+                                <div class="justify col-sm-11">
+                                    <span>¿Existe algún error en el sistema?</span>
+                                </div>
+
+                                <br>
+                                <div class="col-sm-1"> <i class="fas fa-check green-text mr-2"></i>
+                                </div>
+                                <div class="justify col-sm-11">
+                                    <span>¿Requiere atención personalizada para la venta de su propiedad?</span>
+                                </div>
+
+                                <br>
+                                <div class="col-sm-1"> <i class="fas fa-check green-text mr-2"></i>
+                                </div>
+                                <div class="justify col-sm-11">
+                                    <span>¿Posee interés en ser parte de la plataforma oportuno?</span>
+                                </div>
+
+                                <br>
+                                <div class="col-sm-1"> <i class="fas fa-check green-text mr-2"></i>
+                                </div>
+                                <div class="justify col-sm-11">
+                                    <span>¿Tiene sugerencias que aportar para mejorar el servicio?</span>
+                                </div>
+
+                            </div>
 
                         </div>
                         <div class="col-sm-6">

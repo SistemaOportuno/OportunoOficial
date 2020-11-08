@@ -371,3 +371,10 @@ background: linear-gradient(90deg, rgba(126,247,95,0.6278886554621849) 0%, rgba(
   height: 100%;
   border: none;
 }
+.circle-icon {
+  background-color: #8bc34a !important;
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  display: inline-block;
+}

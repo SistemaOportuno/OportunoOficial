@@ -386,12 +386,41 @@ router.get('/terminosYcondiciones', async (req, res) => {
     
 });
 router.post('/compartirCorreo', async (req, res) => {
+    const rows = await db.query('SELECT *, DATE_FORMAT(ANUN_FECHA,"%Y-%m-%d") as FECHA FROM anuncios WHERE anun_estado="ACTIVO" AND anun_id=?', [req.body.ANUN_ID]);
+    const anuncio = rows[0];
     var mailOptions = {
         from: 'consorcioinmmokraft@gmail.com',
         to: req.body.CORREO_CORREO,
         cc:req.body.CORREO_CORREO_EMI,
         subject: req.body.CORREO_NOMBRE+' le invita a ver un Inmueble ',
-        text: req.body.CORREO_MENSAJE+ '\nlink:'+helpers.getUrl()+"/anuncio/"+req.body.ANUN_ID+'\nEmisor: '+req.body.CORREO_CORREO_EMI
+        text: '-',
+        html:'<!doctype html>'+
+        '<html lang="es">'+
+        '<head>'+
+            '<meta charset="utf-8">'+
+            '<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">'+
+        '</head>'+
+        '<body>'+
+            '<div class="container" style="margin-left: 450px; margin-right: 450px;">'+
+            '<div class="card-body">'+
+                '<span class="font-weight-light"><b>Nombre: </b>'+req.body.CORREO_NOMBRE+'</span>'+
+                '<br>'+
+                '<span class="font-weight-light"><b>Correo: </b>'+req.body.CORREO_CORREO_EMI+'</span>'+
+                '<br>'+
+                '<span class="font-weight-light"><b>Mensaje: </b>'+req.body.CORREO_MENSAJE+'</span>'+
+                '<hr>'+
+                '<span class="font-weight-light"><b>Anuncio: </b>'+anuncio.ANUN_TITULO+'</span>'+
+                '<br>'+
+                '<span class="font-weight-light"><b>Dirección: </b>'+anuncio.ANUN_DIRECCION+'</span>'+
+                '<br>'+
+                '<span class="font-weight-light" style="text-align: justify; text-justify: inter-word;"><b>Descripción:</b>'+anuncio.ANUN_DESCRIPCION+'</span>'+
+                '<br>'+
+                '<span class="font-weight-light"><b>Link: </b>'+helpers.getUrl()+"/anuncio/"+anuncio.ANUN_ID+'</span>'+
+                '<hr>'+
+            '</div>'+
+            '</div>'+
+        '</body>'+
+        '</html>'
     };
     helpers.enviarCOrreo(mailOptions);
     req.flash('success', 'Este Inmueble fue compartido exitosamente');

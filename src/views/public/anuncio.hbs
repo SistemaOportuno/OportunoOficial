@@ -79,7 +79,7 @@
     </div>
     {{/if}}
 </div>
-<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+<ul class="nav nav-pills mb-3 text-small" id="pills-tab" role="tablist">
     <li class="nav-item">
         <a class="nav-link font-weight-bolder ml-3 p-2 active" id="pills-fotos-tab" data-toggle="pill"
             href="#pills-fotos" role="tab" aria-controls="pills-fotos" aria-selected="true"><i
@@ -101,23 +101,23 @@
         <div class="col-sm-9">
             <div class="row  m-2 p-2">
                 <div class="col-sm-7 pt-3 ">
-                    <h5 class="font-weight-bolder">{{anuncio.ANUN_TITULO}}</h5>
+                    <h6 class="font-weight-bolder h6">{{anuncio.ANUN_TITULO}}</h6>
                 </div>
                 <div class="col-sm-3 pt-3">
-                    <h4 class="font-weight-bolder">${{anuncio.ANUN_PRECIO}} </h4>
+                    <h5 class="font-weight-bolder h5">${{anuncio.ANUN_PRECIO}} </h5>
                 </div>
                 <div class="col-sm-2 pt-3 border">
                     <div class="row text-center pb-3">
                         <div class="col-sm-12">
-                            <span>Compartir</span>
+                            <span class="text-small">Compartir</span>
                         </div>
                         <div class="col-sm-6">
                             <a data-toggle="modal" data-target="#modal_whatsapp"><i
-                                    class="fab fa-whatsapp fa-3x"></i></a>
+                                    class="fab fa-whatsapp fa-2x"></i></a>
 
                         </div>
                         <div class="col-sm-6">
-                            <a data-toggle="modal" data-target="#modal_correo"><i class="far fa-envelope fa-3x"></i></a>
+                            <a data-toggle="modal" data-target="#modal_correo"><i class="far fa-envelope fa-2x"></i></a>
 
                         </div>
                     </div>
@@ -126,31 +126,31 @@
                 </div>
             </div>
             <div class="row border rounded-lg m-2 p-2">
-                <div class="col-sm-3">
+                <div class="col-sm-3 text-small">
                     <span>Transacción:</span>
                     <ul>
                         <li>{{anuncio.ANUN_TRANSACCION}}</li>
                     </ul>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-3 text-small">
                     <span>Inmueble:</span>
                     <ul>
                         <li>{{anuncio.TIPINM_DESCRIPCION}}</li>
                     </ul>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-3 text-small">
                     <span>Fecha:</span>
                     <ul>
                         <li>{{anuncio.FECHA}}</li>
                     </ul>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-3 text-small">
                     <span>Alicuota:</span>
                     <ul>
                         <li>{{anuncio.ANUN_ALICUITA}}</li>
                     </ul>
                 </div>
-                <div class="col-sm-12 mb-3">
+                <div class="col-sm-12 mb-3 text-small">
                     {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "Terreno"}}
                     <span>Estado de Inmueble:</span>
                     <div class="progress">
@@ -187,42 +187,42 @@
                     </div>
                     {{/ifEquals}}
                 </div>
-                <div class="col-sm-2 text-center">
+                <div class="col-sm-2 text-center text-small">
                     <i class="mdb-color text-white rounded-circle p-3 mb-1 fas fa-expand-arrows-alt fa-1x"></i>
                     <br>
                     <span>{{anuncio.ANUN_TAMANO_TOTAL}} (m&sup2)</span>
                     <br>
                     <b>Área</b>
                 </div>
-                <div class="col-sm-2 text-center">
+                <div class="col-sm-2 text-center text-small">
                     <i class="mdb-color text-white rounded-circle p-3 mb-1 fas fa-bed fa-1x"></i>
                     <br>
                     <span>{{anuncio.ANUN_HABITACIONES}}</span>
                     <br>
                     <b>Habitaciones</b>
                 </div>
-                <div class="col-sm-2 text-center">
+                <div class="col-sm-2 text-center text-small">
                     <i class="mdb-color text-white rounded-circle p-3 mb-1 fas fa-bath fa-1x"></i>
                     <br>
                     <span>{{anuncio.ANUN_BANOS}}</span>
                     <br>
                     <b>Baños</b>
                 </div>
-                <div class="col-sm-2 text-center">
+                <div class="col-sm-2 text-center text-small">
                     <i class="mdb-color text-white rounded-circle p-3 mb-1 fas fa-toilet fa-1x"></i>
                     <br>
                     <span>{{anuncio.ANUN_M_BANOS}}</span>
                     <br>
                     <b>1/2 Baños</b>
                 </div>
-                <div class="col-sm-2 text-center">
+                <div class="col-sm-2 text-center text-small">
                     <i class="mdb-color text-white rounded-circle p-3 mb-1 fas fa-car fa-1x"></i>
                     <br>
                     <span>{{anuncio.ANUN_ESTACIONAMIENTO}}</span>
                     <br>
                     <b>Estacionamientos</b>
                 </div>
-                <div class="col-sm-2 text-center">
+                <div class="col-sm-2 text-center text-small">
                     <i class="mdb-color text-white rounded-circle p-3 mb-1 fas fa-history fa-1x"></i>
                     <br>
                     <span>{{anuncio.ANUN_ANTIGUEDAD}}</span>
@@ -434,7 +434,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header mdb-color darken-3">
-                <h6 class="modal-title text-white h6"><i class="fas fa-phone pr-2"></i>QUIERO QUE ME LLAMEN</h6>
+                <h6 class="modal-title text-white h6"><i class="fas fa-phone pr-2"></i>Quiero que me llamen</h6>
                 <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -478,7 +478,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header mdb-color darken-3">
-                <h6 class="modal-title h6 text-white"><i class="fas fa-route pr-2"></i>PLANIFICAR VISITA</h6>
+                <h6 class="modal-title h6 text-white"><i class="fas fa-route pr-2"></i>Planificar Visita</h6>
                 <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -536,7 +536,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header mdb-color darken-3">
-                <h6 class="modal-title text-white h6"><i class="fas fa-question pr-2"></i>CONSULTAR</h6>
+                <h6 class="modal-title text-white h6"><i class="fas fa-question pr-2"></i>Consultar</h6>
                 <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -730,7 +730,7 @@
 
                 <div class="modal-body">
                     <div class="text-center">
-                        <i class="red text-white rounded-circle p-3 mb-1 far fa-envelope fa-3x"></i>
+                        <i class="light-green text-white rounded-circle p-3 mb-1 far fa-envelope fa-3x"></i>
                         <h5 class="card-title pricing-card-title mb-4 ">Correo Electónico</h5>
                     </div>
                     <ol class="list-unstyled m-4">
@@ -797,60 +797,60 @@
                         <i
                             class="warning-color text-white rounded-circle p-3 mb-1 fas fa-exclamation-triangle fa-3x"></i>
                     </div>
-                    <ol class="list-unstyled m-4">
+                    <ol class="list-unstyled m-2">
                         <li class="justify"> <i class="fas fa-exclamation-triangle text-warning mr-2"></i>Coméntanos que
                             problema existe en el anuncio
                         </li>
                     </ol>
 
-                    <div class="custom-control custom-radio ml-4 mt-2">
+                    <div class="custom-control custom-radio ml-4 mt-1">
                         <input type="radio" class="custom-control-input" id="check1" name="check" required
                             value="La dirección está mal">
-                        <label class="custom-control-label" for="check1">La dirección está mal</label>
+                        <label class="custom-control-label text-small" for="check1">La dirección está mal</label>
                     </div>
-                    <div class="custom-control custom-radio ml-4 mt-2">
+                    <div class="custom-control custom-radio ml-4 mt-1">
                         <input type="radio" class="custom-control-input" id="check2" name="check" required
                             value="El precio no es correcto">
-                        <label class="custom-control-label" for="check2">El precio no es correcto</label>
+                        <label class="custom-control-label text-small" for="check2">El precio no es correcto</label>
                     </div>
-                    <div class="custom-control custom-radio ml-4 mt-2">
+                    <div class="custom-control custom-radio ml-4 mt-1">
                         <input type="radio" class="custom-control-input" id="check3" name="check" required
                             value="Es una posible estafa">
-                        <label class="custom-control-label" for="check3">Es una posible estafa</label>
+                        <label class="custom-control-label text-small" for="check3">Es una posible estafa</label>
                     </div>
-                    <div class="custom-control custom-radio ml-4 mt-2">
+                    <div class="custom-control custom-radio ml-4 mt-1">
                         <input type="radio" class="custom-control-input" id="check4" name="check" required
                             value="Comentarios discriminatorios y/u ofensivos">
-                        <label class="custom-control-label" for="check4">Comentarios discriminatorios y/u
+                        <label class="custom-control-label text-small" for="check4">Comentarios discriminatorios y/u
                             ofensivos</label>
                     </div>
-                    <div class="custom-control custom-radio ml-4 mt-2">
+                    <div class="custom-control custom-radio ml-4 mt-1">
                         <input type="radio" class="custom-control-input" id="check5" name="check" required
                             value="Error en las fotos">
-                        <label class="custom-control-label" for="check5">Error en las fotos</label>
+                        <label class="custom-control-label text-small" for="check5">Error en las fotos</label>
                     </div>
-                    <div class="custom-control custom-radio ml-4 mt-2">
+                    <div class="custom-control custom-radio ml-4 mt-1">
                         <input type="radio" class="custom-control-input" id="check6" name="check" required
                             value="El teléfono es erróneo o no contesta">
-                        <label class="custom-control-label" for="check6">El teléfono es erróneo o no contesta</label>
+                        <label class="custom-control-label text-small" for="check6">El teléfono es erróneo o no contesta</label>
                     </div>
-                    <div class="custom-control custom-radio ml-4 mt-2">
+                    <div class="custom-control custom-radio ml-4 mt-1">
                         <input type="radio" class="custom-control-input" id="check7" name="check" required
                             value="El email es erróneo o el anunciante no responde">
-                        <label class="custom-control-label" for="check7">El email es erróneo o el anunciante no
+                        <label class="custom-control-label text-small" for="check7">El email es erróneo o el anunciante no
                             responde</label>
                     </div>
-                    <div class="custom-control custom-radio ml-4 mt-2">
+                    <div class="custom-control custom-radio ml-4 mt-1">
                         <input type="radio" class="custom-control-input" id="check8" name="check" required
                             value="Ya está vendido">
-                        <label class="custom-control-label" for="check8">Ya está vendido</label>
+                        <label class="custom-control-label text-small" for="check8">Ya está vendido</label>
                     </div>
-                    <div class="custom-control custom-radio ml-4 mt-2">
+                    <div class="custom-control custom-radio ml-4 mt-1">
                         <input type="radio" class="custom-control-input" id="check9" name="check" required
                             value="Otro motivo">
-                        <label class="custom-control-label" for="check9">Otro motivo</label>
+                        <label class="custom-control-label text-small" for="check9">Otro motivo</label>
                     </div>
-                    <div class="md-form md-outline form-sm ml-4 mt-2">
+                    <div class="md-form md-outline form-sm ml-4 mt-1">
                         <input type="text" id="DENUN_DESC" name="DENUN_DESC" class="form-control form-control-sm"
                             required>
                         <label for="DENUN_DESC">Comentario sobre el error</label>
