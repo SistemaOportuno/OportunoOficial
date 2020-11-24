@@ -11,6 +11,12 @@ module.exports = {
         }
         return res.redirect('/');
     },
+    isAdminPrincipalLog(req, res, next) {
+        if (req.isAuthenticated() && (req.user.ADMIN_ID) && (req.user.ADM_TIPO=='PRINCIPAL')) {
+            return next();
+        }
+        return res.redirect('/');
+    },
     isLoggedIn(req, res, next) {
         if (req.isAuthenticated()) {
             return next();

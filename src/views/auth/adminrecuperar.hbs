@@ -1,0 +1,29 @@
+<br><br><br>
+<div class="container mt-5 pt-5  pb-4 pl-5 pr-5 align-middle ">
+    <div class="card mt-5 mb-5 ">
+        <!-- Default form login -->
+        <form class="text-center border border-light p-5" action="/adminrecuperar" method="POST">
+            <img src="/logo_empresa/{{empresa.EMP_LOGO}}" class="rounded mx-auto" style="width: 200px;">
+
+            <p class="h5 mb-4">Recuperar Contraseña Administración</p>
+
+            <!-- Email -->
+            <input type="email" id="usuario_correo" name="usuario_correo" class="form-control form-control-sm mb-4"
+                placeholder="Ingerse el correo de su cuenta para obtener clave temporal" required>
+            <div class="d-flex justify-content-around">
+                <div>
+                    <!-- Forgot password -->
+                    <a href="/adminLogin">Iniciar Sesión</a>
+                </div>
+            </div>
+
+            <!-- Sign in button -->
+            <button class="btn btn-light-green btn-block my-4 rnd" type="submit">Resetear y Enviar contraseña Temporal</button>
+
+        </form>
+        <!-- Default form login -->
+    </div>
+    <div class="container pt-4"></div>
+
+</div>
+<br><br><br>

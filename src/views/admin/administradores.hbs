@@ -1,0 +1,249 @@
+<div class="container">
+    <div class="sidebar rounded-lg">
+        <div class="header  elegant-color p-1">
+            <h5 class="h5 text-white text-center">Panel Administracion</h5>
+        </div>
+        <div class="list-group list-group-flush pl-2 pr-2 pt-5 pb-5">
+            <a href="/adminPanel" class="list-group-item list-group-item-action waves-effect ">
+                <i class="fas fa-home mr-3"></i>Inicio
+            </a>
+            {{#ifEquals usuario.ADM_TIPO "PRINCIPAL"}}
+            <a href="/administradores" class="list-group-item list-group-item-action waves-effect active">
+                <i class="fas fa-users-cog mr-3"></i>Administradores</a>
+            <a href="/componentes" class="list-group-item list-group-item-action waves-effect ">
+                <i class="fas fa-plus-circle mr-3"></i>Administar Componentes
+            </a>
+            {{/ifEquals}}
+            <a href="/adminAnuncios" class="list-group-item list-group-item-action waves-effect">
+                <i class="fas fa-briefcase mr-3"></i>Administrar Anuncios
+            </a>
+            <a href="/adminUsuarios" class="list-group-item list-group-item-action waves-effect ">
+                <i class="fas fa-users mr-3"></i>Administrar Usuarios</a>
+            <a href="/adminMensajes" class="list-group-item list-group-item-action waves-effect">
+                <i class="fas fa-headset mr-3"></i>Mensajes Usuarios</a>
+            <a href="/llavesEnMano" class="list-group-item list-group-item-action waves-effect ">
+                <i class="far fa-handshake mr-3"></i>Asesoria y Consultas</a>
+            <a href="/denuncias" class="list-group-item list-group-item-action waves-effect ">
+                <i class="fas fa-exclamation-triangle mr-3"></i>Denuncias</a>
+            <a href="/adminCuenta" class="list-group-item list-group-item-action waves-effect">
+                <i class="fas fa-user mr-3"></i>Mi Cuenta</a>
+            <a href="/logout" class="list-group-item list-group-item-action waves-effect">
+                <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión</a>
+        </div>
+    </div>
+    <div class="content-p1 white rounded-lg pt-3 mb-5 border">
+        <div class="header pt-5">
+            <h2 class="font-weight-normal font-italic text-center">Administradores del Sistema</h2>
+        </div>
+        <div class="d-flex justify-content-end mb-3">
+            <button type="button" class="btn btn-indigo rnd btn-sm" data-toggle="modal"
+                data-target="#modal_add_admin">Agregar</button>
+
+        </div>
+        <table class="table table-bordered mt-5" id="example">
+            <thead>
+                <tr>
+                    <th>
+                        <center>Nombres</center>
+                    </th>
+                    <th>
+                        <center>Usuario</center>
+                    </th>
+                    <th>
+                        <center>Correo</center>
+                    </th>
+                    <th>
+                        <center>Provincia</center>
+                    </th>
+                    <th>
+                        <center>Acción</center>
+                    </th>
+            </thead>
+            <tbody>
+                {{#each admins}}
+                <tr>
+                    <td>{{ADMIN_NOMBRE}} {{ADMIN_APELLIDO}}</td>
+                    <td>{{ADMIN_USUARIO}}</td>
+                    <td>{{ADMIN_CORREO}}</td>
+                    <td>{{ADM_PROVINCIA_NOM}}</td>
+                    <td>
+                        <center>
+                            <a type="button" class="btn btn-blue-grey btn-sm rnd" data-toggle="modal"
+                                data-target="#editarModal{{ADMIN_ID}}">Editar</a>
+                            <a type="button" class="btn btn-danger btn-sm rnd" data-toggle="modal"
+                                data-target="#eliminarModal{{ADMIN_ID}}">Eliminar</a>
+                        </center>
+                    </td>
+                </tr>
+                <!-- Central Modal Small -->
+                <div class="modal fade" id="eliminarModal{{ADMIN_ID}}" tabindex="-1" role="dialog"
+                    aria-labelledby="myModalLabel" aria-hidden="true">
+                    <!-- Change class.modal-sm to change the size of the modal -->
+                    <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <form method="POST" action="/delete_admin">
+                                <div class="modal-header danger-color">
+                                    <h4 class="modal-title text-white ">Eliminar Administrador</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Esta seguro de eliminar el administrador...?</p>
+                                    <p>Tenga en cuenta que esta accion es irreversible
+                                    </p>
+                                </div>
+                                <input type="hidden" class="form-control" name="ADMIN_ID" value="{{ADMIN_ID}}">
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-light btn-sm"
+                                        data-dismiss="modal">Cancelar</button>
+                                    <button type="button submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="editarModal{{ADMIN_ID}}" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
+                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header elegant-color  justify-content-center">
+                                <h5 class="modal-title text-white">Agregar Admnistrador</h5>
+                                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form method="POST" action="/edit_admin">
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="md-form">
+                                                <input type="text" id="ADMIN_NOMBRE" name="ADMIN_NOMBRE"
+                                                    class="form-control" required pattern="[a-zA-Z ]+"
+                                                    value="{{ADMIN_NOMBRE}}">
+                                                <label for="ADMIN_NOMBRE">Nombres</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="md-form">
+                                                <input type="text" id="ADMIN_APELLIDO" name="ADMIN_APELLIDO"
+                                                    class="form-control" required pattern="[a-zA-Z ]+"
+                                                    value="{{ADMIN_APELLIDO}}">
+                                                <label for="ADMIN_APELLIDO">Apellidos</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <div class="md-form">
+                                                <input type="email" id="ADMIN_CORREO" name="ADMIN_CORREO"
+                                                    class="form-control" required value="{{ADMIN_CORREO}}">
+                                                <label for="ADMIN_CORREO">Correo</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="md-form">
+                                                <input type="text" id="ADMIN_USUARIO" name="ADMIN_USUARIO"
+                                                    class="form-control" required value="{{ADMIN_USUARIO}}">
+                                                <label for="ADMIN_USUARIO">Usuario</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="md-form">
+                                                <select class="custom-select custom-select-sm form-control"
+                                                    id="ADM_PROVINCIA" name="ADM_PROVINCIA" required>
+                                                    <option value="{{ADM_PROVINCIA}}" selected>{{ADM_PROVINCIA_NOM}}
+                                                    </option>
+                                                    {{#each ../provincias}}
+                                                    <option value="{{PROV_ID}}">{{PROV_NOMBRE}}</option>
+                                                    {{/each}}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="hidden" class="form-control" name="ADMIN_ID" value="{{ADMIN_ID}}">
+                                <input type="hidden" class="form-control" name="ADMIN_CORREO_A"
+                                    value="{{ADMIN_CORREO}}">
+                                <input type="hidden" class="form-control" name="ADMIN_USUARIO_A"
+                                    value="{{ADMIN_USUARIO}}">
+
+                                <div class="modal-footer justify-content-center">
+                                    <button type="button submit" class="btn btn-light-green btn-sm rnd">Editar</button>
+                                    <a href="/reset_admin/{{ADMIN_ID}}" type="button submit"
+                                        class="btn btn-warning btn-sm rnd">Resetear Contraseña</a>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal_add_admin" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header elegant-color  justify-content-center">
+                <h5 class="modal-title text-white">Agregar Admnistrador</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" action="/add_admin">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="md-form">
+                                <input type="text" id="ADMIN_NOMBRE" name="ADMIN_NOMBRE" class="form-control" required
+                                    pattern="[a-zA-Z ]+">
+                                <label for="ADMIN_NOMBRE">Nombres</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="md-form">
+                                <input type="text" id="ADMIN_APELLIDO" name="ADMIN_APELLIDO" class="form-control"
+                                    required pattern="[a-zA-Z ]+">
+                                <label for="ADMIN_APELLIDO">Apellidos</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
+                            <div class="md-form">
+                                <input type="email" id="ADMIN_CORREO" name="ADMIN_CORREO" class="form-control" required>
+                                <label for="ADMIN_CORREO">Correo</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="md-form">
+                                <input type="text" id="ADMIN_USUARIO" name="ADMIN_USUARIO" class="form-control"
+                                    required>
+                                <label for="ADMIN_USUARIO">Usuario</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="md-form">
+                                <select class="custom-select custom-select-sm form-control" id="ADM_PROVINCIA"
+                                    name="ADM_PROVINCIA" required>
+                                    <option value="" disabled selected> Provincia</option>
+                                    {{#each provincias}}
+                                    <option value="{{PROV_ID}}">{{PROV_NOMBRE}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button submit" class="btn btn-light-green btn-sm rnd">Agregar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

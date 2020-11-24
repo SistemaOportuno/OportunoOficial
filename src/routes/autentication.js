@@ -101,4 +101,25 @@ router.post('/recuperar', isNotLoggedIn, async (req, res) => {
 
     res.redirect('/login');
 });
+router.get('/adminrecuperar', isNotLoggedIn, async (req, res) => {
+    res.render('auth/adminrecuperar');
+});
+router.post('/adminrecuperar', isNotLoggedIn, async (req, res) => {
+    const newPassword = helpers.randomString();
+    const update_user = {
+        ADMIN_CONTRASENA: helpers.encriptar(newPassword)
+    }
+    await db.query('UPDATE administrador SET ? WHERE admin_correo=?', [update_user, req.body.usuario_correo]);
+
+    var mailOptions = {
+        from: 'consorcioinmmokraft@gmail.com',
+        to: req.body.usuario_correo,
+        subject: 'Recuperacion de Contraseña Administración',
+        text: 'Su clave temporal para acceder al sistema es: ' + newPassword
+    };
+    helpers.enviarCOrreo(mailOptions);
+    req.flash('success', 'Su contraseña temporal fue enviada al correo');
+
+    res.redirect('/adminLogin');
+});
 module.exports = router;

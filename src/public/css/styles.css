@@ -70,6 +70,11 @@ p {
     margin-top: 80px;
     height:650px;
   }
+  div.content-p2 {
+    margin-left: 310px;
+    margin-top: 80px;
+    height:750px;
+  }
   div.content-panel  {
     margin-left: 310px;
     margin-top: 80px;
@@ -102,6 +107,8 @@ p {
     div.content-top {margin-left: 0;height: auto;}
     div.content-ls {margin-left: 0;height: auto;}
     div.content-p1 {margin-left: 0;height: auto;}
+    div.content-p2 {margin-left: 0;height: auto;}
+
 
     .ul-multiple {
       -webkit-columns: 1;
