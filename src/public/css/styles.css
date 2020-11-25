@@ -146,18 +146,25 @@ p {
 /*nav*/
 @media (min-width: 800px) and (max-width: 850px) {
   .navbar:not(.top-nav-collapse) {
-      background: #123b61!important;
+      background: #ffffff!important;
   }
   
 }
 
 .navbar{
-  background-color:rgba(62, 69, 81, 0.2)
+  background-color:#ffffff
 }       
-.page-footer,.top-nav-collapse{
+.page-footer{
   background-color:#123b61
 }
-@media only screen and (max-width:768px){.navbar{background-color:#123b61}}
+.top-nav-collapse{
+  background-color:#ffffff
+}
+@media only screen and (max-width:768px){
+  .navbar{
+    background-color:#ffffff
+  }
+}
  
   /*the container must be positioned relative:*/
   .autocomplete {
@@ -376,6 +383,19 @@ background: linear-gradient(90deg, rgba(126,247,95,0.6278886554621849) 0%, rgba(
   right: 0;
   width: 100%;
   height: 100%;
+  border: none;
+}
+.logo-container {
+  overflow: hidden;
+}
+
+.responsive-logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 15%;
   border: none;
 }
 .circle-icon {

@@ -438,5 +438,28 @@ router.post('/denunciar', async (req, res) => {
     req.flash('success', 'Denuncia Enviada Correctamente');
     res.redirect('/anuncio/' + req.body.ANUN_ID);
 });
+router.get('/allProyects', async (req, res) => {
+    var anuncios_principales = await db.query("SELECT *, DATE_FORMAT(ANUN_FECHA,'%Y-%m-%d') as FECHA FROM anuncios WHERE anun_estado='ACTIVO' AND anun_tipo='PRINCIPAL';");
+
+    for(var i=0;i<anuncios_principales.length;i++){
+        anuncios_principales[i].IMAGES = await db.query('SELECT * FROM imagenes WHERE anun_id=?', anuncios_principales[i].ANUN_ID);
+        for(var j=0;j<anuncios_principales[i].IMAGES.length;j++){
+            anuncios_principales[i].IMAGES[j].POS=j;
+        }
+    }
+    res.render('public/allProyects', { anuncios_principales});
+});
+router.get('/blog', async (req, res) => {
+    var posts = await db.query("SELECT * FROM blogs WHERE blog_estado='ACTIVO'");
+
+    for(var i=0;i<posts.length;i++){
+        posts[i].IMAGES = await db.query('SELECT * FROM blog_imagenes WHERE blog_id=?', posts[i].BLOG_ID);
+        for(var j=0;j<posts[i].IMAGES.length;j++){
+            posts[i].IMAGES[j].POS=j;
+        }
+    }
+    console.log(posts[0].IMAGES);
+    res.render('public/blog', {posts});
+});
 
 module.exports = router;

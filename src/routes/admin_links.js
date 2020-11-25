@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../database');
-const { isAdminLog ,isAdminPrincipalLog} = require('../lib/auth');
+const { isAdminLog, isAdminPrincipalLog } = require('../lib/auth');
 const helpers = require('../lib/helpers');
 
 const uuid = require('uuid');
@@ -28,6 +28,25 @@ const update_image = multer({
     },
 }).single('empresa_logo');
 
+const storage_blog = multer.diskStorage({
+    destination: path.join(__dirname, '../public/blog_images'),
+    filename: (req, file, cb) => {
+        cb(null, uuid.v4() + path.extname(file.originalname).toLocaleLowerCase());
+    }
+})
+const update_blog = multer({
+    storage: storage_blog,
+    fileFilter: function (req, file, cb) {
+        var filetypes = /jpeg|jpg|png|gif/;
+        var mimetype = filetypes.test(file.mimetype);
+        var extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+        if (mimetype && extname) {
+            return cb(null, true);
+        }
+        cb("Error: Solo son permitidos los archivos de tipo imagen:  - " + filetypes);
+    },
+}).array('blog_images');
+
 router.get('/adminPanel', isAdminLog, (req, res) => {
     res.render('admin/adminPanel');
 });
@@ -39,7 +58,6 @@ router.get('/tiposInmuebles', isAdminPrincipalLog, async (req, res) => {
     const tipos_inmuebles = await db.query("SELECT * FROM tipos_inmuebles WHERE tipinm_estado='ACTIVO';")
     res.render('admin/tiposInmuebles', { tipos_inmuebles });
 });
-
 router.post('/add_tipo_inmueble', isAdminPrincipalLog, async (req, res) => {
     const new_tipo_inmueble = {
         TIPINM_DESCRIPCION: req.body.TIPINM_DESCRIPCION,
@@ -400,11 +418,11 @@ router.post('/delete_direccion', isAdminPrincipalLog, async (req, res) => {
 
 //----------------------ADMIN ANUNCIOS----------------------------
 router.get('/adminAnuncios', isAdminLog, async (req, res) => {
-    var query='';
-    if(req.user.ADM_TIPO=='PRINCIPAL'){
-        query='SELECT *, DATE_FORMAT(ANUN_FECHA,"%Y-%m-%d") as FECHA FROM anuncios WHERE anun_estado!="ELIMINADO"'
-    }else{
-        query='SELECT *, DATE_FORMAT(ANUN_FECHA,"%Y-%m-%d") as FECHA FROM anuncios WHERE anun_estado!="ELIMINADO" AND prov_id='+req.user.ADM_PROVINCIA;
+    var query = '';
+    if (req.user.ADM_TIPO == 'PRINCIPAL') {
+        query = 'SELECT *, DATE_FORMAT(ANUN_FECHA,"%Y-%m-%d") as FECHA FROM anuncios WHERE anun_estado!="ELIMINADO"'
+    } else {
+        query = 'SELECT *, DATE_FORMAT(ANUN_FECHA,"%Y-%m-%d") as FECHA FROM anuncios WHERE anun_estado!="ELIMINADO" AND prov_id=' + req.user.ADM_PROVINCIA;
 
     }
     const anuncios = await db.query(query);
@@ -464,11 +482,11 @@ router.post('/principalAnuncio', isAdminLog, async (req, res) => {
 
 //----------------------ADMIN USUARIOS----------------------------
 router.get('/adminUsuarios', isAdminLog, async (req, res) => {
-    var query='';
-    if(req.user.ADM_TIPO=='PRINCIPAL'){
-        query='SELECT distinct u.USU_ID, u.USU_NOMBRE, u.USU_APELLIDO, u.USU_TIPO, u.USU_CORREO FROM usuarios u, cobertura c, provincias p WHERE usu_estado!="ELIMINADO" AND u.usu_id=c.usu_id AND p.prov_id=c.prov_id'
-    }else{
-        query='SELECT u.USU_ID, u.USU_NOMBRE, u.USU_APELLIDO, u.USU_TIPO, u.USU_CORREO  FROM usuarios u, cobertura c, provincias p WHERE usu_estado!="ELIMINADO" AND u.usu_id=c.usu_id AND p.prov_id=c.prov_id AND c.prov_id='+req.user.ADM_PROVINCIA;
+    var query = '';
+    if (req.user.ADM_TIPO == 'PRINCIPAL') {
+        query = 'SELECT distinct u.USU_ID, u.USU_NOMBRE, u.USU_APELLIDO, u.USU_TIPO, u.USU_CORREO FROM usuarios u, cobertura c, provincias p WHERE usu_estado!="ELIMINADO" AND u.usu_id=c.usu_id AND p.prov_id=c.prov_id'
+    } else {
+        query = 'SELECT u.USU_ID, u.USU_NOMBRE, u.USU_APELLIDO, u.USU_TIPO, u.USU_CORREO  FROM usuarios u, cobertura c, provincias p WHERE usu_estado!="ELIMINADO" AND u.usu_id=c.usu_id AND p.prov_id=c.prov_id AND c.prov_id=' + req.user.ADM_PROVINCIA;
     }
 
     var usuarios = await db.query(query);
@@ -523,11 +541,11 @@ router.post('/hablitarPublicacion', isAdminLog, async (req, res) => {
 
 //----------------------ADMIN MENSAJES----------------------------
 router.get('/adminMensajes', isAdminLog, async (req, res) => {
-    var query='';
-    if(req.user.ADM_TIPO=='PRINCIPAL'){
-        query="SELECT *,DATE_FORMAT(USUMSG_FECHA,'%Y-%m-%d') as FECHA FROM usuarios_mensajes um, usuarios u, preguntas p WHERE u.usu_id=um.usu_id AND p.preg_id=um.preg_id AND um.usumsg_estado='ACTIVO' "
-    }else{
-        query="SELECT *,DATE_FORMAT(USUMSG_FECHA,'%Y-%m-%d') as FECHA FROM usuarios_mensajes um, usuarios u, preguntas p, cobertura c, provincias pr WHERE u.usu_id=um.usu_id AND p.preg_id=um.preg_id AND um.usumsg_estado='ACTIVO' AND u.usu_id=c.usu_id AND pr.prov_id=c.prov_id AND c.prov_id="+req.user.ADM_PROVINCIA
+    var query = '';
+    if (req.user.ADM_TIPO == 'PRINCIPAL') {
+        query = "SELECT *,DATE_FORMAT(USUMSG_FECHA,'%Y-%m-%d') as FECHA FROM usuarios_mensajes um, usuarios u, preguntas p WHERE u.usu_id=um.usu_id AND p.preg_id=um.preg_id AND um.usumsg_estado='ACTIVO' "
+    } else {
+        query = "SELECT *,DATE_FORMAT(USUMSG_FECHA,'%Y-%m-%d') as FECHA FROM usuarios_mensajes um, usuarios u, preguntas p, cobertura c, provincias pr WHERE u.usu_id=um.usu_id AND p.preg_id=um.preg_id AND um.usumsg_estado='ACTIVO' AND u.usu_id=c.usu_id AND pr.prov_id=c.prov_id AND c.prov_id=" + req.user.ADM_PROVINCIA
     }
     const mensajes = await db.query(query);
 
@@ -557,7 +575,7 @@ router.post('/editarAdminCuenta', isAdminLog, async (req, res) => {
         ADMIN_NOMBRE: req.body.ADMIN_NOMBRE,
         ADMIN_APELLIDO: req.body.ADMIN_APELLIDO,
         ADMIN_USUARIO: req.body.ADMIN_USUARIO,
-        ADMIN_CORREO:req.body.ADMIN_CORREO
+        ADMIN_CORREO: req.body.ADMIN_CORREO
     }
     await db.query('UPDATE administrador SET ? WHERE admin_id=?', [update_admin, req.user.ADMIN_ID]);
     req.flash('success', 'Datos modificados correctamente');
@@ -597,11 +615,11 @@ router.post('/eliminarMensajeLlaves', isAdminPrincipalLog, async (req, res) => {
 //----------------------Denuncias----------------------------
 router.get('/denuncias', isAdminLog, async (req, res) => {
 
-    var query='';
-    if(req.user.ADM_TIPO=='PRINCIPAL'){
-        query='SELECT * FROM denuncias d, anuncios a, usuarios u WHERE d.denun_anun=a.anun_id AND u.usu_id=a.usu_id AND  d.denun_estado="ACTIVO"'
-    }else{
-        query='SELECT * FROM denuncias d, anuncios a, usuarios u, cobertura c, provincias pr WHERE d.denun_anun=a.anun_id AND u.usu_id=a.usu_id AND  d.denun_estado="ACTIVO" AND u.usu_id=c.usu_id AND pr.prov_id=c.prov_id AND a.prov_id='+req.user.ADM_PROVINCIA
+    var query = '';
+    if (req.user.ADM_TIPO == 'PRINCIPAL') {
+        query = 'SELECT * FROM denuncias d, anuncios a, usuarios u WHERE d.denun_anun=a.anun_id AND u.usu_id=a.usu_id AND  d.denun_estado="ACTIVO"'
+    } else {
+        query = 'SELECT * FROM denuncias d, anuncios a, usuarios u, cobertura c, provincias pr WHERE d.denun_anun=a.anun_id AND u.usu_id=a.usu_id AND  d.denun_estado="ACTIVO" AND u.usu_id=c.usu_id AND pr.prov_id=c.prov_id AND a.prov_id=' + req.user.ADM_PROVINCIA
     }
     const denuncias = await db.query(query);
 
@@ -621,15 +639,15 @@ router.get('/administradores', isAdminPrincipalLog, async (req, res) => {
     const provincias = await db.query("SELECT * FROM provincias WHERE prov_estado='ACTIVO'");
     admins.forEach(async element => {
         const prov = await db.query("SELECT * FROM provincias WHERE prov_estado='ACTIVO' AND prov_id=?", element.ADM_PROVINCIA);
-        element.ADM_PROVINCIA_NOM=prov[0].PROV_NOMBRE;
+        element.ADM_PROVINCIA_NOM = prov[0].PROV_NOMBRE;
     });
     res.render('admin/administradores', { admins, provincias });
 });
 router.post('/add_admin', isAdminPrincipalLog, async (req, res) => {
     const password = helpers.randomString();
-    const row = await db.query('SELECT * FROM administrador WHERE  admin_correo=? OR admin_usuario=?',[req.body.ADMIN_CORREO, req.body.ADMIN_USUARIO]);
-    
-    if(row.length>0){
+    const row = await db.query('SELECT * FROM administrador WHERE  admin_correo=? OR admin_usuario=?', [req.body.ADMIN_CORREO, req.body.ADMIN_USUARIO]);
+
+    if (row.length > 0) {
         req.flash('success', 'Los Datos ya se encuentran registrados');
         res.redirect('/administradores');
         return;
@@ -669,9 +687,9 @@ router.post('/delete_admin', isAdminPrincipalLog, async (req, res) => {
     res.redirect('/administradores');
 });
 router.post('/edit_admin', isAdminPrincipalLog, async (req, res) => {
-    if(req.body.ADMIN_USUARIO!=req.body.ADMIN_USUARIO_A || req.body.ADMIN_CORREO!=req.body.ADMIN_CORREO_A){
-        const row = await db.query('SELECT * FROM administrador WHERE  admin_correo=? OR admin_usuario=?',[req.body.ADMIN_CORREO, req.body.ADMIN_USUARIO]);
-        if(row.length>0){
+    if (req.body.ADMIN_USUARIO != req.body.ADMIN_USUARIO_A || req.body.ADMIN_CORREO != req.body.ADMIN_CORREO_A) {
+        const row = await db.query('SELECT * FROM administrador WHERE  admin_correo=? OR admin_usuario=?', [req.body.ADMIN_CORREO, req.body.ADMIN_USUARIO]);
+        if (row.length > 0) {
             req.flash('success', 'Los Datos ya se encuentran registrados');
             res.redirect('/administradores');
             return;
@@ -692,7 +710,7 @@ router.post('/edit_admin', isAdminPrincipalLog, async (req, res) => {
 router.get('/reset_admin/:ADMIN_ID', isAdminPrincipalLog, async (req, res) => {
     const password = helpers.randomString();
     const { ADMIN_ID } = req.params;
-    const row = await db.query('SELECT * FROM administrador WHERE adm_tipo="SECUNDARIO" AND admin_id=?',ADMIN_ID);
+    const row = await db.query('SELECT * FROM administrador WHERE adm_tipo="SECUNDARIO" AND admin_id=?', ADMIN_ID);
 
     const admin = {
         ADMIN_CONTRASENA: helpers.encriptar(password),
@@ -711,6 +729,56 @@ router.get('/reset_admin/:ADMIN_ID', isAdminPrincipalLog, async (req, res) => {
     res.redirect('/administradores');
 });
 //----------------------Administradores----------------------
+//----------------------BLOG----------------------
+router.get('/adminblog', isAdminLog, async (req, res) => {
+    const blogs = await db.query('SELECT * FROM blogs WHERE blog_estado="ACTIVO"');
+    blogs.forEach(async element => {
+        element.IMAGENES = await db.query("SELECT * FROM blog_imagenes WHERE blog_id=?", element.BLOG_ID);
+        element.IMAGENES.forEach(function (i, idx, array) {
+            i.POS = idx;
+        });
+    });
+    res.render('admin/adminblog', { blogs });
+});
+router.post('/add_post', update_blog, async (req, res) => {
+    const new_blog = {
+        BLOG_TITULO: req.body.BLOG_TITULO,
+        BLOG_AUTOR: req.user.ADMIN_NOMBRE + " " + req.user.ADMIN_APELLIDO,
+        BLOG_FECHA: helpers.fecha_actual(),
+        BLOG_TEXTO: req.body.BLOG_TEXTO,
+        BLOG_ESTADO: "ACTIVO",
+    }
+    const result = await db.query('INSERT INTO blogs SET ? ', new_blog);
+    req.files.forEach(async element => {
+        const new_image = {
+            BLOG_ID: result.insertId,
+            BIMG_NOMBRE: element.filename
+        }
+        await db.query('INSERT INTO blog_imagenes SET ? ', new_image);
+    });
 
+
+    res.redirect('/adminblog');
+});
+
+router.post('/eliminar_post', update_blog, async (req, res) => {
+    const update_post = {
+        BLOG_ESTADO: 'ELIMINADO'
+    }
+    await db.query('UPDATE blogs SET ? WHERE blog_id=?', [update_post, req.body.BLOG_ID]);
+    const images = await db.query("SELECT * FROM blog_imagenes WHERE blog_id=?", req.body.BLOG_ID);
+    images.forEach(element => {
+        fs.unlink(path.resolve('./src/public/blog_images/' + element.BIMG_NOMBRE), (err) => {
+            if (err) {
+                console.log(err); throw err;
+            }
+        });
+    });
+    req.flash('success', 'Blog eliminado exitosamente');
+
+    res.redirect('/adminblog');
+});
+
+//----------------------BLOG----------------------
 
 module.exports = router;

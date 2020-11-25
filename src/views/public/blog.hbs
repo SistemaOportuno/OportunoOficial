@@ -1,0 +1,70 @@
+<br><br>
+<br><br>
+<div class="container pl-5 pr-5 pt-2 pb-2 pr-5">
+    <div class="row">
+        <div class="col-sm-9">
+            {{#each posts}}
+            <div id="titulo{{BLOG_ID}}" class="container border rounded-lg pl-5 pr-5 pt-2 pb-2 mb-3">
+                <!--Carousel Wrapper-->
+                <div id="carousel" class="carousel slide carousel-fade " data-ride="carousel">
+                    <!--Indicators-->
+                    <ol class="carousel-indicators">
+                        {{#each IMAGES}}
+                        <li data-target="#carousel" data-slide-to="{{POS}}" {{#ifEquals POS 0}} class="active"
+                            {{/ifEquals}}>
+                        </li>
+                        {{/each}}
+                    </ol>
+                    <!--/.Indicators-->
+                    <!--Slides-->
+                    <div class="carousel-inner" role="listbox">
+                        {{#each IMAGES}}
+                        <div class="carousel-item overlay zoom {{#ifEquals POS 0}} active {{/ifEquals}}">
+                            <img class="d-block mx-auto" src="/blog_images/{{BIMG_NOMBRE}}" style="height: 55vh;">
+                        </div>
+                        {{/each}}
+                    </div>
+                    <!--/.Slides-->
+                    <!--Controls-->
+                    <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon rounded-lg border" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon rounded-lg border" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                    <!--/.Controls-->
+                </div>
+                <h6 class="font-weight-bold">{{BLOG_TITULO}}</h6>
+                <p class="font-weight-light ml-3 text-small"><i class="blue-grey-text far fa-calendar-alt"></i>
+                    <b>Fecha: </b>{{BLOG_FECHA}}</p>
+                <p class="font-weight-light ml-3 text-small"><i class="blue-grey-text far fa-user"></i>
+                    <b>Autor: </b>{{BLOG_AUTOR}}</p>
+                <p class="font-weight-lighter description">{{BLOG_TEXTO}} </p>
+                <!--/.Carousel Wrapper-->
+            </div>
+
+            {{/each}}
+        </div>
+        <div class="col-sm-3 border rounded-lg">
+            <h5 class="h5 text-center p-2">BLOG</h5>
+            <img src="/logo_empresa/{{empresa.EMP_LOGO}}" class="img-fluid">
+            <p class="p-1 font-weight-bolder">Nuestros Posts</p>
+            <div class="list-group">
+                {{#each posts}}
+                <a href="#titulo{{BLOG_ID}}" class="list-group-item list-group-item-action">
+                    {{BLOG_TITULO}}
+                </a>
+                {{/each}}
+            </div>
+            <div class="text-center pt-2">
+                <a class="btn btn-sm btn-light-green rnd" onclick="goBack()"><i class="fas fa-undo pr-1"></i> Atras</a>
+                <a class="btn btn-sm btn-light-green rnd" href="/"><i class="fas fa-home pr-1"></i> Inicio</a>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>

@@ -29,6 +29,13 @@
                     </a>
                     <br>
 
+                    <span class="rounded-lg mdb-color text-white text-small font-italic pl-1 pr-1 mr-1">Blog</span>
+                    <br>
+                    <a class="circle-icon pt-2" href="/blog">
+                        <i class="fas fa-blog fa-lg fa-2x" style="color: #123b61 !important;"> </i>
+                    </a>
+                    <br>
+
                     <span class="rounded-lg mdb-color text-white text-small font-italic pl-1 pr-1 mr-1">Ayuda</span>
                     <br>
                     <a class="circle-icon pt-2" href="#" data-toggle="modal" data-target="#modal_consulta">
@@ -38,91 +45,95 @@
 
 
             </div>
-            <div class="card card-op text-white  mr-5">
-                <!-- Card content -->
-                <div class="card-body card-body-cascade img-gradient-overlay ">
-                    <h4 class="card-title text-center ">Bienvenido a <b>Oportuno!</b></h4>
-                    <p class="text-center font-italic">El mejor lugar para comprar, vender o alquilar inmuebles en
-                        Ecuador</p>
-                    <hr class="hr">
-                    <form method="POST" action="/busqueda">
-                        <div class="row white rounded-lg text-body pb-3 ml-3 mr-3 text-small">
-                            <div class="col-md-10">
-                                <div class="row">
-                                    <div class="col-md-3 mt-4">
-                                        <p class="custom-control-inline">Comprar</p>
-                                        <label class="switch">
-                                            <input type="checkbox" class="form-control" id="transaccion"
-                                                name="transaccion">
-                                            <span class="slider round"></span>
-                                        </label>
-                                        <p class="custom-control-inline">Alquilar</p>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <div class="md-form input-with-pre-icon">
-                                            <i class="fas fa-map-marker-alt input-prefix"></i>
-                                            <input type="search" class="form-control" id="search_input"
-                                                name="search_input" placeholder="Lugar..." required />
-                                            <label for="search_input indigo-lighter-hove">Lugar</label>
+            <div class="row pr-5">
+                <img src="/logo_empresa/principal_logo.png" class="img-fluid pt-2" style="width: 400px;">
+                <div class="card card-op text-white ">
+                    <!-- Card content -->
+                    <div class="card-body card-body-cascade img-gradient-overlay ">
+                        <h4 class="card-title text-center ">Bienvenido a <b>Oportuno!</b></h4>
+                        <p class="text-center font-italic">El mejor lugar para comprar, vender o alquilar inmuebles en
+                            Ecuador</p>
+                        <hr class="hr">
+                        <form method="POST" action="/busqueda">
+                            <div class="row white rounded-lg text-body pb-3 ml-3 mr-3 text-small">
+                                <div class="col-md-10">
+                                    <div class="row">
+                                        <div class="col-md-3 mt-4">
+                                            <p class="custom-control-inline">Comprar</p>
+                                            <label class="switch">
+                                                <input type="checkbox" class="form-control" id="transaccion"
+                                                    name="transaccion">
+                                                <span class="slider round"></span>
+                                            </label>
+                                            <p class="custom-control-inline">Alquilar</p>
                                         </div>
-                                    </div>
+                                        <div class="col-md-5">
+                                            <div class="md-form input-with-pre-icon">
+                                                <i class="fas fa-map-marker-alt input-prefix"></i>
+                                                <input type="search" class="form-control" id="search_input"
+                                                    name="search_input" placeholder="Lugar..." required />
+                                                <label for="search_input indigo-lighter-hove">Lugar</label>
+                                            </div>
+                                        </div>
 
-                                    <div class="col-md-2">
-                                        <!-- Material input -->
-                                        <div class="md-form input-with-pre-icon">
-                                            <i class="fas fa-dollar-sign input-prefix"></i>
-                                            <input type="number" id="costo_min" name="costo_min" class="form-control"
-                                                min="0">
-                                            <label for="costo_min">Min</label>
+                                        <div class="col-md-2">
+                                            <!-- Material input -->
+                                            <div class="md-form input-with-pre-icon">
+                                                <i class="fas fa-dollar-sign input-prefix"></i>
+                                                <input type="number" id="costo_min" name="costo_min"
+                                                    class="form-control" min="0">
+                                                <label for="costo_min">Min</label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <!-- Material input -->
-                                        <div class="md-form input-with-pre-icon">
-                                            <i class="fas fa-dollar-sign input-prefix"></i>
-                                            <input type="number" id="costo_max" name="costo_max" class="form-control"
-                                                min="1">
-                                            <label for="costo_max">Max</label>
+                                        <div class="col-md-2">
+                                            <!-- Material input -->
+                                            <div class="md-form input-with-pre-icon">
+                                                <i class="fas fa-dollar-sign input-prefix"></i>
+                                                <input type="number" id="costo_max" name="costo_max"
+                                                    class="form-control" min="1">
+                                                <label for="costo_max">Max</label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-12 text-center">
-                                        {{#each tipos_inmuebles}}
-                                        <!--Default inline-->
-                                        <div class="custom-control custom-checkbox custom-control-inline">
-                                            <input type="checkbox" class="custom-control-input form-control"
-                                                id="checks{{TIPINM_ID}}" name="checks" value="{{TIPINM_ID}}">
-                                            <label class="custom-control-label"
-                                                for="checks{{TIPINM_ID}}">{{TIPINM_DESCRIPCION}}</label>
-                                        </div>
-                                        {{/each}}
+                                        <div class="col-md-12 text-center">
+                                            {{#each tipos_inmuebles}}
+                                            <!--Default inline-->
+                                            <div class="custom-control custom-checkbox custom-control-inline">
+                                                <input type="checkbox" class="custom-control-input form-control"
+                                                    id="checks{{TIPINM_ID}}" name="checks" value="{{TIPINM_ID}}">
+                                                <label class="custom-control-label"
+                                                    for="checks{{TIPINM_ID}}">{{TIPINM_DESCRIPCION}}</label>
+                                            </div>
+                                            {{/each}}
 
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <input type="hidden" class="form-control" name="street_number" id="street_number">
-                            <input type="hidden" class="form-control" name="route" id="route">
-                            <input type="hidden" class="form-control" name="locality" id="locality">
-                            <input type="hidden" class="form-control" name="administrative_area_level_1"
-                                id="administrative_area_level_1">
-                            <input type="hidden" class="form-control" name="country" id="country">
-                            <input type="hidden" class="form-control" name="postal_code" id="postal_code">
-                            <input type="hidden" class="form-control" name="latitude" id="latitude">
-                            <input type="hidden" class="form-control" name="longitude" id="longitude">
-                            <input type="hidden" class="form-control" name="administrative_area_level_2"
-                                id="administrative_area_level_2">
-                            <input type="hidden" class="form-control" name="sublocality_level_1"
-                                id="sublocality_level_1">
-                            <input type="hidden" class="form-control" name="sublocality" id="sublocality">
+                                <input type="hidden" class="form-control" name="street_number" id="street_number">
+                                <input type="hidden" class="form-control" name="route" id="route">
+                                <input type="hidden" class="form-control" name="locality" id="locality">
+                                <input type="hidden" class="form-control" name="administrative_area_level_1"
+                                    id="administrative_area_level_1">
+                                <input type="hidden" class="form-control" name="country" id="country">
+                                <input type="hidden" class="form-control" name="postal_code" id="postal_code">
+                                <input type="hidden" class="form-control" name="latitude" id="latitude">
+                                <input type="hidden" class="form-control" name="longitude" id="longitude">
+                                <input type="hidden" class="form-control" name="administrative_area_level_2"
+                                    id="administrative_area_level_2">
+                                <input type="hidden" class="form-control" name="sublocality_level_1"
+                                    id="sublocality_level_1">
+                                <input type="hidden" class="form-control" name="sublocality" id="sublocality">
 
-                            <div class="col-md-2 mt-4 text-center">
-                                <button type="button submit" class="btn btn-light-green rnd btn-sm"><i
-                                        class="fas fa-search"></i>
-                                    Buscar</button>
+                                <div class="col-md-2 mt-4 text-center">
+                                    <button type="button submit" class="btn btn-light-green rnd btn-sm"><i
+                                            class="fas fa-search"></i>
+                                        Buscar</button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
@@ -383,7 +394,8 @@
                     <div class="row">
                         <div class="col-sm-6 text-small">
                             <div class="text-center">
-                                <div class="pt-3" style="background-color: #8bc34a !important;height: 50px;width: 50px;border-radius: 50%;display: inline-block;">
+                                <div class="pt-3"
+                                    style="background-color: #8bc34a !important;height: 50px;width: 50px;border-radius: 50%;display: inline-block;">
                                     <i class="fas fa-question fa-lg fa-2x" style="color: #ffffff !important;"> </i>
                                 </div>
                             </div>

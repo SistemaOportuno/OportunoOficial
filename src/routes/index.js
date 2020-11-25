@@ -70,22 +70,9 @@ router.get('/', async (req, res) => {
       }
       
 */
-
-    res.render('public/inicio', { tipos_inmuebles, paginas});
+    const principal=true;
+    res.render('public/inicio', { tipos_inmuebles, paginas, principal});
 });
-
-router.get('/allProyects', async (req, res) => {
-    var anuncios_principales = await db.query("SELECT *, DATE_FORMAT(ANUN_FECHA,'%Y-%m-%d') as FECHA FROM anuncios WHERE anun_estado='ACTIVO' AND anun_tipo='PRINCIPAL';");
-
-    for(var i=0;i<anuncios_principales.length;i++){
-        anuncios_principales[i].IMAGES = await db.query('SELECT * FROM imagenes WHERE anun_id=?', anuncios_principales[i].ANUN_ID);
-        for(var j=0;j<anuncios_principales[i].IMAGES.length;j++){
-            anuncios_principales[i].IMAGES[j].POS=j;
-        }
-    }
-    res.render('public/allProyects', { anuncios_principales});
-});
-
 
 
 
