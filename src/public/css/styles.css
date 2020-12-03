@@ -146,23 +146,23 @@ p {
 /*nav*/
 @media (min-width: 800px) and (max-width: 850px) {
   .navbar:not(.top-nav-collapse) {
-      background: #ffffff!important;
+      background: #123b61!important;
   }
   
 }
 
 .navbar{
-  background-color:#ffffff
+  background-color:#123b6141
 }       
 .page-footer{
   background-color:#123b61
 }
 .top-nav-collapse{
-  background-color:#ffffff
+  background-color:#123b61
 }
 @media only screen and (max-width:768px){
   .navbar{
-    background-color:#ffffff
+    background-color:#123b61
   }
 }
  
