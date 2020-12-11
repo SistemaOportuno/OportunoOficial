@@ -374,16 +374,17 @@ router.post('/addConsulta', async (req, res) => {
     res.redirect('/');
 });
 router.get('/empresa', async (req, res) => {
-    res.render('public/empresa');
-    
+    const principal=true;
+    res.render('public/empresa',{principal});
 });
 router.get('/misionYvision', async (req, res) => {
     res.render('public/misionYvision');
     
 });
 router.get('/terminosYcondiciones', async (req, res) => {
-    res.render('public/terminosycondiciones');
-    
+    const principal=true;
+
+    res.render('public/terminosycondiciones',{principal});
 });
 router.post('/compartirCorreo', async (req, res) => {
     const rows = await db.query('SELECT *, DATE_FORMAT(ANUN_FECHA,"%Y-%m-%d") as FECHA FROM anuncios WHERE anun_estado="ACTIVO" AND anun_id=?', [req.body.ANUN_ID]);

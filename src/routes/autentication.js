@@ -57,10 +57,12 @@ router.post('/addInmo', isNotLoggedIn, update_image, passport.authenticate('loca
     failureFlash: true
 }));
 router.get('/login', isNotLoggedIn, async (req, res) => {
-    res.render('auth/login');
+    const principal=true;
+    res.render('auth/login',{principal});
 });
 router.get('/adminLogin', isNotLoggedIn, async (req, res) => {
-    res.render('auth/AdminLogin');
+    const principal=true;
+    res.render('auth/AdminLogin',{principal});
 });
 router.post('/login', isNotLoggedIn, (req, res, next) => {
     passport.authenticate('local.login', {
@@ -81,7 +83,8 @@ router.get('/logout', isLoggedIn, (req, res) => {
     res.redirect('/');
 });
 router.get('/recuperar', isNotLoggedIn, async (req, res) => {
-    res.render('auth/recuperar');
+    const principal=true;
+    res.render('auth/recuperar',{principal});
 });
 router.post('/recuperar', isNotLoggedIn, async (req, res) => {
     const newPassword = helpers.randomString();
@@ -102,7 +105,8 @@ router.post('/recuperar', isNotLoggedIn, async (req, res) => {
     res.redirect('/login');
 });
 router.get('/adminrecuperar', isNotLoggedIn, async (req, res) => {
-    res.render('auth/adminrecuperar');
+    const principal=true;
+    res.render('auth/adminrecuperar',{principal});
 });
 router.post('/adminrecuperar', isNotLoggedIn, async (req, res) => {
     const newPassword = helpers.randomString();

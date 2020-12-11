@@ -108,7 +108,11 @@ p {
     div.content-ls {margin-left: 0;height: auto;}
     div.content-p1 {margin-left: 0;height: auto;}
     div.content-p2 {margin-left: 0;height: auto;}
-
+    .vertical-center {
+      transform: translateY(0%);
+      padding-left: 30px;
+      padding-right: 30px;
+    }
 
     .ul-multiple {
       -webkit-columns: 1;
@@ -152,7 +156,7 @@ p {
 }
 
 .navbar{
-  background-color:#123b6141
+  background-color:#123b61dc
 }       
 .page-footer{
   background-color:#123b61
@@ -404,4 +408,10 @@ background: linear-gradient(90deg, rgba(126,247,95,0.6278886554621849) 0%, rgba(
   width: 45px;
   border-radius: 50%;
   display: inline-block;
+}
+.indent{
+  text-indent:-1em;
+}
+.vertical-center {
+  transform: translateY(40%);
 }

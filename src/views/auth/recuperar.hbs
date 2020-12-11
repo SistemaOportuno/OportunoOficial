@@ -1,11 +1,11 @@
 <br><br><br>
 <div class="container mt-5 pt-5  pb-4 pl-5 pr-5 align-middle ">
-    <div class="card mt-5 mb-5 ">
+    <div class="card mt-5 mb-5 rounded-lg" style="background-color: #123b61dc;">
         <!-- Default form login -->
         <form class="text-center border border-light p-5" action="/recuperar" method="POST">
-            <img src="/logo_empresa/{{empresa.EMP_LOGO}}" class="rounded mx-auto" style="width: 200px;">
+            <img src="/logo_empresa/{{empresa.EMP_LOGO}}" class="rounded mx-auto" style="width: 400px;">
 
-            <p class="h5 mb-4">Recuperar Contraseña</p>
+            <p class="h5 mb-4 text-white">Recuperar Contraseña</p>
 
             <!-- Email -->
             <input type="email" id="usuario_correo" name="usuario_correo" class="form-control form-control-sm mb-4"
@@ -13,7 +13,7 @@
             <div class="d-flex justify-content-around">
                 <div>
                     <!-- Forgot password -->
-                    <a href="/login">Iniciar Sesión</a>
+                    <a href="/login"> <span class="text-white">Iniciar Sesión</span> </a>
                 </div>
             </div>
 
