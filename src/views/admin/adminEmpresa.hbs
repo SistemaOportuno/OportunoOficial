@@ -64,14 +64,27 @@
                 data-target="#modal_descripcion">Editar</button>
         </div>
         <h6 class="font-weight-bolder text-white elegant-color rounded p-2">Logo de la Empresa</h6>
-        <div class="text-center" style="background-color: darkgray;">
+        <div class="text-center" style="background-color: #123b61dc;">
             <img src="/logo_empresa/{{empresa.EMP_LOGO}}" class="img-fluid">
-
         </div>
         <div class="d-flex justify-content-end">
             <button type="button" class="btn btn-light-green btn-sm rnd" data-toggle="modal"
                 data-target="#modal_logo">Editar</button>
-
+        </div>
+        <h6 class="font-weight-bolder text-white elegant-color rounded p-2">Promo</h6>
+        <div class="text-center">
+            <img src="/promos/{{empresa.EMP_PROMO}}" class="img-fluid">
+        </div>
+        <div class="d-flex justify-content-end">
+            {{#if empresa.IS_PROMO}}
+            <button type="button" class="btn btn-warning btn-sm rnd" data-toggle="modal"
+                data-target="#modal_desactivate_promo">Desactivar</button>
+            {{else}}
+            <button type="button" class="btn btn-indigo btn-sm rnd" data-toggle="modal"
+                data-target="#modal_activate_promo">Activar</button>
+            {{/if}}
+            <button type="button" class="btn btn-light-green btn-sm rnd" data-toggle="modal"
+                data-target="#modal_promo">Editar</button>
         </div>
     </div>
 </div>
@@ -97,6 +110,38 @@
                         <input type="file" class="custom-file-input form-control" id="empresa_logo" name="empresa_logo"
                             accept="image/x-png, image/gif, image/jpeg, image/jpg" required>
                         <label class="custom-file-label" for="empresa_logo" data-browse="Seleccionar">Seleccione
+                            un archivo de imagen</label>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light btn-sm rnd" data-dismiss="modal">Cerrar</button>
+                    <button type="button submit" class="btn btn-light-green btn-sm rnd">Guardar</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<!-- Central Modal Small -->
+<div class="modal fade" id="modal_promo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <!-- Change class .modal-sm to change the size of the modal -->
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-white" id="myModalLabel">Promo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" action="/editPromo" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="custom-file">
+                        <input type="hidden" class="form-control" name="EMP_PROMO" value="{{empresa.EMP_PROMO}}">
+                        <input type="file" class="custom-file-input form-control" id="empresa_promo"
+                            name="empresa_promo" accept="image/x-png, image/gif, image/jpeg, image/jpg" required>
+                        <label class="custom-file-label" for="empresa_promo" data-browse="Seleccionar">Seleccione
                             un archivo de imagen</label>
 
                     </div>
@@ -183,5 +228,55 @@
                 </div>
             </form>
         </div>
+    </div>
+</div>
+<!-- Central Modal Small -->
+<div class="modal fade" id="modal_activate_promo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <!-- Change class.modal-sm to change the size of the modal -->
+    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+        <form method="POST" action="/activate_promo">
+            <div class="modal-content">
+                <div class="modal-header danger-color">
+                    <h4 class="modal-title text-white ">Activar Promo</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Activar el anuncio para que se vea en la pantalla priincipal?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light btn-sm" data-dismiss="modal">Cancelar</button>
+                    <button type="button submit" class="btn btn-indigo btn-sm">Activar</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+<!-- Central Modal Small -->
+<div class="modal fade" id="modal_desactivate_promo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <!-- Change class.modal-sm to change the size of the modal -->
+    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+        <form method="POST" action="/desactivate_promo">
+            <div class="modal-content">
+                <div class="modal-header danger-color">
+                    <h4 class="modal-title text-white ">Desactivar Promo</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Desactivar el anuncio para que no se vea en la pantalla priincipal?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light btn-sm" data-dismiss="modal">Cancelar</button>
+                    <button type="button submit" class="btn btn-warning btn-sm">Desactivar</button>
+                </div>
+            </div>
+        </form>
+
     </div>
 </div>

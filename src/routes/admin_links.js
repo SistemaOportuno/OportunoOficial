@@ -28,6 +28,25 @@ const update_image = multer({
     },
 }).single('empresa_logo');
 
+const storage_promo = multer.diskStorage({
+    destination: path.join(__dirname, '../public/promos'),
+    filename: (req, file, cb) => {
+        cb(null, uuid.v4() + path.extname(file.originalname).toLocaleLowerCase());
+    }
+})
+const update_promo = multer({
+    storage: storage_promo,
+    fileFilter: function (req, file, cb) {
+        var filetypes = /jpeg|jpg|png|gif/;
+        var mimetype = filetypes.test(file.mimetype);
+        var extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+        if (mimetype && extname) {
+            return cb(null, true);
+        }
+        cb("Error: Solo son permitidos los archivos de tipo imagen:  - " + filetypes);
+    },
+}).single('empresa_promo');
+
 const storage_blog = multer.diskStorage({
     destination: path.join(__dirname, '../public/blog_images'),
     filename: (req, file, cb) => {
@@ -330,6 +349,36 @@ router.post('/editLogo', isAdminPrincipalLog, update_image, async (req, res) => 
 
     res.redirect('/adminEmpresa');
 });
+router.post('/editPromo', isAdminPrincipalLog, update_promo, async (req, res) => {
+    const edit_empresa = {
+        EMP_PROMO: req.file.filename
+    }
+    await db.query("UPDATE empresa SET ? WHERE emp_id=1;", [edit_empresa]);
+    fs.unlink(path.resolve('./src/public/promos/' + req.body.EMP_PROMO), (err) => {
+        if (err) {
+            console.log(err); throw err;
+        }
+    });
+    req.flash('success', 'Promo editada exitosamente');
+    res.redirect('/adminEmpresa');
+});
+router.post('/activate_promo', isAdminPrincipalLog, async (req, res) => {
+    const edit_empresa = {
+        IS_PROMO: true
+    }
+    await db.query("UPDATE empresa SET ? WHERE emp_id=1;", [edit_empresa]);
+    req.flash('success', 'Promo activada exitosamente');
+    res.redirect('/adminEmpresa');
+});
+router.post('/desactivate_promo', isAdminPrincipalLog, async (req, res) => {
+    const edit_empresa = {
+        IS_PROMO: false
+    }
+    await db.query("UPDATE empresa SET ? WHERE emp_id=1;", [edit_empresa]);
+    req.flash('success', 'Promo desactivada exitosamente');
+    res.redirect('/adminEmpresa');
+});
+
 //----------------------EMPRESA----------------------------
 //----------------------CONTACTOS----------------------------
 router.get('/adminContactos', isAdminPrincipalLog, async (req, res) => {
