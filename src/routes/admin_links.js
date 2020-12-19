@@ -339,7 +339,7 @@ router.post('/editLogo', isAdminPrincipalLog, update_image, async (req, res) => 
         EMP_LOGO: req.file.filename
     }
     await db.query("UPDATE empresa SET ? WHERE emp_id=1;", [edit_empresa]);
-    fs.unlink(path.resolve('./src/public/logo_empresa/' + req.body.EMP_LOGO), (err) => {
+    fs.unlink(path.join(__dirname,'../public/logo_empresa/' + req.body.EMP_LOGO), (err) => {
         if (err) {
             console.log(err); throw err;
         }
@@ -354,7 +354,7 @@ router.post('/editPromo', isAdminPrincipalLog, update_promo, async (req, res) =>
         EMP_PROMO: req.file.filename
     }
     await db.query("UPDATE empresa SET ? WHERE emp_id=1;", [edit_empresa]);
-    fs.unlink(path.resolve('./src/public/promos/' + req.body.EMP_PROMO), (err) => {
+    fs.unlink(path.join(__dirname,'../public/promos/' + req.body.EMP_PROMO), (err) => {
         if (err) {
             console.log(err); throw err;
         }
@@ -817,7 +817,7 @@ router.post('/eliminar_post', update_blog, async (req, res) => {
     await db.query('UPDATE blogs SET ? WHERE blog_id=?', [update_post, req.body.BLOG_ID]);
     const images = await db.query("SELECT * FROM blog_imagenes WHERE blog_id=?", req.body.BLOG_ID);
     images.forEach(element => {
-        fs.unlink(path.resolve('./src/public/blog_images/' + element.BIMG_NOMBRE), (err) => {
+        fs.unlink(path.join(__dirname,'../public/blog_images/' + element.BIMG_NOMBRE), (err) => {
             if (err) {
                 console.log(err); throw err;
             }

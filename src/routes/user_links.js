@@ -148,7 +148,7 @@ router.get('/deleteImage/:IMG_ID/:IMG_NOMBRE', isUserLog, async (req, res, next)
     const { IMG_ID } = req.params;
     const { IMG_NOMBRE } = req.params;
     await db.query("DELETE FROM imagenes WHERE img_id=?", IMG_ID);
-    fs.unlink(path.resolve('./src/public/anuncio_images/' + IMG_NOMBRE), (err) => {
+    fs.unlink(path.join(__dirname,'../public/anuncio_images/' + IMG_NOMBRE), (err) => {
         if (err) {
             console.log(err); throw err;
         }
@@ -380,7 +380,7 @@ router.post('/editarCuenta', update_logo, isUserLog, async (req, res) => {
         }
         if (req.file) {
             update_usuario.USU_EMPRESA_LOGO = req.file.filename;
-            fs.unlink(path.resolve('./src/public/inmo_logo/' + req.user.USU_EMPRESA_LOGO), (err) => {
+            fs.unlink(path.join(__dirname,'../public/inmo_logo/' + req.user.USU_EMPRESA_LOGO), (err) => {
                 if (err) {
                     console.log(err); throw err;
                 }
