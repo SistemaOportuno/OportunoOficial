@@ -4,16 +4,17 @@ const helpers={};
 var nodemailer = require('nodemailer');
 
 var transporter = nodemailer.createTransport({
-  service: 'gmail',
+  service: "gmail",
   auth: {
-    user: 'consorcioinmmokraft@gmail.com',
-    pass: 'Inmmokraft644'
+    user: "consorcioinmmokraft@gmail.com",
+    pass: "Inmmokraft644"
   }
 });
 
 
 helpers.enviarCOrreo=(mailOptions)=>{
     transporter.sendMail(mailOptions, function(error, info){
+        console.log(mailOptions)
         if (error) {
           console.log(error);
         } else {
@@ -78,7 +79,7 @@ helpers.randomString=()=> {
  }
 
  helpers.getUrl=()=>{
-     return "http://localhost:4000";
+     return "http://www.oportuno.net";
  }
 
 module.exports=helpers;

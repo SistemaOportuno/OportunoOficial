@@ -116,10 +116,10 @@ router.post('/adminrecuperar', isNotLoggedIn, async (req, res) => {
     await db.query('UPDATE administrador SET ? WHERE admin_correo=?', [update_user, req.body.usuario_correo]);
 
     var mailOptions = {
-        from: 'consorcioinmmokraft@gmail.com',
+        from: "consorcioinmmokraft@gmail.com",
         to: req.body.usuario_correo,
-        subject: 'Recuperacion de Contraseña Administración',
-        text: 'Su clave temporal para acceder al sistema es: ' + newPassword
+        subject: "Recuperacion de Contraseña Administración",
+        text: "Su clave temporal para acceder al sistema es: " + newPassword
     };
     helpers.enviarCOrreo(mailOptions);
     req.flash('success', 'Su contraseña temporal fue enviada al correo');
