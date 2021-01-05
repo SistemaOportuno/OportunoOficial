@@ -1,57 +1,59 @@
-const md5=require('md5');
-const helpers={};
+const md5 = require('md5');
+const helpers = {};
 
 var nodemailer = require('nodemailer');
 
 var transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: "consorcioinmmokraft@gmail.com",
-    pass: "Inmmokraft644"
-  }
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true, // true for 465, false for other ports
+    auth: {
+        user: "consorcioinmmokraft@gmail.com",
+        pass: "Inmmokraft644"
+    }
 });
 
 
-helpers.enviarCOrreo=(mailOptions)=>{
-    transporter.sendMail(mailOptions, function(error, info){
+helpers.enviarCOrreo = (mailOptions) => {
+    transporter.sendMail(mailOptions, function (error, info) {
         console.log(mailOptions)
         if (error) {
-          console.log(error);
+            console.log(error);
         } else {
-          console.log('Email sent: ' + info.response);
+            console.log('Email sent: ' + info.response);
         }
-      });
+    });
 };
 
-helpers.encriptar=(contrasena)=>{
+helpers.encriptar = (contrasena) => {
     return md5(contrasena);
 };
-helpers.comparar=(contrasena, contrasenag)=>{
-    if(md5(contrasena)===contrasenag){
+helpers.comparar = (contrasena, contrasenag) => {
+    if (md5(contrasena) === contrasenag) {
         return true;
-    }else{
+    } else {
         return false;
     }
 };
-helpers.parseDate=(date)=>{
-    if(date!="0000-00-00"){
+helpers.parseDate = (date) => {
+    if (date != "0000-00-00") {
         var dd = date.getDate();
-        var mm = date.getMonth()+1;
+        var mm = date.getMonth() + 1;
         var yyyy = date.getFullYear();
-        if(dd<10) {
-            dd='0'+dd
-        } 
-        if(mm<10) {
-            mm='0'+mm
-        } 
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+        if (mm < 10) {
+            mm = '0' + mm
+        }
         var fe = new Date();
-        fe= yyyy+'-'+mm+'-'+dd;
+        fe = yyyy + '-' + mm + '-' + dd;
         return fe;
-    }else{
+    } else {
         return null;
     }
 };
-helpers.fecha_actual=()=> {
+helpers.fecha_actual = () => {
     var hoy = new Date();
     var dd = hoy.getDate();
     var mm = hoy.getMonth() + 1; //hoy es 0!
@@ -68,18 +70,18 @@ helpers.fecha_actual=()=> {
     return hoy;
 }
 
-helpers.randomString=()=> {
-    var result           = '';
-    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+helpers.randomString = () => {
+    var result = '';
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     var charactersLength = characters.length;
-    for ( var i = 0; i < 8; i++ ) {
-       result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    for (var i = 0; i < 8; i++) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
     return result;
- }
+}
 
- helpers.getUrl=()=>{
-     return "http://www.oportuno.net";
- }
+helpers.getUrl = () => {
+    return "http://www.oportuno.net";
+}
 
-module.exports=helpers;
+module.exports = helpers;
