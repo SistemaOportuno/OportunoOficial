@@ -359,7 +359,7 @@ router.post('/addMensajeCliente', async (req, res) => {
 });
 router.post('/addConsulta', async (req, res) => {
     new_mensaje = {
-        ANUN_ID: req.body.ANUN_ID,
+        ANUN_ID: 0,
         ANMSG_NOMBRE: req.body.ANMSG_NOMBRE,
         ANMSG_CORREO: req.body.ANMSG_CORREO,
         ANMSG_TELEFONO: req.body.ANMSG_TELEFONO,
