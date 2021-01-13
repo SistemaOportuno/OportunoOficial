@@ -47,7 +47,8 @@
                     <div class="input-group-prepend">
                         <p class=" md-addon">Título del Anuncio</p>
                     </div>
-                    <input type="text" class="form-control text-small" name="ANUN_TITULO" required value="{{anuncio.ANUN_TITULO}}">
+                    <input type="text" class="form-control text-small" name="ANUN_TITULO" required
+                        value="{{anuncio.ANUN_TITULO}}">
                 </div>
                 <div class="md-form input-group">
                     <div class="input-group-prepend">
@@ -66,22 +67,22 @@
                             <!-- Default unchecked -->
                             <div class="custom-control custom-radio">
                                 <input type="radio" class="custom-control-input form-control" id="ch_venta"
-                                    name="ANUN_TRANSACCION" value="VENTA" required
-                                    {{#ifEquals anuncio.ANUN_TRANSACCION 'VENTA'}} checked {{/ifEquals}}>
+                                    name="ANUN_TRANSACCION" value="VENTA" required {{#ifEquals
+                                    anuncio.ANUN_TRANSACCION 'VENTA' }} checked {{/ifEquals}}>
                                 <label class="custom-control-label" for="ch_venta">Venta</label>
                             </div>
                             <!-- Default checked -->
                             <div class="custom-control custom-radio">
                                 <input type="radio" class="custom-control-input form-control" id="ch_arriendo"
-                                    name="ANUN_TRANSACCION" value="ARRIENDO" required
-                                    {{#ifEquals anuncio.ANUN_TRANSACCION 'ARRIENDO'}} checked {{/ifEquals}}>
+                                    name="ANUN_TRANSACCION" value="ARRIENDO" required {{#ifEquals
+                                    anuncio.ANUN_TRANSACCION 'ARRIENDO' }} checked {{/ifEquals}}>
                                 <label class="custom-control-label" for="ch_arriendo">Arriendo</label>
                             </div>
                         </div>
                         <div class="col-md-6 pt-2">
                             <p class="text-center">Tipo de nmueble</p>
-                            <select class="browser-default custom-select form-control text-small" id="TIPINM_ID " name="TIPINM_ID"
-                                required>
+                            <select class="browser-default custom-select form-control text-small" id="TIPINM_ID "
+                                name="TIPINM_ID" required>
                                 {{#each tipos_inmuebles}}
                                 <option value="{{TIPINM_ID}}" {{#ifEquals ../anuncio.TIPINM_ID TIPINM_ID}} selected
                                     {{/ifEquals}}>{{TIPINM_DESCRIPCION}}</option>
@@ -90,21 +91,22 @@
                         </div>
                         <div class="col-sm-12">
                             <p class="text-center">Estado del Inmueble</p>
-                            <select class="browser-default custom-select form-control text-small" id="ANUN_ESTADO_CONSTR"
-                                name="ANUN_ESTADO_CONSTR">
+                            <select class="browser-default custom-select form-control text-small"
+                                id="ANUN_ESTADO_CONSTR" name="ANUN_ESTADO_CONSTR">
                                 {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "" }} <option selected value="">Seleccione el
                                     estado de Inmueble</option>{{/ifEquals}}
-                                <option {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "Terreno"}} selected {{/ifEquals}}>
+                                <option {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "Terreno" }} selected {{/ifEquals}}>
                                     Terreno</option>
-                                <option {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "En planos"}} selected {{/ifEquals}}>En
+                                <option {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "En planos" }} selected {{/ifEquals}}>En
                                     planos</option>
-                                <option {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "En construcción"}} selected
+                                <option {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "En construcción" }} selected
                                     {{/ifEquals}}>En construcción</option>
-                                <option {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "Pre-venta"}} selected {{/ifEquals}}>
+                                <option {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "Pre-venta" }} selected {{/ifEquals}}>
                                     Pre-venta</option>
-                                <option {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "Venta"}} selected {{/ifEquals}}>Venta
+                                <option {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "Venta" }} selected {{/ifEquals}}>Venta
                                 </option>
-
+                                <option {{#ifEquals anuncio.ANUN_ESTADO_CONSTR "Venta" }} selected {{/ifEquals}}>Arriendo
+                                </option>
                             </select>
                         </div>
                     </div>
@@ -116,8 +118,8 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text md-addon"> <i class=" fas fa-expand-arrows-alt"></i></span>
                         </div>
-                        <input type="number" class="form-control text-small" placeholder="Total" name="ANUN_TAMANO_TOTAL" min="0"
-                            required value="{{anuncio.ANUN_TAMANO_TOTAL}}">
+                        <input type="number" class="form-control text-small" placeholder="Total"
+                            name="ANUN_TAMANO_TOTAL" min="0" required value="{{anuncio.ANUN_TAMANO_TOTAL}}">
                         <div class="input-group-prepend">
                             <span class="input-group-text md-addon">m&sup2</span>
                         </div>
@@ -152,8 +154,8 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text md-addon"> <i class=" fas fa-money-bill-alt"></i></span>
                         </div>
-                        <input type="number" class="form-control text-small" name="ANUN_ALICUOTA" value="{{anuncio.ANUN_ALICUOTA}}"
-                            min="0">
+                        <input type="number" class="form-control text-small" name="ANUN_ALICUOTA"
+                            value="{{anuncio.ANUN_ALICUOTA}}" min="0">
                     </div>
                 </div>
             </div>
@@ -199,8 +201,8 @@
                     <ul class="col-ch">
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input form-control"
-                                id="checks_caracteristicas{{CARACT_ID}}" name="CARACT_ID" value="{{CARACT_ID}}"
-                                {{#if ISCHECK }} checked {{/if}}>
+                                id="checks_caracteristicas{{CARACT_ID}}" name="CARACT_ID" value="{{CARACT_ID}}" {{#if
+                                ISCHECK }} checked {{/if}}>
                             <label class="custom-control-label"
                                 for="checks_caracteristicas{{CARACT_ID}}">{{CARACT_DESCRIPCION}}</label>
                         </div>
@@ -215,8 +217,8 @@
             <div class="row border rounded-lg p-2 m-1 text-small">
                 <div class="col-sm-4">
                     <p class="text-center">Provincia</p>
-                    <select class="browser-default custom-select form-control text-small" name="PROV_ID" id="anuncio_provincia"
-                        onchange="select_provincia()" required>
+                    <select class="browser-default custom-select form-control text-small" name="PROV_ID"
+                        id="anuncio_provincia" onchange="select_provincia()" required>
                         {{#each provincias}}
                         <option value="{{PROV_ID}}" {{#ifEquals ../anuncio.PROV_ID PROV_ID}} selected {{/ifEquals}}>
                             {{PROV_NOMBRE}}</option>
@@ -225,8 +227,8 @@
                 </div>
                 <div class="col-sm-4">
                     <p class="text-center">Cantón</p>
-                    <select class="browser-default custom-select form-control text-small" name="CANT_ID" id="anuncio_canton"
-                        onchange="select_canton()" required>
+                    <select class="browser-default custom-select form-control text-small" name="CANT_ID"
+                        id="anuncio_canton" onchange="select_canton()" required>
                         {{#each cantones}}
                         <option value="{{CANT_ID}}" {{#ifEquals ../anuncio.CANT_ID CANT_ID}} selected {{/ifEquals}}>
                             {{CANT_NOMBRE}}</option>
@@ -235,8 +237,8 @@
                 </div>
                 <div class="col-sm-4">
                     <p class="text-center">Zona</p>
-                    <select class="browser-default custom-select form-control text-small" name="ZON_ID" id="anuncio_zona"
-                        onchange="select_zona()" required>
+                    <select class="browser-default custom-select form-control text-small" name="ZON_ID"
+                        id="anuncio_zona" onchange="select_zona()" required>
                         {{#each zonas}}
                         <option value="{{ZON_ID}}" {{#ifEquals ../anuncio.ZON_ID ZON_ID}} selected {{/ifEquals}}>
                             {{ZON_NOMBRE}}</option>

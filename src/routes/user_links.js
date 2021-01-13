@@ -78,43 +78,47 @@ router.post('/addAnuncio', update_image, async (req, res) => {
         CANT_ID: req.body.CANT_ID,
         PROV_ID: req.body.PROV_ID,
         ANUN_TITULO: req.body.ANUN_TITULO,
-        ANUN_DESCRIPCION: req.body.ANUN_DESCRIPCION,
-        ANUN_TRANSACCION: req.body.ANUN_TRANSACCION,
-        ANUN_TAMANO_TOTAL: req.body.ANUN_TAMANO_TOTAL,
-        ANUN_TAMANO_CONSTRUCCION: req.body.ANUN_TAMANO_CONSTRUCCION,
-        ANUN_PRECIO: req.body.ANUN_PRECIO,
-        ANUN_ALICUOTA: req.body.ANUN_ALICUOTA,
-        ANUN_HABITACIONES: req.body.ANUN_HABITACIONES,
-        ANUN_BANOS: req.body.ANUN_BANOS,
-        ANUN_M_BANOS: req.body.ANUN_M_BANOS,
-        ANUN_ESTACIONAMIENTO: req.body.ANUN_ESTACIONAMIENTO,
-        ANUN_ANTIGUEDAD: req.body.ANUN_ANTIGUEDAD,
-        ANUN_DIRECCION: req.body.ANUN_DIRECCION,
-        ANUN_LATITUD: req.body.ANUN_LATITUD,
-        ANUN_LONGITUD: req.body.ANUN_LONGITUD,
+        ANUN_DESCRIPCION: req.body.ANUN_DESCRIPCION ? req.body.ANUN_DESCRIPCION : "",
+        ANUN_TRANSACCION: req.body.ANUN_TRANSACCION ? req.body.ANUN_TRANSACCION : "",
+        ANUN_TAMANO_TOTAL: req.body.ANUN_TAMANO_TOTAL ? req.body.ANUN_TAMANO_TOTAL : 0,
+        ANUN_TAMANO_CONSTRUCCION: req.body.ANUN_TAMANO_CONSTRUCCION ? req.body.ANUN_TAMANO_CONSTRUCCION : 0,
+        ANUN_PRECIO: req.body.ANUN_PRECIO ? req.body.ANUN_PRECIO : 0,
+        ANUN_ALICUOTA: req.body.ANUN_ALICUOTA ? req.body.ANUN_ALICUOTA : 0,
+        ANUN_HABITACIONES: req.body.ANUN_HABITACIONES ? req.body.ANUN_HABITACIONES : 0,
+        ANUN_BANOS: req.body.ANUN_BANOS ? req.body.ANUN_BANOS : 0,
+        ANUN_M_BANOS: req.body.ANUN_M_BANOS ? req.body.ANUN_M_BANOS : 0,
+        ANUN_ESTACIONAMIENTO: req.body.ANUN_ESTACIONAMIENTO ? req.body.ANUN_ESTACIONAMIENTO : 0,
+        ANUN_ANTIGUEDAD: req.body.ANUN_ANTIGUEDAD ? req.body.ANUN_ANTIGUEDAD : 0,
+        ANUN_DIRECCION: req.body.ANUN_DIRECCION ? req.body.ANUN_DIRECCION : "",
+        ANUN_LATITUD: req.body.ANUN_LATITUD ? req.body.ANUN_LATITUD : 0,
+        ANUN_LONGITUD: req.body.ANUN_LONGITUD ? req.body.ANUN_LONGITUD : 0,
         ANUN_FECHA: helpers.fecha_actual(),
         ANUN_TIPO: "NORMAL",
-        ANUN_ESTADO_CONSTR: req.body.ANUN_ESTADO_CONSTR,
-        ANUN_EMBEBED: req.body.ANUN_EMBEBED,
+        ANUN_ESTADO_CONSTR: req.body.ANUN_ESTADO_CONSTR ? req.body.ANUN_ESTADO_CONSTR : "",
+        ANUN_EMBEBED: req.body.ANUN_EMBEBED ? req.body.ANUN_EMBEBED : "",
         ANUN_ESTADO: "ACTIVO"
     }
     const result = await db.query('INSERT INTO anuncios SET ? ', new_anuncio);
-    req.files.anuncio_images.forEach(async element => {
-        const new_image = {
-            ANUN_ID: result.insertId,
-            IMG_NOMBRE: element.filename,
-            IMG_TIPO: 'FOTO'
-        }
-        await db.query('INSERT INTO imagenes SET ? ', new_image);
-    });
-    req.files.anuncio_planos.forEach(async element => {
-        const new_image = {
-            ANUN_ID: result.insertId,
-            IMG_NOMBRE: element.filename,
-            IMG_TIPO: 'PLANO'
-        }
-        await db.query('INSERT INTO imagenes SET ? ', new_image);
-    });
+    if(req.files.anuncio_images){
+        req.files.anuncio_images.forEach(async element => {
+            const new_image = {
+                ANUN_ID: result.insertId,
+                IMG_NOMBRE: element.filename,
+                IMG_TIPO: 'FOTO'
+            }
+            await db.query('INSERT INTO imagenes SET ? ', new_image);
+        });
+    }
+    if(req.files.anuncio_planos){
+        req.files.anuncio_planos.forEach(async element => {
+            const new_image = {
+                ANUN_ID: result.insertId,
+                IMG_NOMBRE: element.filename,
+                IMG_TIPO: 'PLANO'
+            }
+            await db.query('INSERT INTO imagenes SET ? ', new_image);
+        });
+    }
     if (Array.isArray(req.body.CARACT_ID)) {
         req.body.CARACT_ID.forEach(async element => {
             const new_cract = {
