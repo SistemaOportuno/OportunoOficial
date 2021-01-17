@@ -7,7 +7,7 @@ const db = require('../database');
 router.get('/', async (req, res) => {
     var tipos_inmuebles = await db.query("SELECT * FROM tipos_inmuebles WHERE tipinm_estado='ACTIVO';");
     var anuncios_principales = await db.query("SELECT *, DATE_FORMAT(ANUN_FECHA,'%Y-%m-%d') as FECHA FROM anuncios WHERE anun_estado='ACTIVO' AND anun_tipo='PRINCIPAL';");
-
+    var num_anun=0;
     var num_pag=0;
     var aux = [];
     const paginas=[];
@@ -17,6 +17,8 @@ router.get('/', async (req, res) => {
         for(var j=0;j<anuncios_principales[i].IMAGES.length;j++){
             anuncios_principales[i].IMAGES[j].POS=j;
         }
+        anuncios_principales[i].NUM=num_anun;
+        num_anun++;
         aux.push(anuncios_principales[i]);
         if(aux.length==6){
             var pagina={
@@ -26,6 +28,7 @@ router.get('/', async (req, res) => {
             paginas.push(pagina);
             aux=[];
             num_pag++;
+            num_anun=0;
         }
     }
     if (aux.length < 6) {

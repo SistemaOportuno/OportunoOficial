@@ -119,9 +119,15 @@
                             <span class="input-group-text md-addon"> <i class=" fas fa-expand-arrows-alt"></i></span>
                         </div>
                         <input type="number" class="form-control text-small" placeholder="Total"
-                            name="ANUN_TAMANO_TOTAL" min="0" required value="{{anuncio.ANUN_TAMANO_TOTAL}}">
+                            name="ANUN_TAMANO_TOTAL" min="0" required value="{{anuncio.ANUN_TAMANO_TOTAL}}" pattern="[0-9]+"
+                            title="Solo se aceptan numeros enteros" step="1">
                         <div class="input-group-prepend">
                             <span class="input-group-text md-addon">m&sup2</span>
+                        </div>
+                         <div class="input-group-prepend">
+                            <a data-mdb-toggle="tooltip" data-mdb-placement="right"
+                                title="Solo se aceptan numeros enteros">
+                                <i class="text-warning fas fa-info-circle"></i> </a>
                         </div>
                     </div>
                     <div class="md-form input-group mb-3">
@@ -129,9 +135,15 @@
                             <span class="input-group-text md-addon"> <i class=" fas fa-expand-arrows-alt"></i></span>
                         </div>
                         <input type="number" class="form-control text-small" placeholder="Construcción"
-                            name="ANUN_TAMANO_CONSTRUCCION" value="{{anuncio.ANUN_TAMANO_CONSTRUCCION}}" min="0">
+                            name="ANUN_TAMANO_CONSTRUCCION" value="{{anuncio.ANUN_TAMANO_CONSTRUCCION}}" min="0" pattern="[0-9]+"
+                            title="Solo se aceptan numeros enteros" step="1">
                         <div class="input-group-prepend">
                             <span class="input-group-text md-addon">m&sup2</span>
+                        </div>
+                         <div class="input-group-prepend">
+                            <a data-mdb-toggle="tooltip" data-mdb-placement="right"
+                                title="Solo se aceptan numeros enteros">
+                                <i class="text-warning fas fa-info-circle"></i> </a>
                         </div>
                     </div>
                 </div>
@@ -145,7 +157,13 @@
                             <span class="input-group-text md-addon"> <i class=" fas fa-money-bill-alt"></i></span>
                         </div>
                         <input type="number" class="form-control text-small" name="ANUN_PRECIO" required
-                            value="{{anuncio.ANUN_PRECIO}}" min="0">
+                            value="{{anuncio.ANUN_PRECIO}}" min="0" pattern="[0-9]+"
+                            title="Solo se aceptan numeros enteros" step="1">
+                             <div class="input-group-prepend">
+                            <a data-mdb-toggle="tooltip" data-mdb-placement="right"
+                                title="Solo se aceptan numeros enteros">
+                                <i class="text-warning fas fa-info-circle"></i> </a>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6 pl-5 pr-5">
@@ -155,40 +173,53 @@
                             <span class="input-group-text md-addon"> <i class=" fas fa-money-bill-alt"></i></span>
                         </div>
                         <input type="number" class="form-control text-small" name="ANUN_ALICUOTA"
-                            value="{{anuncio.ANUN_ALICUOTA}}" min="0">
+                            value="{{anuncio.ANUN_ALICUOTA}}" min="0" pattern="[0-9]+"
+                            title="Solo se aceptan numeros enteros" step="1">
+                             <div class="input-group-prepend">
+                            <a data-mdb-toggle="tooltip" data-mdb-placement="right"
+                                title="Solo se aceptan numeros enteros">
+                                <i class="text-warning fas fa-info-circle"></i> </a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <h6 class="font-weight-bolder text-white elegant-color rounded p-2">Características</h6>
+            <h6 class="font-weight-bolder text-white elegant-color rounded p-2">Características <a data-mdb-toggle="tooltip" data-mdb-placement="right"
+                                title="Solo se aceptan numeros enteros">
+                                <i class="text-warning fas fa-info-circle"></i> </a></h6>
             <div class="row  border rounded-lg p-2 m-1 text-center text-small">
                 <div class="col-sm-4">
                     <i class="grey text-white rounded-circle p-3 mb-1 fas fa-bed fa-2x"></i>
-                    <input type="number" class="form-control w-50 mx-auto" min="0" step="1" name="ANUN_HABITACIONES"
-                        value="{{anuncio.ANUN_HABITACIONES}}">
+                    <input type="number" class="form-control w-50 mx-auto text-small" min="0" step="1" name="ANUN_HABITACIONES"
+                        value="{{anuncio.ANUN_HABITACIONES}}" pattern="[0-9]+"
+                            title="Solo se aceptan numeros enteros" step="1">
                     <b>Habitaciones</b>
                 </div>
                 <div class="col-sm-4">
                     <i class="grey text-white rounded-circle p-3 mb-1 fas fa-bath fa-2x"></i>
-                    <input type="number" class="form-control w-50 mx-auto" min="0" step="1" name="ANUN_BANOS"
-                        value="{{anuncio.ANUN_BANOS}}">
+                    <input type="number" class="form-control w-50 mx-auto text-small" min="0" step="1" name="ANUN_BANOS"
+                        value="{{anuncio.ANUN_BANOS}}" pattern="[0-9]+"
+                            title="Solo se aceptan numeros enteros" step="1">
                     <b>Baños</b>
                 </div>
                 <div class="col-sm-4">
                     <i class="grey text-white rounded-circle p-3 mb-1 fas fa-toilet fa-2x"></i>
-                    <input type="number" class="form-control w-50 mx-auto" min="0" step="1" name="ANUN_M_BANOS"
-                        value="{{anuncio.ANUN_M_BANOS}}">
+                    <input type="number" class="form-control w-50 mx-auto text-small" min="0" step="1" name="ANUN_M_BANOS"
+                        value="{{anuncio.ANUN_M_BANOS}}" pattern="[0-9]+"
+                            title="Solo se aceptan numeros enteros" step="1">
                     <b>1/2 Baños</b>
                 </div>
                 <div class="col-sm-6 pt-3 pl-5 pr-5">
                     <i class="grey text-white rounded-circle p-3 mb-1 fas fa-car fa-2x"></i>
-                    <input type="number" class="form-control w-50 mx-auto" min="0" step="1" name="ANUN_ESTACIONAMIENTO"
-                        value="{{anuncio.ANUN_ESTACIONAMIENTO}}">
+                    <input type="number" class="form-control w-50 mx-auto text-small" min="0" step="1" name="ANUN_ESTACIONAMIENTO"
+                        value="{{anuncio.ANUN_ESTACIONAMIENTO}}" pattern="[0-9]+"
+                            title="Solo se aceptan numeros enteros" step="1">
                     <b>Estacionamientos</b>
                 </div>
                 <div class="col-sm-6 pt-3 pl-5 pr-5">
                     <i class="grey text-white rounded-circle p-3 mb-1 fas fa-history fa-2x"></i>
-                    <input type="number" class="form-control w-50 mx-auto" min="0" step="1" name="ANUN_ANTIGUEDAD"
-                        value="{{anuncio.ANUN_ANTIGUEDAD}}">
+                    <input type="number" class="form-control w-50 mx-auto text-small" min="0" step="1" name="ANUN_ANTIGUEDAD"
+                        value="{{anuncio.ANUN_ANTIGUEDAD}}" pattern="[0-9]+"
+                            title="Solo se aceptan numeros enteros" step="1">
                     <b>Antiguedad (Años)</b>
                 </div>
             </div>
@@ -246,13 +277,20 @@
                     </select>
                 </div>
                 <div class="col-sm-12 pt-2">
-                    <p class="">Dirección</p>
-                    <input type="text" class="form-control text-small" name="ANUN_DIRECCION" required
-                        value="{{anuncio.ANUN_DIRECCION}}">
-                    <p class="pt-2">Localiza tu Inmueble en el mapa</p>
+                  
+                    <p class="pt-2">Localiza tu Inmueble en el mapa <a data-mdb-toggle="tooltip"
+                            data-mdb-placement="right"
+                            title="De click con el mouse en el lugar donde se ubica su inmueble">
+                            <i class="text-warning fas fa-info-circle"></i> </a></p>
                     <div id="map-registro">
 
                     </div>
+                       <br>
+                    <p class="">Dirección <a data-mdb-toggle="tooltip" data-mdb-placement="right"
+                            title="Ingrese manualmente la dirección exacta de su inmueble">
+                            <i class="text-warning fas fa-info-circle"></i> </a></p>
+                    <input type="text" class="form-control text-small" name="ANUN_DIRECCION" required
+                        value="{{anuncio.ANUN_DIRECCION}}">
                 </div>
                 <input type="hidden" class="form-control" name="ANUN_LATITUD" id="anuncio_latitud"
                     value="{{anuncio.ANUN_LATITUD}}">
@@ -262,7 +300,9 @@
             <h6 class="font-weight-bolder text-white elegant-color rounded p-2">Multimedia</h6>
             <div class="row border rounded-lg p-2 m-1 text-small">
                 <div class="col-sm-12">
-                    <h6>Imágenes de su Inmueble</h6>
+                    <h6>Imágenes de su Inmueble <a data-mdb-toggle="tooltip" data-mdb-placement="right"
+                            title="Tener en cuenta que la primera imagen siempre será mostrada como la principal">
+                            <i class="text-warning fas fa-info-circle"></i> </a></h6>
                     <div class="custom-file">
                         <input type="file" class="custom-file-input form-control" id="anuncio_images"
                             name="anuncio_images" accept="image/x-png, image/gif, image/jpeg, image/jpg" multiple>
