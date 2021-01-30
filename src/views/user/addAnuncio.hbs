@@ -276,29 +276,24 @@
                     <h6>Imágenes de su Inmueble <a data-mdb-toggle="tooltip" data-mdb-placement="right"
                             title="Tener en cuenta que la primera imagen siempre será mostrada como la principal">
                             <i class="text-warning fas fa-info-circle"></i> </a></h6>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input form-control" id="anuncio_images"
-                            name="anuncio_images" accept="image/x-png, image/gif, image/jpeg, image/jpg" required
-                            multiple>
-                        <label class="custom-file-label" for="anuncio_images" data-browse="Seleccionar">Seleccione
-                            uno o
-                            más archivos de imagen</label>
+                    <label class="form-label" for="anuncio_images">Seleccione uno o más archivos de imagen</label>
+                    <input type="file" class="form-control form-control-sm" id="anuncio_images" name="anuncio_images"
+                        accept="image/x-png, image/gif, image/jpeg, image/jpg" required multiple
+                        style="min-height: calc(1.6em + .75rem + 2px)!important;">
 
-                    </div>
                     <hr>
                     <h6>Planos de su Inmueble (Opcional)</h6>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input form-control" id="anuncio_planos"
-                            name="anuncio_planos" accept="image/x-png, image/gif, image/jpeg, image/jpg" multiple>
-                        <label class="custom-file-label" for="anuncio_images" data-browse="Seleccionar">Seleccione
-                            uno o
-                            más archivos de imagen</label>
-
-                    </div>
+                    <label class="form-label" for="anuncio_planos">Seleccione uno o másarchivos de imagen</label>
+                    <input type="file" class="form-control form-control-sm" id="anuncio_planos" name="anuncio_planos"
+                        accept="image/x-png, image/gif, image/jpeg, image/jpg" multiple
+                        style="min-height: calc(1.6em + .75rem + 2px)!important;">
                     <hr>
-                    <h6>Subir Video de Youtube</h6>
-                    <button type="button" class="btn btn-info btn-sm rnd" data-toggle="modal"
-                        data-target="#modal_subir">Cómo?</button>
+                    <div class="d-flex">
+                        <h6 class="pt-2">Subir Video de Youtube</h6>
+                        <button type="button" class="btn btn-info btn-sm rnd" data-toggle="modal"
+                            data-target="#modal_subir">Cómo?</button>
+                    </div>
+
                     <input type="text" class="form-control text-small" placeholder="ID Video" name="ANUN_EMBEBED">
                 </div>
             </div>
