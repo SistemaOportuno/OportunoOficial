@@ -265,39 +265,39 @@
                     </ul>
                 </div>
                 <div class="col-sm-8 text-small">
-                    <h6 class="font-weight-bolder  lime lighten-4 h6 rounded  mr-4 p-2"><i
-                            class="fas fa-map-marker pr-2"></i>Ubicación</h6>
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <span>Provincia:</span>
-                            <ul>
-                                <li>{{anuncio.PROVINCIA}}</li>
-                            </ul>
-                        </div>
-                        <div class="col-sm-4">
-                            <span>Cantón:</span>
-                            <ul>
-                                <li>{{anuncio.CANTON}}</li>
-                            </ul>
-                        </div>
-                        <div class="col-sm-4">
-                            <span>Zona:</span>
-                            <ul>
-                                <li>{{anuncio.ZONA}}</li>
-                            </ul>
-                        </div>
-                        <div class="col-sm-12">
-                            <span>Dirección:</span>
-                            <ul>
-                                <li>{{anuncio.ANUN_DIRECCION}}</li>
-                            </ul>
-                        </div>
-                        <input type="hidden" name="lat" id="lat" value="{{anuncio.ANUN_LATITUD}}">
-                        <input type="hidden" name="lon" id="lon" value="{{anuncio.ANUN_LONGITUD}}">
-                        <div class="col-sm-12 pr-5">
-                            <span>Mapa:</span>
-                            <div id="map-anuncio"></div>
-                        </div>
+                <h6 class="font-weight-bolder lime lighten-4 h6 rounded mr-4 p-2">
+                    <i class="fas fa-map-marker pr-2"></i>Ubicación
+                </h6>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <span>Provincia:</span>
+                        <ul>
+                            <li>{{anuncio.PROVINCIA}}</li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4">
+                        <span>Cantón:</span>
+                        <ul>
+                            <li>{{anuncio.CANTON}}</li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4">
+                        <span>Zona:</span>
+                        <ul>
+                            <li>{{anuncio.ZONA}}</li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-12">
+                        <span>Dirección:</span>
+                        <ul>
+                            <li>{{anuncio.ANUN_DIRECCION}}</li>
+                        </ul>
+                    </div>
+                    <input type="hidden" id="lat" value="{{anuncio.ANUN_LATITUD}}"> 
+                    <input type="hidden" id="lon" value="{{anuncio.ANUN_LONGITUD}}">
+                    <div class="col-sm-12 pr-5">
+                        <span>Mapa:</span>
+                        <div id="map-anuncio"></div>
                     </div>
                 </div>
                 {{#if anuncio.ANUN_EMBEBED}}

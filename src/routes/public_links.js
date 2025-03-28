@@ -160,6 +160,7 @@ router.post('/modifylist', async (req, res) => {
         habitaciones: '',
         banos: '',
         garajes: ''
+        
     }
     var transaccion = {};
     var id_provincia = '';

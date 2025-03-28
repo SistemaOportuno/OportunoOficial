@@ -71,6 +71,19 @@ router.get('/addAnuncio', isUserLog, async (req, res) => {
 
 });
 router.post('/addAnuncio', update_image, async (req, res) => {
+    // Depurar los datos recibidos del formulario
+    console.log("Datos recibidos del formulario:", req.body);
+
+    // Convertir las coordenadas a números flotantes
+    const latitud = parseFloat(req.body.ANUN_LATITUD);
+    const longitud = parseFloat(req.body.ANUN_LONGITUD);
+
+    // Validar que las coordenadas sean números válidos
+    if (isNaN(latitud) || isNaN(longitud)) {
+        req.flash('error', 'Las coordenadas no son válidas. Por favor, selecciona una ubicación en el mapa.');
+        return res.redirect('/addAnuncio');
+    }
+
     const new_anuncio = {
         USU_ID: req.user.USU_ID,
         TIPINM_ID: req.body.TIPINM_ID,
@@ -80,43 +93,48 @@ router.post('/addAnuncio', update_image, async (req, res) => {
         ANUN_TITULO: req.body.ANUN_TITULO,
         ANUN_DESCRIPCION: req.body.ANUN_DESCRIPCION ? req.body.ANUN_DESCRIPCION : "",
         ANUN_TRANSACCION: req.body.ANUN_TRANSACCION ? req.body.ANUN_TRANSACCION : "",
-        ANUN_TAMANO_TOTAL: req.body.ANUN_TAMANO_TOTAL ? req.body.ANUN_TAMANO_TOTAL : 0,
-        ANUN_TAMANO_CONSTRUCCION: req.body.ANUN_TAMANO_CONSTRUCCION ? req.body.ANUN_TAMANO_CONSTRUCCION : 0,
-        ANUN_PRECIO: req.body.ANUN_PRECIO ? req.body.ANUN_PRECIO : 0,
-        ANUN_ALICUOTA: req.body.ANUN_ALICUOTA ? req.body.ANUN_ALICUOTA : 0,
-        ANUN_HABITACIONES: req.body.ANUN_HABITACIONES ? req.body.ANUN_HABITACIONES : 0,
-        ANUN_BANOS: req.body.ANUN_BANOS ? req.body.ANUN_BANOS : 0,
-        ANUN_M_BANOS: req.body.ANUN_M_BANOS ? req.body.ANUN_M_BANOS : 0,
-        ANUN_ESTACIONAMIENTO: req.body.ANUN_ESTACIONAMIENTO ? req.body.ANUN_ESTACIONAMIENTO : 0,
-        ANUN_ANTIGUEDAD: req.body.ANUN_ANTIGUEDAD ? req.body.ANUN_ANTIGUEDAD : 0,
+        ANUN_TAMANO_TOTAL: req.body.ANUN_TAMANO_TOTAL ? parseFloat(req.body.ANUN_TAMANO_TOTAL) : 0,
+        ANUN_TAMANO_CONSTRUCCION: req.body.ANUN_TAMANO_CONSTRUCCION ? parseFloat(req.body.ANUN_TAMANO_CONSTRUCCION) : 0,
+        ANUN_PRECIO: req.body.ANUN_PRECIO ? parseFloat(req.body.ANUN_PRECIO) : 0,
+        ANUN_ALICUOTA: req.body.ANUN_ALICUOTA ? parseFloat(req.body.ANUN_ALICUOTA) : 0,
+        ANUN_HABITACIONES: req.body.ANUN_HABITACIONES ? parseInt(req.body.ANUN_HABITACIONES) : 0,
+        ANUN_BANOS: req.body.ANUN_BANOS ? parseInt(req.body.ANUN_BANOS) : 0,
+        ANUN_M_BANOS: req.body.ANUN_M_BANOS ? parseInt(req.body.ANUN_M_BANOS) : 0,
+        ANUN_ESTACIONAMIENTO: req.body.ANUN_ESTACIONAMIENTO ? parseInt(req.body.ANUN_ESTACIONAMIENTO) : 0,
+        ANUN_ANTIGUEDAD: req.body.ANUN_ANTIGUEDAD ? parseInt(req.body.ANUN_ANTIGUEDAD) : 0,
         ANUN_DIRECCION: req.body.ANUN_DIRECCION ? req.body.ANUN_DIRECCION : "",
-        ANUN_LATITUD: req.body.ANUN_LATITUD ? req.body.ANUN_LATITUD : 0,
-        ANUN_LONGITUD: req.body.ANUN_LONGITUD ? req.body.ANUN_LONGITUD : 0,
+        ANUN_LATITUD: latitud, // Usar el valor convertido
+        ANUN_LONGITUD: longitud, // Usar el valor convertido
         ANUN_FECHA: helpers.fecha_actual(),
         ANUN_TIPO: "NORMAL",
         ANUN_ESTADO_CONSTR: req.body.ANUN_ESTADO_CONSTR ? req.body.ANUN_ESTADO_CONSTR : "",
         ANUN_EMBEBED: req.body.ANUN_EMBEBED ? req.body.ANUN_EMBEBED : "",
         ANUN_ESTADO: "ACTIVO"
-    }
-    const result = await db.query('INSERT INTO anuncios SET ? ', new_anuncio);
-    if(req.files.anuncio_images){
+    };
+
+    // Depurar el objeto que se va a insertar
+    console.log("Objeto new_anuncio:", new_anuncio);
+
+    const result = await db.query('INSERT INTO anuncios SET ?', new_anuncio);
+
+    if (req.files.anuncio_images) {
         req.files.anuncio_images.forEach(async element => {
             const new_image = {
                 ANUN_ID: result.insertId,
                 IMG_NOMBRE: element.filename,
                 IMG_TIPO: 'FOTO'
-            }
-            await db.query('INSERT INTO imagenes SET ? ', new_image);
+            };
+            await db.query('INSERT INTO imagenes SET ?', new_image);
         });
     }
-    if(req.files.anuncio_planos){
+    if (req.files.anuncio_planos) {
         req.files.anuncio_planos.forEach(async element => {
             const new_image = {
                 ANUN_ID: result.insertId,
                 IMG_NOMBRE: element.filename,
                 IMG_TIPO: 'PLANO'
-            }
-            await db.query('INSERT INTO imagenes SET ? ', new_image);
+            };
+            await db.query('INSERT INTO imagenes SET ?', new_image);
         });
     }
     if (Array.isArray(req.body.CARACT_ID)) {
@@ -124,18 +142,18 @@ router.post('/addAnuncio', update_image, async (req, res) => {
             const new_cract = {
                 ANUN_ID: result.insertId,
                 CARACT_ID: element
-            }
-            await db.query('INSERT INTO anuncio_caracteristica SET ? ', new_cract);
+            };
+            await db.query('INSERT INTO anuncio_caracteristica SET ?', new_cract);
         });
     } else if (req.body.CARACT_ID != undefined) {
         const new_cract = {
             ANUN_ID: result.insertId,
             CARACT_ID: req.body.CARACT_ID
-        }
-        await db.query('INSERT INTO anuncio_caracteristica SET ? ', new_cract);
+        };
+        await db.query('INSERT INTO anuncio_caracteristica SET ?', new_cract);
     }
-    req.flash('success', 'Anuncio Creado exitosamente');
 
+    req.flash('success', 'Anuncio Creado exitosamente');
     res.redirect('/listAnuncios');
 });
 router.get('/getCantones/:PROV_ID', isUserLog, async (req, res, next) => {
